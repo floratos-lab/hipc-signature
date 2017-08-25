@@ -1,0 +1,10 @@
+target/
+bin/
+.DS_Store
+.svn
+.hg
+.hgtags
+.vscode
+.settings
+.classpath
+.project
