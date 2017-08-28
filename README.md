@@ -3,12 +3,12 @@ This project starts with rebranding the codebase of CTD^2 Dashboard project. It 
 
 * **Core**: contains the main data structures and basic DAO methods.
 * **Admin**: contains importers/normalizers/converters for populating the database (depends on _core_)
-* **Web**: provides a Web-based API for querying the database; also contains a thin-client (known as _Dashboard Web UI_) that helps with basic navigation
+* **Web**: provides a Web-based API for querying the database; also contains a thin-client (known as _Signature Web UI_) that helps with basic navigation
 
 # Install
 The code is structured as a _Maven_ project. 
 We suggest you work in an environment with `JDK 1.6.x`, `Tomcat 6.x`, `MySQL 5.0.x` and `Maven 3.x.x` properly installed.
-You will need two databases: one for the production, by default **ctd2_dashboard**, and one for the testing, again by default **ctd2_test**.
+You will need two databases: one for the production, by default **hipc_signature**, and one for the testing, again by default **hipc_test**.
 
 Before running any _mvn_ jobs, make sure you do the basic configuration.
 Example configuration files are provided within the distribution.
@@ -18,7 +18,7 @@ The easiest way to do the configuration is as follows:
 	cp -f core/src/main/resources/log4j.properties.example core/src/main/resources/log4j.properties
 	# the following contains main properties (including database user/password)
 	# please make sure you edit minimally the USER/PASSWORD pair and the TEST/MAIN database URLs.
-	cp -f core/src/main/resources/META-INF/spring/dashboard.properties.example core/src/main/resources/META-INF/spring/dashboard.properties
+	cp -f core/src/main/resources/META-INF/spring/signature.properties.example core/src/main/resources/META-INF/spring/signature.properties
 
 After you are done with the configuration, you will be good to go ahead for a basic _install_:
 
@@ -70,7 +70,7 @@ Because of these implementation choices, the good practice for creating a new in
 Furthermore, the interfaces do not know about the persistence details -- that is, column/table names and _etc_.
 We do not empose a pre-set SQL schema onto the persistence layer, but instead let `Hibernate` deal with the details -- *i.e.* creating the schema.
 So all `Hibernate` and `Persistence` annotations go into the _*Impl*_ classes which use the actual interfaces as *Proxy* (see the UML diagram above). 
-The specific details -- database dialect, usernames, passwords, database names -- are all defined in the `dashboard.properties` file mentioned above.
+The specific details -- database dialect, usernames, passwords, database names -- are all defined in the `signature.properties` file mentioned above.
 
 Basic querying methods are implemented as part of the `DashboardDao`.
 Developers do not have to deal with the configuration and/or initialization of the _Dao_ class, 
@@ -120,19 +120,19 @@ For example:
 
 will list all available options to you.  For more information about running the admin tool, please visit the [Dashboard Admin Tool](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/wiki/Dashboard%20Admin%20Tool) wiki page.
 
-## Web: CTD^2 Dashboard UI/Web API
+## Web: HIPC Signature UI/Web API
 ### Deploy
 This module will create a single _war_ file for the Web API/UI.
 You can simply deploy this application, with the following generic command:
 
-	cp -f web/target/web.war $TOMCAT_HOME/webapps/ctd2-dashboard.war
+	cp -f web/target/web.war $TOMCAT_HOME/webapps/hipc-signature.war
 
 or better, especially if you do not want to deal with a new Tomcat installation, you can take advantage of the _mvn tomcat_ plugin:
 
 	cd web/
 	mvn tomcat:run-war
 
-and point your browser to [http://localhost:8080/dashboard-webapp](http://localhost:8080/dashboard-webapp).
+and point your browser to [http://localhost:8080/hipc-signature/#](http://localhost:8080/hipc-signature).
 
 ### Notes about design
 Here are a few quick comments from Arman about this prototype:
