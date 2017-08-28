@@ -32,7 +32,7 @@ From here on you can follow the module-specific notes below.
 ## Core: Data structures and DAO methods
 This module tries to capture the main database schema outlined below:
 
-![Dashboard DB schema](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/dashboard_schema.png)
+![Dashboard DB schema](./dashboard_schema.png)
 
 We are taking advantage of _factory pattern_ and also separating class definitions (interfaces) and their actual implementations (`*Impl`s) for convenience.
 We basically try to convey the following basic ideas in our implementation:
@@ -47,11 +47,11 @@ The interface determines which methods a class should provide.
 The actual implementation of the methods goes into the class `CompoundImpl` which, programmatically speaking, implements `Compound`.
 This is better explained with the following simple UML diagram:
 
-![Compound](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/sampleClassDiagram.png)
+![Compound](./sampleClassDiagram.png)
 
 The following UML diagram also shows properties and methods in a detailed manner:
 
-![CompoundDeatils](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/sampleClassDiagramDetails.png)
+![CompoundDeatils](./sampleClassDiagramDetails.png)
 
 Because of these implementation choices, the good practice for creating a new instance of a specific object is as follows:
 
