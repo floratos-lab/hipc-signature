@@ -1,5 +1,5 @@
 * [Introduction][1]
-[Environment Variables][2]
+* [Environment Variables][2]
 * [Admin Properties][3]
 * [Taxonomy List][4]
 * [Subject Data][5]
@@ -9,7 +9,7 @@
 
 # Introduction
 
-This page describes how to properly build and use the CTD^2 Dashboard admin tool.
+This page describes how to properly build and use the HIPC Signature admin tool.
 
 # Environment Variables
 
