@@ -154,8 +154,7 @@ The HIPC Signature pipeline has been developed using the [Spring Batch](http://p
 
 1. ***$HIPC_HOME/admin/src/main/resources/META-INF/spring/observationDataApplicationContext.xml***:  This file configures a Spring Batch reader to read the new submission data.  For example, here is a snippet from this file which defines the Emory University PPI analysis submission reader:
 
-```
-#!shell
+```xml
   <bean name="emoryPPIRAF1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 	<property name="resources" value="${emory.ppi-raf1.data.location}" />
 	<property name="delegate">
@@ -171,8 +170,7 @@ The important thing to note is the resource location, emory.ppi-raf1.data.locati
 
 2. ***$HIPC_HOME/admin/src/main/resources/META-INF/spring/observationDataSharedApplicationContext.xml***: This file configures the overall Spring Batch job in addition to the individual submission line mappers and tokenizers.  Another important reason for this file is to configure the mappings between the Spring Batch submission processors and the DashboardDao - data access class.  Continuing with our Emory University, within the "observationDataImportJob" recipe, you will find the following snippet:
 
-```
-#!shell
+```xml
     <batch:step id="emoryPPIRAF1Step" parent="observationDataStep" next="mskccForetinibStep">
 	  <batch:tasklet>
 		<batch:chunk reader="emoryPPIRAF1Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
@@ -181,8 +179,7 @@ The important thing to note is the resource location, emory.ppi-raf1.data.locati
 ```
 Here we are defining the Emory submission processing step within the overall Dashboard submission processing Spring Batch job (observationDataImportJob).  Following the job description are the definitions for each submission line mapper and tokenizer.  The following snippet defines the Emory University submission line mapper and tokenizer:
 
-```
-#!shell
+```xml
   <bean name="emoryPPIRAF1LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 	<property name="fieldSetMapper" ref="observationDataMapper" />
 	<property name="lineTokenizer" ref="emoryPPIRAF1LineTokenizer" />
@@ -198,9 +195,8 @@ The important thing to note here is the "names" property.  Here is listing of al
 
 Finally, the mapping between the Spring Batch submission processors and the DashboardDao is defined within the "observationTemplateMap" bean, which is defined after all the line mappers and tokenizers.  Here is a snippet which defines these mappings for the Emory University submission:
 
-```
-#!shell
-        <entry key="emory_PPI_analysis:cell_line" value="subject:findSubjectsBySynonym" />
+```xml
+		<entry key="emory_PPI_analysis:cell_line" value="subject:findSubjectsBySynonym" />
 		<entry key="emory_PPI_analysis:gene_symbol_1" value="subject:findGenesBySymbol" />
 		<entry key="emory_PPI_analysis:gene_symbol_2" value="subject:findGenesBySymbol" />
 		<entry key="emory_PPI_analysis:assay_type" value="evidence:readString:createObservedLabelEvidence" />
