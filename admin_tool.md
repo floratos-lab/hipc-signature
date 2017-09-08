@@ -41,7 +41,7 @@ Mus musculus	 10090
 
 # Subject Data
 
-Subjects in the HIPC Signature are those entities that play various roles in experiments conducted by HIPC network centers which result in [submission data][6] that you will find in the HIPC Signature.  Subject data includes gene, protein, and compound data.  Subject data needs to be imported into the Dashboard database before HIPC network center data can be imported.  With the exception of gene and protein data, all the required subject data can be found in the [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip) distribution.  This file should be downloaded an unzipped into $HIPC_DATA_HOME.
+Subjects in the HIPC Signature are those entities that play various roles in experiments conducted by HIPC network centers which result in [submission data][6] that you will find in the HIPC Signature.  Subject data includes gene, protein, and compound data.  Subject data needs to be imported into the Dashboard database before HIPC network center data can be imported.  With the exception of gene and protein data, all the required subject data can be found in the a ZIP file distribution, which will be henceforth referred to as *zipped dashboard data*. (<small>An example of this file is Dashboard-completeLoad20170505.zip, which can be found at https://ctd2-data.nci.nih.gov/Network/Dashboard/</small>) This file should be downloaded an unzipped into $HIPC_DATA_HOME.
 
 +The following subject data and sources are support for import by the admin tool:
 
@@ -51,13 +51,13 @@ Subjects in the HIPC Signature are those entities that play various roles in exp
 gene.data.location=file:${HIPC_DATA_HOME}/subject_data/gene/*.gene_info
 ```
 
-* ***Animal Model***: Animal Model data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), this data can be found in $HIPC_DATA_HOME/subject_data/animal_model.  The following entries in admin.properties specify the location of animal model data:
+* ***Animal Model***: Animal Model data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/animal_model.  The following entries in admin.properties specify the location of animal model data:
 
 ```
 #!shell
 animal.model.location=file:${HIPC_DATA_HOME}/subject_data/animal_model/animal_model.txt
 ```
-* ***Cell Line***: Cell Line data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), this data can be found in $HIPC_DATA_HOME/subject_data/cell_sample.  The following entries in admin.properties specify the location of cell line data:
+* ***Cell Line***: Cell Line data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/cell_sample.  The following entries in admin.properties specify the location of cell line data:
 
 ```
 #!shell
@@ -70,7 +70,7 @@ cell.line.id.location=file:${HIPC_DATA_HOME}/subject_data/cell_sample/cell_sampl
 cell.line.name.location=file:${HIPC_DATA_HOME}/subject_data/cell_sample/cell_sample_name.txt
 ```
 
-* ***Compounds***: Compound data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), this data can be found in $HIPC_DATA_HOME/subject_data/compound.  The following entries in admin.properties specify the location of compound data:
+* ***Compounds***: Compound data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/compound.  The following entries in admin.properties specify the location of compound data:
 
 ```
 #!shell
@@ -92,7 +92,7 @@ otherwise the specific file can be reference:
 protein.data.location=file:${HIPC_DATA_HOME}/subject_data/protein/uniprot_sprot_human.dat
 ```
 
-* ***shRNA***:  shRNA data as provide by the [RNAi Consortium at the Broad Institute](http://www.broadinstitute.org/rnai/trc/lib).  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), a subset of this data can be found in $HIPC_DATA_HOME/subject_data/shrna.  The following entries in admin.properties specify the location of shRNA data:
+* ***shRNA***:  shRNA data as provide by the [RNAi Consortium at the Broad Institute](http://www.broadinstitute.org/rnai/trc/lib).  After downloading and unzipping *zipped dashboard data*, a subset of this data can be found in $HIPC_DATA_HOME/subject_data/shrna.  The following entries in admin.properties specify the location of shRNA data:
 
 ```
 #!shell
@@ -100,14 +100,14 @@ trc.shrna.data.location=file:${HIPC_DATA_HOME}/subject_data/shrna/trc_public.05A
 trc.shrna.filter.location=file:${HIPC_DATA_HOME}/subject_data/shrna/trc-shrnas-filter.txt
 ```
 
-* ***siRNA***:  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), a subset of this data can be found in $HIPC_DATA_HOME/subject_data/sirna.  The following entries in admin.properties specify the location of siRNA data:
+* ***siRNA***:  After downloading and unzipping *zipped dashboard data*, a subset of this data can be found in $HIPC_DATA_HOME/subject_data/sirna.  The following entries in admin.properties specify the location of siRNA data:
 
 ```
 #!shell
 sirna.reagents.location=file:${HIPC_DATA_HOME}/subject_data/sirna/siRNA_reagents.txt
 ```
 
-* ***Tissue Sample***: Tissue Sample data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), this data can be found in $HIPC_DATA_HOME/subject_data/tissue_sample.  The following entries in admin.properties specify the location of tissue-sample data:
+* ***Tissue Sample***: Tissue Sample data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/tissue_sample.  The following entries in admin.properties specify the location of tissue-sample data:
 
 ```
 #!shell
@@ -116,7 +116,7 @@ tissue.sample.data.location=file:${HIPC_DATA_HOME}/subject_data/tissue_sample/ti
 
 # Submission Data
 
-As previously noted, the data that results from the experiments performed by HIPC network centers which makes its way into the HIPC Signature database is called submission data.  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), submission data can be found in $HIPC_DATA_HOME/subject_data.  For each center-submission pair is a property within admin.properties that specifies the location of the data:
+As previously noted, the data that results from the experiments performed by HIPC network centers which makes its way into the HIPC Signature database is called submission data.  After downloading and unzipping *zipped dashboard data*, submission data can be found in $HIPC_DATA_HOME/subject_data.  For each center-submission pair is a property within admin.properties that specifies the location of the data:
  
 ```
 #!shell
@@ -142,7 +142,7 @@ ucsf.differential-expression.data.location=file:${HIPC_DATA_HOME}/submissions/20
 
 # Submission Metadata
 
-The dashboard imports metadata for each submission.  After downloading and unzipping [ctd2-dashboard-seed.zip](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/downloads/ctd2-dashboard-seed.zip), this metadata can be found in the following two files:
+The dashboard imports metadata for each submission.  After downloading and unzipping *zipped dashboard data*, this metadata can be found in the following two files:
 
 1. ***$HIPC_DATA_HOME/dashboard-CV-per-template.txt***: Every dashboard submission is derived from an underlying template.  dashboard-CV-per-template.txt is the file that contains metadata for all submission templates known to the dashboard.  For each template, it contains the following information:
 
