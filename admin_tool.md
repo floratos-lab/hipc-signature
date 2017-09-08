@@ -18,11 +18,11 @@ The following environment variables are referenced in this document and should b
 * HIPC_HOME: points to the directory in which the entire signature source code repository has been downloaded.
 * HIPC_DATA_HOME: points to the directory which contains signature data to be imported.
 
-To make environment variables available to your shell, run the `EXPORT` command:
+To make environment variables available to your shell, run the `export` command:
 
 ```bash
-EXPORT HIPC_HOME=/path/to/hipc-signature
-EXPORT HIPC_DATA_HOME=/path/to/hipc-signature-data
+export HIPC_HOME=/path/to/hipc-signature
+export HIPC_DATA_HOME=/path/to/hipc-signature-data
 ```
 
 # Admin Properties
