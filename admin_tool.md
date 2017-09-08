@@ -47,7 +47,7 @@ Subjects in the HIPC Signature are those entities that play various roles in exp
 
 * ***Gene***: Gene data as provided by [Entrez](http://www.ncbi.nlm.nih.gov/gene).  This data can be downloaded via ftp at the following URL: [ftp://ftp.ncbi.nih.gov//gene/DATA/GENE_INFO/](ftp://ftp.ncbi.nih.gov//gene/DATA/GENE_INFO/).  The gene_data file should be downloaded into $HIPC_DATA_HOME/subject_data/gene.  If this file is placed in any other directory, the following entry in admin.properties needs to be update:
 
-```
+```properties
 gene.data.location=file:${HIPC_DATA_HOME}/subject_data/gene/*.gene_info
 ```
 
@@ -58,8 +58,7 @@ animal.model.location=file:${HIPC_DATA_HOME}/subject_data/animal_model/animal_mo
 ```
 * ***Cell Line***: Cell Line data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/cell_sample.  The following entries in admin.properties specify the location of cell line data:
 
-```
-#!shell
+```properties
 cell.line.name.type.location=file:${HIPC_DATA_HOME}/subject_data/cell_sample/cell_name_type.txt
 cell.line.annotation.type.location=file:${HIPC_DATA_HOME}/subject_data/cell_sample/cell_anno_type.txt
 cell.line.annotation.name.location=file:${HIPC_DATA_HOME}/subject_data/cell_sample/cell_anno_name.txt
@@ -71,45 +70,39 @@ cell.line.name.location=file:${HIPC_DATA_HOME}/subject_data/cell_sample/cell_sam
 
 * ***Compounds***: Compound data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/compound.  The following entries in admin.properties specify the location of compound data:
 
-```
-#!shell
+```properties
 compounds.location=file:${HIPC_DATA_HOME}/subject_data/compound/Compounds.txt
 compound.synonyms.location=file:${HIPC_DATA_HOME}/subject_data/compound/CompoundSynonyms.txt
 ```
 
 * ***Proteins***: Protein data as provided by [UniProt](http://www.uniprot.org/).  This data can be downloaded via ftp at the following URL: [ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/taxonomic_divisions/](ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/taxonomic_divisions/).  The UniProt data files should be downloaded into $HIPC_DATA_HOME/subject_data/protein.  If multiple UniProt files are downloaded, the following entry in admin.properties needs to be set:
 
-```
-#!shell
+```properties
 protein.data.location=file:${HIPC_DATA_HOME}/protein/uniprot_sprot_*.dat
 ```
 
 otherwise the specific file can be reference:
 
-```
-#!shell
+```properties
 protein.data.location=file:${HIPC_DATA_HOME}/subject_data/protein/uniprot_sprot_human.dat
 ```
 
 * ***shRNA***:  shRNA data as provide by the [RNAi Consortium at the Broad Institute](http://www.broadinstitute.org/rnai/trc/lib).  After downloading and unzipping *zipped dashboard data*, a subset of this data can be found in $HIPC_DATA_HOME/subject_data/shrna.  The following entries in admin.properties specify the location of shRNA data:
 
-```
-#!shell
+```properties
 trc.shrna.data.location=file:${HIPC_DATA_HOME}/subject_data/shrna/trc_public.05Apr11.txt
 trc.shrna.filter.location=file:${HIPC_DATA_HOME}/subject_data/shrna/trc-shrnas-filter.txt
 ```
 
 * ***siRNA***:  After downloading and unzipping *zipped dashboard data*, a subset of this data can be found in $HIPC_DATA_HOME/subject_data/sirna.  The following entries in admin.properties specify the location of siRNA data:
 
-```
-#!shell
+```properties
 sirna.reagents.location=file:${HIPC_DATA_HOME}/subject_data/sirna/siRNA_reagents.txt
 ```
 
 * ***Tissue Sample***: Tissue Sample data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/tissue_sample.  The following entries in admin.properties specify the location of tissue-sample data:
 
-```
-#!shell
+```properties
 tissue.sample.data.location=file:${HIPC_DATA_HOME}/subject_data/tissue_sample/tissue_sample_name.txt
 ```
 
@@ -117,8 +110,7 @@ tissue.sample.data.location=file:${HIPC_DATA_HOME}/subject_data/tissue_sample/ti
 
 As previously noted, the data that results from the experiments performed by HIPC network centers which makes its way into the HIPC Signature database is called submission data.  After downloading and unzipping *zipped dashboard data*, submission data can be found in $HIPC_DATA_HOME/subject_data.  For each center-submission pair is a property within admin.properties that specifies the location of the data:
  
-```
-#!shell
+```properties
 broad.cmp.sens.lineage.enrich.data.location=file:${HIPC_DATA_HOME}/submissions/20130328-broad_cpd_sens_lineage_enrich-MST-312/20130328-broad_cpd_sens_lineage_enrich-MST-312.txt
 broad.cmp.sens.mutation.enrich.data.location=file:${HIPC_DATA_HOME}/submissions/20130328-broad_cpd_sens_mutation_enrich-navitoclax/20130328-broad_cpd_sens_mutation_enrich-navitoclax.txt
 broad.tier3.navitoclax.story.data.location=file:${HIPC_DATA_HOME}/submissions/20130402-broad_tier3_navitoclax_story/20130402-broad_tier3_navitoclax_story.txt
@@ -228,8 +220,7 @@ If the submission attribute type is 'evidence':
  
 The admin tool is a command line java application.  After building the admin tool from the source distribution, dashboard-admin.jar can be found within `$HIPC_HOME/admin/target`.  A list of commands that are recognized by the admin tool can be found by running the following command:
 
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -h
 ```
 
@@ -240,8 +231,7 @@ The following commands are recognized by the admin tool:
 This command is used to import animal model data [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -am
 ```
 
@@ -250,8 +240,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -am
 This command is used to import cell line [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -cl
 ```
 
@@ -260,8 +249,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -cl
 This command is used to import compound [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -cp
 ```
 
@@ -270,8 +258,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -cp
 This command is used to import [submission metadata][7].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -cv
 ```
 
@@ -280,8 +267,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -cv
 This command is used to import gene [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -g
 ```
 
@@ -290,8 +276,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -g
 This command is used to create a lucene index for free text searching.
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -i
 ```
 
@@ -300,8 +285,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -i
 This command is used to rank subjects based on their observations (pre-processing for web site)
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -r
 ```
 
@@ -310,8 +294,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -r
 This command is used to import [submission data][6].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -o
 ```
 
@@ -320,8 +303,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -o
 This command is used to import protein [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -p
 ```
 
@@ -330,8 +312,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -p
 This command is used to import shRNA [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -sh
 ```
 
@@ -340,8 +321,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -sh
 This command is used to import siRNA [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -si
 ```
 
@@ -350,8 +330,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -si
 This command is used to import [taxonomy data][4].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -t
 ```
 
@@ -360,8 +339,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -t
 This command is used to import tissue sample [subject data][5].
 
 Example usage:
-```
-#!shell
+```shell
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -ts
 ```
 
