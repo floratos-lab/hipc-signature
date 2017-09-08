@@ -280,7 +280,7 @@ Example usage:
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -i
 ```
 
-## Rank (i)
+## Rank (r)
 
 This command is used to rank subjects based on their observations (pre-processing for web site)
 
