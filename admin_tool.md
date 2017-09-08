@@ -41,7 +41,7 @@ Mus musculus	 10090
 
 # Subject Data
 
-Subjects in the HIPC Signature are those entities that play various roles in experiments conducted by HIPC network centers which result in [submission data][6] that you will find in the HIPC Signature.  Subject data includes gene, protein, and compound data.  Subject data needs to be imported into the Dashboard database before HIPC network center data can be imported.  With the exception of gene and protein data, all the required subject data can be found in the a ZIP file distribution, which will be henceforth referred to as *zipped dashboard data*. (<small>An example of this file is Dashboard-completeLoad20170505.zip, which can be found at https://ctd2-data.nci.nih.gov/Network/Dashboard/</small>) This file should be downloaded an unzipped into $HIPC_DATA_HOME.
+Subjects in the HIPC Signature are those entities that play various roles in experiments conducted by HIPC network centers which result in [submission data][6] that you will find in the HIPC Signature.  Subject data includes gene, protein, and compound data.  Subject data needs to be imported into the Dashboard database before HIPC network center data can be imported.  With the exception of gene and protein data, all the required subject data can be found in the a ZIP file distribution, which will be henceforth referred to as *zipped dashboard data*. (<small>An example of this file is Dashboard-completeLoad20170505.zip, which can be found at https://ctd2-data.nci.nih.gov/Network/Dashboard/</small>) This file should be downloaded and unzipped into $HIPC_DATA_HOME.
 
 +The following subject data and sources are support for import by the admin tool:
 
@@ -53,8 +53,7 @@ gene.data.location=file:${HIPC_DATA_HOME}/subject_data/gene/*.gene_info
 
 * ***Animal Model***: Animal Model data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/animal_model.  The following entries in admin.properties specify the location of animal model data:
 
-```
-#!shell
+```properties
 animal.model.location=file:${HIPC_DATA_HOME}/subject_data/animal_model/animal_model.txt
 ```
 * ***Cell Line***: Cell Line data as provided by the [Clemons Group](http://www.broadinstitute.org/scientific-community/science/programs/csoft/chemical-biology/group-clemons/chemical-biology-clemons-) at the Broad Institute.  After downloading and unzipping *zipped dashboard data*, this data can be found in $HIPC_DATA_HOME/subject_data/cell_sample.  The following entries in admin.properties specify the location of cell line data:
