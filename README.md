@@ -118,7 +118,7 @@ For example:
 
 	java -jar admin/target/dashboard-admin.jar -h
 
-will list all available options to you.  For more information about running the admin tool, please visit the [Dashboard Admin Tool](https://bitbucket.org/cbio_mskcc/ctd2-dashboard/wiki/Dashboard%20Admin%20Tool) wiki page.
+will list all available options to you.  For more information about running the admin tool, please visit the [Signatures Admin Tool](https://github.com/geworkbench-group/hipc-signature/blob/master/admin_tool.md) page.
 
 ## Web: HIPC Signature UI/Web API
 ### Deploy
