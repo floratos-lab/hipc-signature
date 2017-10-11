@@ -159,7 +159,7 @@
 <!-- all the backbone magic will happen here, right in this div -->
     <div id="main-container"></div>
 
-    <div class="container footer-container">
+    <div class="container">
         <!-- FOOTER -->
        <footer>
         <p><small>HIPC Signature Release <%=dashboardReleaseVersion%></small></p>
@@ -224,7 +224,7 @@
 
     <!-- these are the templates -->
     <script type="text/template" id="home-tmpl">
-        <div class="overview-container">
+        <div class="overview-container" style="background-color:#f1f5de">
             <div class="container overview-box">
                 <div class="row">
                     <div class="span12">
@@ -259,6 +259,7 @@
 
         <div class="dark-separator"></div>
 
+        <div style="background-color:#f1f5de">
         <div class="container marketing ctd2-boxes">
           <div style="display:table">
             <div class="span4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
@@ -285,13 +286,13 @@
 
           </div><!-- /.row -->
         </div><!-- /.container -->
+        </div><!-- force the background color -->
 
         <!-- Carousel
         ================================================== -->
         <div class="carousel slide">
           <div class="carousel-inner">
-            <div class="item active">
-              <img src="img/bg-red.png" alt="Red background image" title="red background image" class="cimg">
+            <div class="item active" style="background-color:#f1f5de">
               <div class="container">
                   <div class="carousel-caption">
                         <h3 class="homepage-stories-title">Recent Stories</h3>
