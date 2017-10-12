@@ -252,6 +252,9 @@
                             </p>
                         </div>
                     </div>
+                    <div class="span3">
+                        <img src="img/Autoimmune Diseases_0.jpg" style="vertical-align: middle">
+                    <div>
 
                 </div>
             </div>
