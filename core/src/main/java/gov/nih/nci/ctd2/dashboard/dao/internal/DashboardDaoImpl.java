@@ -167,11 +167,13 @@ public class DashboardDaoImpl implements DashboardDao {
     public <T extends DashboardEntity> List<T> findEntities(Class<T> entityClass) {
         List<T> list = new ArrayList<T>();
         Class<T> implClass = dashboardFactory.getImplClass(entityClass);
-        Criteria criteria = getSession().createCriteria(implClass);
+        Session session = getSession();
+        Criteria criteria = session.createCriteria(implClass);
         for (Object o : criteria.list()) {
             assert implClass.isInstance(o);
             list.add((T) o);
         }
+        session.close();
         return list;
     }
 
@@ -184,10 +186,12 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<ObservationTemplate> findObservationTemplateBySubmissionCenter(SubmissionCenter submissionCenter) {
         List<ObservationTemplate> list = new ArrayList<ObservationTemplate>();
-        for (Object o : getSession().createQuery("from ObservationTemplateImpl where submissionCenter = :center").setParameter("center", submissionCenter).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from ObservationTemplateImpl where submissionCenter = :center").setParameter("center", submissionCenter).list()) {
             assert o instanceof ObservationTemplate;
             list.add((ObservationTemplate) o);
         }
+        session.close();
 
         return list;
     }
@@ -201,30 +205,36 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Gene> findGenesByEntrezId(String entrezId) {
         List<Gene> list = new ArrayList<Gene>();
-        for (Object o : getSession().createQuery("from GeneImpl where entrezGeneId = :entrezId").setParameter("entrezId", entrezId).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from GeneImpl where entrezGeneId = :entrezId").setParameter("entrezId", entrezId).list()) {
             assert o instanceof Gene;
             list.add((Gene) o);
         }
+        session.close();
         return list;
     }
 
     @Override
     public List<Gene> findGenesBySymbol(String symbol) {
         List<Gene> list = new ArrayList<Gene>();
-        for (Object o : getSession().createQuery("from GeneImpl where displayName = :symbol").setParameter("symbol", symbol).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from GeneImpl where displayName = :symbol").setParameter("symbol", symbol).list()) {
             assert o instanceof Gene;
             list.add((Gene) o);
         }
+        session.close();
         return list;
     }
 
     @Override
     public List<Protein> findProteinsByUniprotId(String uniprotId) {
         List<Protein> list = new ArrayList<Protein>();
-        for (Object o : getSession().createQuery("from ProteinImpl where uniprotId = :uniprotId").setParameter("uniprotId", uniprotId).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from ProteinImpl where uniprotId = :uniprotId").setParameter("uniprotId", uniprotId).list()) {
             assert o instanceof Protein;
             list.add((Protein) o);
         }
+        session.close();
         return list;
     }
 
@@ -232,10 +242,12 @@ public class DashboardDaoImpl implements DashboardDao {
     public List<Transcript> findTranscriptsByRefseqId(String refseqId) {
         String[] parts = refseqId.split("\\.");
         List<Transcript> list = new ArrayList<Transcript>();
-        for (Object o : getSession().createQuery("from TranscriptImpl where refseqId like :refseqId").setParameter("refseqId", parts[0] + "%").list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from TranscriptImpl where refseqId like :refseqId").setParameter("refseqId", parts[0] + "%").list()) {
             assert o instanceof Transcript;
             list.add((Transcript) o);
         }
+        session.close();
         return list;
     }
 
@@ -302,21 +314,24 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<CellSample> findCellSampleByAnnotation(Annotation annotation) {
         List<CellSample> list = new ArrayList<CellSample>();
-        for (Object cs : getSession().createQuery("select cs from CellSampleImpl as cs where :anno member of cs.annotations").setParameter("anno", annotation).list()) {
+        Session session = getSession();
+        for (Object cs : session.createQuery("select cs from CellSampleImpl as cs where :anno member of cs.annotations").setParameter("anno", annotation).list()) {
             assert cs instanceof CellSample;
             list.add((CellSample)cs);
         }
+        session.close();
         return list;
     }
 
 	@Override
     public List<TissueSample> findTissueSampleByName(String name) {
 		List<TissueSample> samples = new ArrayList<TissueSample>();
-
-        for (Object o : getSession().createQuery("from TissueSampleImpl where displayName = :name").setParameter("name", name).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from TissueSampleImpl where displayName = :name").setParameter("name", name).list()) {
             assert o instanceof TissueSample;
             samples.add((TissueSample) o);
         }
+        session.close();
         return samples;
 	}
 
@@ -361,20 +376,23 @@ public class DashboardDaoImpl implements DashboardDao {
 	@Override
     public List<AnimalModel> findAnimalModelByName(String animalModelName) {
 		List<AnimalModel> models = new ArrayList<AnimalModel>();
-
-        for (Object o : getSession().createQuery("from AnimalModelImpl where displayName = :aname").setParameter("aname", animalModelName).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from AnimalModelImpl where displayName = :aname").setParameter("aname", animalModelName).list()) {
             assert o instanceof AnimalModel;
             models.add((AnimalModel) o);
         }
+        session.close();
         return models;
 	}
 
     @Override
     public List<Subject> findSubjectsByXref(String databaseName, String databaseId) {
         Set<Subject> subjects = new HashSet<Subject>();
-        List list = getSession().createQuery("from XrefImpl where databaseName = :dname and databaseId = :did")
+        Session session = getSession();
+        List list = session.createQuery("from XrefImpl where databaseName = :dname and databaseId = :did")
             .setParameter("dname", databaseName)
             .setParameter("did", databaseId).list();
+        session.close();
         for (Object o : list) {
             assert o instanceof Xref;
             subjects.addAll(findSubjectsByXref((Xref) o));
@@ -386,30 +404,36 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Subject> findSubjectsByXref(Xref xref) {
         List<Subject> list = new ArrayList<Subject>();
-        for (Object o : getSession().createQuery("select o from SubjectImpl o where :xref member of o.xrefs").setParameter("xref", xref).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("select o from SubjectImpl o where :xref member of o.xrefs").setParameter("xref", xref).list()) {
             assert o instanceof Subject;
             list.add((Subject) o);
         }
+        session.close();
         return list;
     }
 
     @Override
     public List<Organism> findOrganismByTaxonomyId(String taxonomyId) {
         List<Organism> list = new ArrayList<Organism>();
-        for (Object o : getSession().createQuery("from OrganismImpl where taxonomyId = :tid").setParameter("tid", taxonomyId).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from OrganismImpl where taxonomyId = :tid").setParameter("tid", taxonomyId).list()) {
             assert o instanceof Organism;
             list.add((Organism) o);
         }
+        session.close();
         return list;
     }
 
     @Override
     public List<SubjectWithOrganism> findSubjectByOrganism(Organism organism) {
         List<SubjectWithOrganism> list = new ArrayList<SubjectWithOrganism>();
-        for (Object o : getSession().createQuery("from SubjectWithOrganismImpl where organism = :organism").setParameter("organism", organism).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from SubjectWithOrganismImpl where organism = :organism").setParameter("organism", organism).list()) {
             assert o instanceof SubjectWithOrganism;
             list.add((SubjectWithOrganism) o);
         }
+        session.close();
 
         return list;
     }
@@ -482,10 +506,12 @@ public class DashboardDaoImpl implements DashboardDao {
 	@Override
     public ObservationTemplate findObservationTemplateByName(String templateName) {
 		List<ObservationTemplate> list = new ArrayList<ObservationTemplate>();
-        for (Object o : getSession().createQuery("from ObservationTemplateImpl where displayName = :tname").setParameter("tname", templateName).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from ObservationTemplateImpl where displayName = :tname").setParameter("tname", templateName).list()) {
             assert o instanceof ObservationTemplate;
             list.add((ObservationTemplate) o);
         }
+        session.close();
 		assert list.size() <= 1;
 		return (list.size() == 1) ? list.iterator().next() : null;
 	}
@@ -493,10 +519,12 @@ public class DashboardDaoImpl implements DashboardDao {
 	@Override
     public SubmissionCenter findSubmissionCenterByName(String submissionCenterName) {
 		List<SubmissionCenter> list = new ArrayList<SubmissionCenter>();
-        for (Object o : getSession().createQuery("from SubmissionCenterImpl where displayName = :cname").setParameter("cname", submissionCenterName).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from SubmissionCenterImpl where displayName = :cname").setParameter("cname", submissionCenterName).list()) {
             assert o instanceof SubmissionCenter;
             list.add((SubmissionCenter) o);
         }
+        session.close();
 		assert list.size() <= 1;
 		return (list.size() == 1) ? list.iterator().next() : null;
 	}
@@ -521,10 +549,12 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Submission> findSubmissionByObservationTemplate(ObservationTemplate observationTemplate) {
         List<Submission> list = new ArrayList<Submission>();
-        for (Object o : getSession().createQuery("from SubmissionImpl where observationTemplate = :ot").setParameter("ot", observationTemplate).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from SubmissionImpl where observationTemplate = :ot").setParameter("ot", observationTemplate).list()) {
             assert o instanceof Submission;
             list.add((Submission) o);
         }
+        session.close();
 
         return list;
     }
@@ -532,11 +562,12 @@ public class DashboardDaoImpl implements DashboardDao {
 	@Override
     public Submission findSubmissionByName(String submissionName) {
         List<Submission> submissions = new ArrayList<Submission>();
-
-        for (Object o : getSession().createQuery("from SubmissionImpl where displayName = :sname").setParameter("sname", submissionName).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from SubmissionImpl where displayName = :sname").setParameter("sname", submissionName).list()) {
             assert o instanceof Submission;
             submissions.add((Submission)o);
         }
+        session.close();
 
         assert submissions.size() <= 1;
         return (submissions.size() == 1) ? submissions.iterator().next() : null;
@@ -555,10 +586,12 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Observation> findObservationsBySubmission(Submission submission) {
         List<Observation> list = new ArrayList<Observation>();
-        for (Object o : getSession().createQuery("from ObservationImpl where submission = :submission").setParameter("submission", submission).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from ObservationImpl where submission = :submission").setParameter("submission", submission).list()) {
             assert o instanceof Observation;
             list.add((Observation) o);
         }
+        session.close();
 
         return list;
     }
@@ -566,12 +599,14 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<ObservedSubject> findObservedSubjectBySubject(Subject subject) {
         List<ObservedSubject> list = new ArrayList<ObservedSubject>();
-        org.hibernate.Query query = getSession().createQuery("from ObservedSubjectImpl where subject = :subject ");
+        Session session = getSession();
+        org.hibernate.Query query = session.createQuery("from ObservedSubjectImpl where subject = :subject ");
         query.setParameter("subject", subject);
         for(Object o : query.list()) {
             assert o instanceof ObservedSubject;
             list.add((ObservedSubject) o);
        }
+       session.close();
 
         return list;
     }
@@ -579,10 +614,12 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<ObservedSubject> findObservedSubjectByObservation(Observation observation) {
         List<ObservedSubject> list = new ArrayList<ObservedSubject>();
-        for(Object o : getSession().createQuery("from ObservedSubjectImpl where observation = :observation").setParameter("observation", observation).list()) {
+        Session session = getSession();
+        for(Object o : session.createQuery("from ObservedSubjectImpl where observation = :observation").setParameter("observation", observation).list()) {
             assert o instanceof ObservedSubject;
             list.add((ObservedSubject) o);
         }
+        session.close();
 
         return list;
     }
@@ -590,10 +627,12 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<ObservedEvidence> findObservedEvidenceByObservation(Observation observation) {
         List<ObservedEvidence> list = new ArrayList<ObservedEvidence>();
-        for(Object o : getSession().createQuery("from ObservedEvidenceImpl where observation = :observation").setParameter("observation", observation).list()) {
+        Session session = getSession();
+        for(Object o : session.createQuery("from ObservedEvidenceImpl where observation = :observation").setParameter("observation", observation).list()) {
             assert o instanceof ObservedEvidence;
             list.add((ObservedEvidence) o);
         }
+        session.close();
 
         return list;
     }
@@ -633,70 +672,56 @@ public class DashboardDaoImpl implements DashboardDao {
         HashSet<DashboardEntity> entitiesUnique = new HashSet<DashboardEntity>();
 
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
-        Analyzer[] analyzers = {
-        //        new StandardAnalyzer(Version.LUCENE_31), // Ignore this one for now, it probably doesn't help
-                new WhitespaceAnalyzer(Version.LUCENE_31)
-        };
-        for (Analyzer analyzer : analyzers) {
-            MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(
-                Version.LUCENE_31,
-                    defaultSearchFields,
-                    analyzer
-            );
-            Query luceneQuery = null;
-            try {
-                luceneQuery = multiFieldQueryParser.parse(keyword);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        Analyzer analyzer = new WhitespaceAnalyzer(Version.LUCENE_31);
+        MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(
+            Version.LUCENE_31,
+                defaultSearchFields,
+                analyzer
+        );
+        Query luceneQuery = null;
+        try {
+            luceneQuery = multiFieldQueryParser.parse(keyword);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-            Class[] classes = searchableClasses;
-            FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, classes);
-            fullTextQuery.setReadOnly(true);
+        Class[] classes = searchableClasses;
+        FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, classes);
+        fullTextQuery.setReadOnly(true);
 
-            Integer numberOfSearchResults = getMaxNumberOfSearchResults();
-            if(numberOfSearchResults > 0) { // if lte 0, don't set this.
+        Integer numberOfSearchResults = getMaxNumberOfSearchResults();
+        if(numberOfSearchResults > 0) { // if lte 0, don't set this.
                 fullTextQuery.setMaxResults(numberOfSearchResults);
-            }
+        }
 
-            List list = fullTextQuery.list();
-            for (Object o : list) {
-                assert o instanceof DashboardEntity;
+        List list = fullTextQuery.list();
+        fullTextSession.close();
+        Session session = getSession();
+        for (Object o : list) {
+            assert o instanceof DashboardEntity;
 
-                /* Skip it // we don't expect this anymore (see searchableClasses)
-                if(o instanceof Synonym) {
-                    // Second: find subjects with the synonym
-                    List subjectList = getHibernateTemplate()
-                            .find("select o from SubjectImpl as o where ? member of o.synonyms", (Synonym) o);
-                    for (Object o2 : subjectList) {
-                        assert o2 instanceof Subject;
-                        if(!entitiesUnique.contains(o2)) entities.add((Subject) o2);
-                    }
-                */
-
-                if(o instanceof ObservationTemplate) {
-                    // Second: find subjects with the synonym
-                    List submissionList = getSession().createQuery("select o from SubmissionImpl as o where o.observationTemplate = :ot").setParameter("ot", (ObservationTemplate)o).list();
-                    for (Object o2 : submissionList) {
-                        assert o2 instanceof Submission;
-                        if(!entitiesUnique.contains(o2)) entities.add((Submission) o2);
-                    }
-
-                } else {
-                    // Some objects came in as proxies, get the actual implementations for them when necessary
-                    if(o instanceof HibernateProxy) {
-                        o = ((HibernateProxy) o).getHibernateLazyInitializer().getImplementation();
-                    }
-
-                    if(!entitiesUnique.contains(o)) {
-                        entities.add((DashboardEntity) o);
-                    }
+            if(o instanceof ObservationTemplate) {
+                // Second: find subjects with the synonym
+                List submissionList = session.createQuery("select o from SubmissionImpl as o where o.observationTemplate = :ot").setParameter("ot", (ObservationTemplate)o).list();
+                for (Object o2 : submissionList) {
+                    assert o2 instanceof Submission;
+                    if(!entitiesUnique.contains(o2)) entities.add((Submission) o2);
                 }
 
-                entitiesUnique.addAll(entities);
+            } else {
+                // Some objects came in as proxies, get the actual implementations for them when necessary
+                if(o instanceof HibernateProxy) {
+                    o = ((HibernateProxy) o).getHibernateLazyInitializer().getImplementation();
+                }
+
+                if(!entitiesUnique.contains(o)) {
+                    entities.add((DashboardEntity) o);
+                }
             }
 
+            entitiesUnique.addAll(entities);
         }
+        session.close();
 
         ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
         for (DashboardEntity entity : entities) {
@@ -733,23 +758,27 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<ObservedSubject> findObservedSubjectByRole(String role) {
         List<ObservedSubject> list = new ArrayList<ObservedSubject>();
-        for (Object o : getSession().createQuery("from ObservedSubjectImpl where observedSubjectRole.subjectRole.displayName = :role").setParameter("role", role).list()) {
+        Session session = getSession();
+        for (Object o : session.createQuery("from ObservedSubjectImpl where observedSubjectRole.subjectRole.displayName = :role").setParameter("role", role).list()) {
             assert o instanceof ObservedSubject;
             list.add((ObservedSubject) o);
         }
+        session.close();
         return list;
     }
 
     @Override
     public List<SubjectWithSummaries> findSubjectWithSummariesByRole(String role, Integer minScore) {
         List<SubjectWithSummaries> subjects = new ArrayList<SubjectWithSummaries>();
-        for (Object o : getSession().createQuery("from SubjectWithSummaries where role = :role and score > :score")
+        Session session = getSession();
+        for (Object o : session.createQuery("from SubjectWithSummaries where role = :role and score > :score")
             .setParameter("role", role)
             .setParameter("score", minScore)
             .list()) {
             assert o instanceof SubjectWithSummaries;
             subjects.add((SubjectWithSummaries) o);
         }
+        session.close();
         return subjects;
     }
 
