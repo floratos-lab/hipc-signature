@@ -215,63 +215,39 @@ public class DashboardDaoImpl implements DashboardDao {
         return queryWithClass("from TranscriptImpl where refseqId like :refseqId", "refseqId", parts[0] + "%");
     }
 
+    private List<CellSample> findCellSampleByAnnotationField(String field, String value) {
+        List<CellSample> cellSamples = new ArrayList<CellSample>();
+        List<Annotation> annoList = queryWithClass("from AnnotationImpl where "+field+" = :value", "value", value);
+        for (Annotation anno : annoList) {
+            List<CellSample> list = queryWithClass("from CellSampleImpl as cs where :anno member of cs.annotations", "anno", anno);
+            for (CellSample cellSample : list) {
+                if (!cellSamples.contains(cellSample)) {
+                    cellSamples.add(cellSample);
+                }
+            }
+        }
+
+        return cellSamples;
+    }
+
 	@Override
     public List<CellSample> findCellSampleByAnnoType(String type) {
-		List<CellSample> cellSamples = new ArrayList<CellSample>();
-
-        // first grab annotations by type
-        List<Annotation> annoList = queryWithClass("from AnnotationImpl where type = :type", "type", type);
-        for (Annotation anno : annoList) {
-            List<CellSample> list = queryWithClass("from CellSampleImpl as cs where :anno member of cs.annotations", "anno", anno);
-            for (CellSample cellSample : list) {
-                if (!cellSamples.contains(cellSample)) {
-                    cellSamples.add((CellSample)cellSample);
-                }
-            }
-        }
-
-        return cellSamples;
+        return findCellSampleByAnnotationField("type", type);
 	}
 
-	@Override
+    @Override
     public List<CellSample> findCellSampleByAnnoSource(String source) {
-		List<CellSample> cellSamples = new ArrayList<CellSample>();
-
-        // first grab annotations by source
-        List<Annotation> annoList = queryWithClass("from AnnotationImpl where source = :source", "source", source);
-        for (Annotation anno : annoList) {
-            List<CellSample> list = queryWithClass("from CellSampleImpl as cs where :anno member of cs.annotations", "anno", anno);
-            for (CellSample cellSample : list) {
-                if (!cellSamples.contains(cellSample)) {
-                    cellSamples.add((CellSample)cellSample);
-                }
-            }
-        }
-
-        return cellSamples;
+        return findCellSampleByAnnotationField("source", source);
 	}
 
 	@Override
     public List<CellSample> findCellSampleByAnnoName(String name) {
-		List<CellSample> cellSamples = new ArrayList<CellSample>();
-
-        // first grab annotations by name
-        List<Annotation> annoList = queryWithClass("from AnnotationImpl where displayName = :name", "name", name);
-        for (Annotation anno : annoList) {
-            List<CellSample> list = queryWithClass("from CellSampleImpl as cs where :anno member of cs.annotations", "anno", anno);
-            for (CellSample cellSample : list) {
-                if (!cellSamples.contains(cellSample)) {
-                    cellSamples.add((CellSample)cellSample);
-                }
-            }
-        }
-
-        return cellSamples;
+        return findCellSampleByAnnotationField("displayName", name);
 	}
 
     @Override
     public List<CellSample> findCellSampleByAnnotation(Annotation annotation) {
-        return queryWithClass("select cs from CellSampleImpl as cs where :anno member of cs.annotations", "anno", (Annotation)annotation);
+        return queryWithClass("select cs from CellSampleImpl as cs where :anno member of cs.annotations", "anno", annotation);
     }
 
 	@Override
@@ -391,7 +367,7 @@ public class DashboardDaoImpl implements DashboardDao {
                 "columnName", columnName,
                 "ot", ot);
 			for (ObservedEvidenceRole o : oerList) {
-				list.add((ObservedEvidenceRole) o);
+				list.add(o);
 			}
         }
 		assert list.size() <= 1;
