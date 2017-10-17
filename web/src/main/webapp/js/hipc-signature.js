@@ -1949,6 +1949,9 @@
                                 var searchSubmissionRowView = new SearchSubmissionRowView({ model: submission });
                                 searchSubmissionRowView.render();
 
+                                if (submission.observationTemplate===undefined) { // TODO why does this happen?
+                                    submission.observationTemplate = {}
+                                }
                                 var tmplName = submission.observationTemplate.isSubmissionStory
                                     ? "#count-story-tmpl"
                                     : "#count-observations-tmpl";
