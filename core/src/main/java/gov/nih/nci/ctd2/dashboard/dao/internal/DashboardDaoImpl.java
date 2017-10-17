@@ -556,6 +556,24 @@ public class DashboardDaoImpl implements DashboardDao {
             entitiesWithCounts.add(entityWithCounts);
         }
 
+        // add an test object
+        SubmissionCenter center = new SubmissionCenterImpl();
+        center.setId(1441955);
+        center.setDisplayName("Emory University");
+        ObservationTemplate template = new ObservationTemplateImpl();
+        template.setObservationSummary("Interaction between <gene_symbol_1> and <gene_symbol_1> etc.");
+        template.setSubmissionCenter(center);
+        template.setTier(2);
+        Submission submission = new SubmissionImpl();
+        submission.setObservationTemplate(template);
+        submission.setSubmissionDate(new Date());
+        Observation observation = new ObservationImpl();
+        observation.setId(1760805);
+        observation.setSubmission(submission);
+        DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
+        oneObservationResult.setDashboardEntity(observation);
+        entitiesWithCounts.add(oneObservationResult);
+
         return entitiesWithCounts;
     }
 

@@ -1845,27 +1845,6 @@
     });
 
     var tabulate_matching_observations = function(m_observations) {
-        // add a dummy object to test this function
-        oneObservation = {
-            class: "Observation",
-            id: 1760805,
-            submission : {
-                class: "Submission",
-                observationTemplate: {
-                    class: "ObservationTemplate",
-                    observationSummary: "Interaction between <gene_symbol_1> and <gene_symbol_1> etc ...",
-                    submissionCenter: {
-                        class: "SubmissionCenter",
-                        displayName: "Emory University",
-                        id: 1441955,
-                    },
-                    tier: 2,
-                },
-                submissionDate: "Apr 5, 2015",
-            },
-        };
-        m_observations.push(oneObservation);
-
         if(m_observations.length <= 0) return;
 
         $("#observation-search-results").fadeIn();
@@ -1910,7 +1889,7 @@
                                 submissions.push(aResult);
                                 return;
                             } else if (aResult.dashboardEntity.class == "Observation") {
-                                matching_observations.push(aResult);
+                                matching_observations.push(aResult.dashboardEntity);
                                 return;
                             }
 
