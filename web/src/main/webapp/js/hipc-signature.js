@@ -1844,6 +1844,45 @@
         }
     });
 
+    var tabulate_matching_observations = function(m_observations) {
+        // add a dummy object to test this function
+        oneObservation = {
+            class: "Observation",
+            displayName: "",
+            id: 1760805,
+            submission : {
+                class: "Submission",
+                displayName: "20150405-emory_ht_bretn_ppi_data",
+                id: 1760804,
+                observationTemplate: {
+                    class: "ObservationTemplate",
+                    id: 1442343,
+                    observationSummary: "Interaction between <gene_symbol_1> and <gene_symbol_1> etc ...",
+                    submissionCenter: {
+                        class: "SubmissionCenter",
+                        displayName: "Emory University",
+                        id: 1441955,
+                    },
+                    tier: 2,
+                },
+                submissionDate: "Apr 5, 2015",
+            },
+        };
+        m_observations.push(oneObservation);
+
+        if(m_observations.length <= 0) return;
+
+        $("#observation-search-results").fadeIn();
+        var thatEl = $("#searched-observation-grid");
+        
+        $(".subject-observations-loading", thatEl).remove();
+        _.each(m_observations, function (observation) {
+            var observationRowView
+                = new ObservationRowView({ el: $(thatEl).find("tbody"), model: observation });
+            observationRowView.render();
+        });
+    };
+
     var SearchView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#search-tmpl").html()),
@@ -1864,6 +1903,7 @@
                         (new EmptyResultsView({ el: $(thatEl).find("tbody"), model: thatModel})).render();
                     } else {
                         var submissions = [];
+                        var matching_observations = [];
                         _.each(searchResults.models, function(aResult) {
                             aResult = aResult.toJSON();
                             if(aResult.dashboardEntity.organism == undefined) {
@@ -1872,6 +1912,9 @@
 
                             if(aResult.dashboardEntity.class == "Submission") {
                                 submissions.push(aResult);
+                                return;
+                            } else if (aResult.dashboardEntity.class == "Observation") {
+                                matching_observations.push(aResult);
                                 return;
                             }
 
@@ -1928,6 +1971,8 @@
                             });
                             sTable.fnSort( [ [4, 'desc'], [2, 'desc'] ] );
                         }
+
+                        tabulate_matching_observations(matching_observations);
                     }
                 }
             });
