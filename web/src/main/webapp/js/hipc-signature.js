@@ -1848,15 +1848,11 @@
         // add a dummy object to test this function
         oneObservation = {
             class: "Observation",
-            displayName: "",
             id: 1760805,
             submission : {
                 class: "Submission",
-                displayName: "20150405-emory_ht_bretn_ppi_data",
-                id: 1760804,
                 observationTemplate: {
                     class: "ObservationTemplate",
-                    id: 1442343,
                     observationSummary: "Interaction between <gene_symbol_1> and <gene_symbol_1> etc ...",
                     submissionCenter: {
                         class: "SubmissionCenter",
