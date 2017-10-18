@@ -528,6 +528,7 @@ public class DashboardDaoImpl implements DashboardDao {
         }
 
         ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
+        Set<Observation> matchingObservations = new HashSet<Observation>();
         for (DashboardEntity entity : entities) {
             DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
             entityWithCounts.setDashboardEntity(entity);
@@ -537,8 +538,10 @@ public class DashboardDaoImpl implements DashboardDao {
                 HashSet<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
                 HashSet<String> roles = new HashSet<String>();
                 for (ObservedSubject observedSubject : findObservedSubjectBySubject((Subject) entity)) {
-                    observations.add(observedSubject.getObservation());
-                    ObservationTemplate observationTemplate = observedSubject.getObservation().getSubmission().getObservationTemplate();
+                    Observation observation = observedSubject.getObservation();
+                    matchingObservations.add(observation);
+                    observations.add(observation);
+                    ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
                     maxTier = Math.max(maxTier, observationTemplate.getTier());
                     submissionCenters.add(observationTemplate.getSubmissionCenter());
                     roles.add(observedSubject.getObservedSubjectRole().getSubjectRole().getDisplayName());
@@ -556,23 +559,12 @@ public class DashboardDaoImpl implements DashboardDao {
             entitiesWithCounts.add(entityWithCounts);
         }
 
-        // add an test object
-        SubmissionCenter center = new SubmissionCenterImpl();
-        center.setId(1441955);
-        center.setDisplayName("Emory University");
-        ObservationTemplate template = new ObservationTemplateImpl();
-        template.setObservationSummary("Interaction between <gene_symbol_1> and <gene_symbol_1> etc.");
-        template.setSubmissionCenter(center);
-        template.setTier(2);
-        Submission submission = new SubmissionImpl();
-        submission.setObservationTemplate(template);
-        submission.setSubmissionDate(new Date());
-        Observation observation = new ObservationImpl();
-        observation.setId(1760805);
-        observation.setSubmission(submission);
-        DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
-        oneObservationResult.setDashboardEntity(observation);
-        entitiesWithCounts.add(oneObservationResult);
+        // add observations
+        for(Observation ob: matchingObservations) {
+            DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
+            oneObservationResult.setDashboardEntity(ob);
+            entitiesWithCounts.add(oneObservationResult);
+        }
 
         return entitiesWithCounts;
     }
