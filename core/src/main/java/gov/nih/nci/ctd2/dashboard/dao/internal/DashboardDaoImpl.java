@@ -475,7 +475,6 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     @Cacheable(value = "searchCache")
     public ArrayList<DashboardEntityWithCounts> search(String keyword) {
-        ArrayList<DashboardEntity> entities = new ArrayList<DashboardEntity>();
         HashSet<DashboardEntity> entitiesUnique = new HashSet<DashboardEntity>();
 
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
@@ -507,12 +506,10 @@ public class DashboardDaoImpl implements DashboardDao {
             assert o instanceof DashboardEntity;
 
             if(o instanceof ObservationTemplate) {
-                // Second: find subjects with the synonym
                 List<Submission> submissionList = queryWithClass("select o from SubmissionImpl as o where o.observationTemplate = :ot", "ot", (ObservationTemplate)o);
                 for (Submission o2 : submissionList) {
-                    if(!entitiesUnique.contains(o2)) entities.add((Submission) o2);
+                    if(!entitiesUnique.contains(o2)) entitiesUnique.add(o2);
                 }
-
             } else {
                 // Some objects came in as proxies, get the actual implementations for them when necessary
                 if(o instanceof HibernateProxy) {
@@ -520,33 +517,31 @@ public class DashboardDaoImpl implements DashboardDao {
                 }
 
                 if(!entitiesUnique.contains(o)) {
-                    entities.add((DashboardEntity) o);
+                    entitiesUnique.add((DashboardEntity) o);
                 }
             }
-
-            entitiesUnique.addAll(entities);
         }
 
         ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
         Set<Observation> matchingObservations = new HashSet<Observation>();
-        for (DashboardEntity entity : entities) {
+        for (DashboardEntity entity : entitiesUnique) {
             DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
             entityWithCounts.setDashboardEntity(entity);
             if(entity instanceof Subject) {
-                ArrayList<Observation> observations = new ArrayList<Observation>();
+                int observations = 0;
                 int maxTier = 0;
                 HashSet<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
                 HashSet<String> roles = new HashSet<String>();
                 for (ObservedSubject observedSubject : findObservedSubjectBySubject((Subject) entity)) {
                     Observation observation = observedSubject.getObservation();
                     matchingObservations.add(observation);
-                    observations.add(observation);
+                    observations++;
                     ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
                     maxTier = Math.max(maxTier, observationTemplate.getTier());
                     submissionCenters.add(observationTemplate.getSubmissionCenter());
                     roles.add(observedSubject.getObservedSubjectRole().getSubjectRole().getDisplayName());
                 }
-                entityWithCounts.setObservationCount(observations.size());
+                entityWithCounts.setObservationCount(observations);
                 entityWithCounts.setMaxTier(maxTier);
                 entityWithCounts.setRoles(roles);
                 entityWithCounts.setCenterCount(submissionCenters.size());
