@@ -472,38 +472,7 @@ public class DashboardDaoImpl implements DashboardDao {
         }
     }
 
-    private static List<Query> analyzeBooleanQuery(org.apache.lucene.search.BooleanQuery luceneQuery) {
-        List<Query> list = new ArrayList<Query>();
-        for(org.apache.lucene.search.BooleanClause clause: ((org.apache.lucene.search.BooleanQuery)luceneQuery).clauses()) {
-            Query q = clause.getQuery();
-            if(q instanceof org.apache.lucene.search.BooleanQuery) {
-                list.addAll(analyzeBooleanQuery((org.apache.lucene.search.BooleanQuery)q));
-            } else {
-                list.add(q);
-            }
-        }
-        return list;
-    }
-
-    // return all unique termed contained in a query
-    private static List<String> getTerms(Query luceneQuery) {
-        Set<String> terms = new HashSet<String>();
-        if(luceneQuery instanceof org.apache.lucene.search.BooleanQuery) {
-            List<Query> list = analyzeBooleanQuery((org.apache.lucene.search.BooleanQuery)luceneQuery);
-            for(Query q: list) {
-                if(q instanceof org.apache.lucene.search.TermQuery) {
-                    org.apache.lucene.index.Term t = ((org.apache.lucene.search.TermQuery)q).getTerm();
-                    //System.out.println("\t\t"+t.field()+" "+t.text()+" "+t.toString());
-                    terms.add(t.text());
-                } else {
-                    System.out.println("query type other than TermQuery encountered: "+q.getClass()+" "+q.toString());
-                }
-            }
-        }
-        return new ArrayList<String>(terms);
-    }
-
-    private static String getMatchedTerm(List<String> allTerms, String context) {
+    private static String getMatchedTerm(String[] allTerms, String context) {
         for(String t: allTerms) {
             if( context.toLowerCase().contains(t.toLowerCase()) ) return t;
         }
@@ -528,8 +497,8 @@ public class DashboardDaoImpl implements DashboardDao {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        List<String> allTerms = getTerms(luceneQuery);
-        int total = allTerms.size();
+        String[] allTerms = keyword.toLowerCase().split("\\s+");
+        int total = allTerms.length;
 
         Class[] classes = searchableClasses;
         FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, classes);
