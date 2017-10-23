@@ -574,7 +574,7 @@ public class DashboardDaoImpl implements DashboardDao {
         // add observations
         for(Observation ob: matchingObservations.keySet()) {
             Set<String> terms = matchingObservations.get(ob);
-            if(terms.size()<total) continue;
+            if(total<=1 || terms.size()<total) continue;
             DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
             oneObservationResult.setDashboardEntity(ob);
             entitiesWithCounts.add(oneObservationResult);
