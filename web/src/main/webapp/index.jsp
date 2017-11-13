@@ -224,7 +224,7 @@
 
     <!-- these are the templates -->
     <script type="text/template" id="home-tmpl">
-        <div class="overview-container" style="background-color:#f1f5de">
+        <div class="overview-container" style="background-color:#f1f5de;background-image:url('./images/bg_feature.png');background-repeat:repeat-x;padding-top: 12px;">
             <div class="container overview-box">
                 <div class="row">
                     <div class="span12">
