@@ -31,6 +31,7 @@
                 <prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop>
                 <prop key="hibernate.connection.charSet">${hibernate.connection.charSet}</prop>
                 <prop key="hibernate.search.default.indexBase">${search.indexDir}</prop>
+                <prop key="hibernate.search.lucene_version">LUCENE_CURRENT</prop>
             </props>
         </property>
 
