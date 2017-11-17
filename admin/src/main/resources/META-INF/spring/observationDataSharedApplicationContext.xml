@@ -438,29 +438,9 @@
                 <batch:chunk reader="dfciPax8Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
             </batch:tasklet>
         </batch:step>
-        <batch:step id="dfciTbk1Step" parent="observationDataStep" next="broadKrasDecitabineStep">
+        <batch:step id="dfciTbk1Step" parent="observationDataStep" next="dfciSwisnfStep">
             <batch:tasklet>
                 <batch:chunk reader="dfciTbk1Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
-            </batch:tasklet>
-        </batch:step>
-        <batch:step id="broadKrasDecitabineStep" parent="observationDataStep" next="broadKrasDecitabineMekStep">
-            <batch:tasklet>
-                <batch:chunk reader="broadKrasDecitabineReader" processor="observationDataProcessor" writer="observationDataWriter"/>
-            </batch:tasklet>
-        </batch:step>
-        <batch:step id="broadKrasDecitabineMekStep" parent="observationDataStep" next="broadKrasDecitabineNavitoclaxStep">
-            <batch:tasklet>
-                <batch:chunk reader="broadKrasDecitabineMekReader" processor="observationDataProcessor" writer="observationDataWriter"/>
-            </batch:tasklet>
-        </batch:step>
-        <batch:step id="broadKrasDecitabineNavitoclaxStep" parent="observationDataStep" next="broadKrasXenograftStep">
-            <batch:tasklet>
-                <batch:chunk reader="broadKrasDecitabineNavitoclaxReader" processor="observationDataProcessor" writer="observationDataWriter"/>
-            </batch:tasklet>
-        </batch:step>
-        <batch:step id="broadKrasXenograftStep" parent="observationDataStep" next="dfciSwisnfStep">
-            <batch:tasklet>
-                <batch:chunk reader="broadKrasXenograftReader" processor="observationDataProcessor" writer="observationDataWriter"/>
             </batch:tasklet>
         </batch:step>
         <batch:step id="dfciSwisnfStep" parent="observationDataStep" next="dfciGab2Step">

@@ -793,42 +793,6 @@
             </bean>
         </property>
     </bean>
-    <bean name="broadKrasDecitabineReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${broad.kras.decitabine.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="broadKrasDecitabineLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="broadKrasDecitabineMekReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${broad.kras.decitabine.mek.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="broadKrasDecitabineMekLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="broadKrasDecitabineNavitoclaxReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${broad.kras.decitabine.navitoclax.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="broadKrasDecitabineNavitoclaxLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="broadKrasXenograftReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${broad.kras.xenograft.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="broadKrasXenograftLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
     <bean name="dfciSwisnfReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
         <property name="resources" value="${dfci.swisnf.data.location}" />
         <property name="delegate">
