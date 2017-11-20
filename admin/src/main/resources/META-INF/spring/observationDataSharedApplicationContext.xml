@@ -8,6 +8,12 @@
 							http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <batch:job id="observationDataImporterJob">
+        <batch:step id="literatureFurman2013Step" parent="observationDataStep" next="dfciAtarisAnalysisStep">
+            <batch:tasklet>
+                <batch:chunk reader="literatureFurman2013Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
+            </batch:tasklet>
+        </batch:step>
+
         <batch:step id="dfciAtarisAnalysisStep" parent="observationDataStep" next="broadCompoundSensitivityLineageEnrichmentStep">
             <batch:tasklet>
                 <batch:chunk reader="dfciAtarisAnalysisReader" processor="observationDataProcessor" writer="observationDataWriter"/>
@@ -655,7 +661,16 @@
         <property name="jobRepository" ref="jobRepository" />
         <property name="commitInterval" value="${spring.batch.commit.interval}" />
     </bean>
-    
+
+    <bean name="literatureFurman2013LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+        <property name="fieldSetMapper" ref="observationDataMapper" />
+        <property name="lineTokenizer" ref="literatureFurman2013LineTokenizer" />
+    </bean>
+    <bean name="literatureFurman2013LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
+        <property name="delimiter" value="\u0009"/>
+        <property name="names" value="dummy,submission_name,submission_date,template_name,gating_type_1,cell_marker_1,cell_marker_1_status,response_agent,time_point,time_point_units,baseline_time,experiment_type,number_subjects,age_group,infectious_agent,exposure_process,exposure_material,adjuvant,dose,route,scheduling,exposure_material_id,treatment,comparison,expected_behavior,publication_reference,publication_year,publication_reference_url"/>
+    </bean>
+
     <bean name="broadCompoundSensitivityLineageEnrichmentLineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
         <property name="fieldSetMapper" ref="observationDataMapper" />
         <property name="lineTokenizer" ref="broadCompoundSensitivityLineageEnrichmentLineTokenizer" />
@@ -1848,6 +1863,14 @@
     <bean name="observationTemplateMap" class="java.util.HashMap">
         <constructor-arg index="0" type="java.util.Map">
             <map key-type="java.lang.String" value-type="java.lang.String">
+            <!--
+                <entry key="literature_furman_2013:gating_type_1" value="subject:findTissueSampleByName" />
+                <entry key="literature_furman_2013:cell_marker_1" value="subject:findGenesBySymbol" />
+                <entry key="literature_furman_2013:cell_marker_1_status" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_furman_2013:response_agent" value="subject:findGenesBySymbol" />
+                <entry key="literature_furman_2013:time_point" value="evidence:readString:createObservedLabelEvidence" />
+                -->
+
                 <entry key="broad_cpd_sens_lineage_enrich:compound_name" value="subject:findCompoundsByName" />
                 <entry key="broad_cpd_sens_lineage_enrich:cell_lineage" value="subject:findTissueSampleByName" />
                 <entry key="broad_cpd_sens_lineage_enrich:number_of_cell_lines" value="evidence:readInt:createObservedNumericEvidence" />
