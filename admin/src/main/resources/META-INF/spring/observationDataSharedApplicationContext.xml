@@ -634,24 +634,9 @@
                 <batch:chunk reader="utswSW044248Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
             </batch:tasklet>
         </batch:step>
-        <batch:step id="emoryNanoPcaTier1Step" parent="observationDataStep" next="emoryNanoPcaTier2Step">
+        <batch:step id="emoryNanoPcaTier1Step" parent="observationDataStep">
             <batch:tasklet>
                 <batch:chunk reader="emoryNanoPcaTier1Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
-            </batch:tasklet>
-        </batch:step>
-        <batch:step id="emoryNanoPcaTier2Step" parent="observationDataStep" next="utswSmarca4Step">
-            <batch:tasklet>
-                <batch:chunk reader="emoryNanoPcaTier2Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
-            </batch:tasklet>
-        </batch:step>
-        <batch:step id="utswSmarca4Step" parent="observationDataStep" next="emoryOncoPpiStoryStep">
-            <batch:tasklet>
-                <batch:chunk reader="utswSmarca4Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
-            </batch:tasklet>
-        </batch:step>
-        <batch:step id="emoryOncoPpiStoryStep" parent="observationDataStep">
-            <batch:tasklet>
-                <batch:chunk reader="emoryOncoPpiStoryReader" processor="observationDataProcessor" writer="observationDataWriter"/>
             </batch:tasklet>
         </batch:step>
     </batch:job>
@@ -1863,13 +1848,12 @@
     <bean name="observationTemplateMap" class="java.util.HashMap">
         <constructor-arg index="0" type="java.util.Map">
             <map key-type="java.lang.String" value-type="java.lang.String">
-            <!--
+
                 <entry key="literature_furman_2013:gating_type_1" value="subject:findTissueSampleByName" />
                 <entry key="literature_furman_2013:cell_marker_1" value="subject:findGenesBySymbol" />
                 <entry key="literature_furman_2013:cell_marker_1_status" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_furman_2013:response_agent" value="subject:findGenesBySymbol" />
                 <entry key="literature_furman_2013:time_point" value="evidence:readString:createObservedLabelEvidence" />
-                -->
 
                 <entry key="broad_cpd_sens_lineage_enrich:compound_name" value="subject:findCompoundsByName" />
                 <entry key="broad_cpd_sens_lineage_enrich:cell_lineage" value="subject:findTissueSampleByName" />
