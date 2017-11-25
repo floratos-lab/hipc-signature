@@ -19,5 +19,41 @@
             </bean>
         </property>
     </bean>
+    <bean name="literatureNakaya2011aReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+        <property name="resources" value="${literature.nakaya.2011a.data.location}" />
+        <property name="delegate">
+            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+                <property name="lineMapper" ref="literatureNakaya2011aLineMapper" />
+                <property name="linesToSkip" value="7" />
+            </bean>
+        </property>
+    </bean>
+    <bean name="literatureNakaya2011bReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+        <property name="resources" value="${literature.nakaya.2011b.data.location}" />
+        <property name="delegate">
+            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+                <property name="lineMapper" ref="literatureNakaya2011bLineMapper" />
+                <property name="linesToSkip" value="7" />
+            </bean>
+        </property>
+    </bean>
+    <bean name="literatureNakaya2015Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+        <property name="resources" value="${literature.nakaya.2015.data.location}" />
+        <property name="delegate">
+            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+                <property name="lineMapper" ref="literatureNakaya2015LineMapper" />
+                <property name="linesToSkip" value="7" />
+            </bean>
+        </property>
+    </bean>
+    <bean name="literatureTsang2014Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+        <property name="resources" value="${literature.tsang.2014.data.location}" />
+        <property name="delegate">
+            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+                <property name="lineMapper" ref="literatureTsang2014LineMapper" />
+                <property name="linesToSkip" value="7" />
+            </bean>
+        </property>
+    </bean>
 
 </beans>
