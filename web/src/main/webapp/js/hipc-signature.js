@@ -793,6 +793,17 @@
 
     });
 
+    var defaultPI = {
+        "Boston Children's Hospital":"Ofer Levy",
+        "Center for Infectious Disease Research":"Kenneth Stuart",
+        "Columbia University":"Donna Farber",
+        "Drexel University":"Elias K Haddad",
+        "Emory University":"Bali Pulendran",
+        "Icahn School of Medicine at Mount Sinai":"Ana Fernandez-Sesma and Eva Harris",
+        "La Jolla Institute for Allergy and Immunology":"Alessandro D. Sette",
+        "University of California Los Angeles":"Elaine Reed (UCLA) and Minnie Sarwal (UCSF)",
+        "Yale University":"David Hafler and Ruth Montgomery",
+    };
     var CenterListView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#centers-tmpl").html()),
@@ -827,6 +838,7 @@
                             _.each(templates, function(template) {
                                 pis.push(template.principalInvestigator);
                             });
+                            if(pis.length==0) pis = [defaultPI[aCenter.displayName]];
                             var piCellId = "#center-pi-" + aCenter.id;
                             $(piCellId).html(_.uniq(pis).join(", "));
                             tableEl.DataTable().cells(piCellId).invalidate();
