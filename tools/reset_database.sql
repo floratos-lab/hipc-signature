@@ -1,4 +1,4 @@
 -- this script resets the database before re-loading everything
 
-DROP DATABASE IF EXISTS hip_signature;
-CREATE DATABASE hip_signature;
+DROP DATABASE IF EXISTS hipc_signature;
+CREATE DATABASE hipc_signature;
