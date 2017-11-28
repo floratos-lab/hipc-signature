@@ -28,7 +28,7 @@ CENTERS = {
 'University of California San Francisco (2)':'William A. Weiss, M.D., Ph.D.',
 'University of Texas MD Anderson Cancer Center':'Gordon B. Mills, M.D., Ph.D.',
 'University of Texas Southwestern Medical Center':'Michael Roth, Ph.D.',
-'curators':'Kleinstein',
+'HIPC-II Signatures Project':'Steven H. Kleinstein, Ph.D.',
 }
 
 ROLES = {
