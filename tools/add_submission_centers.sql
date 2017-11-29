@@ -1,5 +1,5 @@
 -- this script adds submission centers to the database
-USE hip_signature;
+USE hipc_signature;
 
 DELIMITER //
 CREATE PROCEDURE addSubmissionCenter(IN center_name TEXT)
