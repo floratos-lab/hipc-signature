@@ -63,7 +63,7 @@
     </bean>
     <bean name="literatureNakaya2011bLineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
         <property name="delimiter" value="\u0009"/>
-        <property name="names" value="dummy,submission_name,submission_date,template_name,gating_type_1,response_agent,time_point,time_point_units,baseline_time,experiment_type,number_subjects,age_group,infectious_agent,exposure_process,exposure_material,adjuvant,route,scheduling,exposure_material_id_1,exposure_material_id_2,comparison,expected_behavior,publication_reference,publication_year,publication_reference_url"/>
+        <property name="names" value="dummy,submission_name,submission_date,template_name,exposure_material,exposure_material_id_1,exposure_material_id_2,response_agent,tissue,exposure_process,exposure_material_type,target_pathogen,response_agent_type,behavior,Group1,Group0,cohort,number_subjects,publication_reference"/>
     </bean>
     <bean name="literatureNakaya2015LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
         <property name="fieldSetMapper" ref="observationDataMapper" />
@@ -132,27 +132,21 @@
                 <entry key="literature_nakaya_2011a:publication_year" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_nakaya_2011a:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
-                <entry key="literature_nakaya_2011b:gating_type_1" value="subject:findTissueSampleByName" />
-                <entry key="literature_nakaya_2011b:response_agent" value="subject:findGenesBySymbol" />
-                <entry key="literature_nakaya_2011b:time_point" value="evidence:readInt:createObservedNumericEvidence" />
-                <entry key="literature_nakaya_2011b:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:experiment_type" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:number_subjects" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:age_group" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:infectious_agent" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:exposure_process" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_nakaya_2011b:exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:adjuvant" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:route" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:scheduling" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_nakaya_2011b:exposure_material_id_1" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_nakaya_2011b:exposure_material_id_2" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:comparison" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:expected_behavior" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:response_agent" value="subject:findGenesBySymbol" />
+                <entry key="literature_nakaya_2011b:tissue" value="subject:findTissueSampleByName" />
+                <entry key="literature_nakaya_2011b:exposure_process" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:exposure_material_type" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:target_pathogen" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:response_agent_type" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:behavior" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:Group1" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:Group0" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:cohort" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="literature_nakaya_2011b:number_subjects" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_nakaya_2011b:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-                <entry key="literature_nakaya_2011b:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
                 <entry key="literature_nakaya_2015:gating_type_1" value="subject:findTissueSampleByName" />
                 <entry key="literature_nakaya_2015:response_agent" value="evidence:readString:createObservedLabelEvidence" />
