@@ -36,6 +36,7 @@ public class DashboardDaoImpl implements DashboardDao {
     private static final Class[] searchableClasses = {
             SubjectWithOrganismImpl.class,
             TissueSampleImpl.class,
+            VaccineImpl.class,
             CompoundImpl.class,
             SubmissionImpl.class,
             ObservationTemplateImpl.class
