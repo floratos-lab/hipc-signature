@@ -5,6 +5,8 @@ IF NOT DEFINED HIPC_DATA_HOME SET HIPC_DATA_HOME=C:\data_collection\hipc_data
 echo CATALINA_HOME is %CATALINA_HOME%
 echo HIPC_DATA_HOME is %HIPC_DATA_HOME%
 
+set start=%time%
+
 call mvn clean
 if ERRORLEVEL 1 (
     echo something went wrong in cleaning
@@ -15,6 +17,13 @@ if ERRORLEVEL 1 (
     echo something went wrong
     exit /b 1
 )
+
+echo on
+
 rmdir /s /q %CATALINA_HOME%\webapps\hipc-signature
 copy .\web\target\hipc-signature.war %CATALINA_HOME%\webapps
-%CATALINA_HOME%\bin\startup.bat
+call %CATALINA_HOME%\bin\startup.bat
+
+set end=%time%
+echo start time %start%
+echo end time %end%
