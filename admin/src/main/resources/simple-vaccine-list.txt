@@ -1,0 +1,4 @@
+name	vaccine_id	product_name	trade_name
+ACAM2000	VO_0000003		ACAM2000
+ActHIB	VO_0000004	Haemophilus b Conjugate Vaccine (Tetanus Toxoid Conjugate)	ActHIB
+Adacel	VO_0000005	Tetanus Toxoid, Reduced Diphtheria Toxoid and Acellular Pertussis Vaccine, Adsorbed	Adacel

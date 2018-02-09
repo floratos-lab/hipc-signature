@@ -30,7 +30,8 @@ public class DashboardAdminMain {
         "classpath*:META-INF/spring/tissueSampleDataApplicationContext.xml", // This is for cell line data importer beans
         "classpath*:META-INF/spring/controlledVocabularyApplicationContext.xml", // This is for controlled vocabulary importer beans
         "classpath*:META-INF/spring/observationDataApplicationContext.xml", // This is for observation data importer beans
-        "classpath*:META-INF/spring/taxonomyDataApplicationContext.xml" // This is for taxonomy data importer beans
+        "classpath*:META-INF/spring/taxonomyDataApplicationContext.xml", // This is for taxonomy data importer beans
+        "classpath*:META-INF/spring/vaccineDataApplicationContext.xml" // This is for vaccine data importer beans
     );
 
     @Transactional
@@ -59,6 +60,7 @@ public class DashboardAdminMain {
                 .addOption("s", "sample-data", false, "imports sample data.")
                 .addOption("t", "taxonomy-data", false, "imports organism data.")
                 .addOption("i", "index", false, "creates lucene index.")
+                .addOption("vc", "vaccine-data", false, "import vaccine data.")
         ;
 
         // Here goes the parsing attempt
@@ -134,6 +136,10 @@ public class DashboardAdminMain {
             if( commandLine.hasOption("i") ) {
                 DashboardDao dashboardDao = (DashboardDao) appContext.getBean("dashboardDao");
                 dashboardDao.createIndex((Integer) appContext.getBean("indexBatchSize"));
+            }
+
+            if( commandLine.hasOption("vc") ) {
+                launchJob("vaccineDataImporterJob");
             }
 
             log.info("All done.");
