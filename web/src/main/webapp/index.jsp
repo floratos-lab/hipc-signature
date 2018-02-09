@@ -817,6 +817,51 @@
     <script type="text/template" id="vaccine-tmpl">
         <div class="container common-container" id="vaccine-container">
             <h2>{{displayName}}</h2>
+
+            <div class="row">
+                <div class="span9">
+                    <table id="gene-details-grid" class="table table-bordered table-striped">
+                        <tr><th>Vaccine ID</th><td>{{vaccineID}}</td></tr>
+                        <tr><th>Product Name</th><td>{{productName}}</td></tr>
+                        <tr><th>Trade Name</th><td>{{tradeName}}</td></tr>
+                        <tr><th>References</th>
+                            <td>Vaccine Ontology: <a href="http://purl.obolibrary.org/obo/{{vaccineID}}" target="_blank">{{vaccineID}}</a>
+                            <br/>Violinet Vaxquer: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{vaccineID}}</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="span3">
+                    <h4>Vaccine</h4>
+                    <img src="img/vaccine.png" class="img-polaroid" width=175 height=175 alt="Vaccine">
+                </div>
+            </div>
+
+            <h3>Related observations <small>{{ role?"for the role of "+role:"" }} {{tier?"and tier "+tier:""}}</small></h3>
+
+             <div class="more-observations-message"></div>
+
+             <table id="vaccine-observation-grid" class="table table-bordered table-striped observations">
+                 <thead>
+                 <tr>
+                     <th>Date</th>
+                     <th width=500>Observation Summary</th>
+                     <th>Tier</th>
+                     <th>Center</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <!-- here will go the rows -->
+                 <tr class="subject-observations-loading">
+                     <td colspan="5">
+                         <h3>Loading observations...</h3>
+                         <div class="progress progress-striped active">
+                             <div class="bar" style="width: 100%;"></div>
+                         </div>
+                     </td>
+                 </tr>
+                 </tbody>
+             </table>
+
         </div>
     </script>
 

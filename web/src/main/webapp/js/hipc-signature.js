@@ -1121,7 +1121,21 @@
         render: function () {
             var thatModel = this.model;
             var entity = thatModel.subject.toJSON();
-            $(this.el).html(this.template(entity));
+            $(this.el).html(this.template($.extend(entity, {
+                tier: thatModel.tier ? thatModel.tier : null,
+                role: thatModel.role ? thatModel.role : null
+            })));
+
+            var subjectObservationView = new SubjectObservationsView({
+                model: {
+                    subjectId: entity.id,
+                    tier: thatModel.tier,
+                    role: thatModel.role
+                },
+                el: "#vaccine-observation-grid"
+            });
+            subjectObservationView.render();
+
             return this;
         }
     });
@@ -3568,7 +3582,9 @@
                     } else if (type == "Vaccine") {
                         subjectView = new VaccineView({
                             model: {
-                                subject: subject
+                                subject: subject,
+                                tier: tier,
+                                role: role
                             }
                         });
                     } else { // FIXME default to GeneView does not sound a good idea
