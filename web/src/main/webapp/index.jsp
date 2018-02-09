@@ -814,6 +814,12 @@
         </li>
     </script>
 
+    <script type="text/template" id="vaccine-tmpl">
+        <div class="container common-container" id="vaccine-container">
+            <h2>{{displayName}}</h2>
+        </div>
+    </script>
+
     <script type="text/template" id="gene-tmpl">
          <div class="container common-container" id="gene-container">
              <h2>{{displayName}}</h2>

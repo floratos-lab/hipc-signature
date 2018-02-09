@@ -190,7 +190,7 @@
         model: SearchResult,
 
         initialize: function(attributes) {
-            this.url += encodeURIComponent(attributes.term.toLowerCase())
+            this.url += encodeURIComponent(attributes.term.toLowerCase());
         }
     });
 
@@ -1036,6 +1036,17 @@
                 }
             });
 
+            return this;
+        }
+    });
+
+    var VaccineView = Backbone.View.extend({
+        el: $("#main-container"),
+        template:  _.template($("#vaccine-tmpl").html()),
+        render: function() {
+            var thatModel = this.model;
+            var entity = thatModel.subject.toJSON();
+            $(this.el).html(this.template( entity ));
             return this;
         }
     });
@@ -3291,7 +3302,9 @@
                         subjectView = new TranscriptView({ model: {subject:subject, tier:tier, role:role} });
                     } else if(type == "Protein") {
                         subjectView = new ProteinView({model: {subject:subject, tier:tier, role:role} });
-                    } else {
+                    } else if(type == "Vaccine") {
+                        subjectView = new VaccineView({model: {subject:subject} });
+                    } else { // FIXME default to GeneView does not sound a good idea
                         subjectView = new GeneView({ model: {subject:subject, tier:tier, role:role} });
                     }
                     subjectView.render();
