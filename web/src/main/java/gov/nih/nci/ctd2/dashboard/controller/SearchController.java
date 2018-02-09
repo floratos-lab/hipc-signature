@@ -1,13 +1,12 @@
 package gov.nih.nci.ctd2.dashboard.controller;
 
 import flexjson.JSONSerializer;
-import flexjson.transformer.AbstractTransformer;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
-import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
-import gov.nih.nci.ctd2.dashboard.model.Subject;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.DateTransformer;
 import gov.nih.nci.ctd2.dashboard.util.ImplTransformer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,14 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("/search")
 public class SearchController {
+    private static final Log log = LogFactory.getLog(SearchController.class);
+
     @Autowired
     private DashboardDao dashboardDao;
 
@@ -49,7 +48,15 @@ public class SearchController {
         }
 
         List<DashboardEntityWithCounts> results = dashboardDao.search(keyword);
-        JSONSerializer jsonSerializer = new JSONSerializer()
+
+        if(log.isDebugEnabled()) {
+            log.debug("keyword:"+keyword+":"+results.size());
+            for(DashboardEntityWithCounts r : results) {
+                log.debug(r.getDashboardEntity().getDisplayName()+"|"+r.getDashboardEntity().getClass());
+            }
+        }
+
+    JSONSerializer jsonSerializer = new JSONSerializer()
                 .transform(new ImplTransformer(), Class.class)
                 .transform(new DateTransformer(), Date.class);
         return new ResponseEntity<String>(
