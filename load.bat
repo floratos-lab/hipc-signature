@@ -20,3 +20,5 @@ java -Xmx1024m -jar admin\target\dashboard-admin.jar -i
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -r
 
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -vc
+java -Xmx1024m -jar admin\target\dashboard-admin.jar -cs
+java -Xmx1024m -jar admin\target\dashboard-admin.jar -pa

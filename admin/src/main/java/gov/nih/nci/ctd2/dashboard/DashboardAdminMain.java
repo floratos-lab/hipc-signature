@@ -31,7 +31,9 @@ public class DashboardAdminMain {
         "classpath*:META-INF/spring/controlledVocabularyApplicationContext.xml", // This is for controlled vocabulary importer beans
         "classpath*:META-INF/spring/observationDataApplicationContext.xml", // This is for observation data importer beans
         "classpath*:META-INF/spring/taxonomyDataApplicationContext.xml", // This is for taxonomy data importer beans
-        "classpath*:META-INF/spring/vaccineDataApplicationContext.xml" // This is for vaccine data importer beans
+        "classpath*:META-INF/spring/vaccineDataApplicationContext.xml", // This is for vaccine data importer beans
+        "classpath*:META-INF/spring/cellSubsetDataApplicationContext.xml", // This is for cell subset data importer beans
+        "classpath*:META-INF/spring/pathogenDataApplicationContext.xml" // This is for pathogen data importer beans
     );
 
     @Transactional
@@ -61,6 +63,8 @@ public class DashboardAdminMain {
                 .addOption("t", "taxonomy-data", false, "imports organism data.")
                 .addOption("i", "index", false, "creates lucene index.")
                 .addOption("vc", "vaccine-data", false, "import vaccine data.")
+                .addOption("cs", "cell-subset--data", false, "import cell subset data.")
+                .addOption("pa", "pathogen-data", false, "import pathogen data.")
         ;
 
         // Here goes the parsing attempt
@@ -140,6 +144,12 @@ public class DashboardAdminMain {
 
             if( commandLine.hasOption("vc") ) {
                 launchJob("vaccineDataImporterJob");
+            }
+            if( commandLine.hasOption("cs") ) {
+                launchJob("cellSubsetDataImporterJob");
+            }
+            if( commandLine.hasOption("pa") ) {
+                launchJob("pathogenDataImporterJob");
             }
 
             log.info("All done.");

@@ -12,6 +12,6 @@ public interface CellSubset extends Subject {
     /* Subject.synonym is interpred as "Broad synonyms " for Cell Subset. */
     public Set<Synonym> getExactSynonyms();
     public void setExactSynonyms(Set<Synonym> exactSynonyms);
-    public Set<Synonym> getRelated();
-    public void setRelated(Set<Synonym> related);
+    public Set<Synonym> getRelatedSynonyms();
+    public void setRelatedSynonyms(Set<Synonym> relatedSynonyms);
 }

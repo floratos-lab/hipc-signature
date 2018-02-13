@@ -23,7 +23,7 @@ public class CellSubsetImpl extends SubjectImpl implements CellSubset {
     private String definition;
 	private String comment;
 	private Set<Synonym> exactSynonyms = new LinkedHashSet<Synonym>();
-	private Set<Synonym> related = new LinkedHashSet<Synonym>();
+	private Set<Synonym> relatedSynonyms = new LinkedHashSet<Synonym>();
 
 	@Override
 	public String getCellOntologyId() {
@@ -35,6 +35,7 @@ public class CellSubsetImpl extends SubjectImpl implements CellSubset {
 		this.cellOntologyId = cellOntologyId;
 	}
 
+	@Column(length = 1024)
 	@Override
 	public String getDefinition() {
 		return definition;
@@ -45,6 +46,7 @@ public class CellSubsetImpl extends SubjectImpl implements CellSubset {
 		this.definition = definition;
 	}
 
+	@Column(length = 2048)
 	@Override
 	public String getComment() {
 		return comment;
@@ -72,13 +74,13 @@ public class CellSubsetImpl extends SubjectImpl implements CellSubset {
     @OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
 	@JoinTable(name = "related_synonym_map")
 	@Override
-	public Set<Synonym> getRelated() {
-		return related;
+	public Set<Synonym> getRelatedSynonyms() {
+		return relatedSynonyms;
 	}
 
 	@Override
-	public void setRelated(Set<Synonym> related) {
-		this.related = related;
+	public void setRelatedSynonyms(Set<Synonym> relatedSynonyms) {
+		this.relatedSynonyms = relatedSynonyms;
 	}
 
 }
