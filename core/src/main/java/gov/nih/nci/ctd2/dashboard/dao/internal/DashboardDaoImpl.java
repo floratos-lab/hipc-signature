@@ -33,7 +33,7 @@ public class DashboardDaoImpl implements DashboardDao {
             TissueSampleImpl.FIELD_LINEAGE
     };
 
-    private static final Class[] searchableClasses = {
+    private static final Class<?>[] searchableClasses = {
             SubjectWithOrganismImpl.class,
             TissueSampleImpl.class,
             VaccineImpl.class,
@@ -454,15 +454,15 @@ public class DashboardDaoImpl implements DashboardDao {
     public void createIndex(int batchSize) {
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
         fullTextSession.setFlushMode(FlushMode.MANUAL);
-        for (Class searchableClass : searchableClasses) {
-            createIndexForClass(fullTextSession, searchableClass, batchSize);
+        for (Class<?> searchableClass : searchableClasses) {
+            createIndexForClass(fullTextSession, (Class<? extends DashboardEntity>)searchableClass, batchSize);
         }
         fullTextSession.flushToIndexes();
         fullTextSession.clear();
         fullTextSession.close();
     }
 
-    private void createIndexForClass(FullTextSession fullTextSession, Class<DashboardEntity> clazz, int batchSize) {
+    private void createIndexForClass(FullTextSession fullTextSession, Class<? extends DashboardEntity> clazz, int batchSize) {
         ScrollableResults scrollableResults
                 = fullTextSession.createCriteria(clazz).scroll(ScrollMode.FORWARD_ONLY);
         int cnt = 0;
@@ -506,8 +506,7 @@ public class DashboardDaoImpl implements DashboardDao {
         String[] allTerms = keyword.toLowerCase().split("\\s+");
         int total = allTerms.length;
 
-        Class[] classes = searchableClasses;
-        FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, classes);
+        FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, searchableClasses);
         fullTextQuery.setReadOnly(true);
 
         Integer numberOfSearchResults = getMaxNumberOfSearchResults();
@@ -515,7 +514,7 @@ public class DashboardDaoImpl implements DashboardDao {
                 fullTextQuery.setMaxResults(numberOfSearchResults);
         }
 
-        List list = fullTextQuery.list();
+        List<?> list = fullTextQuery.list();
         fullTextSession.close();
         for (Object o : list) {
             assert o instanceof DashboardEntity;
@@ -621,7 +620,7 @@ public class DashboardDaoImpl implements DashboardDao {
         Session session = getSession();
         org.hibernate.Query query = session.createQuery(queryString);
         query.setParameter(parameterName, valueObject);
-        List objectList = query.list();
+        List<?> objectList = query.list();
         session.close();
 
         List<E> list = new ArrayList<E>();
@@ -639,7 +638,7 @@ public class DashboardDaoImpl implements DashboardDao {
         Session session = getSession();
         org.hibernate.Query query = session.createQuery(queryString);
         query.setParameter(parameterName1, valueObject1).setParameter(parameterName2, valueObject2);
-        List objectList = query.list();
+        List<?> objectList = query.list();
         session.close();
 
         List<E> list = new ArrayList<E>();
