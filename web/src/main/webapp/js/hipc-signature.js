@@ -1115,6 +1115,31 @@
         }
     });
 
+    var CellSubsetView = Backbone.View.extend({
+        el: $("#main-container"),
+        template: _.template($("#cellsubset-tmpl").html()),
+        render: function () {
+            var thatModel = this.model;
+            var entity = thatModel.subject.toJSON();
+            $(this.el).html(this.template($.extend(entity, {
+                tier: thatModel.tier ? thatModel.tier : null,
+                role: thatModel.role ? thatModel.role : null
+            })));
+
+            var subjectObservationView = new SubjectObservationsView({
+                model: {
+                    subjectId: entity.id,
+                    tier: thatModel.tier,
+                    role: thatModel.role
+                },
+                el: "#cellsubset-observation-grid"
+            });
+            subjectObservationView.render();
+
+            return this;
+        }
+    });
+
     var VaccineView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#vaccine-tmpl").html()),
@@ -3581,6 +3606,14 @@
                         });
                     } else if (type == "Vaccine") {
                         subjectView = new VaccineView({
+                            model: {
+                                subject: subject,
+                                tier: tier,
+                                role: role
+                            }
+                        });
+                    } else if (type == "CellSubset") {
+                        subjectView = new CellSubsetView({
                             model: {
                                 subject: subject,
                                 tier: tier,
