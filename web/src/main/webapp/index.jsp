@@ -824,9 +824,9 @@
                         <tr><th>Cell Ontology ID</th><td>{{cellOntologyId}}</td></tr>
                         <tr><th>Definition</th><td>{{definition}}</td></tr>
                         <tr><th>Comment</th><td>{{comment}}</td></tr>
-                        <tr><th>Broad Synonyms</th><td>{{synonyms}}</td></tr>
-                        <tr><th>Exact Synonyms</th><td>{{exactSynonyms}}</td></tr>
-                        <tr><th>Related Synonyms</th><td>{{relatedSynonyms}}</td></tr>
+                        <tr><th>Broad Synonyms</th><td><ul id="synonyms"></ul></td></tr>
+                        <tr><th>Exact Synonyms</th><td><ul id="exactSynonyms"></ul></td></tr>
+                        <tr><th>Related Synonyms</th><td><ul id="relatedSynonyms"></ul></td></tr>
                         <tr><th>References</th>
                             <td>Cell Ontology: <a href="http://purl.obolibrary.org/obo/{{cellOntologyId}}" target="_blank">{{cellOntologyId}}</a>
                         </tr>

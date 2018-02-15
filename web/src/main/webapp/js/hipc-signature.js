@@ -1126,6 +1126,15 @@
                 role: thatModel.role ? thatModel.role : null
             })));
 
+            var thatEl = $("ul#synonyms");
+            _.each(entity.synonyms, function (aSynonym) {
+                var synonymView = new SynonymView({
+                    model: aSynonym,
+                    el: thatEl
+                });
+                synonymView.render();
+            });
+
             var subjectObservationView = new SubjectObservationsView({
                 model: {
                     subjectId: entity.id,
