@@ -62,9 +62,9 @@ public class DashboardAdminMain {
                 .addOption("s", "sample-data", false, "imports sample data.")
                 .addOption("t", "taxonomy-data", false, "imports organism data.")
                 .addOption("i", "index", false, "creates lucene index.")
-                .addOption("vc", "vaccine-data", false, "import vaccine data.")
-                .addOption("cs", "cell-subset--data", false, "import cell subset data.")
-                .addOption("pa", "pathogen-data", false, "import pathogen data.")
+                .addOption("v", "vaccine-data", false, "import vaccine data.")
+                .addOption("c", "cell-subset-data", false, "import cell subset data.")
+                .addOption("n", "pathogen-data", false, "import pathogen data.")
         ;
 
         // Here goes the parsing attempt
@@ -142,13 +142,13 @@ public class DashboardAdminMain {
                 dashboardDao.createIndex((Integer) appContext.getBean("indexBatchSize"));
             }
 
-            if( commandLine.hasOption("vc") ) {
+            if( commandLine.hasOption("v") ) {
                 launchJob("vaccineDataImporterJob");
             }
-            if( commandLine.hasOption("cs") ) {
+            if( commandLine.hasOption("c") ) {
                 launchJob("cellSubsetDataImporterJob");
             }
-            if( commandLine.hasOption("pa") ) {
+            if( commandLine.hasOption("n") ) {
                 launchJob("pathogenDataImporterJob");
             }
 
