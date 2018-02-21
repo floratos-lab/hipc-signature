@@ -1126,11 +1126,27 @@
                 role: thatModel.role ? thatModel.role : null
             })));
 
-            var thatEl = $("ul#synonyms");
+            var broadEl = $("ul#synonyms");
             _.each(entity.synonyms, function (aSynonym) {
                 var synonymView = new SynonymView({
                     model: aSynonym,
-                    el: thatEl
+                    el: broadEl
+                });
+                synonymView.render();
+            });
+            var exactEl = $("ul#exactSynonyms");
+            _.each(entity.exactSynonyms, function (aSynonym) {
+                var synonymView = new SynonymView({
+                    model: aSynonym,
+                    el: exactEl
+                });
+                synonymView.render();
+            });
+            var relatedEl = $("ul#relatedSynonyms");
+            _.each(entity.relatedSynonyms, function (aSynonym) {
+                var synonymView = new SynonymView({
+                    model: aSynonym,
+                    el: relatedEl
                 });
                 synonymView.render();
             });
