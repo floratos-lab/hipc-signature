@@ -814,6 +814,58 @@
         </li>
     </script>
 
+    <script type="text/template" id="pathogen-tmpl">
+        <div class="container common-container" id="pathogen-container">
+            <h2>{{displayName}}</h2>
+
+            <div class="row">
+                <div class="span9">
+                    <table id="pathogen-details-grid" class="table table-bordered table-striped">
+                        <tr><th>Taxonomy ID</th><td>{{taxonomyId}}</td></tr>
+                        <tr><th>Rank</th><td>{{rank}}</td></tr>
+                        <tr><th>Broad Synonyms</th><td><ul id="synonyms"></ul></td></tr>
+                        <tr><th>Exact Synonyms</th><td><ul id="exactSynonyms"></ul></td></tr>
+                        <tr><th>Related Synonyms</th><td><ul id="relatedSynonyms"></ul></td></tr>
+                        <tr><th>References</th>
+                            <td>Taxonomy ID: <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{taxonomyId}}" target="_blank">{{taxonomyId}}</a>
+                        </tr>
+                    </table>
+                </div>
+                <div class="span3">
+                    <h4>Pathogen</h4>
+                    <img src="img/pathogen.png" class="img-polaroid" width=175 height=175 alt="Pathogen">
+                </div>
+            </div>
+
+            <h3>Related observations <small>{{ role?"for the role of "+role:"" }} {{tier?"and tier "+tier:""}}</small></h3>
+
+             <div class="more-observations-message"></div>
+
+             <table id="pathogen-observation-grid" class="table table-bordered table-striped observations">
+                 <thead>
+                 <tr>
+                     <th>Date</th>
+                     <th width=500>Observation Summary</th>
+                     <th>Tier</th>
+                     <th>Center</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <!-- here will go the rows -->
+                 <tr class="subject-observations-loading">
+                     <td colspan="5">
+                         <h3>Loading observations...</h3>
+                         <div class="progress progress-striped active">
+                             <div class="bar" style="width: 100%;"></div>
+                         </div>
+                     </td>
+                 </tr>
+                 </tbody>
+             </table>
+
+        </div>
+    </script>
+
     <script type="text/template" id="cellsubset-tmpl">
         <div class="container common-container" id="cellsubset-container">
             <h2>{{displayName}}</h2>

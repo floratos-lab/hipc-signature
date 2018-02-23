@@ -1115,6 +1115,56 @@
         }
     });
 
+    var PathogenView = Backbone.View.extend({
+        el: $("#main-container"),
+        template: _.template($("#pathogen-tmpl").html()),
+        render: function () {
+            var thatModel = this.model;
+            var entity = thatModel.subject.toJSON();
+            $(this.el).html(this.template($.extend(entity, {
+                tier: thatModel.tier ? thatModel.tier : null,
+                role: thatModel.role ? thatModel.role : null
+            })));
+
+            var broadEl = $("ul#synonyms");
+            _.each(entity.synonyms, function (aSynonym) {
+                var synonymView = new SynonymView({
+                    model: aSynonym,
+                    el: broadEl
+                });
+                synonymView.render();
+            });
+            var exactEl = $("ul#exactSynonyms");
+            _.each(entity.exactSynonyms, function (aSynonym) {
+                var synonymView = new SynonymView({
+                    model: aSynonym,
+                    el: exactEl
+                });
+                synonymView.render();
+            });
+            var relatedEl = $("ul#relatedSynonyms");
+            _.each(entity.relatedSynonyms, function (aSynonym) {
+                var synonymView = new SynonymView({
+                    model: aSynonym,
+                    el: relatedEl
+                });
+                synonymView.render();
+            });
+
+            var subjectObservationView = new SubjectObservationsView({
+                model: {
+                    subjectId: entity.id,
+                    tier: thatModel.tier,
+                    role: thatModel.role
+                },
+                el: "#pathogen-observation-grid"
+            });
+            subjectObservationView.render();
+
+            return this;
+        }
+    });
+
     var CellSubsetView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#cellsubset-tmpl").html()),
@@ -3639,6 +3689,14 @@
                         });
                     } else if (type == "CellSubset") {
                         subjectView = new CellSubsetView({
+                            model: {
+                                subject: subject,
+                                tier: tier,
+                                role: role
+                            }
+                        });
+                    } else if (type == "Pathogen") {
+                        subjectView = new PathogenView({
                             model: {
                                 subject: subject,
                                 tier: tier,
