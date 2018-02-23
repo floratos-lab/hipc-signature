@@ -38,6 +38,7 @@ public class DashboardDaoImpl implements DashboardDao {
             TissueSampleImpl.class,
             VaccineImpl.class,
             CellSubsetImpl.class,
+            Pathogen.class,
             CompoundImpl.class,
             SubmissionImpl.class,
             ObservationTemplateImpl.class
