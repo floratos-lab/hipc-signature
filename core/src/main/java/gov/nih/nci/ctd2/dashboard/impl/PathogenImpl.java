@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Proxy(proxyClass = Pathogen.class)
 @Table(name = "pathogen")
 @Indexed
-public class PathogenImp extends SubjectImpl implements Pathogen {
+public class PathogenImpl extends SubjectImpl implements Pathogen {
 
 	private static final long serialVersionUID = -4774943578771816570L;
 
@@ -26,7 +26,7 @@ public class PathogenImp extends SubjectImpl implements Pathogen {
 
 	@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
-	@JoinTable(name = "exact_synonym_map")
+	@JoinTable(name = "pathogen_exact_synonym_map")
 	@Override
 	public Set<Synonym> getExactSynonyms() {
 		return exactSynonyms;
@@ -39,7 +39,7 @@ public class PathogenImp extends SubjectImpl implements Pathogen {
 
 	@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
-	@JoinTable(name = "related_synonym_map")
+	@JoinTable(name = "pathogen_related_synonym_map")
 	@Override
 	public Set<Synonym> getRelatedSynonyms() {
 		return relatedSynonyms;
