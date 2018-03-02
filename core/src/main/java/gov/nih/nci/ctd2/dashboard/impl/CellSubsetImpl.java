@@ -13,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Proxy(proxyClass = CellSubset.class)
-@Table(name = "cellSubset")
+@Table(name = "cellsubset")
 @Indexed
 public class CellSubsetImpl extends SubjectImpl implements CellSubset {
 
