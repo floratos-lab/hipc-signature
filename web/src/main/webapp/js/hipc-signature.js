@@ -1128,6 +1128,7 @@
 
             var broadEl = $("ul#synonyms");
             _.each(entity.synonyms, function (aSynonym) {
+                if(!aSynonym.displayName) return;
                 var synonymView = new SynonymView({
                     model: aSynonym,
                     el: broadEl
@@ -1136,6 +1137,7 @@
             });
             var exactEl = $("ul#exactSynonyms");
             _.each(entity.exactSynonyms, function (aSynonym) {
+                if(!aSynonym.displayName) return;
                 var synonymView = new SynonymView({
                     model: aSynonym,
                     el: exactEl
@@ -1144,6 +1146,7 @@
             });
             var relatedEl = $("ul#relatedSynonyms");
             _.each(entity.relatedSynonyms, function (aSynonym) {
+                if(!aSynonym.displayName) return;
                 var synonymView = new SynonymView({
                     model: aSynonym,
                     el: relatedEl
@@ -1178,6 +1181,7 @@
 
             var broadEl = $("ul#synonyms");
             _.each(entity.synonyms, function (aSynonym) {
+                if(!aSynonym.displayName) return;
                 var synonymView = new SynonymView({
                     model: aSynonym,
                     el: broadEl
@@ -1186,6 +1190,7 @@
             });
             var exactEl = $("ul#exactSynonyms");
             _.each(entity.exactSynonyms, function (aSynonym) {
+                if(!aSynonym.displayName) return;
                 var synonymView = new SynonymView({
                     model: aSynonym,
                     el: exactEl
@@ -1194,6 +1199,7 @@
             });
             var relatedEl = $("ul#relatedSynonyms");
             _.each(entity.relatedSynonyms, function (aSynonym) {
+                if(!aSynonym.displayName) return;
                 var synonymView = new SynonymView({
                     model: aSynonym,
                     el: relatedEl

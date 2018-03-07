@@ -34,16 +34,19 @@ public class PathogenDataFieldSetMapper implements FieldSetMapper<Pathogen> {
 		pathogen.setRank(rank);
 
 		for (String synonymName : fieldSet.readString(BROAD_SYNONYM).split("\\|")) {
+			if(synonymName.trim().length()==0) continue;
 			Synonym synonym = dashboardFactory.create(Synonym.class);
 			synonym.setDisplayName(synonymName);
 			pathogen.getSynonyms().add(synonym);
 		}
 		for (String synonymName : fieldSet.readString(EXACT_SYNONYM).split("\\|")) {
+			if(synonymName.trim().length()==0) continue;
 			Synonym synonym = dashboardFactory.create(Synonym.class);
 			synonym.setDisplayName(synonymName);
 			pathogen.getExactSynonyms().add(synonym);
 		}
 		for (String synonymName : fieldSet.readString(RELATED_SYNONYM).split("\\|")) {
+			if(synonymName.trim().length()==0) continue;
 			Synonym synonym = dashboardFactory.create(Synonym.class);
 			synonym.setDisplayName(synonymName);
 			pathogen.getRelatedSynonyms().add(synonym);
