@@ -5,6 +5,8 @@ import gov.nih.nci.ctd2.dashboard.impl.*;
 import gov.nih.nci.ctd2.dashboard.model.*;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.WhitespaceAnalyzer;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
@@ -22,6 +24,8 @@ import org.springframework.cache.annotation.Cacheable;
 import java.util.*;
 
 public class DashboardDaoImpl implements DashboardDao {
+    private static Log log = LogFactory.getLog(DashboardDaoImpl.class);
+
     private static final String[] defaultSearchFields = {
             DashboardEntityImpl.FIELD_DISPLAYNAME,
             DashboardEntityImpl.FIELD_DISPLAYNAME_UT,
@@ -649,4 +653,22 @@ public class DashboardDaoImpl implements DashboardDao {
         }
         return list;
     }
+
+	@Override
+	public List<Vaccine> findVaccineByName(String name) {
+        log.debug("vaccine name="+name);
+        return queryWithClass("from VaccineImpl where displayName = :name", "name", name);
+	}
+
+	@Override
+	public List<CellSubset> findCellSubsetByName(String name) {
+        log.debug("cell subset name="+name);
+		return queryWithClass("from CellSubsetImpl where displayName = :name", "name", name);
+	}
+
+	@Override
+	public List<Pathogen> findPathogenByName(String name) {
+        log.debug("pathogen name="+name);
+		return queryWithClass("from PathogenImpl where displayName = :name", "name", name);
+	}
 }

@@ -27,6 +27,9 @@ public interface DashboardDao {
     List<CellSample> findCellSampleByAnnoName(String name);
     List<CellSample> findCellSampleByAnnotation(Annotation annotation);
     List<TissueSample> findTissueSampleByName(String name);
+    List<Vaccine> findVaccineByName(String name);
+    List<CellSubset> findCellSubsetByName(String name);
+    List<Pathogen> findPathogenByName(String name);
     List<CellSample> findCellLineByName(String name);
     List<ShRna> findSiRNAByReagentName(String reagent);
     List<ShRna> findSiRNAByTargetSequence(String targetSequence);
