@@ -44,7 +44,7 @@ ROLES = {
     'url': {'measured','computed','reference','resource','link'}
 }
 
-SUBJECT_TYPES = {'', 'gene', 'transcript', 'shrna', 'protein', 'compound', 'cell_sample', 'tissue_sample', 'animal_model'}
+SUBJECT_TYPES = {'', 'gene', 'transcript', 'shrna', 'protein', 'compound', 'cell_sample', 'tissue_sample', 'animal_model', 'vaccine', 'cell_subset', 'pathogen'}
 
 EVIDENCE_TYPES = {'', 'numeric', 'label', 'file', 'url'}
 
