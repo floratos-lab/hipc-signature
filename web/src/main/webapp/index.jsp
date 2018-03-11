@@ -931,7 +931,7 @@
                         <tr><th>Trade Name</th><td>{{tradeName}}</td></tr>
                         <tr><th>References</th>
                             <td>Vaccine Ontology: <a href="http://purl.obolibrary.org/obo/{{vaccineID}}" target="_blank">{{vaccineID}}</a>
-                            <br/>Violinet Vaxquer: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{vaccineID}}</a></td>
+                            <br/>Violinet Vaxquery: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{vaccineID}}</a></td>
                         </tr>
                     </table>
                 </div>
