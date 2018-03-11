@@ -930,8 +930,11 @@
                         <tr><th>Product Name</th><td>{{productName}}</td></tr>
                         <tr><th>Trade Name</th><td>{{tradeName}}</td></tr>
                         <tr><th>References</th>
-                            <td>Vaccine Ontology: <a href="http://purl.obolibrary.org/obo/{{vaccineID}}" target="_blank">{{vaccineID}}</a>
-                            <br/>Violinet Vaxquery: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{vaccineID}}</a></td>
+                            <td>
+                            Violinet Vaxquery by display name: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{displayName}}</a><br/>
+                            Violinet Vaxquery by vaccine ID: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{vaccineID}}</a><br/>
+			    Vaccine Ontology by vaccine ID: <a href="http://purl.obolibrary.org/obo/{{vaccineID}}" target="_blank">{{vaccineID}}</a>
+			    </td>
                         </tr>
                     </table>
                 </div>
