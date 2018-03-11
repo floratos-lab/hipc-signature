@@ -558,6 +558,15 @@
                         } else if (subject.class == "TissueSample") {
                             imgTemplate = $("#search-results-tissuesample-image-tmpl");
                             thatEl2.append(_.template(imgTemplate.html(), subject));
+                        } else if (subject.class == "Vaccine") {
+                            imgTemplate = $("#search-results-vaccine-image-tmpl");
+                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                        } else if (subject.class == "CellSubset") {
+                            imgTemplate = $("#search-results-cellsubset-image-tmpl");
+                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                        } else if (subject.class == "Pathogen") {
+                            imgTemplate = $("#search-results-pathogen-image-tmpl");
+                            thatEl2.append(_.template(imgTemplate.html(), subject));
                         } else if (subject.class == "Gene") {
                             imgTemplate = $("#search-results-gene-image-tmpl");
                             thatEl2.append(_.template(imgTemplate.html(), subject));
@@ -2098,6 +2107,12 @@
                 imgTemplate = $("#search-results-cellsample-image-tmpl");
             } else if (result.class == "TissueSample") {
                 imgTemplate = $("#search-results-tissuesample-image-tmpl");
+            } else if (result.class == "Vaccine") {
+                imgTemplate = $("#search-results-vaccine-image-tmpl");
+            } else if (result.class == "CellSubset") {
+                imgTemplate = $("#search-results-cellsubset-image-tmpl");
+            } else if (result.class == "Pathogen") {
+                imgTemplate = $("#search-results-pathogen-image-tmpl");
             } else if (result.class == "Gene") {
                 imgTemplate = $("#search-results-gene-image-tmpl");
             } else if (result.class == "ShRNA" && result.type.toLowerCase() == "sirna") {

@@ -1701,6 +1701,22 @@
         </a>
     </script>
 
+    <script type="text/template" id="search-results-vaccine-image-tmpl">
+        <a href="#subject/{{id}}">
+            <img src="img/vaccine.png" title="Vaccine" alt="vaccine" class="img-polaroid search-info" height="50" width="50">
+        </a>
+    </script>
+    <script type="text/template" id="search-results-cellsubset-image-tmpl">
+        <a href="#subject/{{id}}">
+            <img src="img/cellsubset.png" title="Cell Subset" alt="Cell Subset" class="img-polaroid search-info" height="50" width="50">
+        </a>
+    </script>
+    <script type="text/template" id="search-results-pathogen-image-tmpl">
+        <a href="#subject/{{id}}">
+            <img src="img/pathogen.png" title="Pathogen" alt="Pathogen" class="img-polaroid search-info" height="50" width="50">
+        </a>
+    </script>
+
     <script type="text/template" id="search-results-unknown-image-tmpl">
         <a href="#subject/{{id}}">
             <img src="img/unknown.png" title="{{type}}" class="img-polaroid search-info" alt="{{type}}" height="50" width="50">
