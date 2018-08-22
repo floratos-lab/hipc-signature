@@ -8,6 +8,11 @@
 							http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <batch:job id="observationDataImporterJob">
+        <batch:step id="litGeneExpressionStep" parent="observationDataStep" next="literatureNakaya2011aNewStep">
+            <batch:tasklet>
+                <batch:chunk reader="litGeneExpressionReader" processor="observationDataProcessor" writer="observationDataWriter"/>
+            </batch:tasklet>
+        </batch:step>
         <batch:step id="literatureNakaya2011aNewStep" parent="observationDataStep" next="literatureNakaya2011bNewStep">
             <batch:tasklet>
                 <batch:chunk reader="literatureNakaya2011aNewReader" processor="observationDataProcessor" writer="observationDataWriter"/>
@@ -51,6 +56,14 @@
         <property name="commitInterval" value="${spring.batch.commit.interval}" />
     </bean>
 
+    <bean name="litGeneExpressionLineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+        <property name="fieldSetMapper" ref="observationDataMapper" />
+        <property name="lineTokenizer" ref="litGeneExpressionLineTokenizer" />
+    </bean>
+    <bean name="litGeneExpressionLineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
+        <property name="delimiter" value="\u0009"/>
+        <property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material,Group1,time_point_units.1,Group0,comparison,baseline_time,number_subjects,cohort,adjuvant,route,scheduling,publication_reference,publication_year,publication_reference_url"/>
+    </bean>
     <bean name="literatureNakaya2011aNewLineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
         <property name="fieldSetMapper" ref="observationDataMapper" />
         <property name="lineTokenizer" ref="literatureNakaya2011aNewLineTokenizer" />
@@ -267,6 +280,30 @@
                 <entry key="literature_tsang_2014:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_tsang_2014:publication_year" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_tsang_2014:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+
+                <entry key="hipc_literature_gene_expression:tissue_type" value="subject:findTissueSampleByName" />
+                <entry key="hipc_literature_gene_expression:response_agent" value="subject:findGenesBySymbol" />
+                <entry key="hipc_literature_gene_expression:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:time_point" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:target_pathogen" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:Group1" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:time_point_units.1" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:Group0" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:comparison" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:number_subjects" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:cohort" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:adjuvant" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:route" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:scheduling" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+                <entry key="hipc_literature_gene_expression:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
             </map>
         </constructor-arg>
