@@ -281,7 +281,7 @@
                 <entry key="literature_tsang_2014:publication_year" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="literature_tsang_2014:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
-                <entry key="hipc_literature_gene_expression:tissue_type" value="subject:findTissueSampleByName" />
+                <entry key="hipc_literature_gene_expression:tissue_type" value="subject:findCellSubsetByName" />
                 <entry key="hipc_literature_gene_expression:response_agent" value="subject:findGenesBySymbol" />
                 <entry key="hipc_literature_gene_expression:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
                 <entry key="hipc_literature_gene_expression:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
