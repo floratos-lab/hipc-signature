@@ -1805,12 +1805,6 @@
                 }
             });
 
-            $($("#center-specific-information-tmpl").html()).each(function () {
-                if (centerModel.displayName == $(this).attr("data-center")) {
-                    $(thatEl).find("span.center-link").append($(this));
-                }
-            });
-
             return this;
         }
 

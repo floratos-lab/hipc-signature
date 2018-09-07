@@ -408,7 +408,6 @@
             <div class="row">
                 <div class="span9">
                     <h2 class="center-title">{{displayName}} <small>submissions</small></h2>
-                    <div class="center-link-container">(<span class="center-link"></span>)</div>
                 </div>
                 <div class="span3">
                     <img src="img/{{displayName}}.png" title="{{displayName}}" alt="{{displayName}}" class="img-polaroid" width="200">
@@ -2529,22 +2528,6 @@
 
     <script id="tbl-project-title-tmpl" type="text/template">
         <tr class="group"><td colspan="5"><a href="#center/{{centerId}}/{{project}}">Project: {{project}}</a></td></tr>
-    </script>
-
-    <script id="center-specific-information-tmpl" type="text/template">
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#broad-institute" data-center="Broad Institute" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#cold-spring-harbor-laboratory" data-center="Cold Spring Harbor Laboratory" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#columbia-university" data-center="Columbia University" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#dana-farber-cancer-institute" data-center="Dana-Farber Cancer Institute" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#emory-university" data-center="Emory University" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#fred-hutchinson-cancer-research-center-1" data-center="Fred Hutchinson Cancer Research Center (1)" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#fred-hutchinson-cancer-research-center-2" data-center="Fred Hutchinson Cancer Research Center (2)" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#university-of-texas-md-anderson-cancer-center" data-center="University of Texas MD Anderson Cancer Center" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#stanford-university" data-center="Stanford University" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#university-of-california-san-francisco-1" data-center="University of California San Francisco (1)" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#university-of-california-san-francisco-2" data-center="University of California San Francisco (2)" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#university-of-texas-southwestern-medical-center" data-center="University of Texas Southwestern Medical Center" target="_blank">view center description</a>
-        <a href="https://ocg.cancer.gov/programs/ctd2/centers#translational-genomics-research-institute" data-center="Translational Genomics Research Institute" target="_blank">view center description</a>
     </script>
 
     <!-- end of templates -->
