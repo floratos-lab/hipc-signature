@@ -53,14 +53,6 @@
                 <ul class="dropdown">
                     <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show">HIPC Home Page</a></li>
                     <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show?pg=publications">Publications</a></li>
-                    <li><a target="_blank" href="https://ocg.cancer.gov/programs/ctd2/data-portal">Data Portal - Downloads</a></li>
-                    <li><a target="_blank" href="https://ocg.cancer.gov/programs/ctd2/analytical-tools">Analytical Tools</a></li>
-                    <li><a target="_blank" href="https://ocg.cancer.gov/programs/ctd2/supported-reagents">Supported Reagents</a></li>
-                    <li class="dropdown-submenu"><a tabindex="-1" href="#">Outside Resources</a>
-                          <ul class="dropdown_flyout">
-                              <li><a target="_blank" href="http://www.lincsproject.org/">LINCS</a></li>
-                          </ul>
-                     </li>
                 </ul>
             </li>
             <li>
@@ -167,19 +159,17 @@
             <small>
                 <p>
                     As the HIPC Network continues to refine the Signature, input from the research community is highly valued to help improve usability.<br>
-                    <b>Note</b>: Data users must acknowledge HIPC Network and visit <a href="http://ocg.cancer.gov/programs/ctd%C2%B2/ctd%C2%B2-publication-guidelines">HIPC publication guidelines</a> for more information.<br>
-                    To provide feedback, please send comments to <a href="mailto:ocg@mail.nih.gov?subject=HIPC Signature Feedback">ocg@mail.nih.gov</a>.
+                    <b>Note</b>: Data users must acknowledge HIPC Network and visit <a href="https://www.immuneprofiling.org">HIPC publication guidelines</a> for more information.<br>
+                    To provide feedback, please send comments to <a href="mailto:hipcfeedback?subject=HIPC Signatures Feedback">hipcfeedback@columbia.edu</a>.
                 </p>
            </small>
         </p>
-         <p>
-             <a href="http://cancer.gov"><img src="img/logos/footer_logo_nci.jpg" alt="NCI logo" title="NCI logo"></a><a href="http://www.dhhs.gov/"><img src="img/logos/footer_logo_hhs.jpg" title="HHS logo" alt="HHS logo"></a><a href="http://www.nih.gov/"><img src="img/logos/footer_logo_nih.jpg" title="NIH logo" alt="NIH logo"></a><a href="http://www.firstgov.gov/"><img src="img/logos/footer_logo_firstgov.jpg" title="First Gov logo" alt="First Gov logo"></a>
-         </p>
+
            <p>
                <a class="help-navigate" href="#help-navigate">Glossary</a> &middot;
-               <a href="http://www.cancer.gov/global/web/policies" target="_blank">Policies</a> &middot;
-               <a href="http://www.cancer.gov/global/web/policies/accessibility" target="_blank">Accessibility</a> &middot;
-               <a href="http://www.cancer.gov/global/web/policies/foia" target="_blank">FOIA</a>
+               <a href="https://www.immuneprofiling.org" target="_blank">Policies</a> &middot;
+               <a href="https://www.immuneprofiling.org" target="_blank">Accessibility</a> &middot;
+               <a href="https://www.immuneprofiling.org" target="_blank">FOIA</a>
            </p>
 
        </footer>
