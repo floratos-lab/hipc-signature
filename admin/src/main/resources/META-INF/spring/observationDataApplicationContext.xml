@@ -10,69 +10,6 @@
     <import resource="classpath*:META-INF/spring/observationDataSharedApplicationContext.xml" />
     <context:component-scan base-package="gov.nih.nci.ctd2.dashboard.importer.internal" />
 
-    <bean name="literatureFurman2013Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${literature.furman.2013.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="literatureFurman2013LineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="literatureNakaya2011aReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${literature.nakaya.2011a.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="literatureNakaya2011aLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="literatureNakaya2011bReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${literature.nakaya.2011b.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="literatureNakaya2011bLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="literatureNakaya2015Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${literature.nakaya.2015.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="literatureNakaya2015LineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="literatureTsang2014Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${literature.tsang.2014.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="literatureTsang2014LineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="literatureNakaya2011aNewReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${literature.nakaya.2011anew.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="literatureNakaya2011aNewLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
-    <bean name="literatureNakaya2011bNewReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-        <property name="resources" value="${literature.nakaya.2011bnew.data.location}" />
-        <property name="delegate">
-            <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-                <property name="lineMapper" ref="literatureNakaya2011bNewLineMapper" />
-                <property name="linesToSkip" value="7" />
-            </bean>
-        </property>
-    </bean>
     <bean name="litGeneExpressionReader" class="org.springframework.batch.item.file.MultiResourceItemReader">
         <property name="resources" value="${hipc_literature_gene_expression.data.location}" />
         <property name="delegate">
