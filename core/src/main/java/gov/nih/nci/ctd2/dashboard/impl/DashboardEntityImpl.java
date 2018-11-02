@@ -1,27 +1,47 @@
 package gov.nih.nci.ctd2.dashboard.impl;
 
-import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
-import org.hibernate.annotations.Index;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+import org.apache.solr.analysis.LowerCaseFilterFactory;
+import org.apache.solr.analysis.StopFilterFactory;
+import org.apache.solr.analysis.WhitespaceTokenizerFactory;
 import org.hibernate.annotations.Proxy;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.AnalyzerDef;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Fields;
 import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Parameter;
 import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.TokenFilterDef;
+import org.hibernate.search.annotations.TokenizerDef;
 
-import javax.persistence.*;
+import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 
+@AnalyzerDef(name="ctd2analyzer",
+  tokenizer = @TokenizerDef(factory = WhitespaceTokenizerFactory.class),
+  filters = {
+    @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+    @TokenFilterDef(factory = StopFilterFactory.class, params = {
+      @Parameter(name="ignoreCase", value="true")
+    })
+})
 @Entity
 @Proxy(proxyClass= DashboardEntity.class)
 @Inheritance(strategy = InheritanceType.JOINED)
-@org.hibernate.annotations.Entity(dynamicUpdate = true, dynamicInsert = true)
-@Table(name = "dashboard_entity")
-@org.hibernate.annotations.Table(
-        appliesTo = "dashboard_entity",
-        indexes = { @Index(name = "entityNameIdx", columnNames = { "displayName" })
+@Table(name = "dashboard_entity",
+        indexes = { @Index(name = "entityNameIdx", columnList = "displayName" )
 })
 @Indexed
 public class DashboardEntityImpl implements DashboardEntity {
+    private static final long serialVersionUID = 6953675960325146562L;
     public final static String FIELD_DISPLAYNAME = "keyword";
     public final static String FIELD_DISPLAYNAME_UT = "keywordUT";
 
@@ -41,7 +61,7 @@ public class DashboardEntityImpl implements DashboardEntity {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

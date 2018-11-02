@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Proxy(proxyClass = SubjectWithOrganism.class)
 @Indexed
 public class SubjectWithOrganismImpl extends SubjectImpl implements SubjectWithOrganism {
+    private static final long serialVersionUID = -7012698430844134733L;
     private Organism organism;
 
     @ManyToOne(targetEntity = OrganismImpl.class)

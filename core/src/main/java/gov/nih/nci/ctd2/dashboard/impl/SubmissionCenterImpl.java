@@ -12,4 +12,6 @@ import javax.persistence.Table;
 @Table(name = "submission_center")
 @Indexed
 public class SubmissionCenterImpl extends DashboardEntityImpl implements SubmissionCenter {
+
+    private static final long serialVersionUID = 8767476203010630863L;
 }

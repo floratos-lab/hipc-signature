@@ -14,6 +14,7 @@ import java.util.Date;
 @Table(name = "submission")
 @Indexed
 public class SubmissionImpl extends DashboardEntityImpl implements Submission {
+    private static final long serialVersionUID = -4124903642886056386L;
     private ObservationTemplate observationTemplate;
     private Date submissionDate;
 

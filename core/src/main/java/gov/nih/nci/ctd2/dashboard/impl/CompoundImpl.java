@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "compound")
 @Indexed
 public class CompoundImpl extends SubjectImpl implements Compound {
+    private static final long serialVersionUID = -8486974498485524210L;
     private String smilesNotation;
 
     @Column(length = 2048, nullable = true)

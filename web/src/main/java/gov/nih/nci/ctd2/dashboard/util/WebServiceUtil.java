@@ -12,9 +12,6 @@ public class WebServiceUtil {
     @Autowired
     private DashboardDao dashboardDao;
 
-    @Autowired
-    private DashboardDao dashboardDao2;
-
     @Transactional
     @Cacheable(value = "entityCache")
     public List<? extends DashboardEntity> getDashboardEntities(String type, Integer filterBy) {
@@ -152,60 +149,4 @@ public class WebServiceUtil {
         return submissions;
     }
 
-    public List<? extends DashboardEntity> getTemplates(Integer centerId) {
-        List<SubmissionTemplate> list = new ArrayList<SubmissionTemplate>();
-        SubmissionCenter submissionCenter = dashboardDao2.getEntityById(SubmissionCenter.class, centerId);
-        for (SubmissionTemplate submissionTemplate : dashboardDao2.findEntities(SubmissionTemplate.class)) {
-            if (submissionTemplate.getSubmissionCenter().equals(submissionCenter)) {
-                forceConsistency(submissionTemplate);
-                list.add(submissionTemplate);
-            }
-        }
-        return list;
-    }
-
-    /* safe-guard the data for the client in case it is inconsistent for some reason */
-    private void forceConsistency(SubmissionTemplate submissionTemplate) {
-        // TODO complete this for all relevant fields
-        String[] subjectColumns = submissionTemplate.getSubjectColumns();
-        if(subjectColumns==null) {
-            subjectColumns = new String[0];
-            submissionTemplate.setSubjectColumns( subjectColumns );
-        }
-        String[] evidenceColumns = submissionTemplate.getEvidenceColumns();
-        if(evidenceColumns==null) {
-            evidenceColumns = new String[0];
-            submissionTemplate.setEvidenceColumns( evidenceColumns );
-        }
-        String[] evidenceTypes = submissionTemplate.getEvidenceTypes();
-        if(evidenceTypes==null) {
-            submissionTemplate.setEvidenceTypes( new String[0] );
-        }
-        String[] valueTypes = submissionTemplate.getValueTypes();
-        if(valueTypes==null) {
-            submissionTemplate.setValueTypes( new String[0] );
-        }
-        String[] evidenceDescription = submissionTemplate.getEvidenceDescriptions();
-        if(evidenceDescription==null) {
-            submissionTemplate.setEvidenceDescriptions( new String[0] );
-        }
-        Integer observationNumber = submissionTemplate.getObservationNumber();
-        if(observationNumber==null) {
-            observationNumber = 0;
-            submissionTemplate.setObservationNumber(observationNumber);
-        }
-        String[] observations = new String[0];
-        if(submissionTemplate.getObservations()!=null) {
-            observations = submissionTemplate.getObservations().split(",", -1);
-        }
-        int t = observationNumber*(subjectColumns.length+evidenceColumns.length);
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<observations.length; i++) {
-            sb.append( observations[i] ).append(",");
-        }
-        for(int i=observations.length; i<t; i++) { // in case we need more commas
-            sb.append(",");
-        }
-        submissionTemplate.setObservations(sb.toString());
-    }
 }

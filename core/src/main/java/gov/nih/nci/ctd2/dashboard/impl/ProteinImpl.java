@@ -1,23 +1,28 @@
 package gov.nih.nci.ctd2.dashboard.impl;
 
-import gov.nih.nci.ctd2.dashboard.model.Protein;
-import gov.nih.nci.ctd2.dashboard.model.Transcript;
-import org.hibernate.annotations.CollectionId;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
 import org.hibernate.search.annotations.Indexed;
 
-import javax.persistence.*;
-
-import java.util.Set;
-import java.util.HashSet;
+import gov.nih.nci.ctd2.dashboard.model.Protein;
+import gov.nih.nci.ctd2.dashboard.model.Transcript;
 
 @Entity
 @Proxy(proxyClass = Protein.class)
 @Table(name = "protein")
 @Indexed
 public class ProteinImpl extends SubjectWithOrganismImpl implements Protein {
+    private static final long serialVersionUID = -2908682202730022719L;
     private String uniprotId;
     private Set<Transcript> transcripts = new HashSet<Transcript>();
 

@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "transcript")
 @Indexed
 public class TranscriptImpl extends SubjectWithOrganismImpl implements Transcript {
+    private static final long serialVersionUID = -3477770521094773090L;
     private String refseqId;
     private Gene gene;
 

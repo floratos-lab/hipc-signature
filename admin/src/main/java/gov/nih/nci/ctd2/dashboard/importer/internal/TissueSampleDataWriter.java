@@ -1,19 +1,21 @@
 package gov.nih.nci.ctd2.dashboard.importer.internal;
 
-import gov.nih.nci.ctd2.dashboard.model.*;
-import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-import org.springframework.batch.item.ItemWriter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-import java.util.*;
+import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
+import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
+import gov.nih.nci.ctd2.dashboard.model.TissueSample;
 
 @Component("tissueSampleDataWriter")
 public class TissueSampleDataWriter implements Tasklet {
@@ -37,6 +39,7 @@ public class TissueSampleDataWriter implements Tasklet {
             entities.add(tissueSample);
         }
         dashboardDao.batchSave(entities, batchSize);
+        log.debug("TissueSample saved");
         return RepeatStatus.FINISHED;
     }
 }

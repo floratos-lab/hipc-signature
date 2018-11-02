@@ -25,5 +25,6 @@ public class AnimalModelWriter implements ItemWriter<AnimalModel> {
  
 	public void write(List<? extends AnimalModel> items) throws Exception {
         dashboardDao.batchSave(items, batchSize);
+        log.debug("AnimalModel written");
 	}
 }

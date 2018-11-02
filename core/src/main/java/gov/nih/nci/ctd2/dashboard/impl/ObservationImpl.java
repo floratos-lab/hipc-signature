@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Proxy(proxyClass = Observation.class)
 @Table(name = "observation")
 public class ObservationImpl extends DashboardEntityImpl implements Observation {
+    private static final long serialVersionUID = 2091912684322924047L;
     private Submission submission;
 
     @ManyToOne(targetEntity = SubmissionImpl.class)

@@ -1,19 +1,19 @@
 package gov.nih.nci.ctd2.dashboard.importer.internal;
 
-import gov.nih.nci.ctd2.dashboard.model.*;
-import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.HashMap;
-import java.text.SimpleDateFormat;
+import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
+import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
+import gov.nih.nci.ctd2.dashboard.model.Submission;
 
 @Component("observationDataWriter")
 public class ObservationDataWriter implements ItemWriter<ObservationData> {
@@ -45,5 +45,6 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
 		}
 
         dashboardDao.batchSave(entities, batchSize);
+        log.debug("ObservationData written");
 	}
 }

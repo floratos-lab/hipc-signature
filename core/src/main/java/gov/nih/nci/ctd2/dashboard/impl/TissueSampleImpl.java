@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Proxy(proxyClass = TissueSample.class)
 @Indexed
 public class TissueSampleImpl extends SubjectImpl implements TissueSample {
+    private static final long serialVersionUID = 6827419973571088635L;
+
     public final static String FIELD_LINEAGE = "lineage";
 
     private String lineage;

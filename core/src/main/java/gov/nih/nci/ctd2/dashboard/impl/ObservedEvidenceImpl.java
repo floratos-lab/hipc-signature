@@ -1,20 +1,21 @@
 package gov.nih.nci.ctd2.dashboard.impl;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
+
 import gov.nih.nci.ctd2.dashboard.model.Evidence;
 import gov.nih.nci.ctd2.dashboard.model.Observation;
 import gov.nih.nci.ctd2.dashboard.model.ObservedEvidence;
 import gov.nih.nci.ctd2.dashboard.model.ObservedEvidenceRole;
-import org.hibernate.annotations.Proxy;
-
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Proxy(proxyClass = ObservedEvidence.class)
 @Table(name = "observed_evidence")
 public class ObservedEvidenceImpl extends DashboardEntityImpl implements ObservedEvidence {
+    private static final long serialVersionUID = -2396850548185168890L;
     private Evidence evidence;
     private ObservedEvidenceRole observedEvidenceRole;
     private Observation observation;

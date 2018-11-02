@@ -63,8 +63,6 @@ public class ListController {
         List<? extends DashboardEntity> entities = null;
         if("observation".equals(type)) { // different logic for observation list
             entities = webServiceUtil.getObservationsPerRoleTier(filterBy, role, tier);
-        } else if("template".equals(type)) { // template cannot be cached
-            entities = webServiceUtil.getTemplates(filterBy);
         } else {
             entities = webServiceUtil.getDashboardEntities(type, filterBy);
         }

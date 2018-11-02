@@ -1,24 +1,29 @@
 package gov.nih.nci.ctd2.dashboard.impl;
 
-import gov.nih.nci.ctd2.dashboard.model.CellSample;
-import gov.nih.nci.ctd2.dashboard.model.Annotation;
-import org.hibernate.annotations.Proxy;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Indexed;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Proxy;
+import org.hibernate.search.annotations.Indexed;
 
-import javax.persistence.*;
-
-import java.util.Set;
-import java.util.HashSet;
+import gov.nih.nci.ctd2.dashboard.model.Annotation;
+import gov.nih.nci.ctd2.dashboard.model.CellSample;
 
 @Entity
 @Proxy(proxyClass= CellSample.class)
 @Table(name = "cell_sample")
 @Indexed
 public class CellSampleImpl extends SubjectWithOrganismImpl implements CellSample {
+    private static final long serialVersionUID = -513131580618638396L;
     private String gender;
     private Set<Annotation> annotations = new HashSet<Annotation>();
 
