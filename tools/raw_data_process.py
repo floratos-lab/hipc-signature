@@ -4,6 +4,7 @@
 
 import os
 import shutil
+from data_config import DataConfig
 
 SOURCE_DATA_LOCATION = "C:\\Users\\zji\\Desktop\\hipc-data-20181102\\source_data"
 TARGET_DATA_LOCATION = "C:\\data_collection\\hipc_data"
@@ -106,6 +107,7 @@ def update_configs(all_files):
     new_properties = open(os.path.join(HIPC_APPLICATION_LOCATION,
                                        "admin\\src\\main\\resources\\META-INF\\spring\\admin.properties.tmp"), 'w')
     remove = False
+    ids = []
     for line in old_properties:
         if not remove:
             new_properties.write(line)
@@ -114,9 +116,11 @@ def update_configs(all_files):
             remove = True
         elif remove and len(line.strip()) == 0:
             for f in all_files:
-                x = f[f.find('-')+1:f.rfind('.txt')].replace('-',
-                                                             '.')+".data.location"
+                id = f[f.find('-')+1:f.rfind('.txt')].replace('-',
+                                                              '.')
+                x = id+".data.location"
                 sub = f[:f.rfind('.txt')]
+                ids.append((id, x))
                 new_properties.write(
                     x+"=file:${HIPC_DATA_HOME}/submissions/"+sub+"/"+f+'\n')
 
@@ -132,10 +136,15 @@ def update_configs(all_files):
                 os.path.join(HIPC_APPLICATION_LOCATION,
                              "admin\\src\\main\\resources\\META-INF\\spring\\admin.properties"))
 
+    return ids
+
 
 def main():
     all_files = read_raw_data()
-    update_configs(all_files)
+    ids = update_configs(all_files)
+
+    config = DataConfig(HIPC_APPLICATION_LOCATION, ids)
+    config.save()
 
 
 if __name__ == '__main__':
