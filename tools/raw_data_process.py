@@ -145,7 +145,7 @@ def main():
 
     config = DataConfig(HIPC_APPLICATION_LOCATION, ids)
     config.save()
-
+    config.saveSharedConfig()
 
 if __name__ == '__main__':
     main()
