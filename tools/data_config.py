@@ -19,8 +19,7 @@ class DataConfig:
                                    "admin\\src\\main\\resources\\META-INF\\spring\\observationDataApplicationContext.xml")
         f = open(config_file+".tmp", 'w')
 
-        f.write('''
-<?xml version="1.0" encoding="UTF-8"?>
+        f.write('''<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:batch="http://www.springframework.org/schema/batch"
