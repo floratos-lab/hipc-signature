@@ -32,6 +32,8 @@ def read_raw_data():
 
     column_id = 0
 
+    id2template_name = {}
+    column_infos = {}
     for x in os.listdir(SOURCE_DATA_LOCATION):
         fullpath = os.path.join(SOURCE_DATA_LOCATION, x)
         # print(fullpath)
@@ -56,6 +58,13 @@ def read_raw_data():
                 all_files.append(f)
 
                 template_name, column_info = read_column_info(f, fullpath)
+                # column names entry is re-created for each file if the template_name is the same,
+                # which is redeudant
+                # however, it is consistent if the file referring to the same template have the same columns as assumed
+                id = f[f.find('-')+1:f.rfind('.txt')].replace('-',
+                                                              '.')
+                id2template_name[id] = template_name
+                column_infos[template_name] = []
                 for idx in range(len(column_info[0])):
                     column_id += 1
                     per_column = [str(column_id), template_name]
@@ -64,10 +73,21 @@ def read_raw_data():
                     row = "\t".join(per_column) + "\n"
                     per_column_file.write(row)
 
+                    cleaned_column_name = column_info[0][idx].strip(
+                        '"')  # raw data are all double-quoted!!!
+                    subject = column_info[1][idx].strip('"')
+                    evidence = column_info[2][idx].strip('"')
+                    role = column_info[3][idx].strip('"')
+                    mime_type = column_info[4][idx].strip('"')
+                    numeric_units = column_info[5][idx].strip('"')
+                    display_text = column_info[6][idx].strip('"')
+                    column_infos[template_name].append(
+                        (cleaned_column_name, subject, evidence, role, mime_type, numeric_units, display_text))
+
     per_template_file.close()
     per_column_file.close()
 
-    return all_files
+    return all_files, id2template_name, column_infos
 
 
 def read_column_info(filename, dir):
@@ -140,12 +160,14 @@ def update_configs(all_files):
 
 
 def main():
-    all_files = read_raw_data()
+    all_files, id2template_name, column_infos = read_raw_data()
     ids = update_configs(all_files)
 
-    config = DataConfig(HIPC_APPLICATION_LOCATION, ids)
+    config = DataConfig(HIPC_APPLICATION_LOCATION, ids,
+                        id2template_name, column_infos)
     config.save()
     config.saveSharedConfig()
+
 
 if __name__ == '__main__':
     main()

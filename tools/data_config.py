@@ -4,10 +4,14 @@ import os
 class DataConfig:
     APP_LOCATION = ''
     ids = []
+    id2template_name = {}
+    column_infos = {}
 
-    def __init__(self, app_location, ids):
+    def __init__(self, app_location, ids, id2template_name, column_infos):
         self.APP_LOCATION = app_location
         self.ids = ids
+        self.id2template_name = id2template_name
+        self.column_infos = column_infos
 
     def save(self):
         f = open(os.path.join(self.APP_LOCATION,
@@ -110,14 +114,18 @@ class DataConfig:
 ''')
         for i in range(size):
             id = self.ids[i][0]
-            columns = ['tissue_type', 'response_agent',
-                       'response_behavior_type']  # TODO self.ids[i][2]
-            template_name = 'TODOTDO'
-            for col in columns:
-                column_name = 'TODO'
+            template_name = self.id2template_name[id]
+            for column_info in self.column_infos[template_name]:
+                column_name = column_info[0]
+                subject = column_info[1]
+                evidence = column_info[2]
+                role = column_info[3]
+                mime_type = column_info[4]
                 # two parts for subjects; three parts for evidence. delimited by :
-                subject_or_evidence = 'TODO'
-                f.write('\n\t\t\t\t<entry key="'+template_name+':'+column_name +
+                #subject_or_evidence = 'subject:'+subject if subject is not '' else 'evidence:'+evidence
+                subject_or_evidence = create_method_name(
+                    subject, evidence, role, mime_type)
+                f.write('\n\t\t\t\t<entry key="'+id+':'+column_name +
                         '" value="'+subject_or_evidence+'" />')
 
             f.write('\n')  # leave empty after each submission
@@ -127,3 +135,30 @@ class DataConfig:
     </bean>''')
 
         f.write('\n</beans>')
+
+
+def create_method_name(subject, evidence, role, mime_type):
+    ''' create the name of the method used to import data by DAO '''
+
+    if subject is not '':
+        if subject == 'cell_subset':
+            method_name = 'findCellSubsetByName'
+        elif subject == 'pathogen':
+            method_name = 'findPathogenByName'
+        elif subject == 'vaccine':
+            method_name = 'findVaccineByName'
+        elif subject == 'gene':
+            method_name = 'findGenesBySymbol'
+        else:
+            method_name = ''
+            print("WARNING: unknown subject", subject)
+        return 'subject:'+method_name
+    else:
+        if evidence == 'label':
+            method_name = 'createObservedLabelEvidence'
+        elif evidence == 'url':
+            method_name = 'createObservedUrlEvidence'
+        else:
+            method_name = ''
+            print("WARNING: unknown evidence", evidence)
+        return 'evidence:readString:'+method_name
