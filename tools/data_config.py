@@ -97,8 +97,10 @@ class DataConfig:
 
         for i in range(size):
             id = self.ids[i][0]
-            # TODO are tha fields different for each id?
-            fields = 'dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material,Group1,Group0,comparison,baseline_time,number_subjects,cohort,adjuvant,route,scheduling,publication_reference,publication_year,publication_reference_url'
+            template_name = self.id2template_name[id]
+            fields = 'dummy,submission_name,submission_date,template_name'
+            for column_info in self.column_infos[template_name]:
+                fields += ','+column_info[0]
             f.write('\n\t<bean name="'+id +
                     'LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">')
             f.write(
