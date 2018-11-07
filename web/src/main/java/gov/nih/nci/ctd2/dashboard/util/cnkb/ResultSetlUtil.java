@@ -236,10 +236,8 @@ public class ResultSetlUtil {
 			}
 
 		} catch (IOException ie) {
-			// TODO Auto-generated catch block
 			ie.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {
