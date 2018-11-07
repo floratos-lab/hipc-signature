@@ -26,7 +26,7 @@ def read_raw_data():
     per_template_file = open(os.path.join(
         TARGET_DATA_LOCATION, "dashboard-CV-per-template.txt"), "w")
     per_template_file.write(
-        "observation_tier	template_name	observation_summary	template_description	story_title	submission_name	submission_description	project	submission_story	submission_story_rank	submission_center	principal_investigator\n")
+        "observation_tier	template_name	observation_summary	template_description	submission_name	submission_description	project	submission_story	submission_story_rank	submission_center	principal_investigator\n")
 
     all_files = []
 
