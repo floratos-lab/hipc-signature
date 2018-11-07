@@ -1,4 +1,5 @@
 import os
+import shutil
 
 
 class DataConfig:
@@ -14,8 +15,10 @@ class DataConfig:
         self.column_infos = column_infos
 
     def save(self):
-        f = open(os.path.join(self.APP_LOCATION,
-                              "admin\\src\\main\\resources\\META-INF\\spring\\observationDataApplicationContext.xml.tmp"), 'w')
+        config_file = os.path.join(self.APP_LOCATION,
+                                   "admin\\src\\main\\resources\\META-INF\\spring\\observationDataApplicationContext.xml")
+        f = open(config_file+".tmp", 'w')
+
         f.write('''
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -52,9 +55,12 @@ class DataConfig:
         f.write('\n\n</beans>')
         f.close()
 
+        shutil.copy(config_file+".tmp", config_file)
+
     def saveSharedConfig(self):
-        f = open(os.path.join(self.APP_LOCATION,
-                              "admin\\src\\main\\resources\\META-INF\\spring\\observationDataSharedApplicationContext.xml.tmp"), 'w')
+        config_file = os.path.join(self.APP_LOCATION,
+                                   "admin\\src\\main\\resources\\META-INF\\spring\\observationDataSharedApplicationContext.xml")
+        f = open(config_file+".tmp", 'w')
         f.write('''<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -135,6 +141,9 @@ class DataConfig:
     </bean>''')
 
         f.write('\n</beans>')
+        f.close()
+
+        shutil.copy(config_file+".tmp", config_file)
 
 
 def create_method_name(subject, evidence, role, mime_type):
