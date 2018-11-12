@@ -132,7 +132,7 @@ class DataConfig:
                 #subject_or_evidence = 'subject:'+subject if subject is not '' else 'evidence:'+evidence
                 subject_or_evidence = create_method_name(
                     subject, evidence, role, mime_type)
-                f.write('\n\t\t\t\t<entry key="'+id+':'+column_name +
+                f.write('\n\t\t\t\t<entry key="'+template_name.strip('"')+':'+column_name +
                         '" value="'+subject_or_evidence+'" />')
 
             f.write('\n')  # leave empty after each submission
