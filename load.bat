@@ -2,11 +2,9 @@ rem load the data. hipc_signature database should be cleared out before doing th
 
 IF NOT DEFINED HIPC_DATA_HOME SET HIPC_DATA_HOME=C:\data_collection\hipc_data
 
-set start=%time%
-echo start time %start%
+mysql -u root -p%DB_PASSWORD% < tools\reset_database.sql
 
-mysql -u root -p < tools\reset_database.sql
-
+echo start loading background data %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -t
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -am
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -cl
@@ -17,20 +15,21 @@ java -Xmx1024m -jar admin\target\dashboard-admin.jar -p
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -sh
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -si
 
-echo %time%
+echo start loading vaccine data %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -v
-echo %time%
+echo start loading cell subset data %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -c
-echo %time%
+echo start loading pathogen data %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -n
-echo %time%
 
+echo start loading controlled vocabulary %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -cv
+echo start loading observation data %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -o
-echo %time%
 
+echo start indexing %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -i
+echo start subject ranking %time%
 java -Xmx1024m -jar admin\target\dashboard-admin.jar -r
 
-set end=%time%
-echo end time %end%
+echo all done %time%
