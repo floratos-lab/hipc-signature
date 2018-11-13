@@ -4,7 +4,7 @@ IF NOT DEFINED HIPC_DATA_HOME SET HIPC_DATA_HOME=C:\data_collection\hipc_data
 
 echo start time %time%
 
-mysql -u root -p < tools\reset_database.sql
+mysql -u root -p%DB_PASSWORD% < tools\reset_database.sql
 
 java -jar admin\target\dashboard-admin.jar -t
 java -jar admin\target\dashboard-admin.jar -am
@@ -29,4 +29,6 @@ echo starting pathogen %time%
 java -jar admin\target\dashboard-admin.jar -n
 echo finished %time%
 
-echo end time %time%
+mysqldump -u root -p%DB_PASSWORD% hipc_signature > hipc_signature_background.sql
+
+echo database dumped. end time %time%
