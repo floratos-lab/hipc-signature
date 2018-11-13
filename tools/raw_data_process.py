@@ -58,12 +58,13 @@ def read_raw_data():
                 all_files.append(f)
 
                 template_name, column_info = read_column_info(f, fullpath)
-                # column names entry is re-created for each file if the template_name is the same,
-                # which is redeudant
-                # however, it is consistent if the file referring to the same template have the same columns as assumed
                 id = f[f.find('-')+1:f.rfind('.txt')].replace('-',
                                                               '.')
                 id2template_name[id] = template_name
+                # column names entry is created only once because they are the same for the same template_name
+                if template_name in column_infos:
+                    continue
+
                 column_infos[template_name] = []
                 for idx in range(len(column_info[0])):
                     column_id += 1
