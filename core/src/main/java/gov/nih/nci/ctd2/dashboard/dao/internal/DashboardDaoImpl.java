@@ -643,7 +643,7 @@ public class DashboardDaoImpl implements DashboardDao {
 	@Override
 	public List<Vaccine> findVaccineByName(String name) {
         log.debug("vaccine name="+name);
-        return queryWithClass("from VaccineImpl where displayName = :name", "name", name);
+        return queryWithClass("from VaccineImpl where vaccineID = :name", "name", name);
 	}
 
 	@Override
