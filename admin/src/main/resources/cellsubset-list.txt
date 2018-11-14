@@ -1,4 +1,5 @@
 name	id	definition	comment	broad	exact	related
+blood	UBERON_0000178	A fluid that is composed of blood plasma and erythrocytes.				
 cell	CL_0000000	A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane.	The definition of cell is intended to represent all cells, and thus a cell is defined as a material entity and not an anatomical structure, which implies that it is part of an organism (or the entirety of one).			
 primary cultured cell	CL_0000001	A cultured cell that is freshly isolated from a organismal source, or derives in culture from such a cell prior to the culture being passaged.	Covers cells actively being cultured or stored in a quiescent state for future use.		unpassaged cultured cell|primary cell culture cell	primary cell line cell
 obsolete immortal cell line cell	CL_0000002	OBSOLETE: A cell line cell that is expected to be capable of an unlimited number of divisions, and is thus able to support indefinite growth/propagation in vitro as part of a immortal cell line.	Obsoleted in July 2013 and replaced by the CLO 'immortal cell line cell' class, as a result of CLO-OBI-CL alignment efforts.  Covers cells actively being cultured or stored in a quiescent state for future use.		continuous cell line cell|permanent cell line cell	
@@ -1366,7 +1367,7 @@ neural cell	CL_0002319	A cell that is part of the nervous system.
 connective tissue cell	CL_0002320	A cell of the supporting or framework tissue of the body, arising chiefly from the embryonic mesoderm and including adipose tissue, cartilage, and bone.				
 embryonic cell	CL_0002321	A cell of the embryo.				
 embryonic stem cell	CL_0002322	A stem cell of embryonic origin.	This is an in vitro cell type and may be removed in future releases. These cells are reportedly SSEA-4-positive, CD73-negative, and CD324-positive.		ESC	
-amniocyte	CL_0002323	A cell of a fetus which is suspended in the amniotic fluid. Amniocytes are considered to arise from several tissues including fetal skin, the fetal urinary tract, umbilical cord, and the inner amniotic surface.				
+amniocyte	CL_0002323	A cell of aï¿½fetus which is suspended in the amniotic fluid. Amniocytes are considered to arise from several tissues including fetal skin, the fetal urinary tract, umbilical cord, and the inner amniotic surface.				
 myoepithelial cell of mammary gland	CL_0002324	A myoepithelial cell that surrounds milk-secreting luminal epithelial cells. This cell type contracts under the stimulation of oxytocin and is attached to the basement membrane by hemidesmosomes and to the adjacent luminal cells by desmosomes. This cell type expresses high level of keratin-14 and is estrogen receptor alpha negative.				
 mammary alveolar cell	CL_0002325	The milk-producing cell of the alveolar unit that emerges during pregnancy.			epithelial cell of lactiferous gland|luminal cell of alveolus of lactiferous gland	
 luminal epithelial cell of mammary gland	CL_0002326	A mammary epithelial cell that occurs in the lumen of the ductal and alveoli structure in the breast.				
@@ -1843,7 +1844,7 @@ sympathetic neuron	CL_0011103	Sympathetic neurons are part of the sympathetic ne
 interplexiform cell	CL_0011104	A type of interneuron in the retinal inner nuclear layer which  carries information from the inner plexiform layer and the outer  plexiform layer.	Need to MIREOT retinal inner nuclear layer (part of)			
 dopamanergic interplexiform cell	CL_0011105	A type of interneuron in the retinal inner nuclear layer which  carries information from the inner plexiform layer and the outer  plexiform layer, using dopamine. 	This type of cell is found in Danio rerio.			
 GABAnergic interplexiform cell	CL_0011106	A type of interneuron in the retinal inner nuclear layer which  carries information from the inner plexiform layer and the outer  plexiform layer using GABA. 	This type of cell is found in many mammals.			
-Muller cell	CL_0011107	Astrocyte-like radial glial cell that extends vertically throughout the retina, with the nucleus are usually in the middle of the inner nuclear layer. 			Müller cell|Muller glia 	
+Muller cell	CL_0011107	Astrocyte-like radial glial cell that extends vertically throughout the retina, with the nucleus are usually in the middle of the inner nuclear layer. 			Mï¿½ller cell|Muller glia 	
 colon epithelial cell	CL_0011108	Epithelial cell that is part of the colon epithelium. 			colonic epithelial cell	
 hypocretin-secreting neuron	CL_0011109	A neuron that releases hypocretin as a neurotransmitter.			orexin	
 histaminergic neuron	CL_0011110	Neuron that secretes histamine.				
