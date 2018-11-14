@@ -33,8 +33,8 @@ public class ControlledVocabularyPerTemplateFieldSetMapper implements FieldSetMa
     private DashboardFactory dashboardFactory;
 
     @Autowired
-	@Qualifier("observationTemplateMap")
-	private HashMap<String,ObservationTemplate> observationTemplateMap;
+	@Qualifier("observationTemplateNameMap")
+	private HashMap<String,ObservationTemplate> observationTemplateNameMap;
 
 	private HashMap<String, SubmissionCenter> submissionCenterCache = new HashMap<String, SubmissionCenter>();
 
@@ -64,7 +64,7 @@ public class ControlledVocabularyPerTemplateFieldSetMapper implements FieldSetMa
 		}
 		observationTemplate.setSubmissionCenter(submissionCenter);
 
-		observationTemplateMap.put(fieldSet.readString(TEMPLATE_NAME), observationTemplate);
+		observationTemplateNameMap.put(fieldSet.readString(TEMPLATE_NAME), observationTemplate);
 
 		return observationTemplate;
 	}
