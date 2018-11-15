@@ -26,4 +26,5 @@
     </bean>
 
     <bean class="gov.nih.nci.ctd2.dashboard.util.SubjectScorer" id="subjectScorer"/>
+	<bean class="java.util.HashSet" id="subjectNotFound"/>
 </beans>

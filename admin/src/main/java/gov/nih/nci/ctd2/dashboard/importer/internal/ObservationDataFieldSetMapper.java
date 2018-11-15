@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
@@ -39,6 +40,9 @@ public class ObservationDataFieldSetMapper implements FieldSetMapper<Observation
 
     @Autowired
     private DashboardFactory dashboardFactory;
+
+	@Autowired
+    private HashSet<String> subjectNotFound;
 
 	@Autowired
 	@Qualifier("observationTemplateMap")
@@ -93,6 +97,7 @@ public class ObservationDataFieldSetMapper implements FieldSetMapper<Observation
 						// cannot find underlying subject behind
 						// the observed subject, log and bail
 						log.info("Cannot find subject: " + templateName + ", " + columnName + ", " + subjectValue);
+						subjectNotFound.add(templateName + "," + columnName + "," + subjectValue);
 						return new ObservationData(null, null, null);
 					}
 					observedEntitiesSet.add(observedSubject);

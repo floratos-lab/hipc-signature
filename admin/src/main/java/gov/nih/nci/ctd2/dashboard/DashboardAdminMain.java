@@ -3,6 +3,9 @@ package gov.nih.nci.ctd2.dashboard;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.importer.internal.SampleImporter;
 import gov.nih.nci.ctd2.dashboard.util.SubjectScorer;
+
+import java.util.HashSet;
+
 import org.apache.commons.cli.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -173,6 +176,14 @@ public class DashboardAdminMain {
             JobParametersBuilder builder = new JobParametersBuilder();
             JobExecution jobExecution = jobLauncher.run(job, builder.toJobParameters());
             log.info("launchJob: exit code: " + jobExecution.getExitStatus().getExitCode());
+
+            @SuppressWarnings("unchecked")
+            HashSet<String> subjectNotFound = (HashSet<String>)appContext.getBean("subjectNotFound");
+            log.info("Subjects not found:");
+            for(String snf : subjectNotFound) {
+                log.info(snf);
+            }
+
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
