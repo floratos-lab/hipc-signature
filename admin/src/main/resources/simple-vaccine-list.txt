@@ -1,9 +1,649 @@
 name	vaccine_id	product_name	trade_name
+entity	BFO_0000001		
+continuant	BFO_0000002		
+occurrent	BFO_0000003		
+spatial region	BFO_0000006		
+temporal region	BFO_0000008		
+spatiotemporal region	BFO_0000011		
+three-dimensional spatial region	BFO_0000028		
+site	BFO_0000029		
+function	BFO_0000034		
+one-dimensional temporal region	BFO_0000038		
+material entity	BFO_0000040		
+zero-dimensional temporal region	BFO_0000148		
+phenol	CHEBI_15882		
+urea	CHEBI_16199		
+lipopolysaccharide	CHEBI_16412		
+peptide	CHEBI_16670		
+formaldehyde	CHEBI_16842		
+streptomycin	CHEBI_17076		
+lactose	CHEBI_17716		
+gentamycin	CHEBI_17833		
+sucrose	CHEBI_17992		
+molecular entity	CHEBI_23367		
+chemical entity	CHEBI_24431		
+aspartame	CHEBI_2877		
+glucitol	CHEBI_30911		
+saccharin	CHEBI_32111		
+aluminium hydroxide	CHEBI_33130		
+dextran	CHEBI_52071		
+polysorbate 20	CHEBI_53424		
+polysorbate 80	CHEBI_53426		
+monosodium glutamate	CHEBI_64220		
+neomycin	CHEBI_7507		
+thimerosal	CHEBI_9546		
 cell line repository role	CLO_0000978		
+disease by infectious agent	DOID_0050117		
+primary bacterial infectious disease	DOID_0050338		
+cell type cancer	DOID_0050687		
+bacterial infectious disease	DOID_104		
+Brucella suis brucellosis	DOID_11076		
+brucellosis	DOID_11077		
+malaria	DOID_12365		
+parasitic infectious disease	DOID_1398		
+Plasmodium falciparum malaria	DOID_14067		
+Brucella melitensis brucellosis	DOID_14456		
+Brucella abortus brucellosis	DOID_14457		
+disease of cellular proliferation	DOID_14566		
+cancer	DOID_162		
+melanoma	DOID_1909		
+parasitic protozoa infectious disease	DOID_2789		
+disease	DOID_4		
+Human immunodeficiency virus infectious disease	DOID_526		
 influenza	DOID_8469		
+viral infectious disease	DOID_934		
+Hormone	FMA_12278		
+adaptive immune response	GO_0002250		
+mucosal immune response	GO_0002385		
+immune response	GO_0006955		
+immunoglobulin complex	GO_0019814		
+protein complex	GO_0043234		
+IgG immunoglobulin complex	GO_0071735		
+IgD immunoglobulin complex	GO_0071738		
+IgE immunoglobulin complex	GO_0071742		
+IgA immunoglobulin complex	GO_0071745		
+IgM immunoglobulin complex	GO_0071753		
+conditional specification	IAO_0000001		
+measurement unit label	IAO_0000003		
+objective specification	IAO_0000005		
+datum label	IAO_0000009		
+journal article	IAO_0000013		
+data item	IAO_0000027		
+information content entity	IAO_0000030		
+scalar measurement datum	IAO_0000032		
+directive information entity	IAO_0000033		
+report	IAO_0000088		
+data set	IAO_0000100		
+plan specification	IAO_0000104		
+measurement datum	IAO_0000109		
+document	IAO_0000310		
+pathogen	IDO_0000528		
+virulence factor	IDO_0000547		
+Mus musculus	NCBITaxon_10090		
+Rattus	NCBITaxon_10114		
+Cavia porcellus	NCBITaxon_10141		
+Chinchillidae	NCBITaxon_10150		
+Viruses	NCBITaxon_10239		
+Poxviridae	NCBITaxon_10240		
+Chordopoxvirinae	NCBITaxon_10241		
+Orthopoxvirus	NCBITaxon_10242		
+Monkeypox virus	NCBITaxon_10244		
 Vaccinia virus	NCBITaxon_10245		
-independent variable specification	OBI_0000750		
-dependent variable specification	OBI_0000751		
+Variola virus	NCBITaxon_10255		
+Orf virus	NCBITaxon_10258		
+Avipoxvirus	NCBITaxon_10260		
+Fowlpox virus	NCBITaxon_10261		
+Pigeonpox virus	NCBITaxon_10264		
+H5N1 subtype	NCBITaxon_102793		
+Herpesviridae	NCBITaxon_10292		
+Alphaherpesvirinae	NCBITaxon_10293		
+Simplexvirus	NCBITaxon_10294		
+Human herpesvirus 1	NCBITaxon_10298		
+Human herpesvirus 2	NCBITaxon_10310		
+Varicellovirus	NCBITaxon_10319		
+Bovine herpesvirus 1	NCBITaxon_10320		
+Equid herpesvirus 1	NCBITaxon_10326		
+Felid herpesvirus 1	NCBITaxon_10334		
+Human herpesvirus 3	NCBITaxon_10335		
+Suid herpesvirus 1	NCBITaxon_10345		
+Betaherpesvirinae	NCBITaxon_10357		
+Human herpesvirus 5	NCBITaxon_10359		
+Murid herpesvirus 1	NCBITaxon_10366		
+Gallid herpesvirus 1	NCBITaxon_10386		
+Gallid herpesvirus 2	NCBITaxon_10390		
+Hepatitis B virus	NCBITaxon_10407		
+Anatid herpesvirus 1	NCBITaxon_104388		
+unidentified baculovirus	NCBITaxon_10469		
+African swine fever virus	NCBITaxon_10497		
+Adenoviridae	NCBITaxon_10508		
+Canine adenovirus 1	NCBITaxon_10512		
+Canine adenovirus 2	NCBITaxon_10514		
+Canine mastadenovirus A	NCBITaxon_10537		
+Human papillomavirus	NCBITaxon_10566		
+Bovine papillomavirus	NCBITaxon_10571		
+Polyomavirus	NCBITaxon_10624		
+Budgerigar fledgling disease polyomavirus	NCBITaxon_10625		
+Clostridium perfringens D	NCBITaxon_107819		
+Feline panleukopenia virus	NCBITaxon_10786		
+Feline panleukopenia virus (strain 193)	NCBITaxon_10787		
+Canine parvovirus	NCBITaxon_10788		
+Mink enteritis virus	NCBITaxon_10792		
+Porcine parvovirus	NCBITaxon_10796		
+Reoviridae	NCBITaxon_10880		
+Orbivirus	NCBITaxon_10892		
+Rotavirus	NCBITaxon_10912		
+Porcine rotavirus	NCBITaxon_10913		
+Bovine rotavirus	NCBITaxon_10927		
+Equine rotavirus	NCBITaxon_10937		
+Birnaviridae	NCBITaxon_10993		
+Infectious bursal disease virus	NCBITaxon_10995		
+Infectious pancreatic necrosis virus	NCBITaxon_11002		
+Togaviridae	NCBITaxon_11018		
+Alphavirus	NCBITaxon_11019		
+Eastern equine encephalitis virus	NCBITaxon_11021		
+Sindbis virus	NCBITaxon_11034		
+Venezuelan equine encephalitis virus	NCBITaxon_11036		
+Western equine encephalitis virus	NCBITaxon_11039		
+Rubella virus	NCBITaxon_11041		
+Arterivirus	NCBITaxon_11046		
+Equine arteritis virus	NCBITaxon_11047		
+Flaviviridae	NCBITaxon_11050		
+Flavivirus	NCBITaxon_11051		
+Japanese encephalitis virus group	NCBITaxon_11071		
+Japanese encephalitis virus	NCBITaxon_11072		
+West Nile virus	NCBITaxon_11082		
+Tick-borne encephalitis virus	NCBITaxon_11084		
+Yellow fever virus	NCBITaxon_11089		
+Pestivirus	NCBITaxon_11095		
+Classical swine fever virus	NCBITaxon_11096		
+Bovine viral diarrhea virus 1	NCBITaxon_11099		
+Porphyromonas gulae	NCBITaxon_111105		
+Infectious bronchitis virus	NCBITaxon_11120		
+Bovine coronavirus	NCBITaxon_11128		
+Feline infectious peritonitis virus	NCBITaxon_11135		
+Transmissible gastroenteritis virus	NCBITaxon_11149		
+Canine coronavirus	NCBITaxon_11153		
+Mononegavirales	NCBITaxon_11157		
+Paramyxoviridae	NCBITaxon_11158		
+Mumps virus	NCBITaxon_11161		
+Newcastle disease virus	NCBITaxon_11176		
+Bovine parainfluenza virus 3	NCBITaxon_11215		
+Morbillivirus	NCBITaxon_11229		
+Canine distemper virus	NCBITaxon_11232		
+Measles virus	NCBITaxon_11234		
+Rinderpest virus	NCBITaxon_11241		
+Pneumoviridae	NCBITaxon_11244		
+Bovine respiratory syncytial virus	NCBITaxon_11246		
+Human respiratory syncytial virus	NCBITaxon_11250		
+Filoviridae	NCBITaxon_11266		
+Rhabdoviridae	NCBITaxon_11270		
+Viral hemorrhagic septicemia virus	NCBITaxon_11287		
+Infectious hematopoietic necrosis virus	NCBITaxon_11290		
+Rabies virus	NCBITaxon_11292		
+Orthomyxoviridae	NCBITaxon_11308		
+unidentified influenza virus	NCBITaxon_11309		
+Dhori virus	NCBITaxon_11318		
+Influenza A virus	NCBITaxon_11320		
+H1N1 subtype	NCBITaxon_114727		
+Bunyaviridae	NCBITaxon_11571		
+Rift Valley fever virus	NCBITaxon_11588		
+Crimean-Congo hemorrhagic fever virus	NCBITaxon_11593		
+Hantavirus	NCBITaxon_11598		
+Lassa mammarenavirus	NCBITaxon_11620		
+Lymphocytic choriomeningitis mammarenavirus	NCBITaxon_11623		
+Reticuloendotheliosis virus	NCBITaxon_11636		
+Lentivirus	NCBITaxon_11646		
+Primate lentivirus group	NCBITaxon_11652		
+Feline immunodeficiency virus	NCBITaxon_11673		
+Simian immunodeficiency virus	NCBITaxon_11723		
+Hyperotreti	NCBITaxon_117565		
+Euteleostomi	NCBITaxon_117571		
+Feline leukemia virus	NCBITaxon_11768		
+Bovine leukemia virus	NCBITaxon_11901		
+Enoplea	NCBITaxon_119088		
+Caliciviridae	NCBITaxon_11974		
+Rabbit hemorrhagic disease virus	NCBITaxon_11976		
+Feline calicivirus	NCBITaxon_11978		
+Picornaviridae	NCBITaxon_12058		
+Enterovirus	NCBITaxon_12059		
+Coxsackievirus	NCBITaxon_12066		
+Human poliovirus 1	NCBITaxon_12080		
+Human poliovirus 2	NCBITaxon_12083		
+Human poliovirus 3	NCBITaxon_12086		
+Hepatovirus A	NCBITaxon_12092		
+Foot-and-mouth disease virus	NCBITaxon_12110		
+Nipah virus	NCBITaxon_121791		
+Proteobacteria	NCBITaxon_1224		
+Gammaproteobacteria	NCBITaxon_1236		
+Piscirickettsia salmonis	NCBITaxon_1238		
+Firmicutes	NCBITaxon_1239		
+Borna disease virus	NCBITaxon_12455		
+Hepatitis delta virus	NCBITaxon_12475		
+Chicken anemia virus	NCBITaxon_12618		
+Dengue virus	NCBITaxon_12637		
+Human immunodeficiency virus	NCBITaxon_12721		
+Staphylococcus	NCBITaxon_1279		
+Staphylococcus aureus	NCBITaxon_1280		
+Respiratory syncytial virus	NCBITaxon_12814		
+Swine influenza virus	NCBITaxon_12845		
+Streptococcus	NCBITaxon_1301		
+Streptococcus suis	NCBITaxon_1307		
+Streptococcus agalactiae	NCBITaxon_1311		
+Streptococcus pneumoniae	NCBITaxon_1313		
+Streptococcus pyogenes	NCBITaxon_1314		
+Streptococcus equi	NCBITaxon_1336		
+Dicentrarchus	NCBITaxon_13488		
+Dicentrarchus labrax	NCBITaxon_13489		
+Spirochaetales	NCBITaxon_136		
+Bacillales	NCBITaxon_1385		
+Enterovirus C	NCBITaxon_138950		
+Borreliella burgdorferi	NCBITaxon_139		
+Bacillus anthracis	NCBITaxon_1392		
+Boreoeutheria	NCBITaxon_1437010		
+Clostridium	NCBITaxon_1485		
+Euteleosteomorpha	NCBITaxon_1489388		
+Clostridium botulinum	NCBITaxon_1491		
+Salmonella enterica subsp. enterica serovar Enteritidis	NCBITaxon_149539		
+Canine parainfluenza virus	NCBITaxon_149595		
+Yersinia enterocolitica subsp. enterocolitica	NCBITaxon_150052		
+Clostridium perfringens	NCBITaxon_1502		
+Protoparvovirus	NCBITaxon_1506574		
+Clostridium tetani	NCBITaxon_1513		
+Papillomaviridae	NCBITaxon_151340		
+Polyomaviridae	NCBITaxon_151341		
+Gammaretrovirus	NCBITaxon_153135		
+Galloanserae	NCBITaxon_1549675		
+Treponema pallidum	NCBITaxon_160		
+Human metapneumovirus	NCBITaxon_162145		
+Metapneumovirus	NCBITaxon_162387		
+Listeria monocytogenes	NCBITaxon_1639		
+Erysipelothrix rhusiopathiae	NCBITaxon_1648		
+Yersinia pseudotuberculosis complex	NCBITaxon_1649845		
+Mammarenavirus	NCBITaxon_1653394		
+Leptospira	NCBITaxon_171		
+Corynebacterium	NCBITaxon_1716		
+Corynebacterium diphtheriae	NCBITaxon_1717		
+Corynebacterium pseudotuberculosis	NCBITaxon_1719		
+Leptospira interrogans	NCBITaxon_173		
+Passeroidea	NCBITaxon_175121		
+Leptospira interrogans serovar Hardjo	NCBITaxon_176		
+Mycobacterium	NCBITaxon_1763		
+Mycobacterium avium	NCBITaxon_1764		
+Mycobacterium bovis	NCBITaxon_1765		
+Mycobacterium tuberculosis	NCBITaxon_1773		
+WEEV complex	NCBITaxon_177874		
+Mycobacterium marinum	NCBITaxon_1781		
+Terrabacteria group	NCBITaxon_1783272		
+Mardivirus	NCBITaxon_180252		
+Iltovirus	NCBITaxon_180255		
+Marburgvirus	NCBITaxon_186537		
+Clupeocephala	NCBITaxon_186625		
+Novirhabdovirus	NCBITaxon_186778		
+Orthopneumovirus	NCBITaxon_1868215		
+Campylobacter	NCBITaxon_194		
+Campylobacter fetus	NCBITaxon_196		
+Campylobacter jejuni	NCBITaxon_197		
+Influenzavirus A	NCBITaxon_197911		
+Influenzavirus B	NCBITaxon_197912		
+Influenzavirus C	NCBITaxon_197913		
+Bacteria	NCBITaxon_2		
+Spirochaetia	NCBITaxon_203692		
+Brucella suis 1330	NCBITaxon_204722		
+Ebola virus sp.	NCBITaxon_205488		
+Mycoplasma	NCBITaxon_2093		
+Mycoplasma gallisepticum	NCBITaxon_2096		
+Mycoplasma hyopneumoniae	NCBITaxon_2099		
+Helicobacter pylori	NCBITaxon_210		
+Mycoplasma synoviae	NCBITaxon_2109		
+Leptospira interrogans serovar Canicola	NCBITaxon_211880		
+Campylobacterales	NCBITaxon_213849		
+Archaea	NCBITaxon_2157		
+Brucella melitensis bv. 1 str. 16M	NCBITaxon_224914		
+Brucella	NCBITaxon_234		
+Brucella abortus	NCBITaxon_235		
+Brucella ovis	NCBITaxon_236		
+Avulavirus	NCBITaxon_260963		
+Henipavirus	NCBITaxon_260964		
+Brucella abortus bv. 1 str. 9-941	NCBITaxon_262698		
+Francisella tularensis	NCBITaxon_263		
+Eukaryota	NCBITaxon_2759		
+Bovinae	NCBITaxon_27592		
+Porphyromonas macacae	NCBITaxon_28115		
+Vibrio ordalii	NCBITaxon_28174		
+Alphaproteobacteria	NCBITaxon_28211		
+Betaproteobacteria	NCBITaxon_28216		
+Porcine reproductive and respiratory syndrome virus	NCBITaxon_28344		
+Burkholderia pseudomallei	NCBITaxon_28450		
+Pseudomonas	NCBITaxon_286		
+Pseudomonas aeruginosa	NCBITaxon_287		
+Neospora caninum	NCBITaxon_29176		
+ssDNA viruses	NCBITaxon_29258		
+Brucella melitensis	NCBITaxon_29459		
+Brucella suis	NCBITaxon_29461		
+Yersinia ruckeri	NCBITaxon_29486		
+Lawsonia intracellularis	NCBITaxon_29546		
+Laurasiatheria	NCBITaxon_314145		
+Euarchontoglires	NCBITaxon_314146		
+Glires	NCBITaxon_314147		
+Simiiformes	NCBITaxon_314293		
+Amniota	NCBITaxon_32524		
+Sauria	NCBITaxon_32561		
+Orthoretrovirinae	NCBITaxon_327045		
+Canine minute virus	NCBITaxon_329639		
+Opisthokonta	NCBITaxon_33154		
+Bilateria	NCBITaxon_33213		
+unclassified Papillomaviridae	NCBITaxon_333774		
+Hystricognathi	NCBITaxon_33550		
+Carnivora	NCBITaxon_33554		
+Riemerella anatipestifer	NCBITaxon_34085		
+dsDNA viruses, no RNA stage	NCBITaxon_35237		
+Retro-transcribing viruses	NCBITaxon_35268		
+ssRNA positive-strand viruses, no DNA stage	NCBITaxon_35278		
+ssRNA negative-strand viruses	NCBITaxon_35301		
+Replication competent viruses	NCBITaxon_353210		
+unclassified Orthomyxoviridae	NCBITaxon_35324		
+dsRNA viruses	NCBITaxon_35325		
+Pecora	NCBITaxon_35500		
+Brucella abortus 2308	NCBITaxon_359391		
+H1N1 swine influenza virus	NCBITaxon_36420		
+Brucella canis	NCBITaxon_36855		
+Chikungunya virus	NCBITaxon_37124		
+Caniformia	NCBITaxon_379584		
+Hirame rhabdovirus	NCBITaxon_38142		
+Avian orthoreovirus	NCBITaxon_38170		
+Leptospira kirschneri serovar Grippotyphosa	NCBITaxon_38345		
+Avian metapneumovirus	NCBITaxon_38525		
+Leishmania <subgenus>	NCBITaxon_38568		
+Leishmania donovani species complex	NCBITaxon_38574		
+Murinae	NCBITaxon_39107		
+Bubalus bubalis bubalis	NCBITaxon_391902		
+Yersinia enterocolitica subsp. enterocolitica 8081	NCBITaxon_393305		
+Circoviridae	NCBITaxon_39724		
+Caprine herpesvirus 1	NCBITaxon_39944		
+African horse sickness virus	NCBITaxon_40050		
+Bluetongue virus	NCBITaxon_40051		
+Quailpox virus	NCBITaxon_400570		
+Parvovirinae	NCBITaxon_40119		
+Aliivibrio salmonicida	NCBITaxon_40269		
+Mammalia	NCBITaxon_40674		
+Turkey adenovirus 3	NCBITaxon_41678		
+Plasmodium (Vinckeia)	NCBITaxon_418101		
+Aconoidasida	NCBITaxon_422676		
+Eimeriorina	NCBITaxon_423054		
+Sarcocystis neurona	NCBITaxon_42890		
+Brucella abortus S19	NCBITaxon_430066		
+ssRNA viruses	NCBITaxon_439488		
+Canarypox virus	NCBITaxon_44088		
+Brucella microti	NCBITaxon_444163		
+Brucella ovis ATCC 25840	NCBITaxon_444178		
+Brucella suis ATCC 23445	NCBITaxon_470137		
+Fungi	NCBITaxon_4751		
+Brucella canis ATCC 23365	NCBITaxon_483179		
+Neisseria meningitidis	NCBITaxon_487		
+Flavobacteriaceae	NCBITaxon_49546		
+Psittacid herpesvirus 1	NCBITaxon_50294		
+Salmoninae	NCBITaxon_504568		
+Bordetella	NCBITaxon_517		
+Bordetella bronchiseptica	NCBITaxon_518		
+Bordetella pertussis	NCBITaxon_520		
+Bordetella avium	NCBITaxon_521		
+Enterobacteriaceae	NCBITaxon_543		
+Bovine viral diarrhea virus 2	NCBITaxon_54315		
+Brucella melitensis ATCC 23457	NCBITaxon_546272		
+Coccidioides	NCBITaxon_5500		
+Vibrio anguillarum	NCBITaxon_55601		
+Infectious salmon anemia virus	NCBITaxon_55987		
+Dintheria	NCBITaxon_560210		
+Escherichia coli	NCBITaxon_562		
+Trypanosomatidae	NCBITaxon_5654		
+Leishmania <genus>	NCBITaxon_5658		
+Leishmania amazonensis	NCBITaxon_5659		
+Leishmania donovani	NCBITaxon_5661		
+Leishmania major	NCBITaxon_5664		
+Tritrichomonas suis	NCBITaxon_56690		
+Leishmania infantum	NCBITaxon_5671		
+Brucella microti CCM 4915	NCBITaxon_568815		
+Trypanosoma	NCBITaxon_5690		
+Trypanosoma brucei	NCBITaxon_5691		
+Trypanosoma cruzi	NCBITaxon_5693		
+Giardia intestinalis	NCBITaxon_5741		
+Entamoeba histolytica	NCBITaxon_5759		
+Apicomplexa	NCBITaxon_5794		
+Eimeria	NCBITaxon_5800		
+Eimeria tenella	NCBITaxon_5802		
+Eimeria maxima	NCBITaxon_5804		
+Cryptosporidium parvum	NCBITaxon_5807		
+Sarcocystidae	NCBITaxon_5809		
+Toxoplasma gondii	NCBITaxon_5811		
+Plasmodium	NCBITaxon_5820		
+Plasmodium berghei	NCBITaxon_5821		
+Plasmodium falciparum	NCBITaxon_5833		
+Plasmodium vivax	NCBITaxon_5855		
+Plasmodium yoelii	NCBITaxon_5861		
+Piroplasmida	NCBITaxon_5863		
+Babesia	NCBITaxon_5864		
+Babesia bovis	NCBITaxon_5865		
+Babesia bigemina	NCBITaxon_5866		
+Babesia canis	NCBITaxon_5867		
+Theileria	NCBITaxon_5873		
+Theileria annulata	NCBITaxon_5874		
+Theileria parva	NCBITaxon_5875		
+Salmonella	NCBITaxon_590		
+Salmonella enterica subsp. enterica	NCBITaxon_59201		
+Salmonella enterica subsp. enterica serovar Gallinarum	NCBITaxon_594		
+Schistosoma	NCBITaxon_6181		
+Schistosoma japonicum	NCBITaxon_6182		
+Schistosoma mansoni	NCBITaxon_6183		
+Monkeypox virus Zaire-96-I-16	NCBITaxon_619591		
+Shigella	NCBITaxon_620		
+Shigella dysenteriae	NCBITaxon_622		
+Shigella flexneri	NCBITaxon_623		
+Shigella sonnei	NCBITaxon_624		
+Yersinia <bacteria>	NCBITaxon_629		
+Yersinia pestis	NCBITaxon_632		
+Yersinia pseudotuberculosis	NCBITaxon_633		
+Hendra virus	NCBITaxon_63330		
+Trichinella spiralis	NCBITaxon_6334		
+Edwardsiella <enterobacteria>	NCBITaxon_635		
+Edwardsiella tarda	NCBITaxon_636		
+Vibrionaceae	NCBITaxon_641		
+Aeromonas	NCBITaxon_642		
+Aeromonas hydrophila	NCBITaxon_644		
+Aeromonas salmonicida	NCBITaxon_645		
+Vibrio	NCBITaxon_662		
+Vibrio cholerae	NCBITaxon_666		
+Edwardsiella ictaluri	NCBITaxon_67780		
+delta/epsilon subdivisions	NCBITaxon_68525		
+Sedoreovirinae	NCBITaxon_689832		
+Duck hepatitis A virus	NCBITaxon_691956		
+Coronavirinae	NCBITaxon_693995		
+Alphacoronavirus 1	NCBITaxon_693997		
+Betacoronavirus	NCBITaxon_694002		
+Severe acute respiratory syndrome-related coronavirus	NCBITaxon_694009		
+Avian encephalomyelitis virus	NCBITaxon_70796		
+Pasteurellaceae	NCBITaxon_712		
+Actinobacillus pleuropneumoniae	NCBITaxon_715		
+Thiotrichales	NCBITaxon_72273		
+Haemophilus	NCBITaxon_724		
+Haemophilus influenzae	NCBITaxon_727		
+Histophilus somni	NCBITaxon_731		
+[Haemophilus] parasuis	NCBITaxon_738		
+Pasteurella multocida	NCBITaxon_747		
+Mannheimia haemolytica	NCBITaxon_75985		
+Rickettsiales	NCBITaxon_766		
+Nidovirales	NCBITaxon_76804		
+Theileria lestoquardi	NCBITaxon_77054		
+Vertebrata <Metazoa>	NCBITaxon_7742		
+Mycobacterium tuberculosis complex	NCBITaxon_77643		
+Coxiella burnetii	NCBITaxon_777		
+Rickettsia	NCBITaxon_780		
+Actinopterygii	NCBITaxon_7898		
+Clostridium perfringens C	NCBITaxon_79668		
+Siluriformes	NCBITaxon_7995		
+Salmonidae	NCBITaxon_8015		
+Oncorhynchus mykiss	NCBITaxon_8022		
+Burkholderiales	NCBITaxon_80840		
+Chlamydia	NCBITaxon_810		
+Chlamydia trachomatis	NCBITaxon_813		
+Mycobacterium tuberculosis H37Rv	NCBITaxon_83332		
+Escherichia coli O157:H7	NCBITaxon_83334		
+Chlamydia psittaci	NCBITaxon_83554		
+Chlamydia abortus	NCBITaxon_83555		
+Chlamydia pneumoniae	NCBITaxon_83558		
+Chlamydia muridarum	NCBITaxon_83560		
+Porphyromonas	NCBITaxon_836		
+Corynebacteriales	NCBITaxon_85007		
+Porcine circovirus 2	NCBITaxon_85708		
+Aves	NCBITaxon_8782		
+Neognathae	NCBITaxon_8825		
+Anas	NCBITaxon_8835		
+Phasianidae	NCBITaxon_9005		
+Leptospira interrogans serovar Icterohaemorrhagiae	NCBITaxon_90062		
+Gallus gallus	NCBITaxon_9031		
+Salmonella enterica subsp. enterica serovar Typhi	NCBITaxon_90370		
+Salmonella enterica subsp. enterica serovar Typhimurium	NCBITaxon_90371		
+Meleagris gallopavo	NCBITaxon_9103		
+Bacilli	NCBITaxon_91061		
+Cetartiodactyla	NCBITaxon_91561		
+Psittacidae	NCBITaxon_9224		
+Leptospira sp. Pomona	NCBITaxon_94063		
+Platyrrhini	NCBITaxon_9479		
+Neorickettsia risticii	NCBITaxon_950		
+Homo sapiens	NCBITaxon_9606		
+Canidae	NCBITaxon_9608		
+Canis	NCBITaxon_9611		
+Canis lupus	NCBITaxon_9612		
+Canis lupus familiaris	NCBITaxon_9615		
+Vulpes	NCBITaxon_9625		
+Procyon lotor	NCBITaxon_9654		
+Mustela putorius furo	NCBITaxon_9669		
+Felis	NCBITaxon_9682		
+Felis catus	NCBITaxon_9685		
+Bacteroidetes	NCBITaxon_976		
+Balaenoptera borealis	NCBITaxon_9768		
+Equidae	NCBITaxon_9788		
+Equus caballus	NCBITaxon_9796		
+Sus scrofa	NCBITaxon_9823		
+Cervidae	NCBITaxon_9850		
+Bovidae	NCBITaxon_9895		
+Bison	NCBITaxon_9900		
+Bison bison	NCBITaxon_9901		
+Bos taurus	NCBITaxon_9913		
+Capra hircus	NCBITaxon_9925		
+Ovis	NCBITaxon_9935		
+Ovis aries	NCBITaxon_9940		
+Flavobacterium columnare	NCBITaxon_996		
+Caprinae	NCBITaxon_9963		
+Oryctolagus cuniculus	NCBITaxon_9986		
+Rodentia	NCBITaxon_9989		
+adverse event	OAE_0000001		
+vaccine adverse event	OAE_0000004		
+contraindication	OAE_0000055		
+vaccine-induced adverse event	OAE_0000097		
+planned process	OBI_0000011		
+regulation-assigned role	OBI_0000016		
+regulatory role	OBI_0000017		
+processed material	OBI_0000047		
+assay	OBI_0000070		
+material processing	OBI_0000094		
+population	OBI_0000181		
+antigen role	OBI_0000237		
+organization	OBI_0000245		
+protocol	OBI_0000272		
+adding a material entity into a target	OBI_0000274		
+intraperitoneal injection	OBI_0000281		
+material to be added role	OBI_0000319		
+injection	OBI_0000426		
+intraperitoneal administration	OBI_0000429		
+assay objective	OBI_0000441		
+target of material addition role	OBI_0000444		
+regulatory agency	OBI_0000450		
+material combination	OBI_0000652		
+pathogen challenge	OBI_0000712		
+host role	OBI_0000725		
+study design independent variable	OBI_0000750		
+study design dependent variable	OBI_0000751		
+material maintenance	OBI_0000838		
+dose specification	OBI_0000969		
+dose	OBI_0000984		
+organism	OBI_0100026		
+phosphate buffered saline solution	OBI_0100046		
+data transformation	OBI_0200000		
+ANOVA	OBI_0200201		
+chemical solution	OBI_0302729		
+storage	OBI_0302893		
+administering substance in vivo	OBI_0600007		
+antigen	OBI_1110034		
+genome	OGG_0000000001		
+gene	OGG_0000000002		
+gene disposition	OGG_0000000003		
+protein-coding gene disposition	OGG_0000000010		
+genome of Bacteria	OGG_1000000002		
+genome of Proteobacteria	OGG_1000001224		
+genome of Mycobacterium tuberculosis H37Rv	OGG_1000083332		
+genome of Brucella melitensis bv. 1 str. 16M	OGG_1000224914		
+gene of Bacteria	OGG_2000000002		
+gene of Proteobacteria	OGG_2000001224		
+gene of Mycobacterium tuberculosis H37Rv	OGG_2000083332		
+gene of Brucella melitensis bv. 1 str. 16M	OGG_2000224914		
+protein-coding gene of Mycobacterium tuberculosis H37Rv	OGG_2060083332		
+protein-coding gene of Brucella melitensis bv. 1 str. 16M	OGG_2060224914		
+panC	OGG_3000885459		
+secA2	OGG_3000885594		
+panD	OGG_3000885596		
+lysA	OGG_3000886960		
+fadD26	OGG_3000887603		
+trpD	OGG_3000887681		
+leuD	OGG_3000888225		
+drrC	OGG_3000888491		
+sigE	OGG_3000888751		
+phoP	OGG_3000888772		
+BMEI1364	OGG_3001197075		
+disorder	OGMS_0000045		
+bodily process	OGMS_0000060		
+pathological bodily process	OGMS_0000061		
+age	PATO_0000011		
+frequency	PATO_0000044		
+biological sex	PATO_0000047		
+time	PATO_0000165		
+viability	PATO_0000169		
+viable	PATO_0000719		
+volume	PATO_0000918		
+physical quality	PATO_0001018		
+efficiency	PATO_0001029		
+quality of a single physical entity	PATO_0001237		
+physical object quality	PATO_0001241		
+dead	PATO_0001422		
+inefficient	PATO_0001677		
+efficient	PATO_0001678		
+organismal quality	PATO_0001995		
+virulence	PATO_0002146		
+protein	PRO_000000001		
+superoxide dismutase [Cu-Zn]	PRO_000015399		
+nose	UBERON_0000004		
+serous membrane	UBERON_0000042		
+anatomical structure	UBERON_0000061		
+organ	UBERON_0000062		
+organ part	UBERON_0000064		
+mouth	UBERON_0000165		
+stomach	UBERON_0000945		
+anatomical entity	UBERON_0001062		
+skeletal muscle tissue	UBERON_0001134		
+urinary bladder	UBERON_0001255		
+vein	UBERON_0001638		
+blood vessel	UBERON_0001981		
+hypodermis	UBERON_0002072		
+skin of body	UBERON_0002097		
+peritoneum	UBERON_0002358		
+muscle tissue	UBERON_0002385		
+mesoderm-derived structure	UBERON_0004120		
+ectoderm-derived structure	UBERON_0004121		
+subdivision of digestive tract	UBERON_0004921		
+multicellular anatomical structure	UBERON_0010000		
+bladder organ	UBERON_0018707		
+milliliter	UO_0000098		
+part of pathogen organism in vaccine	VO_0000000		
+vaccine	VO_0000001		
 ACAM2000	VO_0000003		ACAM2000
 ActHIB	VO_0000004	Haemophilus b Conjugate Vaccine (Tetanus Toxoid Conjugate)	ActHIB
 Adacel	VO_0000005	Tetanus Toxoid, Reduced Diphtheria Toxoid and Acellular Pertussis Vaccine, Adsorbed	Adacel
@@ -47,10 +687,12 @@ FluMist	VO_0000044	Influenza Virus Vaccine, Live, Intranasal	FluMist
 Fluarix	VO_0000045	Influenza Virus Vaccine, Trivalent, Types A and B	Fluarix
 Fluvirin	VO_0000046	Influenza Virus Vaccine, Trivalent, Types A and B	Fluvirin
 Fluzone	VO_0000047	Influenza Virus Vaccine, Trivalent, Types A and B	Fluzone
+virmugen	VO_0000048		
 Gardasil	VO_0000049	Human Papillomavirus (Types 6, 11, 16, 18) Recombinant Vaccine	Gardasil
 HIV based lentivirus vaccine vector	VO_0000050		
 Balb/c mouse	VO_0000051		
 Havrix	VO_0000052	Hepatitis A Vaccine, Inactivated	Havrix
+Neisseria meningitidis vaccine	VO_0000053		
 IPOL	VO_0000054	Poliovirus Vaccine Inactivated (Monkey Kidney Cell)	IPOL
 vaccine related journal article	VO_0000055		
 Imovax Rabies (USA)	VO_0000063	Rabies Vaccine	Imovax
@@ -67,6 +709,7 @@ Meruvax II	VO_0000073	Rubella Virus Vaccine Live	Meruvax II
 Mumpsvax	VO_0000074	Mumps Virus Vaccine Live	Mumpsvax
 pBI/tTA DNA vaccine plasmid	VO_0000075		
 pBISIA DNA vaccine plasmid	VO_0000076		
+Mycobacterium tuberculosis vaccine	VO_0000077		
 Mycobax	VO_0000078	BCG Vaccine	Mycobax
 Fluzone High-dose	VO_0000079	Influenza Virus Vaccine, Trivalent, Types A and B	Fluzone
 pBK-SFV DNA vaccine plasmid	VO_0000080		
@@ -76,6 +719,7 @@ PedvaxHIB	VO_0000083	Haemophilus b Conjugate Vaccine (Meningococcal Protein Conj
 Pentacel	VO_0000084	Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed, Inactivated Poliovirus and Haemophilus b Conjugate (Tetanus Toxoid Conjugate) Vaccine	Pentacel
 Plague Vaccine by Greer Laboratories Inc	VO_0000085	Plague Vaccine	
 pBudCE4.1 DNA vaccine plasmid	VO_0000086		
+Plasmodium falciparum vaccine	VO_0000087		
 Pneumovax 23 (USA)	VO_0000088	Pneumococcal Vaccine, Polyvalent	Pneumovax 23
 Poliovax	VO_0000089	Poliovirus Vaccine Inactivated (Human Diploid Cell)	Poliovax
 Prevnar (USA)	VO_0000090	Pneumococcal 7-valent Conjugate Vaccine (Diphtheria CRM197 Protein)	Prevnar
@@ -96,6 +740,7 @@ TYPHIM Vi	VO_0000104	Typhoid Vi Polysaccharide Vaccine	TYPHIM Vi
 T cell epitope in vaccine	VO_0000105		
 vaccine-induced T cell mediated immunity	VO_0000106		
 T cell vaccine antigen processing and presentation	VO_0000107		
+Brucella abortus vaccine	VO_0000108		
 Tetanus Toxoid Adsorbed by Aventis Pasteur Inc	VO_0000109	Tetanus Toxoid Adsorbed	
 E. coli O157:H7 intimin vaccine	VO_0000110		
 Tetanus and Diphtheria Toxoids Adsorbed by MA Biologic Lab	VO_0000111	Tetanus & Diphtheria Toxoids Adsorbed for Adult Use	
@@ -137,9 +782,10 @@ vaccine adjuvant role	VO_0000147
 antibody role	VO_0000148		
 antibody titer	VO_0000150		
 immunized	VO_0000151		
+Francisella tularensis vaccine	VO_0000152		
 preparation of toxoid vaccine	VO_0000153		
 sodC from B. abortus strain 2308	VO_0000154		
-bacterial gene	VO_0000155		
+bacterial gene - Obsolete	VO_0000155		
 viral gene	VO_0000156		
 HIV gene	VO_0000157		
 pcDNA3.1 DNA vaccine plasmid	VO_0000158		
@@ -163,6 +809,7 @@ pCEP4 DNA vaccine plasmid	VO_0000175
 vaccine-induced T cell differentiation	VO_0000176		
 cancer vaccine	VO_0000177		
 inactivated vaccine preparation	VO_0000178		
+vaccine component	VO_0000179		
 vaccine-induced cell activation	VO_0000180		
 lipopolysaccharide vaccine adjuvant	VO_0000181		
 vaccine-induced antibacterial agglutination antibody response	VO_0000182		
@@ -177,6 +824,7 @@ squalene	VO_0000190
 arlacel A	VO_0000191		
 Montanide 103	VO_0000192		
 Bordetella pertussis component vaccine adjuvant	VO_0000193		
+USA licensed human vaccine role	VO_0000194		
 conjugate vaccine	VO_0000195		
 preparation of recombinant vector vaccine	VO_0000196		
 West Nile virus gene	VO_0000197		
@@ -253,6 +901,7 @@ pING DNA vaccine plasmid	VO_0000274
 pJW24 DNA vaccine plasmid	VO_0000275		
 pJW4303 DNA vaccine plasmid	VO_0000276		
 pK0 DNA vaccine plasmid	VO_0000277		
+vaccine function	VO_0000278		
 pK3 DNA vaccine plasmid	VO_0000279		
 pMV60 DNA vaccine plasmid	VO_0000280		
 pMAMneoBlue DNA vaccine plasmid	VO_0000282		
@@ -267,6 +916,7 @@ host response to vaccine antigen	VO_0000291
 host response to vaccine vaccine vector	VO_0000292		
 pND2 DNA vaccine plasmid	VO_0000293		
 pNGVL DNA vaccine plasmid	VO_0000294		
+human immunodeficiency virus vaccine	VO_0000295		
 pNL3-gal DNA vaccine plasmid	VO_0000297		
 pN4a-gal DNA vaccine plasmid	VO_0000298		
 company	VO_0000299		
@@ -280,10 +930,12 @@ pRSV0 DNA vaccine plasmid	VO_0000306
 KKF24	VO_0000307		
 F. tularensis vaccine LVS LPS	VO_0000308		
 vaccine-induced antibody mediated immune response	VO_0000309		
+vaccine emulsifier	VO_0000310		
 B. melitensis lipopolysaccharide vaccine	VO_0000311		
 B. melitensis LPS-GBOMP noncovalent complex vaccine	VO_0000312		
 pSC65 DNA vaccine plasmid	VO_0000313		
 pSG2 DNA vaccine plasmid	VO_0000314		
+inactivated vaccine	VO_0000315		
 pSG5 DNA vaccine plasmid	VO_0000316		
 Psin DNA vaccine plasmid	VO_0000317		
 pTARGET DNA vaccine plasmid	VO_0000318		
@@ -334,7 +986,9 @@ licensed vaccine	VO_0000363
 pRK7 DNA vaccine plasmid	VO_0000364		
 lipopolysaccharide of pathogen organism as vaccine component	VO_0000365		
 liposome-based vaccine adjuvant	VO_0000366		
+live attenuated vaccine	VO_0000367		
 live vaccine organism	VO_0000368		
+live virulent vaccine	VO_0000370		
 quaternary vaccination	VO_0000371		
 profertility vaccine	VO_0000372		
 Brucella recombinant DnaK protein vaccine	VO_0000373		
@@ -355,6 +1009,7 @@ mucosal immune response to vaccine	VO_0000387
 E. coli LT toxin derived vaccine adjuvant	VO_0000388		
 Feline panleukopenia virus vaccine	VO_0000389		
 birds vaccine	VO_0000390		
+Leptospira spp. vaccine	VO_0000391		
 Campylobacter fetus vaccine	VO_0000392		
 Pseudomonas aeruginosa vaccine	VO_0000393		
 Bordetella bronchiseptica vaccine	VO_0000394		
@@ -383,6 +1038,7 @@ intravenous route	VO_0000416
 protozoan vaccine	VO_0000417		
 Menactra injection 0.5mL vial	VO_0000418	Meningococcal Polysaccharide (Serogroups A, C, Y and W-135) Diphtheria Toxoid Conjugate Vaccine  injection 0.5mL vial	Menactra
 Varicella-zoster virus live vaccine	VO_0000419		
+pathogen organism component in vaccine	VO_0000420		
 Brucella abortus pcDNA-BLS	VO_0000421		
 melanoma vaccine	VO_0000422		
 escheriosome-mediated delivery of B. abortus L7/L12	VO_0000423		
@@ -401,6 +1057,7 @@ DNA vaccine plasmid vector	VO_0000435
 B. melitensis DNA vaccine encoding Omp31 boosted with Omp31	VO_0000436		
 Moraxella bovis vaccine	VO_0000437		
 Moraxella bovis bacterin vaccine	VO_0000438		
+USDA licensed veterinary vaccine role	VO_0000439		
 vaccine approval process	VO_0000440		
 vaccine candidate role	VO_0000441		
 CFU measurement assay	VO_0000442		
@@ -463,6 +1120,8 @@ Inactivated ETEC expressing  expressing CFA/I and CFA/II	VO_0000502
 licensed sheep vaccine	VO_0000503		
 whole organism vaccine role	VO_0000504		
 EHEC O157 subunit vaccine using his-tagged N-terminal intimin	VO_0000505		
+vaccine organism	VO_0000506		
+Canada licensed veterinary vaccine role	VO_0000507		
 Diphtheria toxoid vaccine	VO_0000508		
 nontypeable H. influenzae P5 peptide MVF/H3 vaccine	VO_0000509		
 nontypeable H. influenzae rTbpB vaccine	VO_0000510		
@@ -487,6 +1146,7 @@ recombinant S. typhimurium secreting M. tuberculosis ESAT-6	VO_0000535
 Ag85B and ESAT-6 fusion protein	VO_0000536		
 equine EEV, VEV and WEV encephalomyelitis-influenza vaccine-tetanus toxoid	VO_0000539		
 time of survival of live vaccine inside host	VO_0000540		
+'equine EEV, VEE & WEV encephalomyelitis-tetanus toxoid'	VO_0000541		
 equine EEV, VEV and WEV encephalomyelitis-rhinopneumonitis-influenza vaccine-tetanus toxoid	VO_0000542		
 attenuated M. bovis strain WAg539	VO_0000543		
 human vaccinee	VO_0000544		
@@ -518,27 +1178,34 @@ route of administration	VO_0000574
 vaccine candidate	VO_0000575		
 thimerosal vaccine preservative	VO_0000576		
 peptide vaccine	VO_0000577		
+H1N1 Influenza vaccine	VO_0000578		
 Haemophilus somnus vaccine	VO_0000579		
+vaccine adjuvant	VO_0000580		
 H. influenzae gene	VO_0000581		
 vaccine license application	VO_0000582		
 nontypeable H. influenzae gene hel (encoding P4)	VO_0000583		
 immune response detection assay	VO_0000584		
 immunization objective	VO_0000585		
+multivalent vaccine against bacterial and viral diseases	VO_0000586		
+Bordetella vaccine	VO_0000587		
 M. tuberculosis phoP mutant SO2	VO_0000588		
 Aeromonas vaccine	VO_0000589		
 vaccine preparation	VO_0000590		
 vaccine protection assay	VO_0000591		
+Mycobacterium vaccine	VO_0000592		
 vaccine specific T cell cytokine production	VO_0000593		
 vaccine specific T cell mediated cytotoxicity	VO_0000594		
 vaccine dose	VO_0000595		
 vaccine clinical trial	VO_0000596		
 obsolete class	VO_0000597		
 whole organism vaccine	VO_0000598		
+recombinant vaccine vector	VO_0000599		
 vaccinia virus vector	VO_0000600		
 Yersinia vaccine	VO_0000601		
 Edwardsiella vaccine	VO_0000602		
 BCG mutant secreting listeriolysin	VO_0000603		
 Mycoplasma vaccine	VO_0000604		
+Canada licensed human vaccine role	VO_0000605		
 delta ureC hly+ rBCG	VO_0000606		
 viral vaccine	VO_0000609		
 viral vaccine vector	VO_0000610		
@@ -572,22 +1239,30 @@ Clostridium tetani vaccine	VO_0000640
 combination vaccine	VO_0000641		
 Influenza virus vaccine	VO_0000642		
 licensed cattle vaccine	VO_0000643		
+Hepatitis B virus vaccine	VO_0000644		
 licensed fish vaccine	VO_0000645		
 Hepatitis A virus vaccine	VO_0000646		
 licensed goat vaccine	VO_0000647		
 Yersinia pestis vaccine	VO_0000648		
 licensed dog vaccine	VO_0000649		
+Rabies virus vaccine	VO_0000650		
 Smallpox virus vaccine	VO_0000651		
 licensed cat vaccine	VO_0000652		
 licensed ferret vaccine	VO_0000653		
 Measles virus vaccine	VO_0000654		
 licensed deer vaccine	VO_0000655		
+Mumps virus vaccine	VO_0000656		
 licensed bird vaccine	VO_0000657		
+Rotavirus vaccine	VO_0000658		
 HIBTITER	VO_0000659		
 ProHIBiT	VO_0000660		
+Haemophilus vaccine	VO_0000661		
+Haemophilus influenzae serotype b vaccine	VO_0000662		
 SC602	VO_0000663		
+Poliovirus vaccine	VO_0000664		
 Japanese encephalitis virus vaccine	VO_0000665		
 CVD 1208	VO_0000666		
+human papillomavirus vaccine	VO_0000667		
 CVD 1208S	VO_0000668		
 Varicella-zoster virus vaccine	VO_0000669		
 EcSf2a-2	VO_0000670		
@@ -600,6 +1275,8 @@ S. dysenteriae 1 strain WRSd1	VO_0000676
 S. flexneri 2a strain CVD 1207	VO_0000677		
 S. sonnei strain WRSS1	VO_0000678		
 Shigella sonnei vaccine	VO_0000679		
+Shigella flexneri vaccine	VO_0000680		
+Shigella dysenteriae vaccine	VO_0000681		
 S. flexneri 2a LPS vaccine complexed with N. meningitidis proteosomes	VO_0000682		
 vaccine regulation	VO_0000683		
 vaccine transportation	VO_0000684		
@@ -610,7 +1287,9 @@ vaccine specific antibody test	VO_0000705
 vaccine trial regulation	VO_0000706		
 primary vaccination	VO_0000707		
 boost vaccination	VO_0000708		
+Brucella melitensis vaccine	VO_0000709		
 B. melitensis strain Rev. 1	VO_0000710		
+inactivated viral vaccine	VO_0000712		
 vaccine allergen disposition	VO_0000713		
 Canada licensed human vaccine	VO_0000714		
 preparation of DNA vaccine	VO_0000715		
@@ -619,9 +1298,11 @@ subunit vaccine preparation	VO_0000717
 live attenuated vaccine preparation	VO_0000718		
 preparation of RNA vaccine	VO_0000719		
 Brucella abortus strain RB51SOD	VO_0000720		
+Brucella suis vaccine	VO_0000721		
 Brucella suis strain 2	VO_0000722		
 Brucella abortus strain 45/20	VO_0000723		
 cytomegalovirus vaccine	VO_0000724		
+Dengue virus vaccine	VO_0000725		
 Ebola virus vaccine	VO_0000726		
 Herpesvirus vaccine	VO_0000727		
 RNA vaccine role	VO_0000728		
@@ -642,12 +1323,16 @@ Diphtheria-Tetanus-Pertussis-Poliovirus vaccine	VO_0000742
 Diphtheria-Tetanus-Pertussis-Poliovirus-Hepatitis B vaccine	VO_0000743		
 Diphtheria-Tetanus-Pertussis-Poliovirus-Haemophilus b vaccine	VO_0000744		
 Hepatitis A&B vaccine	VO_0000745		
+Haemophilus b and Hepatitis B vaccine	VO_0000746		
 DNA and MVA encoding ME-TRAP	VO_0000747		
 Papillomavirus vaccine	VO_0000748		
 Parainfluenza virus vaccine	VO_0000749		
 Pseudorabies virus vaccine	VO_0000750		
 Simian immunodeficiency virus vaccine	VO_0000751		
+West Nile virus vaccine	VO_0000752		
+Respiratory syncytial virus vaccine	VO_0000753		
 marker vaccine	VO_0000754		
+edible vaccine	VO_0000755		
 acellular vaccine	VO_0000756		
 ISCOM	VO_0000757		
 Plasmodium vivax vaccine	VO_0000758		
@@ -657,18 +1342,20 @@ malaria vaccine	VO_0000761
 Leishmania vaccine	VO_0000762		
 Vibrio cholerae vaccine	VO_0000763		
 Lyme disease vaccine	VO_0000764		
+Bordetella pertussis vaccine	VO_0000765		
 Pseudomonas vaccine	VO_0000766		
 Rickettsial vaccine	VO_0000767		
 Salmonella vaccine	VO_0000768		
+Shigella vaccine	VO_0000769		
 Staphylococcal vaccine	VO_0000770		
 BCG vaccine	VO_0000771		
 Streptococcal vaccine	VO_0000772		
 MSP3-LSP with aluminium hydroxide	VO_0000773		
-RTS,S/AS02A	VO_0000774		
+P. falciparum RTS,S/AS02A	VO_0000774		
 P. falciparum MSP1 from transgenic mice with Freund's adjuvant	VO_0000775		
 P. vivax PVS25 with Montanide ISA-720	VO_0000776		
-FMP1/AS02A	VO_0000777		
-recombinant ABRA protein vaccine	VO_0000778		
+'P. falciparum FMP1/AS02A	VO_0000777		
+P. falciparum ABRA protein vaccine	VO_0000778		
 NP-VRP	VO_0000779		
 GP-VRP	VO_0000780		
 VRP expressing VP24	VO_0000781		
@@ -677,7 +1364,7 @@ VRP expressing VP35	VO_0000783
 VRP expressing VP40	VO_0000784		
 DNA vaccine expressing sGP	VO_0000785		
 DNA and adenoviral vector Ad5 expressing SIV gag protein	VO_0000786		
-gene	VO_0000787		
+gene - Obsolete	VO_0000787		
 adenoviral vector Ad5 expressing SIV gag protein	VO_0000788		
 DNA and Ad5/35 vector expressing HIV gp160 protein	VO_0000789		
 Brucella gene	VO_0000790		
@@ -710,6 +1397,7 @@ DNA vaccine expressing multiple HIV epitopes	VO_0000817
 recombinant HIV gp120 with adjuvant NanoEmulsion	VO_0000819		
 Aeromonas salmonicida vaccine	VO_0000820		
 Gag-VRPs	VO_0000822		
+Vibrio anguillarum vaccine	VO_0000823		
 MVA expressing HIV Gag, Pol and Env proteins	VO_0000824		
 DNA and poxvirus priming-boosting SIV vaccine	VO_0000825		
 Brucella abortus S19 with P39 deletion	VO_0000826		
@@ -733,7 +1421,10 @@ Art Vax	VO_0000844
 VSV vector expressing Y. pestis lcrV	VO_0000845		
 Plague vaccine USP	VO_0000847		
 Improvac	VO_0000849		
+vaccine additive	VO_0000850		
+vaccine preservative	VO_0000851		
 Periovac	VO_0000852		
+vaccine stabilizer	VO_0000853		
 vaccine residual	VO_0000854		
 inactivation residual in vaccine	VO_0000855		
 cell culture residual in vaccine	VO_0000856		
@@ -777,6 +1468,7 @@ secondary vaccination	VO_0000903
 Eimeria vaccine	VO_0000906		
 surface antigens from the zona pellucida	VO_0000907		
 Theileria annulata vaccine	VO_0000909		
+vaccine allergen	VO_0000910		
 passive immunization using natural maternal antibody	VO_0000911		
 chicken egg protein allergen	VO_0000912		
 latex vaccine allergen	VO_0000913		
@@ -784,6 +1476,7 @@ gelatin vaccine allergen	VO_0000915
 protamine sulfate vaccine allergen	VO_0000916		
 polymyxin B vaccine allergen	VO_0000917		
 EURIFEL FeLV	VO_0000918		
+vaccine antigen	VO_0000919		
 bovine albumin cell culture residual in vaccine	VO_0000920		
 bovine serum cell culture residual in vaccine	VO_0000921		
 monosodium glutamate stabliizer	VO_0000922		
@@ -818,6 +1511,7 @@ Salmonella typhi-Hepatitis A vaccine	VO_0000950
 Bayovac CSF E2	VO_0000951		
 Dhori virus vaccine	VO_0000952		
 pharyngeal mucosal route	VO_0000953		
+Intervet Avian Influenza virus vaccine	VO_0000954		
 host survival to pathogen challenge after vaccination	VO_0000955		
 Brucella abortus conjugate vaccine	VO_0000956		
 Brucella abortus recombinant vector vaccine	VO_0000957		
@@ -845,7 +1539,11 @@ Porcilis Pesti	VO_0000981
 FluMist Quadrivalent	VO_0000982		
 Fluarix Quadrivalent	VO_0000983		
 Tetanus Toxoid (for Boost use Only) by Sanofi Pasteur Inc	VO_0000984		
+fowl pox vaccine	VO_0000985		
+avian influenza vaccine	VO_0000986		
+bovine rhinotracheitis vaccine	VO_0000987		
 Theileria parva vaccine by local veterinary institutes	VO_0000988		
+bovine parainfluenza 3 vaccine	VO_0000990		
 pDONR221 DNA vaccine plasmid	VO_0000991		
 pCN3 DNA vaccine plasmid	VO_0000992		
 V1R DNA vaccine plasmid	VO_0000993		
@@ -864,10 +1562,16 @@ pBC12/CMV/IL-2 DNA vaccine plasmid	VO_0001007
 Giardiavax	VO_0001008		
 plant-based Newcastle disease virus vaccine	VO_0001009		
 classical swine fever virus vaccine	VO_0001012		
+bacterial vaccine organism live attenuated	VO_0001014		
+viral vaccine organism live attenuated	VO_0001015		
 Vectormune FP-ND	VO_0001016		
 live attenuated Marek's disease virus vaccine	VO_0001017		
+live attenuated Newcastle disease virus vaccine	VO_0001018		
+live attenuated avian reovirus vaccine	VO_0001019		
+live attenuated feline panleukopenia virus vaccine	VO_0001021		
 Megan Vac1	VO_0001022		
 BCG vaccine vector	VO_0001023		
+inactivated avian influenza vaccine	VO_0001024		
 vesicular stomatitis virus vaccine vector	VO_0001025		
 AquaVac Furuvac	VO_0001026		
 Leishmania tarentolae vaccine vector	VO_0001028		
@@ -961,17 +1665,24 @@ rhabdovirus-based vaccine vector	VO_0001121
 Saccharomyces cerevisiae vaccine vector	VO_0001122		
 RECOMBITEK Canine Parvo	VO_0001123		
 VEE vaccine vector	VO_0001124		
+Eimeria maxima vaccine	VO_0001125		
 Agriflu	VO_0001126		
+live attenuated Brucella vaccine	VO_0001127		
 ALVAC vaccine vector	VO_0001128		
 non-replicating adenovirus accine vector	VO_0001129		
 Actinobacillus pleuropneumoniae vaccine	VO_0001130		
 replicating adenovirus accine vector	VO_0001131		
 assay of CFU reduction in liver	VO_0001132		
 assay of CFU reduction in lung	VO_0001133		
+live attenuated Brucella abortus vaccine	VO_0001134		
+live attenuated Brucella melitensis vaccine	VO_0001135		
+live attenuated Brucella suis vaccine	VO_0001136		
+Eimeria tenella vaccine	VO_0001137		
 Ovilis Toxovax	VO_0001138		
 vaccine organism viability	VO_0001139		
 West Nile-Innovator DNA	VO_0001140		
 fungal vaccine vector	VO_0001141		
+Leishmania donovani vaccine	VO_0001142		
 Avipox virus vaccine vector	VO_0001143		
 Brucella DNA vaccine encoding chimera BLSOmp31	VO_0001144		
 vaccine organism live	VO_0001145		
@@ -997,11 +1708,14 @@ reduction of colony forming unit	VO_0001164
 intraperitoneal pathogen challenge	VO_0001165		
 intraperitoneal vaccination	VO_0001166		
 KLH-s-FimH1-25 with CFA and then IFA	VO_0001167		
+E. coli DNA vaccine	VO_0001169		
 vaccine strain	VO_0001170		
 pCIOmp31	VO_0001172		
 pTargeTomp31	VO_0001173		
 B. abortus L7/L12 fused to MBP	VO_0001175		
+inactivated influenza vaccine	VO_0001176		
 Livacox	VO_0001177		
+live attenuated influenza vaccine	VO_0001178		
 laboratory test	VO_0001180		
 Vaxsafe MG	VO_0001181		
 vaccine strain role	VO_0001182		
@@ -1035,10 +1749,14 @@ vaccine protection efficacy measurement	VO_0001209
 lipopolysaccharide subunit vaccine	VO_0001210		
 African swine fever virus vaccine	VO_0001211		
 Foot-and-mouth disease virus vaccine	VO_0001213		
+inactivated bacterial vaccine	VO_0001214		
 Vaxstrate	VO_0001215		
 Lymphocytic choriomeningitis mammarenavirus vaccine	VO_0001216		
+live attenuated bacterial vaccine	VO_0001217		
 veterinary vaccine	VO_0001218		
+live attenuated viral vaccine	VO_0001220		
 Brucella abortus subunit vaccine	VO_0001221		
+Newcastle disease virus vaccine	VO_0001222		
 Brucella melitensis subunit vaccine	VO_0001223		
 Viral hemorrhagic septicemia virus vaccine	VO_0001224		
 Brucella abortus DNA vaccine	VO_0001225		
@@ -1048,6 +1766,7 @@ Coxsackievirus vaccine	VO_0001228
 Schistosoma japonicum vaccine	VO_0001229		
 Treponema pallidum vaccine	VO_0001230		
 Leishmania major vaccine	VO_0001231		
+protective antigen	VO_0001232		
 viral vaccine preparation	VO_0001233		
 protozoan vaccine preparation	VO_0001234		
 fungal vaccine preparation	VO_0001235		
@@ -1294,9 +2013,11 @@ turkey vaccine	VO_0001478
 vaccine target specification	VO_0001479		
 African horse sickness virus vaccine	VO_0001480		
 Pigeonpox virus vaccine	VO_0001481		
+bovine herpesvirus 1 vaccine	VO_0001482		
 Borna disease virus vaccine	VO_0001483		
 Caprine herpesvirus 1 vaccine	VO_0001484		
 USA licensed vaccine	VO_0001485		
+Equid herpesvirus 1 vaccine	VO_0001486		
 Feline herpesvirus 1 vaccine	VO_0001487		
 Gallid herpesvirus 1 vaccine	VO_0001488		
 canine adenovirus type 1  vaccine	VO_0001489		
@@ -1304,12 +2025,19 @@ canine adenovirus Type 2 vaccine	VO_0001490
 Bovine papillomavirus vaccine	VO_0001491		
 avian polyomavirus vaccine	VO_0001492		
 Mink enteritis virus vaccine	VO_0001493		
+Porcine parvovirus vaccine	VO_0001494		
 Porcine rotavirus vaccine	VO_0001495		
 Equine rotavirus vaccine	VO_0001496		
+infectious bursal disease virus vaccine	VO_0001497		
+Eastern Equine Encephalitis Virus vaccine	VO_0001498		
+VEE Virus vaccine	VO_0001499		
 Equine arteritis virus vaccine	VO_0001500		
 Bovine viral diarrhea virus 1 vaccine	VO_0001501		
+Infectious Bronchitis Virus vaccine	VO_0001502		
+bovine coronavirus vaccine	VO_0001503		
 Feline infectious peritonitis virus vaccine	VO_0001504		
 Transmissible gastroenteritis virus vaccine	VO_0001505		
+Bovine Parainfluenza 3 Virus vaccine	VO_0001506		
 Bovine Respiratory Syncytial Virus vaccine	VO_0001507		
 Feline immunodeficiency virus vaccine	VO_0001508		
 Feline calicivirus vaccine	VO_0001509		
@@ -1327,7 +2055,9 @@ Infectious salmon anemia virus vaccine	VO_0001520
 Edwardsiella ictaluri vaccine	VO_0001521		
 avian encephalomyelitis virus vaccine	VO_0001522		
 Mannheimia haemolytica vaccine	VO_0001523		
+porcine circovirus 2 vaccine	VO_0001524		
 Duck enteritis virus vaccine	VO_0001525		
+canine parainfluenza virus vaccine	VO_0001526		
 avian paramyxovirus vaccine	VO_0001527		
 Duck hepatitis virus 1 vaccine	VO_0001528		
 Canary Pox Modified Live Virus Vaccine (USDA: 1623.10)	VO_0001530		
@@ -1950,6 +2680,7 @@ Bovine Rhinotracheitis Vaccine-Leptospira Grippotyphosa-Hardjo-Pomona Bacterin	V
 Bovine Rhinotracheitis Vaccine-Leptospira Hardjo-Pomona Bacterin	VO_0002335		
 Bovine Rhinotracheitis Vaccine-Leptospira Pomona Bacterin	VO_0002336		
 Bovine Rhinotracheitis-Parainfluenza 3 Vaccine-Mannheimia Haemolytica-Pasteurella Multocida Bacterin	VO_0002337		
+bovine rhinotracheitis-parainfluenza 3 vaccine	VO_0002338		
 Bovine Rhinotracheitis-Parainfluenza 3 Vaccine-Haemophilus Somnus Bacterin	VO_0002339		
 Bovine Rhinotracheitis-Parainfluenza 3 Vaccine-Leptospira Canicola-Grippotyphosa-HardjoIcterohaemorrhagiae-Pomona Bacterin	VO_0002340		
 Bovine Rhinotracheitis-Parainfluenza 3 Vaccine-Leptospira Grippotyphosa-Hardjo-Pomona Bacterin	VO_0002341		
@@ -2031,7 +2762,9 @@ Canine Distemper-Measles Vaccine	VO_0002416
 Canine Distemper-Parvovirus Vaccine	VO_0002417		
 canine parainfluenza-bordetella bronchiseptica vaccine	VO_0002418		
 canine parvovirus vaccine-leptospira canicola icterohaemorrhagiae bacterin	VO_0002419		
+equine EEV and WEV encephalomyelitis vaccine-tetanus toxoid	VO_0002420		
 equine rhinopneumonitis-influenza vaccine	VO_0002421		
+equine EEV and WEV encephalomyelitis-influenza vaccine-tetanus toxoid	VO_0002422		
 equine EEV and WEV encephalomyelitis-influenza-West Nile virus vaccine-tetanus toxoid	VO_0002423		
 horse encephalomyelitis EEV, VEV, and WEV combination vaccine	VO_0002424		
 Canine Distemper-Adenovirus Type 2-Parainfluenza Vaccine-Leptospira Canicola-Icterohaemorrhagiae Bacterin	VO_0002425		
@@ -2120,6 +2853,8 @@ Salmonella enteritidis vaccine	VO_0002509
 Yersinia pseudotuberculosis vaccine	VO_0002510		
 Human metapneumovirus vaccine	VO_0002511		
 Human respiratory syncytial virus vaccine	VO_0002512		
+Plasmodium berghei vaccine	VO_0002513		
+Plasmodium yoelii vaccine	VO_0002514		
 Leishmania infantum gene	VO_0002515		
 apxIA from Actinobacillus pleuropneumoniae	VO_0002516		
 apxIC from Actinobacillus pleuropneumoniae	VO_0002517		
@@ -2603,10 +3338,10 @@ Western equine encephalomyelitis virus PE2/E2 mutant virus	VO_0003004
 Leishmania donovani cen1 mutant vaccine	VO_0003005		
 Leishmania infantum HSP70 II mutant vaccine	VO_0003006		
 Plasmodium FabB/FabF mutant vaccine	VO_0003007		
-Plasmodium berghei p36p mutant vaccine	VO_0003008		
-Plasmodium yoelii p36/p52 mutant vaccine	VO_0003009		
-Plasmodium yoelii p36/p52 mutant vaccine	VO_0003010		
-Plasmodium yoelii UIS3 mutant vaccine	VO_0003011		
+P. berghei p36p mutant vaccine	VO_0003008		
+P. yoelii p36/p52 mutant vaccine	VO_0003009		
+P. yoelii p36/p52 mutant vaccine	VO_0003010		
+P. yoelii UIS3 mutant vaccine	VO_0003011		
 Toxoplasma gondii mic2 mutant vaccine	VO_0003012		
 Toxoplasma gondii OMPDC mutant vaccine	VO_0003013		
 Toxoplasma gondii OMPDC/UP mutant vaccine	VO_0003014		
@@ -2634,12 +3369,15 @@ lactose vaccine stabilizer	VO_0003037
 protein vaccine stabilizer	VO_0003038		
 Alkest TW 20 vaccine stabilizer	VO_0003039		
 Tween 20 vaccine stabilizer	VO_0003040		
+neomycin residual	VO_0003041		
+protective vaccine antigen	VO_0003042		
 Sindbis virus vaccine	VO_0003043		
 Lymphocytic choriomeningitis virus vaccine	VO_0003044		
 RB51 induced protection against B.suis	VO_0003045		
 Schistosoma mansoni vaccine	VO_0003046		
 Schistosoma vaccine	VO_0003047		
 vaccine-induced herd immunity	VO_0003048		
+vaccine conjugate protein	VO_0003049		
 vaccine conjugate role	VO_0003050		
 percutaneous route	VO_0003051		
 percutaneous vaccination	VO_0003052		
@@ -2675,6 +3413,56 @@ Adacel-Polio	VO_0003085		Adacel-Polio
 RB51 induced immune protection	VO_0003086		
 RB51 induced immune response without protection	VO_0003087		
 Boostrix-Polio	VO_0003088		Boostrix-Polio
+Tri-Immunol	VO_0003090		
+Fluogen vaccine	VO_0003091		
+Orimune vaccine	VO_0003092		
+P. falciparum RTS,S/AS01	VO_0003093		
+Pnu-Imune vaccine	VO_0003094		
+Revaxis vaccine	VO_0003095		
+Ditantrix	VO_0003096		
+Rotashield vaccine	VO_0003097		
+Moraten vaccine	VO_0003098		
+Tevax vaccine	VO_0003100		
+USP vaccine	VO_0003101		
+Hexavax	VO_0003102		
+Rabipur vaccine	VO_0003103		
+Rabiesvax vaccine	VO_0003104		
+Lymerix vaccine	VO_0003105		
+diphtheria, tetanus and whole cell pertussis vaccine	VO_0003106		
+Rabivac vaccine	VO_0003107		
+Genhevac B	VO_0003108		
+Meruvax I	VO_0003109		
+Rabie-Vax vaccine	VO_0003110		
+Mumpsvax II	VO_0003111		
+Rudivax	VO_0003112		
+Tetracoq vaccine	VO_0003113		
+Trihibit	VO_0003114		
+Optaflu	VO_0003115		
+TD-Rix	VO_0003116		
+Virivac	VO_0003117		
+M-M-R I	VO_0003118		
+Hib-Imune	VO_0003119		
+MVA85A	VO_0003120		
+OmniHIB	VO_0003121		
+Certiva	VO_0003122		
+Fluogen	VO_0003124		
+FP85A	VO_0003126		
+BCG Vaccine SSI	VO_0003129		
+recombinant BCG vaccine	VO_0003130		
+VPM1002	VO_0003131		
+MRKAd5 HIV-1 gag/pol/nef	VO_0003133		
+YF-17D vaccine	VO_0003134		
+YF-17DD vaccine	VO_0003135		
+YF 17DD-YFV	VO_0003136		
+ACWY Vax	VO_0003138		
+Stamaril	VO_0003139		
+non-small cell lung cancer vaccine	VO_0003140		
+CV9201	VO_0003141		
+clinical trial vaccine role	VO_0003142		
+licensed influenza vaccine	VO_0003143		
+Imuvac	VO_0003144		
+LIPO-5	VO_0003148		
+Hepatitis B surface antigen vaccine	VO_0003150		
 BCG Vaccine (by Organon Teknika)	VO_0003240		
 vaccination site	VO_0003247		
 live attenuated vaccine-induced down-regulated gene expression compared to infection with wild type pathogen	VO_0003336		
@@ -2784,8 +3572,7 @@ Recombinant DOBV nucleocapsid protein (rDOBV N)	VO_0004102
 Truncated Recombinant DoBV Nucleocapsid Proteins (Dob-N rNp)	VO_0004103		
 VEE virus complex-specific monoclonal antibody	VO_0004104		
 Live attenuated vaccine TC-83	VO_0004105		
-Recombinant BCG, Ag85A in multiple vectors	VO_0004106		
-Two recombinant BCG strains expressing MSP	VO_0004107		
+BCG expressing MSP	VO_0004107		
 Mtb72f fusion protein	VO_0004108		
 Recombinant RNA replicons from attenuated VEE virus	VO_0004109		
 Nontypeable H. influenzae Outer Membrane Protein P1 vaccine	VO_0004110		
@@ -3427,7 +4214,7 @@ Ac-CMV-S1 (infectious bronchitis virus)	VO_0004753
 BV-GD-ORF2	VO_0004754		
 rSPV/H3-2A-H1	VO_0004755		
 HVT-ILT(FC-126 strain)	VO_0004756		
-rBCG-Ag85A/ Ag85B	VO_0004757		
+rBCG-Ag85A/Ag85B	VO_0004757		
 rMVA- AHS-VP2	VO_0004758		
 rMVTT-HA-QH (H5N1)	VO_0004759		
 rMVTT-SIV-gpe	VO_0004760		
@@ -3565,6 +4352,7 @@ pcDNA3.1(Zeo)+ DNA vaccine plasmid	VO_0005077
 pVF DNA vaccine plasmid	VO_0005078		
 country	VO_0010632		
 USA	VO_0010633		
+Rubella virus vaccine	VO_0010637		
 vaccine saftey regulation	VO_0010702		
 review of vaccine license application	VO_0010704		
 Actacel	VO_0010705		Actacel
@@ -4076,7 +4864,7 @@ Fnz	VO_0011214
 Sfs	VO_0011215		
 Fbp	VO_0011216		
 CS from P. berghei str. ANKA	VO_0011217		
-CS from P. falciparum	VO_0011218		
+P. falciparum CSP	VO_0011218		
 CS from P. yoelii str. 17XNL	VO_0011219		
 MSP3	VO_0011220		
 MSP8	VO_0011221		
@@ -4399,7 +5187,7 @@ S. equi Subunit EAG, FNZ and SFS Protein Vaccine	VO_0011544
 C. jejuni DNA vaccine pcDNA3.1(+)-cadF	VO_0011545		
 S. equi Subunit CNE Protein Vaccine	VO_0011546		
 F. tularensis DNA vaccine pTUL4-15	VO_0011548		
-Plasmodium berghei CS Protein Subunit Vaccine	VO_0011549		
+P. berghei CS protein subunit vaccine	VO_0011549		
 G. duodenalis DNA vaccine encoding CWP2	VO_0011550		
 H. influenzae D15 protein vaccine	VO_0011551		
 Newcastle Disease Virus HN Glycoprotein Subunit Vaccine	VO_0011552		
@@ -4416,10 +5204,12 @@ N. caninum NcMIC1 Protein Subunit Vaccine	VO_0011563
 N. caninum NcMAG1 Protein Subunit Vaccine	VO_0011564		
 N. caninum NcDG2 Protein Subunit Vaccine	VO_0011565		
 Leishmania amazonensis vaccine	VO_0012158		
+Leishmania infantum vaccine	VO_0012159		
 Cryptosporidium parvum vaccine	VO_0012160		
 bovine leukemia virus vaccine	VO_0012161		
 Marek's disease virus vaccine	VO_0012162		
 Marburg Virus vaccine	VO_0012163		
+Infectious Hematopoietic Necrosis Virus vaccine	VO_0012165		
 Rift Valley Fever virus vaccine	VO_0012166		
 Hantavirus vaccine	VO_0012167		
 Herpes simplex virus type 1 and 2 vaccine	VO_0012168		
@@ -4438,8 +5228,10 @@ Helicobacter pylori vaccine	VO_0012181
 Campylobacter jejuni vaccine	VO_0012182		
 SARS-CoV vaccine	VO_0012183		
 Trypanosoma brucei vaccine	VO_0012184		
+Haemophilus influenzae vaccine	VO_0012185		
 Yersinia enterocolitica vaccine	VO_0012186		
 Clostridium botulinum  vaccine	VO_0012187		
+Western equine encephalomyelitis virus vaccine	VO_0012188		
 Tick-borne Encephalitis Virus (TBEV) vaccine	VO_0012190		
 Cancer vaccine preparation	VO_0012212		
 Allergy vaccine preparation	VO_0012213		
