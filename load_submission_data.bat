@@ -9,7 +9,8 @@ java -ea -jar admin\target\dashboard-admin.jar -o
 
 echo start indexing %time%
 java -jar admin\target\dashboard-admin.jar -i
-echo start subject ranking %time%
-java -jar admin\target\dashboard-admin.jar -r
+rem there is no meaningful scoring for now
+rem echo start subject ranking %time%
+rem java -jar admin\target\dashboard-admin.jar -r
 
 echo end time %time%
