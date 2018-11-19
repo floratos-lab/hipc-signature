@@ -8,9 +8,9 @@ import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.WhitespaceAnalyzer;
-import org.apache.lucene.queryParser.MultiFieldQueryParser;
-import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.Version;
 import org.hibernate.*;
@@ -86,8 +86,10 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public void save(DashboardEntity entity) {
         Session session = getSession();
+        session.beginTransaction();
         session.save(entity);
         session.flush();
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -132,7 +134,9 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public void merge(DashboardEntity entity) {
         Session session = getSession();
+        session.beginTransaction();
         session.merge(entity);
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -140,8 +144,10 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public void delete(DashboardEntity entity) {
         Session session = getSession();
+        session.beginTransaction();
         session.delete(entity);
         session.flush();
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -490,9 +496,8 @@ public class DashboardDaoImpl implements DashboardDao {
         HashSet<DashboardEntity> entitiesUnique = new HashSet<DashboardEntity>();
 
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
-        Analyzer analyzer = new WhitespaceAnalyzer(Version.LUCENE_31);
+        Analyzer analyzer = new WhitespaceAnalyzer();
         MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(
-            Version.LUCENE_31,
                 defaultSearchFields,
                 analyzer
         );
