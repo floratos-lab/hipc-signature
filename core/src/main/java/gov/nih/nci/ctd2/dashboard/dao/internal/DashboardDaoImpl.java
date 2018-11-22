@@ -483,7 +483,6 @@ public class DashboardDaoImpl implements DashboardDao {
 
             if(++cnt % batchSize == 0) {
                 fullTextSession.flushToIndexes();
-                fullTextSession.clear();
             }
         }
     }
