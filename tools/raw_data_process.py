@@ -6,7 +6,7 @@ import os
 import shutil
 from data_config import DataConfig
 
-SOURCE_DATA_LOCATION = "C:\\Users\\zji\\Desktop\\hipc-data-20181102\\source_data"
+SOURCE_DATA_LOCATION = ".\\source_data"
 TARGET_DATA_LOCATION = "C:\\data_collection\\hipc_data"
 HIPC_APPLICATION_LOCATION = "C:\\Users\\zji\\git\\hipc-signature"
 
