@@ -17,7 +17,7 @@ public class ControlledVocabularyPerTemplateFieldSetMapper implements FieldSetMa
 	private static final String TEMPLATE_TIER = "observation_tier";
 	private static final String TEMPLATE_NAME = "template_name";
 	private static final String OBSERVATION_SUMMARY = "observation_summary";
-	private static final String TEMPLATE_DESCRIPTION = "template_description";
+	//private static final String TEMPLATE_DESCRIPTION = "template_description";
 	private static final String SUBMISSION_NAME = "submission_name";
 	private static final String SUBMISSION_DESCRIPTION = "submission_description";
     private static final String PROJECT = "project";
@@ -44,7 +44,7 @@ public class ControlledVocabularyPerTemplateFieldSetMapper implements FieldSetMa
 		observationTemplate.setTier(fieldSet.readInt(TEMPLATE_TIER));
 		observationTemplate.setDisplayName(fieldSet.readString(TEMPLATE_NAME));
 		observationTemplate.setObservationSummary(fieldSet.readString(OBSERVATION_SUMMARY));
-		observationTemplate.setDescription(fieldSet.readString(TEMPLATE_DESCRIPTION));
+		observationTemplate.setDescription(fieldSet.readString(SUBMISSION_DESCRIPTION)); /* just to match the current version of source data */
 		observationTemplate.setSubmissionName(fieldSet.readString(SUBMISSION_NAME));
 		observationTemplate.setSubmissionDescription(fieldSet.readString(SUBMISSION_DESCRIPTION));
         observationTemplate.setProject(fieldSet.readString(PROJECT));
