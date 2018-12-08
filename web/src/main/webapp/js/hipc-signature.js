@@ -2724,15 +2724,15 @@
     });
 
     var browseRole = {
-        target: ["background", "biomarker", "candidate master regulator", "interactor", "master regulator", "oncogene", "target"],
-        compound: ["candidate drug", "control compound", "perturbagen"],
-        context: ["disease", "metastasis", "tissue"]
+        target: ["biomarker"],
+        compound: ["pathogem"],
+        context: ["vaccine"]
     };
 
     var subjectType = {
-        target: "Biomarkers, Targets, Genes & Proteins (genes)",
-        compound: "Compounds and Perturbagens (compounds, shRNA, genes)",
-        context: "Disease Context (tissues)"
+        target: "Genes & Proteins",
+        compound: "Pathogens",
+        context: "Vaccines"
     };
 
     //customize-roles-item-tmpl

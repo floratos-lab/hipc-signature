@@ -250,25 +250,25 @@
         <div class="container marketing ctd2-boxes">
           <div style="display:table">
             <div class="span4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-              <h4>Biomarkers, Targets, <br>Genes &amp; Proteins</h4>
+              <h4>Genes &amp; Proteins</h4>
                 <p>
-                    Users can browse a list of genes and proteins that Centers have identified using analyses that generate results with low frequencies of false positives. In some cases, genes and proteins have been assigned roles as biomarkers or targets based on observations.
+                    Explore genes and proteins identified as components of vaccine response signatures
                 </p>
-                <a class="btn btn-success btn-block" href="#explore/target/Biomarker,Target" style="position:absolute;bottom:0;">Browse &raquo;</a>
+                <a class="btn btn-success btn-block" href="#explore/response-agent/Biomarker" style="position:absolute;bottom:0;">Browse &raquo;</a>
             </div><!-- /.span3 -->
             <div class="span4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-              <h4>Compounds &amp; Perturbagens</h4>
+              <h4>Pathogens</h4>
                 <p>
-                    Users can browse compounds and perturbagens, which are modulators of cellular phenotype, genes, or proteins in cancer cell lines or tumor model systems. Some examples include small molecules, FDA approved drugs, natural products, and small regulatory RNAs.
+                    Explore pathogens targeted in vaccination response studies
                 </p>
-                <a class="btn btn-info btn-block" href="#explore/compound/Perturbagen,Candidate Drug" style="position:absolute;bottom:0;">Browse &raquo;</a>
+                <a class="btn btn-info btn-block" href="#explore/pathogen/Pathogen" style="position:absolute;bottom:0;">Browse &raquo;</a>
             </div><!-- /.span3 -->
               <div class="span4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-                  <h4 class="homepage-context">Disease <br>Context</h4>
+                  <h4>Vaccines</h4>
                   <p>
-                      Users can browse disease context, which groups subjects by observations pertinent to a particular disease or tumor type.
+                    Explore vaccines investigated in vaccination response studies
                   </p>
-                  <a class="btn btn-warning btn-block" href="#explore/context/Disease" style="position:absolute;bottom:0;">Browse &raquo;</a>
+                  <a class="btn btn-warning btn-block" href="#explore/vaccine/Vaccine" style="position:absolute;bottom:0;">Browse &raquo;</a>
               </div><!-- /.span3 -->
 
           </div><!-- /.row -->
