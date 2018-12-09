@@ -15,7 +15,7 @@
     <!-- X-UA-Compatible meta tag to disable IE compatibility view must always be first -->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>HIPC Signature</title>
+    <title>HIPC DASHBOARD</title>
     <meta name="description" content="" />
     <meta name="author" content="" />
 
@@ -46,7 +46,7 @@
         </h1>
 
         <ul id="main-nav">
-            <li><a id="navlink-dashboard" class="navlink" href="#">HIPC Signature</a></li>
+            <li><a id="navlink-dashboard" class="navlink" href="#">HIPC DASHBOARD</a></li>
             <li><a id="navlink-centers" class="navlink" href="#centers">Centers</a></li>
             <li>
                 <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b class="caret"></b></a>
@@ -154,13 +154,13 @@
     <div class="container">
         <!-- FOOTER -->
        <footer>
-        <p><small>HIPC Signature Release <%=dashboardReleaseVersion%></small></p>
+        <p><small>HIPC DASHBOARD Release <%=dashboardReleaseVersion%></small></p>
      	<p>
             <small>
                 <p>
                     As the HIPC Network continues to refine the Signature, input from the research community is highly valued to help improve usability.<br>
                     <b>Note</b>: Data users must acknowledge HIPC Network and visit <a href="https://www.immuneprofiling.org">HIPC publication guidelines</a> for more information.<br>
-                    To provide feedback, please send comments to <a href="mailto:hipcfeedback?subject=HIPC Signatures Feedback">hipcfeedback@columbia.edu</a>.
+                    To provide feedback, please send comments to <a href="mailto:hipcfeedback?subject=HIPC DASHBOARD Feedback">hipcfeedback@columbia.edu</a>.
                 </p>
            </small>
         </p>
