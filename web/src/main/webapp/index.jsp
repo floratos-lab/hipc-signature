@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/jquery.contextMenu.css" type="text/css" />
     <link rel="stylesheet" href="css/ctd2.css" type="text/css" />
-    <link rel="stylesheet" href="css/hipc.css"/>
+    <link rel="stylesheet" href="css/hipc.css?ts=2018" type="text/css" />
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -59,9 +59,9 @@
                 <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b class="caret"></b></a>
                 <ul id="dropdown-menu-browse" class="dropdown">
                     <li><a href="#stories">Stories</a></li>
-                    <li><a href="#explore/target/Biomarker,Target">Genes (Biomarkers, Targets, etc.)</a></li>
-                    <li><a href="#explore/compound/Perturbagen,Candidate Drug">Compounds and Perturbagens</a></li>
-                    <li><a href="#explore/context/Disease">Disease Contexts</a></li>
+                    <li><a href="#explore/response-agent/Biomarker">Genes & Proteins</a></li>
+                    <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
+                    <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
                 </ul>
             </li>
             <li>
