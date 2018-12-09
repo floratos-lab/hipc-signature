@@ -13,6 +13,10 @@ java -Xmx1024m -jar admin/target/dashboard-admin.jar -p
 java -Xmx1024m -jar admin/target/dashboard-admin.jar -sh
 java -Xmx1024m -jar admin/target/dashboard-admin.jar -si
 
+java -Xmx1024m -jar admin/target/dashboard-admin.jar -v
+java -Xmx1024m -jar admin/target/dashboard-admin.jar -c
+java -Xmx1024m -jar admin/target/dashboard-admin.jar -n
+
 java -Xmx1024m -jar admin/target/dashboard-admin.jar -cv
 java -Xmx1024m -jar admin/target/dashboard-admin.jar -o
 java -Xmx1024m -jar admin/target/dashboard-admin.jar -i
