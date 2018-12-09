@@ -2724,15 +2724,15 @@
     });
 
     var browseRole = {
-        target: ["biomarker"],
-        compound: ["pathogem"],
-        context: ["vaccine"]
+        'response-agent': ["biomarker"],
+        pathogen: ["pathogen"],
+        vaccine: ["vaccine"]
     };
 
     var subjectType = {
-        target: "Genes & Proteins",
-        compound: "Pathogens",
-        context: "Vaccines"
+        'response-agent': "Genes & Proteins",
+        pathogen: "Pathogens",
+        vaccine: "Vaccines"
     };
 
     //customize-roles-item-tmpl
