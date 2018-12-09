@@ -73,7 +73,7 @@ public class SubjectScorer {
                     subjectToCenters.put(subject, centers);
                     subjectToSummaries.put(subject, withSummaries);
                     HashMap<SubmissionCenter, Integer> cScores = new HashMap<>();
-                    cScores.put(submissionCenter, tier);
+                    cScores.put(submissionCenter, 1);
                     centerBasedScores.put(subject, cScores);
                 } else {
                     withSummaries.setMaxTier(Math.max(withSummaries.getMaxTier(), tier));
@@ -86,7 +86,7 @@ public class SubjectScorer {
 
                     HashMap<SubmissionCenter, Integer> cScores = centerBasedScores.get(subject);
                     Integer previousScore = cScores.get(submissionCenter);
-                    cScores.put(submissionCenter, previousScore == null ? tier : Math.max(tier, previousScore));
+                    cScores.put(submissionCenter, previousScore + 1);
                 }
             }
 
