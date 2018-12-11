@@ -995,12 +995,6 @@
                                  </ul>
                              </td>
                          </tr>
-                         <tr>
-                             <th>Genomic alterations</th>
-                             <td>
-                                 <a class="btn btn-small" href="http://cbioportal.org/ln?q={{displayName}}" target="blank">view in cBioPortal <i class="icon-share"></i></a>
-                             </td>
-                         </tr>
                      </table>
                  </div>
                  <div class="span3">
