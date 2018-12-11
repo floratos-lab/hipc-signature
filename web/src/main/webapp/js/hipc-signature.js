@@ -1901,11 +1901,29 @@
                 if (similarSubmissions.length < 1) {
                     $("#similar-submission-info").hide();
                 } else {
+                    var count = 0;
                     _.each(similarSubmissions, function (simSub) {
+                        if(count>=2) simSub.toomany = 'toomany';
+                        else simSub.toomany = '';
                         $(thatEl)
                             .find("ul.similar-submission-list")
                             .append(_.template($("#similar-submission-item-tmpl").html(), simSub));
+                        count++;
                     });
+                    if(count>2) {
+                        var SEE_ALL = "See all";
+                        $("#see-all-switch").text(SEE_ALL);
+                        $(".toomany").hide();
+                        $("#see-all-switch").click(function() {
+                            if($(this).text()==SEE_ALL) {
+                                $(".toomany").show();
+                                $(this).text("Hide the long list");
+                            } else {
+                                $(".toomany").hide();
+                                $(this).text(SEE_ALL);
+                            }
+                        });
+                    } else $("#see-all-switch").empty();
                 }
             });
 

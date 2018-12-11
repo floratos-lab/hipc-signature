@@ -470,6 +470,7 @@
                             <th>Similar Submissions</th>
                             <td>
                                 <ul class="similar-submission-list"></ul>
+                                [<a id='see-all-switch'></a>]
                             </td>
                         </tr>
                         <tr>
@@ -612,7 +613,7 @@
     </script>
 
     <script type="text/template" id="similar-submission-item-tmpl">
-        <li>
+        <li class={{toomany}}>
             <small><a href="#submission/{{id}}">{{observationTemplate.description}}</a></small>
         </li>
     </script>
