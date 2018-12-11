@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Fanwood+Text|Open+Sans+Condensed:300);
 
-#explore-table_filter label{width: inherit}
+.dataTables_filter label{width: inherit}
 
 body {min-width: 1200px;}
 
