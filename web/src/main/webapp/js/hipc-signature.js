@@ -3490,7 +3490,7 @@
                         case 'genecards':
                             linkUrl = "http://www.genecards.org/cgi-bin/carddisp.pl?gene=" + sym + "&alias=yes";
                             break;
-                        case 'ctd2-dashboard':
+                        case 'dashboard':
                             linkUrl = CORE_API_URL + "#search/" + sym;
 
                     }
@@ -3532,8 +3532,8 @@
                     "genecards": {
                         "name": "GeneCards"
                     },
-                    "ctd2-dashboard": {
-                        "name": "CTD2-Dashboard"
+                    "dashboard": {
+                        "name": "Dashboard"
                     }
                 }
             });
