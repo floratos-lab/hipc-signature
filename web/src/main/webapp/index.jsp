@@ -1922,8 +1922,10 @@
 
             <div id="explore-blurb"></div>
             <div class="container" style="padding-bottom:5px;">
+            <!--
             <button type="button" class="btn btn-default" id="reset-ordering">Reset initial ordering</button>
             <button type="button" class="btn btn-default" id="customize-roles">Select Roles</button>
+            -->
             </div>
 
             <table class="table table-bordered table-striped observations" id="explore-table">
