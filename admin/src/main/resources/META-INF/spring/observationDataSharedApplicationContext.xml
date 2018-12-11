@@ -356,7 +356,7 @@
 	</bean>
 	<bean name="hipciof_ctf_17651872LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_18378159LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -365,7 +365,7 @@
 	</bean>
 	<bean name="hipciof_ctf_18378159LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_21743478LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -374,7 +374,7 @@
 	</bean>
 	<bean name="hipciof_ctf_21743478LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_23151505LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -383,7 +383,7 @@
 	</bean>
 	<bean name="hipciof_ctf_23151505LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_23290835LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -392,7 +392,7 @@
 	</bean>
 	<bean name="hipciof_ctf_23290835LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_23591775LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -401,7 +401,7 @@
 	</bean>
 	<bean name="hipciof_ctf_23591775LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_23601689LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -410,7 +410,7 @@
 	</bean>
 	<bean name="hipciof_ctf_23601689LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_23844129LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -419,7 +419,7 @@
 	</bean>
 	<bean name="hipciof_ctf_23844129LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_24336226LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -428,7 +428,7 @@
 	</bean>
 	<bean name="hipciof_ctf_24336226LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_24495909LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -437,7 +437,7 @@
 	</bean>
 	<bean name="hipciof_ctf_24495909LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_24725414LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -446,7 +446,7 @@
 	</bean>
 	<bean name="hipciof_ctf_24725414LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_24912498LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -455,7 +455,7 @@
 	</bean>
 	<bean name="hipciof_ctf_24912498LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_25535378LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -464,7 +464,7 @@
 	</bean>
 	<bean name="hipciof_ctf_25535378LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_26682988LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -473,7 +473,7 @@
 	</bean>
 	<bean name="hipciof_ctf_26682988LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_26726811LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -482,7 +482,7 @@
 	</bean>
 	<bean name="hipciof_ctf_26726811LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_26742691LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -491,7 +491,7 @@
 	</bean>
 	<bean name="hipciof_ctf_26742691LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_26755593LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -500,7 +500,7 @@
 	</bean>
 	<bean name="hipciof_ctf_26755593LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_27030598LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -509,7 +509,7 @@
 	</bean>
 	<bean name="hipciof_ctf_27030598LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_27317456LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -518,7 +518,7 @@
 	</bean>
 	<bean name="hipciof_ctf_27317456LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_27436422LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -527,7 +527,7 @@
 	</bean>
 	<bean name="hipciof_ctf_27436422LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_27764254LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -536,7 +536,7 @@
 	</bean>
 	<bean name="hipciof_ctf_27764254LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_27974398LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -545,7 +545,7 @@
 	</bean>
 	<bean name="hipciof_ctf_27974398LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_28137280LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -554,7 +554,7 @@
 	</bean>
 	<bean name="hipciof_ctf_28137280LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_28193898LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -563,7 +563,7 @@
 	</bean>
 	<bean name="hipciof_ctf_28193898LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_28502771LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -572,7 +572,7 @@
 	</bean>
 	<bean name="hipciof_ctf_28502771LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_28687661LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -581,7 +581,7 @@
 	</bean>
 	<bean name="hipciof_ctf_28687661LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_ctf_28854372LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -590,7 +590,7 @@
 	</bean>
 	<bean name="hipciof_ctf_28854372LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
 		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
+		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url"/>
 	</bean >
 
 	<bean name="hipciof_gene_17349694LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -958,7 +958,9 @@
             <map key-type="java.lang.String" value-type="java.lang.String">
 
 				<entry key="hipciof_ctf_15:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_15:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_15:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_15:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_15:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_15:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_15:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_15:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -977,7 +979,9 @@
 				<entry key="hipciof_ctf_15:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_20:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_20:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_20:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_20:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_20:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_20:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_20:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_20:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -996,7 +1000,9 @@
 				<entry key="hipciof_ctf_20:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_22:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_22:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_22:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_22:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_22:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_22:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_22:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_22:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1015,7 +1021,9 @@
 				<entry key="hipciof_ctf_22:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_7:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_7:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_7:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_7:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_7:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_7:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_7:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_7:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1034,7 +1042,9 @@
 				<entry key="hipciof_ctf_7:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_13:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_13:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_13:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_13:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_13:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_13:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_13:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_13:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1053,7 +1063,9 @@
 				<entry key="hipciof_ctf_13:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_2:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_2:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_2:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_2:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_2:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_2:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_2:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_2:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1072,7 +1084,9 @@
 				<entry key="hipciof_ctf_2:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_3:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_3:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_3:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_3:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_3:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_3:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_3:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_3:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1091,7 +1105,9 @@
 				<entry key="hipciof_ctf_3:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_9:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_9:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_9:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_9:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_9:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_9:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_9:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_9:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1110,7 +1126,9 @@
 				<entry key="hipciof_ctf_9:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_1:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_1:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_1:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_1:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_1:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_1:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_1:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_1:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1129,7 +1147,9 @@
 				<entry key="hipciof_ctf_1:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_23:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_23:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_23:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_23:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_23:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_23:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_23:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_23:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1148,7 +1168,9 @@
 				<entry key="hipciof_ctf_23:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_21:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_21:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_21:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_21:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_21:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_21:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_21:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_21:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1167,7 +1189,9 @@
 				<entry key="hipciof_ctf_21:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_16:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_16:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_16:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_16:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_16:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_16:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_16:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_16:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1186,7 +1210,9 @@
 				<entry key="hipciof_ctf_16:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_19:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_19:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_19:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_19:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_19:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_19:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_19:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_19:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1205,7 +1231,9 @@
 				<entry key="hipciof_ctf_19:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_24:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_24:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_24:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_24:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_24:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_24:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_24:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_24:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1224,7 +1252,9 @@
 				<entry key="hipciof_ctf_24:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_6:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_6:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_6:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_6:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_6:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_6:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_6:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_6:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1243,7 +1273,9 @@
 				<entry key="hipciof_ctf_6:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_17:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_17:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_17:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_17:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_17:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_17:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_17:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_17:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1262,7 +1294,9 @@
 				<entry key="hipciof_ctf_17:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_5:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_5:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_5:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_5:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_5:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_5:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_5:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_5:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1281,7 +1315,9 @@
 				<entry key="hipciof_ctf_5:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_26:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_26:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_26:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_26:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_26:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_26:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_26:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_26:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1300,7 +1336,9 @@
 				<entry key="hipciof_ctf_26:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_18:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_18:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_18:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_18:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_18:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_18:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_18:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_18:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1319,7 +1357,9 @@
 				<entry key="hipciof_ctf_18:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_27:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_27:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_27:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_27:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_27:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_27:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_27:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_27:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1338,7 +1378,9 @@
 				<entry key="hipciof_ctf_27:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_12:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_12:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_12:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_12:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_12:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_12:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_12:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_12:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1357,7 +1399,9 @@
 				<entry key="hipciof_ctf_12:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_14:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_14:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_14:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_14:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_14:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_14:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_14:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_14:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1376,7 +1420,9 @@
 				<entry key="hipciof_ctf_14:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_11:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_11:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_11:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_11:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_11:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_11:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_11:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_11:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1395,7 +1441,9 @@
 				<entry key="hipciof_ctf_11:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_8:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_8:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_8:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_8:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_8:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_8:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_8:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_8:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1414,7 +1462,9 @@
 				<entry key="hipciof_ctf_8:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_25:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_25:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_25:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_25:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_25:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_25:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_25:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_25:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1433,7 +1483,9 @@
 				<entry key="hipciof_ctf_25:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_10:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_10:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_10:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_10:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_10:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_10:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_10:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_10:subgroup" value="evidence:readString:createObservedLabelEvidence" />
@@ -1452,7 +1504,9 @@
 				<entry key="hipciof_ctf_10:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 
 				<entry key="hipciof_ctf_4:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_4:response_agent" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_4:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_4:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_4:proterm" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_4:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_4:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_4:subgroup" value="evidence:readString:createObservedLabelEvidence" />
