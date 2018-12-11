@@ -2605,6 +2605,9 @@
 
             var thatModel = this.model;
             $(this.el).html(this.template(thatModel));
+            if(thatModel.roles=="Gene") {
+                thatModel.roles = "gene_biomarker";
+            }
             var data_url = $("#explore-tmpl").attr("data-url");
             var subjectWithSummaryCollection = new SubjectWithSummaryCollection(thatModel);
             subjectWithSummaryCollection.fetch({

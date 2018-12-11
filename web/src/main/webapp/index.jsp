@@ -59,7 +59,7 @@
                 <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b class="caret"></b></a>
                 <ul id="dropdown-menu-browse" class="dropdown">
                     <li><a href="#stories">Stories</a></li>
-                    <li><a href="#explore/response-agent/gene_biomarker">Genes & Cell Types</a></li>
+                    <li><a href="#explore/response-agent/Gene">Genes</a></li>
                     <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
                     <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
                 </ul>
@@ -252,9 +252,9 @@
             <div class="span4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Genes</h4>
                 <p>
-                    Explore genes and proteins identified as components of vaccine response signatures
+                    Explore genes identified as components of vaccine response signatures
                 </p>
-                <a class="btn btn-success btn-block" href="#explore/response-agent/gene_biomarker" style="position:absolute;bottom:0;">Browse &raquo;</a>
+                <a class="btn btn-success btn-block" href="#explore/response-agent/Gene" style="position:absolute;bottom:0;">Browse &raquo;</a>
             </div><!-- /.span3 -->
             <div class="span4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Pathogens</h4>
