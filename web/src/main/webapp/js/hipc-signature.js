@@ -2742,13 +2742,13 @@
     });
 
     var browseRole = {
-        'response-agent': ["biomarker"],
+        'response-agent': ["gene_biomarker"],
         pathogen: ["pathogen"],
         vaccine: ["vaccine"]
     };
 
     var subjectType = {
-        'response-agent': "Genes & Proteins",
+        'response-agent': "Genes",
         pathogen: "Pathogens",
         vaccine: "Vaccines"
     };
