@@ -281,6 +281,7 @@
     var HtmlStoryView = Backbone.View.extend({
         render: function () {
             var url = this.model.url;
+            url = url.replace(/\\/g, '\/'); // in case data loaded from a Windows machine
             var observation = this.model.observation;
 
             $.post("html", {
