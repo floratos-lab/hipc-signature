@@ -86,6 +86,9 @@ public class SubjectScorer {
 
                     HashMap<SubmissionCenter, Integer> cScores = centerBasedScores.get(subject);
                     Integer previousScore = cScores.get(submissionCenter);
+
+                    if(previousScore==null) previousScore = 0;
+    
                     cScores.put(submissionCenter, previousScore + 1);
                 }
             }
