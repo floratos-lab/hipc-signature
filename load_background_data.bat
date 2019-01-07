@@ -31,4 +31,9 @@ echo finished %time%
 
 mysqldump -u root -p%DB_PASSWORD% hipc_signature > hipc_signature_background.sql
 
-echo database dumped. end time %time%
+echo database dumped %time%
+
+rem only background data are indexed for searching
+echo start indexing %time%
+java -jar admin\target\dashboard-admin.jar -i
+echo end time %time%
