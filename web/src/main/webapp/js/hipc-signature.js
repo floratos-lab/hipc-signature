@@ -198,6 +198,42 @@
         }
     });
 
+    var AnimalModel = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/animal-model"
+    });
+
+    var Gene = Backbone.Model.extend({
+        urlRoot: 'get/gene',
+
+        initialize: function (attributes) {
+            this.url = this.urlRoot + "/" + attributes.species + "/" + attributes.symbol;
+        }
+    });
+
+    var CellSample = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/cell-sample",
+    });
+
+    var Compound = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/compound",
+    });
+
+    var Protein = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/protein",
+    });
+
+    var ShRna = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/rna",
+    });
+
+    var TissueSample = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/tissue",
+    });
+
+    var Transcript = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/transcript",
+    });
+
     var Subject = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/subject"
     });
@@ -289,7 +325,7 @@
             }).done(function (summary) {
                 summary = summary.replace(
                     new RegExp("#submission_center", "g"),
-                    "#center/" + observation.submission.observationTemplate.submissionCenter.id
+                    "#" + observation.submission.observationTemplate.submissionCenter.stableURL
                 );
 
                 var observedSubjects = new ObservedSubjects({
@@ -305,7 +341,7 @@
 
                             summary = summary.replace(
                                 new RegExp("#" + observedSubject.observedSubjectRole.columnName, "g"),
-                                "#subject/" + observedSubject.subject.id
+                                "#" + observedSubject.subject.stableURL
                             );
                         });
 
@@ -546,7 +582,7 @@
                                         }
                                     });
 
-                                    imgTemplate = $("#search-results-compund-image-tmpl");
+                                    imgTemplate = $("#search-results-compound-image-tmpl");
                                     thatEl2.append(_.template(imgTemplate.html(), compound));
                                 }
                             });
@@ -1675,14 +1711,6 @@
         }
     });
 
-    var ObservedSubjectRowView = Backbone.View.extend({
-        template: _.template($("#observedsubject-row-tmpl").html()),
-        render: function () {
-            $(this.el).append(this.template(this.model));
-            return this;
-        }
-    });
-
     var ObservedSubjectSummaryRowView = Backbone.View.extend({
         template: _.template($("#observedsubject-summary-row-tmpl").html()),
         render: function () {
@@ -1780,7 +1808,7 @@
                                             .before(
                                                 _.template($("#tbl-project-title-tmpl").html(), {
                                                     project: group,
-                                                    centerId: centerModel.id
+                                                    centerStableURL: centerModel.stableURL
                                                 })
                                             );
 
@@ -1796,7 +1824,7 @@
                         $(tableElId).DataTable().search(filterProject).draw();
                         var mpModel = {
                             filterProject: filterProject,
-                            centerId: centerModel.id
+                            centerStableURL: centerModel.stableURL
                         };
                         var moreProjectsView = new MoreProjectsView({
                             model: mpModel
@@ -2128,9 +2156,9 @@
                 imgTemplate = $("#search-results-pathogen-image-tmpl");
             } else if (result.class == "Gene") {
                 imgTemplate = $("#search-results-gene-image-tmpl");
-            } else if (result.class == "ShRNA" && result.type.toLowerCase() == "sirna") {
+            } else if (result.class == "ShRna" && result.type.toLowerCase() == "sirna") {
                 imgTemplate = $("#search-results-sirna-image-tmpl");
-            } else if (result.class == "ShRNA") {
+            } else if (result.class == "ShRna") {
                 imgTemplate = $("#search-results-shrna-image-tmpl");
             } else if (result.class == "Protein") {
                 imgTemplate = $("#search-results-protein-image-tmpl");
@@ -2297,10 +2325,10 @@
         template: _.template($("#mra-view-tmpl").html()),
         render: function () {
             var result = this.model.toJSON();
-            var mra_data_url = $("#mra-view-tmpl").attr("mra-data-url") + result.evidence.filePath;
+            var mra_data_url = $("#mra-view-tmpl").attr("mra-data-url") + result.evidence.filePath.replace(/\\/g, '/');
             $(this.el).html(this.template(result));
             $.ajax({
-                url: "mra/",
+                url: "mra-data/",
                 data: {
                     url: mra_data_url,
                     dataType: "mra",
@@ -2360,7 +2388,7 @@
                 }
 
                 $.ajax({
-                    url: "mra/",
+                    url: "mra-data/",
                     data: {
                         url: mra_data_url,
                         dataType: "cytoscape",
@@ -2459,10 +2487,10 @@
                         container.cy(cyOptions);
 
                     }
-                }); //end ajax              
+                }); //end ajax
 
 
-            }); //end .cytoscape-view         
+            }); //end .cytoscape-view
 
             $("#master-regulator-grid").on("change", ":checkbox", function () {
                 var nodeLimit = $("#cytoscape-node-limit").val();
@@ -2472,7 +2500,7 @@
                 });
 
                 $.ajax({
-                    url: "mra/",
+                    url: "mra-data/",
                     data: {
                         url: mra_data_url,
                         dataType: "throttle",
@@ -2504,7 +2532,7 @@
                 });
 
                 $.ajax({
-                    url: "mra/",
+                    url: "mra-data/",
                     data: {
                         url: mra_data_url,
                         dataType: "throttle",
@@ -2637,18 +2665,18 @@
                         } else {
                             reformatted += " <img src='img/" + subject.class.toLowerCase() + ".png' style='height:25px' alt=''>";
                         }
-                        var nameLink = "<a href='#/subject/" + subject.id + "/" + role + "'>" + subject.displayName + "</a>";
+                        var nameLink = "<a href='#" + subject.stableURL + "/" + role + "'>" + subject.displayName + "</a>";
                         var n3obv = sModel.numberOfTier3Observations;
                         var n3ctr = sModel.numberOfTier3SubmissionCenters;
-                        var n3link = (n3obv == 0 ? "" : "<a href='#subject/" + subject.id + "/" + role + "/3'>" + n3obv + "</a>") +
+                        var n3link = (n3obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/3'>" + n3obv + "</a>") +
                             (n3obv > 1 ? " (" + n3ctr + " center" + (n3ctr > 1 ? "s" : "") + ")" : "");
                         var n2obv = sModel.numberOfTier2Observations;
                         var n2ctr = sModel.numberOfTier2SubmissionCenters;
-                        var n2link = (n2obv == 0 ? "" : "<a href='#subject/" + subject.id + "/" + role + "/2'>" + n2obv + "</a>") +
+                        var n2link = (n2obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/2'>" + n2obv + "</a>") +
                             (n2obv > 1 ? " (" + n2ctr + " center" + (n2ctr > 1 ? "s" : "") + ")" : "");
                         var n1obv = sModel.numberOfTier1Observations;
                         var n1ctr = sModel.numberOfTier1SubmissionCenters;
-                        var n1link = (n1obv == 0 ? "" : "<a href='#subject/" + subject.id + "/" + role + "/1'>" + n1obv + "</a>") +
+                        var n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/1'>" + n1obv + "</a>") +
                             (n1obv > 1 ? " (" + n1ctr + " center" + (n1ctr > 1 ? "s" : "") + ")" : "");
                         table_data.push([reformatted, nameLink, role, n3link, n2link, n1link]);
                     });
@@ -3071,7 +3099,7 @@
                         $('#versionDescription').html("");
 
                     }
-                }); //ajax        	    
+                }); //ajax
 
             }); //end $('#interactomeList').change()
 
@@ -3226,7 +3254,7 @@
 
             $("#cnkb-result-grid").on("change", ":checkbox", function () {
                 getThrottleValue();
-            }); //end cnkb-checked         	    
+            }); //end cnkb-checked
 
             $("#cytoscape-node-limit").change(function (evt) {
                 getThrottleValue();
@@ -3290,10 +3318,10 @@
                         drawCNKBCytoscape(data, Encoder.htmlEncode(cnkbDescription));
 
                     } //end success
-                }); //end ajax              
+                }); //end ajax
 
 
-            }); //end createnetwork              
+            }); //end createnetwork
 
             return this;
         }
@@ -3411,7 +3439,7 @@
                 name: layoutName,
                 fit: true,
                 liveUpdate: false,
-                maxSimulationTime: 4000, // max length in ms to run the layout                        
+                maxSimulationTime: 4000, // max length in ms to run the layout
                 stop: function () {
                     $("#cnkb_cytoscape_progress").remove();
                     this.stop();
@@ -3516,7 +3544,6 @@
                             linkUrl = CORE_API_URL + "#search/" + sym;
 
                     }
-                    // alert("test3");
                     window.open(linkUrl);
                     $.contextMenu('destroy', '#cytoscape');
                 },
@@ -3571,17 +3598,38 @@
             "stories": "listStories",
             "explore": "scrollToExplore",
             "explore/:type/:roles": "explore",
-            "center/:id/:project": "showCenterProject",
-            "center/:id": "showCenter",
+            "center/:name/:project": "showCenterProject",
+            "center/:name": "showCenter",
             "submission/:id": "showSubmission",
             "observation/:id": "showObservation",
             "search/:term": "search",
-            "subject/:id": "showSubject",
-            "subject/:id/:role": "showSubject",
-            "subject/:id/:role/:tier": "showSubject",
-            "evidence/:id": "showMraView",
+            "animal-model/:name": "showAnimalModel",
+            "animal-model/:name/:role": "showAnimalModel",
+            "animal-model/:name/:role/:tier": "showAnimalModel",
+            "cell-sample/:name": "showCellSample",
+            "cell-sample/:name/:role": "showCellSample",
+            "cell-sample/:name/:role/:tier": "showCellSample",
+            "compound/:name": "showCompound",
+            "compound/:name/:role": "showCompound",
+            "compound/:name/:role/:tier": "showCompound",
+            "gene/:species/:symbol": "showGene",
+            "gene/:species/:symbol/:role": "showGene",
+            "gene/:species/:symbol/:role/:tier": "showGene",
+            "protein/:name": "showProtein",
+            "protein/:name/:role": "showProtein",
+            "protein/:name/:role/:tier": "showProtein",
+            "rna/:name": "showShRna",
+            "rna/:name/:role": "showShRna",
+            "rna/:name/:role/:tier": "showShRna",
+            "tissue/:name": "showTissueSample",
+            "tissue/:name/:role": "showTissueSample",
+            "tissue/:name/:role/:tier": "showTissueSample",
+            "transcript/:name": "showTranscript",
+            "transcript/:name/:role": "showTranscript",
+            "transcript/:name/:role/:tier": "showTranscript",
+            "mra/:filename": "showMraView",
             "about": "helpNavigate",
-            "genes": "showGenes",
+            "genes": "showGeneList",
             "cnkb-query": "showCnkbQuery",
             "cnkb-result": "showCnkbResult",
             "gene-cart-help": "showGeneCartHelp",
@@ -3633,130 +3681,167 @@
             exploreView.render();
         },
 
-        showSubject: function (id, role, tier) {
-            var subject = new Subject({
-                id: id
+        showAnimalModel: function (name, role, tier) {
+            var animalModel = new AnimalModel({
+                id: name
             });
-            subject.fetch({
+            animalModel.fetch({
                 success: function () {
-                    var type = subject.get("class");
-                    var subjectView;
-                    if (type == "Gene") {
-                        subjectView = new GeneView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "AnimalModel") {
-                        subjectView = new AnimalModelView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "Compound") {
-                        subjectView = new CompoundView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "CellSample") {
-                        subjectView = new CellSampleView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "TissueSample") {
-                        subjectView = new TissueSampleView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "ShRna") {
-                        // shRna covers both siRNA and shRNA
-                        if (subject.get("type").toLowerCase() == "sirna") {
-                            subjectView = new SirnaView({
-                                model: {
-                                    subject: subject,
-                                    tier: tier,
-                                    role: role
-                                }
-                            });
-                        } else {
-                            subjectView = new ShrnaView({
-                                model: {
-                                    subject: subject,
-                                    tier: tier,
-                                    role: role
-                                }
-                            });
+                    var animalModelView = new AnimalModelView({
+                        model: {
+                            subject: animalModel,
+                            tier: tier,
+                            role: role
                         }
-                    } else if (type == "Transcript") {
-                        subjectView = new TranscriptView({
+                    });
+                    animalModelView.render();
+                }
+            });
+        },
+
+        showCellSample: function (name, role, tier) {
+            var cellSample = new CellSample({
+                id: name
+            });
+
+            cellSample.fetch({
+                success: function () {
+                    var cellSampleView = new CellSampleView({
+                        model: {
+                            subject: cellSample,
+                            tier: tier,
+                            role: role
+                        }
+                    });
+                    cellSampleView.render();
+                }
+            });
+        },
+
+        showCompound: function (name, role, tier) {
+            var compound = new Compound({
+                id: name
+            });
+            compound.fetch({
+                success: function () {
+                    var compoundView = new CompoundView({
+                        model: {
+                            subject: compound,
+                            tier: tier,
+                            role: role
+                        }
+                    });
+                    compoundView.render();
+                }
+            });
+        },
+
+        showProtein: function (name, role, tier) {
+            var protein = new Protein({
+                id: name
+            });
+            protein.fetch({
+                success: function () {
+                    var proteinView = new ProteinView({
+                        model: {
+                            subject: protein,
+                            tier: tier,
+                            role: role
+                        }
+                    });
+                    proteinView.render();
+                }
+            });
+        },
+
+        showShRna: function (name, role, tier) {
+            var shRna = new ShRna({
+                id: name
+            });
+            shRna.fetch({
+                success: function () {
+                    // shRna covers both siRNA and shRNA
+                    var rnaView;
+                    if (shRna.get("type").toLowerCase() == "sirna") {
+                        rnaView = new SirnaView({
                             model: {
-                                subject: subject,
+                                subject: shRna,
                                 tier: tier,
                                 role: role
                             }
                         });
-                    } else if (type == "Protein") {
-                        subjectView = new ProteinView({
+                    } else {
+                        rnaView = new ShrnaView({
                             model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "Vaccine") {
-                        subjectView = new VaccineView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "CellSubset") {
-                        subjectView = new CellSubsetView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else if (type == "Pathogen") {
-                        subjectView = new PathogenView({
-                            model: {
-                                subject: subject,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else { // FIXME default to GeneView does not sound a good idea
-                        subjectView = new GeneView({
-                            model: {
-                                subject: subject,
+                                subject: shRna,
                                 tier: tier,
                                 role: role
                             }
                         });
                     }
-                    subjectView.render();
+                    rnaView.render();
                 }
             });
         },
 
-        showCenter: function (id) {
+        showTissueSample: function (name, role, tier) {
+            var tissueSample = new TissueSample({
+                id: name
+            });
+            tissueSample.fetch({
+                success: function () {
+                    var tissueSampleView = new TissueSampleView({
+                        model: {
+                            subject: tissueSample,
+                            tier: tier,
+                            role: role
+                        }
+                    });
+                    tissueSampleView.render();
+                }
+            });
+        },
+
+        showTranscript: function (name, role, tier) {
+            var transcript = new Transcript({
+                id: name
+            });
+            transcript.fetch({
+                success: function () {
+                    var transcriptView = new TranscriptView({
+                        model: {
+                            subject: transcript,
+                            tier: tier,
+                            role: role
+                        }
+                    });
+                    transcriptView.render();
+                }
+            });
+        },
+
+        showGene: function (species, symbol, role, tier) {
+            var gmodel = new Gene({
+                species: species,
+                symbol: symbol
+            });
+            gmodel.fetch({
+                success: function () {
+                    var modelView = new GeneView({
+                        model: {
+                            subject: gmodel,
+                            tier: tier,
+                            role: role
+                        }
+                    });
+                    modelView.render();
+                }
+            });
+        },
+
+        showCenter: function (name) {
             var center = new SubmissionCenter({
-                id: id
+                id: name
             });
             center.fetch({
                 success: function () {
@@ -3768,9 +3853,9 @@
             });
         },
 
-        showCenterProject: function (id, project) {
+        showCenterProject: function (name, project) {
             var center = new SubmissionCenter({
-                id: id
+                id: name
             });
             center.fetch({
                 success: function () {
@@ -3784,7 +3869,6 @@
                 }
             });
         },
-
 
         showSubmission: function (id) {
             var submission = new Submission({
@@ -3838,8 +3922,7 @@
             });
         },
 
-
-        showGenes: function () {
+        showGeneList: function () {
             var geneListView = new GeneListView();
             geneListView.render();
         },

@@ -2,6 +2,7 @@ package gov.nih.nci.ctd2.dashboard.importer.internal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
+import gov.nih.nci.ctd2.dashboard.model.Transcript;
+import gov.nih.nci.ctd2.dashboard.util.StableURL;
 
 @Component("proteinDataWriter")
 public class ProteinDataWriter implements ItemWriter<ProteinData> {
@@ -29,8 +32,15 @@ public class ProteinDataWriter implements ItemWriter<ProteinData> {
         ArrayList<DashboardEntity> entities = new ArrayList<DashboardEntity>();
 
 		for (ProteinData proteinData : items) {
+            Set<Transcript> transcripts = proteinData.transcripts;
+            for (Transcript tra : transcripts) {
+                String traStableURL = new StableURL().createURLWithPrefix("transcript", tra.getRefseqId());
+                tra.setStableURL(traStableURL);
+            }
             entities.addAll(proteinData.transcripts);
-			log.info("Storing protein: " + proteinData.protein.getDisplayName());
+            log.info("Storing protein: " + proteinData.protein.getDisplayName());
+            String stableURL = new StableURL().createURLWithPrefix("protein", proteinData.protein.getUniprotId());
+            proteinData.protein.setStableURL(stableURL);
             entities.add(proteinData.protein);
 		}
 

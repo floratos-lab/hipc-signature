@@ -27,6 +27,7 @@ public class SubjectImpl extends DashboardEntityImpl implements Subject {
 
     private Set<Synonym> synonyms = new LinkedHashSet<Synonym>();
     private Set<Xref> xrefs = new LinkedHashSet<Xref>();
+    private String stableURL = "";
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
@@ -61,5 +62,15 @@ public class SubjectImpl extends DashboardEntityImpl implements Subject {
 
     public void setXrefs(Set<Xref> xrefs) {
         this.xrefs = xrefs;
+    }
+
+    @Override
+    public String getStableURL() {
+        return stableURL;
+    }
+
+    @Override
+    public void setStableURL(String stableURL) {
+        this.stableURL = stableURL;
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.model.Gene;
+import gov.nih.nci.ctd2.dashboard.util.StableURL;
 
 @Component("geneDataWriter")
 public class GeneDataWriter implements ItemWriter<Gene> {
@@ -25,6 +26,12 @@ public class GeneDataWriter implements ItemWriter<Gene> {
 	private static final Log log = LogFactory.getLog(GeneDataWriter.class);
  
 	public void write(List<? extends Gene> items) throws Exception {
+        StableURL stableURL = new StableURL();
+        for (Gene gene : items) {
+            char species = gene.getOrganism().getDisplayName().charAt(0);
+            species = Character.toLowerCase(species);
+            gene.setStableURL(stableURL.createURLWithPrefix("gene/" + species, gene.getDisplayName()));
+        }
         dashboardDao.batchSave(items, batchSize);
         log.debug("Gene written");
 	}

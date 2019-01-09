@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class ObservationImpl extends DashboardEntityImpl implements Observation {
     private static final long serialVersionUID = 2091912684322924047L;
     private Submission submission;
+    private String stableURL;
 
     @ManyToOne(targetEntity = SubmissionImpl.class)
     public Submission getSubmission() {
@@ -19,5 +20,15 @@ public class ObservationImpl extends DashboardEntityImpl implements Observation 
 
     public void setSubmission(Submission submission) {
         this.submission = submission;
+    }
+
+    @Override
+    public String getStableURL() {
+        return stableURL;
+    }
+
+    @Override
+    public void setStableURL(String stableURL) {
+        this.stableURL = stableURL;
     }
 }

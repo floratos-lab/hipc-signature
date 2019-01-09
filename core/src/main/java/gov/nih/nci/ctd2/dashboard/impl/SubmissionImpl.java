@@ -17,6 +17,7 @@ public class SubmissionImpl extends DashboardEntityImpl implements Submission {
     private static final long serialVersionUID = -4124903642886056386L;
     private ObservationTemplate observationTemplate;
     private Date submissionDate;
+    private String stableURL;
 
     @ManyToOne(targetEntity = ObservationTemplateImpl.class)
     public ObservationTemplate getObservationTemplate() {
@@ -35,5 +36,15 @@ public class SubmissionImpl extends DashboardEntityImpl implements Submission {
 
     public void setSubmissionDate(Date submissionDate) {
         this.submissionDate = submissionDate;
+    }
+
+    @Override
+    public String getStableURL() {
+        return stableURL;
+    }
+
+    @Override
+    public void setStableURL(String stableURL) {
+        this.stableURL = stableURL;
     }
 }

@@ -14,4 +14,15 @@ import javax.persistence.Table;
 public class SubmissionCenterImpl extends DashboardEntityImpl implements SubmissionCenter {
 
     private static final long serialVersionUID = 8767476203010630863L;
+    private String stableURL;
+
+    @Override
+    public String getStableURL() {
+        return stableURL;
+    }
+
+    @Override
+    public void setStableURL(String stableURL) {
+        this.stableURL = stableURL;
+    }
 }

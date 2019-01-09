@@ -165,6 +165,44 @@ public class DashboardDaoImpl implements DashboardDao {
         return (T)object;
     }
 
+    final private static Map<String, String> typesWithStableURL = new HashMap<String, String>();
+    static {
+        typesWithStableURL.put("center", "SubmissionCenterImpl");
+        typesWithStableURL.put("animal-model", "AnimalModelImpl");
+        typesWithStableURL.put("cell-sample", "CellSampleImpl");
+        typesWithStableURL.put("compound", "CompoundImpl");
+        typesWithStableURL.put("protein", "ProteinImpl");
+        typesWithStableURL.put("rna", "ShRnaImpl");
+        typesWithStableURL.put("tissue", "TissueSampleImpl");
+        typesWithStableURL.put("transcript", "TranscriptImpl");
+        typesWithStableURL.put("submission", "SubmissionImpl");
+        typesWithStableURL.put("observation", "ObservationImpl");
+        typesWithStableURL.put("observedevidence", "ObservedEvidenceImpl");
+    }
+
+    @Override
+    public <T extends DashboardEntity> T getEntityByStableURL(String type, String stableURL) {
+        String implementationClass = typesWithStableURL.get(type);
+        log.debug("getEntityByStableURL "+type+" "+stableURL+" "+implementationClass);
+        if(implementationClass!=null) {
+            List<T> r = queryWithClass("from "+implementationClass+" where stableURL = :urlId", "urlId", stableURL);
+            if(r.size()==1) {
+                return r.get(0);
+            } else if(implementationClass.equals("ObservedEvidenceImpl") && r.size()>0) {
+                /* This is to take care of a special case in the current data model implementation:
+                multiple instances of the SAME evidence are created for multiple observations that refer to that evidence.
+                */
+                return r.get(0);
+            } else {
+                log.error("unexpected result number: "+r.size());
+                return null;
+            }
+        } else {
+            log.error("unrecognized type: "+type);
+            return null;
+        }
+    }
+
     @Override
     public Long countEntities(Class<? extends DashboardEntity> entityClass) {
         Session session = getSession();

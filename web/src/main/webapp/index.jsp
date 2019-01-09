@@ -351,7 +351,7 @@
     <script type="text/template" id="stories-tbl-row-tmpl">
         <tr>
             <td class="center-image-column">
-                <a href="#center/{{submission.observationTemplate.submissionCenter.id}}">
+                <a href="#{{submission.observationTemplate.submissionCenter.stableURL}}">
                     <img src="img/slogos/{{submission.observationTemplate.submissionCenter.displayName}}.png" alt="{{submission.observationTemplate.submissionCenter.displayName}}" title="{{submission.observationTemplate.submissionCenter.displayName}}" class="img-circle">
                 </a>
             </td>
@@ -365,7 +365,7 @@
             <td class="story-details">
                 <a target="_blank" href="<%=dataURL%>" id="file-link2-{{id}}">view full story</a>
                 <br>or<br>
-                <a href="#observation/{{id}}">see observation</a>
+                <a href="#{{stableURL}}">see observation</a>
             </td>
         </tr>
     </script>
@@ -373,12 +373,12 @@
     <script type="text/template" id="centers-tbl-row-tmpl">
         <tr>
             <td class="center-image-column">
-                <a href="#center/{{id}}">
+                <a href="#{{stableURL}}">
                     <img src="img/{{displayName}}.png" alt="{{displayName}}" title="{{displayName}}" class="img-polaroid">
                 </a>
             </td>
             <td class="center-name">
-                <a href="#center/{{id}}">
+                <a href="#{{stableURL}}">
                     {{displayName}}
                 </a>
             </td>
@@ -386,7 +386,7 @@
                 <span id="center-pi-{{id}}">loading...</span>
             </td>
             <td>
-                <a href="#center/{{id}}" id="submission-count-{{id}}">
+                <a href="#{{stableURL}}" id="submission-count-{{id}}">
                     loading...
                 </a>
             </td>
@@ -432,7 +432,7 @@
             </td>
             <td><small>{{submissionDate}}</small></td>
             <td width=150>
-                <a href="#submission/{{id}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>
+                <a href="#{{stableURL}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>
                 <div style="font-size:70%">[<a href="<%=dataURL%>submissions/{{displayName}}.zip">Download</a>]</div>
             </td>
         </tr>
@@ -484,7 +484,7 @@
                     </table>
                 </div>
                 <div class="span2">
-                    <a href="#/center/{{observationTemplate.submissionCenter.id}}">
+                    <a href="#{{observationTemplate.submissionCenter.stableURL}}">
                         <img src="img/{{observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" height=30 alt="{{observationTemplate.submissionCenter.displayName}}" title="{{observationTemplate.submissionCenter.displayName}}">
                     </a>
 
@@ -517,7 +517,7 @@
     </script>
 
     <script type="text/template" id="submission-obs-tbl-row-tmpl">
-        (<a class="button-link" href="#/observation/{{id}}">details &raquo;</a>)
+        (<a class="button-link" href="#{{stableURL}}">details &raquo;</a>)
     </script>
 
     <script type="text/template" id="submission-tbl-row-tmpl">
@@ -555,7 +555,7 @@
 
                 </div>
                 <div class="span2">
-                    <a href="#/center/{{submission.observationTemplate.submissionCenter.id}}"><img src="img/{{submission.observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" width="120" alt="{{submission.observationTemplate.submissionCenter.displayName}}"></a>
+                    <a href="#{{submission.observationTemplate.submissionCenter.stableURL}}"><img src="img/{{submission.observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" width="120" alt="{{submission.observationTemplate.submissionCenter.displayName}}"></a>
                     <br><br>
                     <img src="img/observation.png" alt="Observation" class="img-polaroid" width=120 height=120><br>
                 </div>
@@ -573,7 +573,7 @@
                         <th>Description</th>
                         <td>
                             {{submission.observationTemplate.description}}
-                            <small>(<a href="#submission/{{submission.id}}">details &raquo;</a>)</small>
+                            <small>(<a href="#{{submission.stableURL}}">details &raquo;</a>)</small>
                         </td>
                     </tr>
                     <tr id="obs-submission-summary">
@@ -614,7 +614,7 @@
 
     <script type="text/template" id="similar-submission-item-tmpl">
         <li class={{toomany}}>
-            <small><a href="#submission/{{id}}">{{observationTemplate.description}}</a></small>
+            <small><a href="#{{stableURL}}">{{observationTemplate.description}}</a></small>
         </li>
     </script>
 
@@ -626,7 +626,7 @@
     </script>
 
     <script type="text/template" id="summary-subject-replacement-tmpl">
-        <a class="summary-replacement" href="#/subject/{{id}}">{{displayName}}</a>
+        <a class="summary-replacement" href="#{{stableURL}}">{{displayName}}</a>
     </script>
 
     <script type="text/template" id="summary-evidence-replacement-tmpl">
@@ -1115,13 +1115,13 @@
                         <tr>
                             <th>Target Transcript</th>
                             <td>
-                                <a href="#subject/{{transcript.id}}">{{transcript.refseqId}}</a>
+                                <a href="#{{transcript.stableURL}}">{{transcript.refseqId}}</a>
                             </td>
                         </tr>
                         <tr>
                             <th>Target Gene</th>
                             <td>
-                                <a href="#subject/{{transcript.gene.id}}">{{transcript.gene.displayName}}</a>
+                                <a href="#{{transcript.gene.stableURL}}">{{transcript.gene.displayName}}</a>
                             </td>
                         </tr>
                         <tr>
@@ -1178,13 +1178,13 @@
                         <tr>
                             <th>Target Transcript</th>
                             <td>
-                                <a href="#subject/{{transcript.id}}">{{transcript.refseqId}}</a>
+                                <a href="#{{transcript.stableURL}}">{{transcript.refseqId}}</a>
                             </td>
                         </tr>
                         <tr>
                             <th>Target Gene</th>
                             <td>
-                                <a href="#subject/{{transcript.gene.id}}">{{transcript.gene.displayName}}</a>
+                                <a href="#{{transcript.gene.stableURL}}">{{transcript.gene.displayName}}</a>
                             </td>
                         </tr>
                         <tr>
@@ -1238,7 +1238,7 @@
                         <tr>
                             <th>Gene</th>
                             <td>
-                                <a href="#subject/{{gene.id}}">{{gene.displayName}}</a>
+                                <a href="#{{gene.stableURL}}">{{gene.displayName}}</a>
                             </td>
                         </tr>
                         <tr>
@@ -1545,7 +1545,7 @@
         <tr>
             <td id="subject-image-{{id}}"></td>
             <td>
-                <a href="#/subject/{{subject.id}}">
+                <a href="#{{subject.stableURL}}">
                     {{subject.displayName}}
                 </a>
             </td>
@@ -1559,7 +1559,7 @@
         <tr>
             <td id="subject-image-{{id}}"></td>
             <td id="subject.displayName-{{id}}">
-                <a href="#/subject/{{subject.id}}">
+                <a href="#{{subject.stableURL}}">
                     {{subject.displayName}}
                 </a>  &nbsp;
                 <a href="#" class="addGene-{{subject.displayName}} greenColor" title="Add gene to cart" >+</a>			  				 
@@ -1570,30 +1570,10 @@
         </tr>
     </script>
 
-    <script type="text/template" id="observedsubject-row-tmpl">
-        <tr>
-            <td>
-                <a href="#/observation/{{observation.id}}">
-                    {{observation.submission.submissionDate}}
-                </a>
-            </td>
-            <td>{{observedSubjectRole.subjectRole.displayName}}</td>
-            <td>
-                {{observation.submission.observationTemplate.description}}
-            </td>
-            <td><span class="badge tier-badge">Tier {{observation.submission.observationTemplate.tier}}</span></td>
-            <td>
-                <a href="#/center/{{observation.submission.observationTemplate.submissionCenter.id}}">
-                    <img alt="{{observation.submission.observationTemplate.submissionCenter.displayName}}" title="{{submission.observationTemplate.submissionCenter.displayName}}" width="150" src="img/{{observation.submission.submissionCenter.displayName}}.png">
-                </a>
-            </td>
-        </tr>
-    </script>
-
     <script type="text/template" id="observation-row-tmpl">
         <tr>
             <td>
-                <a href="#/observation/{{id}}">
+                <a href="#{{stableURL}}">
                     {{submission.submissionDate}}
                 </a>
             </td>
@@ -1602,7 +1582,7 @@
             </td>
             <td><span class="badge tier-badge">Tier {{submission.observationTemplate.tier}}</span></td>
             <td>
-                <a href="#/center/{{submission.observationTemplate.submissionCenter.id}}">
+                <a href="#{{submission.observationTemplate.submissionCenter.stableURL}}">
                     <img alt="{{submission.observationTemplate.submissionCenter.displayName}}" title="{{submission.observationTemplate.submissionCenter.displayName}}" width="150" src="img/{{submission.observationTemplate.submissionCenter.displayName}}.png">
                 </a>
                 <span class="hide-text">{{submission.observationTemplate.submissionCenter.displayName}}</span>
@@ -1634,79 +1614,73 @@
     </script>
 
     <script type="text/template" id="search-results-gene-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img src="img/gene.png" class="img-polaroid search-info" title="Gene" alt="Gene" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-protein-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img src="img/protein.png" class="img-polaroid search-info" title="Protein" alt="Protein" height="50" width="50">
         </a>
     </script>
 
 
     <script type="text/template" id="search-results-shrna-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img src="img/shrna.png" class="img-polaroid search-info" title="shRNA" alt="shRNA" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-sirna-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img src="img/sirna.png" class="img-polaroid search-info" title="siRNA" alt="siRNA" height="50" width="50">
         </a>
     </script>
 
-    <script type="text/template" id="search-results-transcript-image-tmpl">
-        <a href="#subject/{{id}}">
-            <img src="img/transcript.png" class="img-polaroid search-info" title="Transcript" alt="Transcript" height="50" width="50">
-        </a>
-    </script>
-
     <script type="text/template" id="search-results-compund-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img class="img-polaroid search-info" title="Compound" alt="Compound" width=50 height=50 src="<%=dataURL%>compounds/{{imageFile}}">
         </a>
     </script>
 
     <script type="text/template" id="search-results-animalmodel-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img src="img/animalmodel.png" title="Animal model" alt="Animal model" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-cellsample-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img src="img/cellsample.png" title="Cell sample" alt="Cell sample" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-tissuesample-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#{{stableURL}}">
             <img src="img/tissuesample.png" title="Tissue sample" alt="Tissue sample" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-vaccine-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#subject/{{id}}"><!-- TODO -->
             <img src="img/vaccine.png" title="Vaccine" alt="vaccine" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
     <script type="text/template" id="search-results-cellsubset-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#subject/{{id}}"><!-- TODO -->
             <img src="img/cellsubset.png" title="Cell Subset" alt="Cell Subset" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
     <script type="text/template" id="search-results-pathogen-image-tmpl">
-        <a href="#subject/{{id}}">
+        <a href="#subject/{{id}}"><!-- TODO -->
             <img src="img/pathogen.png" title="Pathogen" alt="Pathogen" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-unknown-image-tmpl">
-        <a href="#subject/{{id}}">
-            <img src="img/unknown.png" title="{{type}}" class="img-polaroid search-info" alt="{{type}}" height="50" width="50">
+        <a href="#{{stableURL}}">
+            <img src="img/unknown.png" title="{{subjectClass}}" class="img-polaroid search-info" alt="{{subjectClass}}" height="50" width="50">
         </a>
     </script>
 
@@ -1714,7 +1688,7 @@
         <tr>
             <td id="search-image-{{dashboardEntity.id}}"></td>
             <td>
-                <a href="#subject/{{dashboardEntity.id}}">{{dashboardEntity.displayName}}</a><br>
+                <a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a><br>
                 <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
             </td>
             <td>
@@ -1722,14 +1696,14 @@
                     <!-- here will go the synonyms -->
                 </ul>
             </td>
-            <td>{{dashboardEntity.type}}</td>
+            <td>{{dashboardEntity.class}}</td>
             <td>
                 <ul id="roles-{{dashboardEntity.id}}" data-score="{{dashboardEntity.score}}">
                     <!-- here will go the roles -->
                 </ul>
             </td>
             <td class="nonewline">
-                <a href="#subject/{{dashboardEntity.id}}" id="subject-observation-count-{{dashboardEntity.id}}">{{observationCount}}</a>
+                <a href="#{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers: Tier {{maxTier}}"></i>
             </td>
         </tr>
@@ -1739,7 +1713,7 @@
         <tr>
             <td id="search-image-{{dashboardEntity.id}}"></td>
             <td>
-                <a href="#subject/{{dashboardEntity.id}}">{{dashboardEntity.displayName}}</a>
+                <a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a>
                 <a href="#" class="addGene-{{dashboardEntity.displayName}} greenColor" title="Add gene to cart" >+</a>
                 <br>
                 <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
@@ -1837,13 +1811,13 @@
 
     <script type="text/template" id="search-submission-tbl-row-tmpl">
         <tr>
-            <td><a href="#submission/{{dashboardEntity.id}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
-            <td><a href="#submission/{{dashboardEntity.id}}">{{dashboardEntity.submissionDate}}</a></td>
+            <td><a href="#{{dashboardEntity.stableURL}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
+            <td><a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.submissionDate}}</a></td>
             <td>{{dashboardEntity.observationTemplate.description}}</td>
-            <td><a href="#submission/{{dashboardEntity.id}}"><img src="img/{{dashboardEntity.observationTemplate.submissionCenter.displayName}}.png" title="{{dashboardEntity.observationTemplate.submissionCenter.displayName}}" alt="{{dashboardEntity.observationTemplate.submissionCenter.displayName}}" height="50"></a></td>
+            <td><a href="#{{dashboardEntity.stableURL}}"><img src="img/{{dashboardEntity.observationTemplate.submissionCenter.displayName}}.png" title="{{dashboardEntity.observationTemplate.submissionCenter.displayName}}" alt="{{dashboardEntity.observationTemplate.submissionCenter.displayName}}" height="50"></a></td>
             <td><span class="badge tier-badge">Tier {{dashboardEntity.observationTemplate.tier}}</span></td>
             <td width=150>
-                <a href="#submission/{{dashboardEntity.id}}" id="search-observation-count-{{dashboardEntity.id}}">{{observationCount}} observations</a>
+                <a href="#{{dashboardEntity.stableURL}}" id="search-observation-count-{{dashboardEntity.id}}">{{observationCount}} observations</a>
             </td>
         </tr>
     </script>
@@ -1857,7 +1831,7 @@
     </script>
 
     <script type="text/template" id="transcript-item-tmpl">
-        <li class="synonym"><a href="#subject/{{id}}">{{refseqId}}</a></li>
+        <li class="synonym"><a href="#{{stableURL}}">{{refseqId}}</a></li>
     </script>
 
     <script type="text/template" id="count-story-tmpl">
@@ -1893,7 +1867,7 @@
                         <a target="_blank" href="<%=dataURL%>" id="file-link-{{id}}">
                             view full story</a>
                     |
-                    <a href="#observation/{{id}}">see observation</a>)
+                    <a href="#{{stableURL}}">see observation</a>)
                 </p>
             </div>
             <div class="span4">
@@ -1994,7 +1968,7 @@
                     ( <a class="dropdown-toggle" data-toggle="dropdown" href="#">view mra file<b class="caret"></b></a> )
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li>
-                            <a href="#/evidence/{{id}}" title="Open Master Regulator View" class="desc-tooltip">
+                            <a href="#{{stableURL}}" title="Open Master Regulator View" class="desc-tooltip">
                                 mra view
                             </a>
                         </li>
@@ -2019,7 +1993,7 @@
                             <th width="20">&nbsp;</th>
                             <th>Master Regulator</th>
                             <th>Score</th>
-                            <th>Markers in regulon</th>                             
+                            <th>Markers in regulon</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -2027,28 +2001,28 @@
                         </tbody>
                      </table>  
                  </div>
-                 <div class="span1">                                   
+                 <div class="span1">
                     <a href="javascript:history.back()">Back</a>
-                 </div>              
+                 </div>
              </div>
                    <br/>
                    <br/>
-                   <div>                     
+                   <div>
 					  <b>Nodes Limit:</b>	
                       <select id="cytoscape-node-limit">
                            <option value="25">25</option>
-                           <option value="50">50</option>                        
-                           <option value="100" selected="selected">100</option>                                             
+                           <option value="50">50</option>
+                           <option value="100" selected="selected">100</option>
                            <option value="200">200</option>
                            <option value="300">300</option>
                            <option value="400">400</option>
-                           <option value="500">500</option>                                                     
+                           <option value="500">500</option>
                       </select>					
 				      <b>&nbsp;&nbsp;&nbsp;</b>  
                       <b>Layout:</b>	
                       <select id="cytoscape-layouts">
-                           <option value="arbor" selected="selected">Arbor</option>                         
-                           <option value="grid">Grid</option>                           
+                           <option value="arbor" selected="selected">Arbor</option>
+                           <option value="grid">Grid</option>
                            <option value="random">Random</option>
                            <option value="circle">Circle</option>
                       </select>
@@ -2088,7 +2062,7 @@
     
     <script type="text/template" id="mra-barcode-view-row-tmpl">
         <tr>             
-			<td><canvas id="draw-{{entrezId}}" width="450" height="36"></canvas></td>				  
+			<td><canvas id="draw-{{entrezId}}" width="450" height="36"></canvas></td>
             <td class="da-color-{{entrezId}}"></td>
             <td class="de-color-{{entrezId}}"></td>
             <td>{{deRank}}</td>
@@ -2100,9 +2074,9 @@
         <div id="mra_progress">
             <img id="mra_progress_indicator" class="centeredImage" src="img/progress_indicator.gif" width="30" height="30" alt="Please wait ......">
         </div>
-        <div id="cytoscape">            
+        <div id="cytoscape">
         </div>
-        <div class="well cytoscape-legend">       
+        <div class="well cytoscape-legend">
             <svg width="350" height="30"xmlns="http://www.w3.org/2000/svg">
             <circle cx="20" cy="15" r="10" fill="white" stroke="grey" stroke-width="2"/>
             <text x="40" y="20" fill="grey">TF</text>
@@ -2246,7 +2220,7 @@
             <p><a href="#" class="close" data-dismiss="alert">&times;</a></p>
             <p>
                 The table below lists all submissions that belong to the project "<b>{{filterProject}}</b>".
-                To view all submissions from this center, please click <a href="#center/{{centerId}}">here</a>.
+                To view all submissions from this center, please click <a href="#{{centerStableURL}}">here</a>.
             </p>
         </div>
     </script>
@@ -2285,68 +2259,68 @@
                     <select id="geneNames" class="geneSelectList" size="6" 
 								multiple></select>
                     </br></br>
-                    <a href="#" id="addGene">Add Gene</a>                         
-                    <a href="#" id="deleteGene">Delete Gene</a>                   
-                    </br></br>               
-                    <a href="#" id="clearList">Clear List</a>                    
-                    <a href="#" id="loadGenes">Load Genes from File</a>                                
+                    <a href="#" id="addGene">Add Gene</a>
+                    <a href="#" id="deleteGene">Delete Gene</a>
+                    </br></br>
+                    <a href="#" id="clearList">Clear List</a>
+                    <a href="#" id="loadGenes">Load Genes from File</a>
                     </br><input id="geneFileInput" type="file" style="visibility:hidden" /> 
-                    </br>                  	   	   
-                    <a href="#cnkb-query" id="cnkb-query">Find Gene Interactions in  Networks (CNKB)</a>                      
+                    </br>
+                    <a href="#cnkb-query" id="cnkb-query">Find Gene Interactions in  Networks (CNKB)</a>
                  </div>
 
-                 <div class="span1">                                   
+                 <div class="span1">
                     <a href="javascript:history.back()">Back</a>
-                 </div>              
+                 </div>
              </div>
 
-            <div class="modal hide fade" id="addgene-modal">             
-                <div class="modal-body">                        
+            <div class="modal hide fade" id="addgene-modal">
+                <div class="modal-body">
                     <br>
-                    Add gene symbols                         
-                    <input id="gene-symbols" placeholder="e.g. CTNNB1" class="input-xlarge">                              
-                    <button id="add-gene-symbols" class="btn">Submit</button><br><br>                    
+                    Add gene symbols
+                    <input id="gene-symbols" placeholder="e.g. CTNNB1" class="input-xlarge">
+                    <button id="add-gene-symbols" class="btn">Submit</button><br><br>
                 </div>
                 <div class="modal-footer">
                      
                     <button class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
-            </div>           
-      </script>     
+            </div>
+      </script>
       
       <script type="text/template" id="cnkb-query-tmpl" >
          <div class="container common-container" id="cnkbquery-container" > 
                     
-                    <div class="span10">                       
+                    <div class="span10">
                        <h3>Cellular Network Knowledge Base</h3>
 
-                       <medium>Select Interactome:</medium>                  
+                       <medium>Select Interactome:</medium>
                        <small id="queryDescription" class="cnkbDescription"></small> 
-                       </br>                  
+                       </br>
                        <select id="interactomeList" name="interactomes"
 						    class="cnkbSelectList" size="4"></select>
                        </br>
                        <small id="interactomeDescription" class="cnkbDescription">
                         &nbsp;&nbsp;
-                       </small>             
+                       </small>
                      </br></br>
                       
                     <medium class="labelDisable" id="selectVersion"> Select Version: </medium>
-                    </br>                
+                    </br>
                     <select id="interactomeVersionList" name="interactomeVersions"
 						 class="cnkbSelectList" size="4"></select>
                      </br>
                     <small id="versionDescription" class="cnkbDescription">
                         &nbsp;&nbsp;
-                    </small>             
+                    </small>
                      </br>
 		             </br>
                      <a href="#cnkb-result" id="cnkb-result">Submit</a>
                  </div>
 
-                 <div class="span1">                                   
+                 <div class="span1">
                     <a href="javascript:history.back()">Back</a>
-                 </div>              
+                 </div>
              </div>
       </script>
       
@@ -2354,64 +2328,64 @@
          <div class="container common-container" id="cnkbresult-container" > 
                <div class="row">
                   <div class="span10">
-                     <h3>Cellular Network Knowledge Base</h2>                                  			                    
+                     <h3>Cellular Network Knowledge Base</h2>
                      <a href="#" id="cnkbExport"  target="_blank" title="Export all selected interaction to a SIF file."> Export </a>
                      <br>
-                     <form method="POST" action="cnkb/download" id="cnkbExport-form" style="display: none;">                           
+                     <form method="POST" action="cnkb/download" id="cnkbExport-form" style="display: none;">
                              <input type="hidden" name="interactome" id="interactome">
                              <input type="hidden" name="version" id="version">
-                             <input type="hidden" name="selectedGenes" id="selectedGenes">  
+                             <input type="hidden" name="selectedGenes" id="selectedGenes">
                              <input type="hidden" name="interactionLimit" id="interactionLimit">
-                             <input type="hidden" name="throttle" id="throttle">                             
-                     </form>                    
+                             <input type="hidden" name="throttle" id="throttle">
+                     </form>
                      <table id="cnkb-result-grid" class="table table-bordered table-striped ">
                         <thead> 
-                            <tr>                       
+                            <tr>
                             <th><input type="checkbox" id="checkbox_selectall" title="select or deselect all checkboxs"></th>
                             <th>GENE</th>
                             </tr>
                          </thead>
-                         <tbody>                            
+                         <tbody>
                          </tbody>
                       </table>  
                    </div>
-                   <div class="span1">                                   
+                   <div class="span1">
                       <a href="javascript:history.back()">Back</a>
-                   </div>              
-                </div>                  
+                   </div>
+                </div>
                 <br/>
 
                 <div id="cnkb_data_progress" align="center">data is loading ......
                     <img id="cnkb_data_progress_indicator" src="img/progress_indicator.gif" width="20" height="20" alt="Please wait ......"><br>
                     <br/><br/><br/>
                 </div>
-                <div>         
+                <div>
 					<b>Interactions Limit:</b>	
                     <select id="cytoscape-node-limit">
                            <option value="25">25</option>
-                           <option value="50">50</option>                        
-                           <option value="100" selected="selected">100</option>                                             
+                           <option value="50">50</option>
+                           <option value="100" selected="selected">100</option>
                            <option value="200">200</option>
                            <option value="300">300</option>
-                           <option value="400">400</option>                                                                        
-                     </select>					
+                           <option value="400">400</option>
+                     </select>
 				  
                      <b>Layout:</b>	
                      <select id="cytoscape-layouts">
-                           <option value="arbor" selected="selected">Arbor</option>                         
-                           <option value="grid">Grid</option>                           
+                           <option value="arbor" selected="selected">Arbor</option>
+                           <option value="grid">Grid</option>
                            <option value="random">Random</option>
                            <option value="circle">Circle</option>
                      </select>
                      
                      <a href="#" id="createnetwork"  target="_blank" title="please select cnkb interactions to create network">Create Network</a>   				 
-                     <br/>	                    
+                     <br/>
 			         <small><font color="grey">Confidence threshold: </font></small>
                      <small id="throttle-input"><font color="grey">e.g. 0.01 </font></small>	
 				   	 <div id="createnw_progress_indicator" align="center" style="display: none;">data is loading ......
                          <img id="cnkb_data_progress_indicator" src="img/progress_indicator.gif" width="20" height="20" alt="Please wait ......"><br>
                      </div>
-                  </div>         
+                  </div>
                   <br/>	
              </div>
       </script>
@@ -2428,10 +2402,10 @@
         <div id="cnkb_cytoscape_progress">
             <img id="cnkb_cytoscape_progress_indicator" class="centeredImage" src="img/progress_indicator.gif" width="30" height="30" alt="Please wait ......">
         </div>
-        <div id="cytoscape">            
+        <div id="cytoscape">
         </div>
-        <div id="cnkb-cytoscape-legend" class="well cytoscape-legend">       
-            <svg  width="500" height="30"xmlns="http://www.w3.org/2000/svg">            
+        <div id="cnkb-cytoscape-legend" class="well cytoscape-legend">
+            <svg  width="500" height="30"xmlns="http://www.w3.org/2000/svg">
                {{svgHtml}}
             </svg>
             <br/>
@@ -2441,7 +2415,7 @@
      
     <script type="text/template" id="gene-cart-help-tmpl" >
          <div class="container common-container" id="cnkbhelp-container" > 
-               <div class="span10">                       
+               <div class="span10">
                     <h3>Gene Cart Help</h3>
                     <p>The Gene Cart allows users to build a list of genes and query the Cellular Networks Knowledge Base (CNKB) for molecular interactions involving these genes.  The CNKB is a repository of molecular interactions networks. It contains computationally-derived networks obtained by applying state of the art Systems and Structure Biology algorithms from the laboratories of Drs. Andrea Califano and Barry Honig at Columbia University. A detailed <a target="_blank" href="http://wiki.c2b2.columbia.edu/workbench/index.php/Cellular_Networks_KnowledgeBase">description of the CNKB</a> is available which also describes how the CNKB can be accessed from within the software platform <a target="_blank" href="http://www.geworkbench.org">geWorkbench</a>.</p>
                     <p>In the Observations for a particular Dashboard submission, those entries that are genes will have a green "+" sign to right of the gene symbol. Clicking this "+" sign will add the gene to the Gene Cart. The Gene Cart is limited to 25 genes.</p>
@@ -2450,9 +2424,9 @@
                     <p>Several layout options are available for Cytoscape and can be selected using the "Layout" pulldown.</p>
                     <p>In Cytoscape.js, several common interaction types have been assigned specific colors used for the lines representing them, and these will be shown on the legend of the graph.  The genes used in the CNKB query (hub genes) will be highlighted in yellow.</p>
                 </div>
-                <div class="span1">                                   
+                <div class="span1">
                    <a href="javascript:history.back()">Back</a>
-                </div>              
+                </div>
          </div>
      </script>
      
@@ -2514,7 +2488,7 @@
     </script>
 
     <script id="tbl-project-title-tmpl" type="text/template">
-        <tr class="group"><td colspan="5"><a href="#center/{{centerId}}/{{project}}">Project: {{project}}</a></td></tr>
+        <tr class="group"><td colspan="5"><a href="#{{centerStableURL}}/{{project}}">Project: {{project}}</a></td></tr>
     </script>
 
     <!-- end of templates -->
@@ -2533,10 +2507,10 @@
     <script src="js/jquery.easing-1.3.pack.js"></script>
     <script src="js/jquery.expander.min.js"></script>
     <script src="js/arbor.js"></script>
-    <script src="js/cytoscape.min.js"></script>  
+    <script src="js/cytoscape.min.js"></script>
     <script src="js/encoder.js"></script>
-    <script src="js/jquery.contextMenu.js"></script>   
-    <script src="js/jquery.ui.position.js"></script>    
+    <script src="js/jquery.contextMenu.js"></script>
+    <script src="js/jquery.ui.position.js"></script>
     <script src="js/hipc-signature.js"></script>
 
   </body>

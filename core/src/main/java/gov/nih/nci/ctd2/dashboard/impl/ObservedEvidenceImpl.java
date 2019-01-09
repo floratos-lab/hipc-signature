@@ -19,6 +19,7 @@ public class ObservedEvidenceImpl extends DashboardEntityImpl implements Observe
     private Evidence evidence;
     private ObservedEvidenceRole observedEvidenceRole;
     private Observation observation;
+    private String stableURL;
 
     @ManyToOne(targetEntity = EvidenceImpl.class)
     public Evidence getEvidence() {
@@ -45,5 +46,15 @@ public class ObservedEvidenceImpl extends DashboardEntityImpl implements Observe
 
     public void setObservation(Observation observation) {
         this.observation = observation;
+    }
+
+    @Override
+    public String getStableURL() {
+        return stableURL;
+    }
+
+    @Override
+    public void setStableURL(String stableURL) {
+        this.stableURL = stableURL;
     }
 }
