@@ -11,3 +11,5 @@ echo start subject ranking %time%
 java -jar admin\target\dashboard-admin.jar -r
 
 echo end time %time%
+mysqldump -u root -p%DB_PASSWORD% hipc_signature > hipc_signature.sql
+echo db dumped %time%
