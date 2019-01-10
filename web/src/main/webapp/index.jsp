@@ -21,19 +21,12 @@
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/jquery.dataTables.css" type="text/css" />
+    <link rel="stylesheet" href="css/datatables.min.css" type="text/css" />
     <link rel="stylesheet" href="css/buttons.dataTables.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/jquery.contextMenu.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/jquery.contextMenu.min.css" type="text/css" />
     <link rel="stylesheet" href="css/ctd2.css" type="text/css" />
     <link rel="stylesheet" href="css/hipc.css?ts=2018" type="text/css" />
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="shortcut icon" href="img/favicon.png" />
   </head>
 
   <body>
@@ -74,15 +67,17 @@
             <li>
             <form class="form-search" id="omnisearch" style="margin:0px">
                 <div class="input-append">
-                    <input type="text" id="omni-input" class="span3 search-query" title="Search" placeholder="e.g. CTNNB1 or ABT-737" style="padding:0px">
+                    <input type="text" id="omni-input" class="search-query" title="Search" placeholder="e.g. CTNNB1 or ABT-737" style="padding:0px">
                     <button type="submit" class="btn search-button" style="padding:0px">Search</button>
-                    <span class="hide" id="search-help-content">
+                    <span class="d-none" id="search-help-content">
                         <p>Please enter the keyword you would like to search on the website.</p>
                         <strong>Examples:</strong>
                         <ul>
-                          <li><em>Gene: </em> <a href="#search/CTNNB1">CTNNB1</a> or <a href="#search/YAP*">YAP*</a></li>
-                          <li><em>Compound: </em> <a href="#search/ABT-737">ABT-737</a></li>
-                          <li><em>Cell Sample: </em> <a href="#search/HPBALL">HPBALL</a></li>
+                            <li><em>Gene: </em> <a href="#search/CTNNB1">CTNNB1</a></li>
+                            <li><em>Gene: </em> <a href="#search/YAP*">YAP*</a></li>
+                            <li><em>Compound: </em> <a href="#search/dasatinib">dasatinib</a></li>
+                            <li><em>Cell Sample: </em> <a href="#search/OVCAR8">OVCAR8</a></li>
+                            <li><em>Multiple: </em> <a href="#search/dexamethasone AKT1">dexamethasone AKT1</a></li>
                         </ul>
                         <br>
                     </span>
@@ -96,13 +91,12 @@
 
     <!-- NAVBAR
     ================================================== -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.ba-hashchange.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
     <script>
     $(function() {
         // Bind an event to window.onhashchange that, when the hash changes, 
         // gets the hash and alters class of desired navlinks
-        $(window).hashchange(function() {
+        window.onhashchange  = function() {
             var hash = location.hash || '#';
             $('[id^="navlink-"]').each(function() {
                 // navbar regular items
@@ -141,10 +135,10 @@
                     });
                 }
             });
-        });
+        };
         // Since the event is only triggered when the hash changes, we need to trigger
         // the event now, to handle the hash the page may have been loaded with.
-        $(window).hashchange();
+        window.onhashchange();
     });
     </script>
 
@@ -175,13 +169,17 @@
        </footer>
     </div>
      
-    <div class="modal hide fade" id="alert-message-modal">  <!-- a hidden div for showing alert message -->          
+    <div class="modal hide fade" id="alert-message-modal">  <!-- a hidden div for showing alert message -->
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
         <div class="modal-body" >
             <br><medium id="alertMessage"></medium>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
+    </div>
+    </div>
     </div>
 
     <div class="modal hide fade" id="popup-textarea-modal">
@@ -217,7 +215,7 @@
         <div class="overview-container" style="background-color:#f1f5de;background-image:url('./images/bg_feature.png');background-repeat:repeat-x;padding-top: 12px;">
             <div class="container overview-box">
                 <div class="row">
-                    <div class="span12">
+                    <div class="col-9">
                         <div class="featurette" id="overview-text">
                             <a href="https://www.immuneprofiling.org/hipc/page/show">
                             <img class="img-polaroid pull-left" src="img/logos/hipc_overall.png" alt="HIPC general image" title="HIPC general image" style="width:auto;height:auto">
@@ -236,8 +234,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="span3">
-                        <img src="img/Autoimmune Diseases_0.jpg" style="vertical-align: middle">
+                    <div class="col-3">
+                        <img src="img/Autoimmune Diseases_0.jpg" class="title-image">
                     <div>
 
                 </div>
@@ -249,27 +247,27 @@
         <div style="background-color:#f1f5de">
         <div class="container marketing ctd2-boxes">
           <div style="display:table">
-            <div class="span4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+            <div class="col-4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Genes</h4>
                 <p>
                     Explore genes identified as components of vaccine response signatures
                 </p>
                 <a class="btn btn-success btn-block" href="#explore/response-agent/Gene" style="position:absolute;bottom:0;">Browse &raquo;</a>
-            </div><!-- /.span3 -->
-            <div class="span4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+            </div>
+            <div class="col-4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Pathogens</h4>
                 <p>
                     Explore pathogens targeted in vaccination response studies
                 </p>
                 <a class="btn btn-info btn-block" href="#explore/pathogen/Pathogen" style="position:absolute;bottom:0;">Browse &raquo;</a>
-            </div><!-- /.span3 -->
-              <div class="span4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+            </div>
+              <div class="col-4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
                   <h4>Vaccines</h4>
                   <p>
                     Explore vaccines investigated in vaccination response studies
                   </p>
                   <a class="btn btn-warning btn-block" href="#explore/vaccine/Vaccine" style="position:absolute;bottom:0;">Browse &raquo;</a>
-              </div><!-- /.span3 -->
+              </div>
 
           </div><!-- /.row -->
         </div><!-- /.container -->
@@ -285,7 +283,7 @@
                         <h3 class="homepage-stories-title">Recent Stories</h3>
                         <div class="well carousel-well">
                             <div class="tab-content stories-tabs">
-                                <div class="container tab-pane active fade in" id="story-1"></div>
+                                <div class="container tab-pane active fade in show" id="story-1"></div>
                                 <div class="container tab-pane fade" id="story-2"></div>
                                 <div class="container tab-pane fade" id="story-3"></div>
                                 <div class="container tab-pane fade" id="story-4"></div>
@@ -396,10 +394,10 @@
     <script type="text/template" id="center-tmpl">
         <div class="container common-container" id="center-submission-container">
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <h2 class="center-title">{{displayName}} <small>submissions</small></h2>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <img src="img/{{displayName}}.png" title="{{displayName}}" alt="{{displayName}}" class="img-polaroid" width="200">
                 </div>
             </div>
@@ -440,15 +438,8 @@
 
     <script type="text/template" id="submission-tmpl">
         <div class="container common-container" id="submission-container">
-            <div class="alert alert-block hide" id="redirect-message">
-
-                <p>There is only a single observation in this submission.
-                    Redirecting to the observation page in <b id="seconds-left">10</b> seconds.
-                    <a href="#" id="cancel-redirect">(cancel)</a>
-                </p>
-            </div>
             <div class="row">
-                <div class="span10">
+                <div class="col-10">
                     <h2>
                         Submission
                         <span class="badge-tier-container">
@@ -483,7 +474,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span2">
+                <div class="col-2">
                     <a href="#{{observationTemplate.submissionCenter.stableURL}}">
                         <img src="img/{{observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" height=30 alt="{{observationTemplate.submissionCenter.displayName}}" title="{{observationTemplate.submissionCenter.displayName}}">
                     </a>
@@ -532,7 +523,7 @@
         <div class="container common-container" id="observation-container">
 
             <div class="row">
-                <div class="span10">
+                <div class="col-10">
                     <h2>Observation <small>(Tier {{submission.observationTemplate.tier}})</small></h2>
                     <blockquote>
                         <p id="observation-summary"></p>
@@ -554,7 +545,7 @@
                     </table>
 
                 </div>
-                <div class="span2">
+                <div class="col-2">
                     <a href="#{{submission.observationTemplate.submissionCenter.stableURL}}"><img src="img/{{submission.observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" width="120" alt="{{submission.observationTemplate.submissionCenter.displayName}}"></a>
                     <br><br>
                     <img src="img/observation.png" alt="Observation" class="img-polaroid" width=120 height=120><br>
@@ -562,8 +553,8 @@
             </div>
 
 
-            <h3>Submission <small>(<a href="#" id="small-show-sub-details">show details</a><a href="#" id="small-hide-sub-details" class="hide">hide details</a>)</small></h3>
-            <div id="obs-submission-details" class="hide">
+            <h3>Submission <small>(<a href="#" id="small-show-sub-details">show details</a><a href="#" id="small-hide-sub-details">hide details</a>)</small></h3>
+            <div id="obs-submission-details">
                 <table id="obs-submission-details-grid" class="table table-bordered table-striped">
                     <tr>
                         <th>Project</th>
@@ -748,7 +739,7 @@
             <td>{{observedEvidenceRole.displayText}}</td>
             <td>
                 <div class="image-evidence-wrapper">
-                    <a href="<%=dataURL%>{{evidence.filePath}}" target="_blank" title="{{observedEvidenceRole.displayText}}" rel="evidence-images" class="evidence-images">
+                    <a href="<%=dataURL%>{{evidence.filePath}}" target="_blank" data-caption="{{observedEvidenceRole.displayText}}" rel="evidence-images" class="evidence-images">
                         <img src="<%=dataURL%>{{evidence.filePath}}" class="img-polaroid img-evidence" height="140" title="File" alt="File">
                     </a>
                 </div>
@@ -809,7 +800,7 @@
             <h2>{{displayName}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="pathogen-details-grid" class="table table-bordered table-striped">
                         <tr><th>Taxonomy ID</th><td>{{taxonomyId}}</td></tr>
                         <tr><th>Rank</th><td>{{rank}}</td></tr>
@@ -821,7 +812,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>Pathogen</h4>
                     <img src="img/pathogen.png" class="img-polaroid" width=175 height=175 alt="Pathogen">
                 </div>
@@ -861,7 +852,7 @@
             <h2>{{displayName}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="gene-details-grid" class="table table-bordered table-striped">
                         <tr><th>Cell Ontology ID</th><td>{{cellOntologyId}}</td></tr>
                         <tr><th>Definition</th><td>{{definition}}</td></tr>
@@ -874,7 +865,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>Cell Subset</h4>
                     <img src="img/cellsubset.png" class="img-polaroid" width=175 height=175 alt="Cell Subset">
                 </div>
@@ -914,7 +905,7 @@
             <h2>{{displayName}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="gene-details-grid" class="table table-bordered table-striped">
                         <tr><th>Vaccine ID</th><td>{{vaccineID}}</td></tr>
                         <tr><th>Product Name</th><td>{{productName}}</td></tr>
@@ -928,7 +919,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>Vaccine</h4>
                     <img src="img/vaccine.png" class="img-polaroid" width=175 height=175 alt="Vaccine">
                 </div>
@@ -968,7 +959,7 @@
              <h2>{{displayName}}</h2>
 
              <div class="row">
-                 <div class="span9">
+                 <div class="col-9">
                      <table id="gene-details-grid" class="table table-bordered table-striped">
                          <tr>
                              <th>Gene symbol<div style="font-size:10px; font-style:italic">(from HGNC)</div></th>
@@ -998,7 +989,7 @@
                          </tr>
                      </table>
                  </div>
-                 <div class="span3">
+                 <div class="col-3">
                      <h4>Gene</h4>
                      <img src="img/gene.png" class="img-polaroid" width=175 height=175 alt="Gene">
                  </div>
@@ -1037,7 +1028,7 @@
             <h2>{{displayName}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="protein-details-grid" class="table table-bordered table-striped">
                         <tr>
                             <th>Gene symbol<div style="font-size:10px; font-style:italic">(from HGNC)</div></th>
@@ -1067,7 +1058,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>Protein</h4>
                     <img src="img/protein.png" class="img-polaroid" width=175 height=175 alt="Protein">
                 </div>
@@ -1106,7 +1097,7 @@
             <h2>{{displayName}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="shrna-details-grid" class="table table-bordered table-striped">
                         <tr>
                             <th>Target Sequence</th>
@@ -1130,7 +1121,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>shRNA</h4>
                     <img src="img/shrna.png" class="img-polaroid" width=175 height=175 alt="shRNA">
                 </div>
@@ -1169,7 +1160,7 @@
             <h2>{{displayName}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="shrna-details-grid" class="table table-bordered table-striped">
                         <tr>
                             <th>Target Sequence</th>
@@ -1193,7 +1184,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>siRNA</h4>
                     <img src="img/sirna.png" class="img-polaroid" width=175 height=175 alt="siRNA">
                 </div>
@@ -1233,7 +1224,7 @@
             <h2>{{refseqId}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="transcript-details-grid" class="table table-bordered table-striped">
                         <tr>
                             <th>Gene</th>
@@ -1253,7 +1244,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>Transcript</h4>
                     <img src="img/transcript.png" class="img-polaroid" width=175 height=175 alt="Transcript">
                 </div>
@@ -1292,7 +1283,7 @@
             <h2>{{displayName}}</h2>
 
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="tissuesample-details-grid" class="table table-bordered table-striped">
                         <tr>
                             <th>Lineage</th>
@@ -1312,7 +1303,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>Tissue Sample</h4>
                     <img src="img/tissuesample.png" class="img-polaroid" width=175 height=175 alt="Tissue sample">
                 </div>
@@ -1351,7 +1342,7 @@
         <div class="container common-container" id="cellsample-container">
             <h2>{{displayName}}</h2>
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="cellsample-details-grid" class="table table-bordered table-striped">
                         <tr>
                             <th>Name</th>
@@ -1381,7 +1372,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                         <h4>Cell Sample</h4>
                         <img src="img/cellsample.png" class="img-polaroid" width=175 height=175 alt="Cell sample">
                 </div>
@@ -1419,7 +1410,7 @@
         <div class="container common-container" id="animalmodel-container">
             <h2>{{displayName}}</h2>
             <div class="row">
-                <div class="span9">
+                <div class="col-9">
                     <table id="animalmodel-details-grid" class="table table-bordered table-striped">
                         <tr>
                             <th>Name</th>
@@ -1437,7 +1428,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="span3">
+                <div class="col-3">
                     <h4>Animal Model</h4>
                     <img src="img/animalmodel.png" class="img-polaroid" width=175 height=175 alt="Animal model">
                 </div>
@@ -1476,7 +1467,7 @@
               <h2>{{displayName}}</h2>
 
               <div class="row">
-                  <div class="span9">
+                  <div class="col-9">
                       <table id="compund-details-grid" class="table table-bordered table-striped">
                           <tr>
                               <th>Name</th>
@@ -1504,7 +1495,7 @@
                           </tr>
                       </table>
                   </div>
-                  <div class="span3">
+                  <div class="col-3">
                       <h4>Compound</h4>
                       <a href="<%=dataURL%>compounds/{{imageFile}}" target="_blank" class="compound-image" title="Compound: {{displayName}}">
                         <img class="img-polaroid" width=200 src="<%=dataURL%>compounds/{{imageFile}}" alt="Compound: {{displayName}}">
@@ -1782,7 +1773,7 @@
                 </table>
             </div>
 
-            <div id="observation-search-results" class="hide">
+            <div id="observation-search-results" class="d-none">
                 <h3>Observations Matching all Search Terms</h3>
                 <table id="searched-observation-grid" class="table table-bordered table-striped observations">
                     <thead>
@@ -1856,7 +1847,7 @@
 
     <script type="text/template" id="story-homepage-tmpl">
         <div class="row one-story">
-            <div class="span8">
+            <div class="col-8">
                 <h4>{{submission.observationTemplate.description}}</h4>
                 <!--<p class="lead stories-lead">{{submission.observationTemplate.description}}</p>-->
                 <p id="story-summary-{{id}}" class="stories-text">
@@ -1870,7 +1861,7 @@
                     <a href="#{{stableURL}}">see observation</a>)
                 </p>
             </div>
-            <div class="span4">
+            <div class="col-4">
                 <img class="img-circle" src="img/slogos/{{submission.observationTemplate.submissionCenter.displayName}}.png" alt="{{submission.observationTemplate.submissionCenter.displayName}}" title="{{submission.observationTemplate.submissionCenter.displayName}}" height=150>
             </div>
         </div>
@@ -1897,8 +1888,8 @@
             <div id="explore-blurb"></div>
             <div class="container" style="padding-bottom:5px;">
             <!--
-            <button type="button" class="btn btn-default" id="reset-ordering">Reset initial ordering</button>
-            <button type="button" class="btn btn-default" id="customize-roles">Select Roles</button>
+            <button type="button" class="btn btn-outline-dark" id="reset-ordering">Reset initial ordering</button>
+            <button type="button" class="btn btn-outline-dark" id="customize-roles">Select Roles</button>
             -->
             </div>
 
@@ -1925,9 +1916,11 @@
         </div>
 
         <div class="modal hide fade" id="role-modal">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3>Select roles</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
                 <p>Please select roles of interest from the list below.</p>
@@ -1946,6 +1939,8 @@
             <div class="modal-footer">
                 <button type="btn btn-block btn-info" id="select-roles-button">Select</button>
             </div>
+        </div>
+        </div>
         </div>
     </script>
 
@@ -1984,7 +1979,7 @@
     <script type="text/template" id="mra-view-tmpl" mra-data-url="<%=dataURL%>">
          <div class="container common-container" id="mra-container" > 
                <div class="row">
-                 <div class="span10">
+                 <div class="col-10">
                     <h2>Master Regulator View</h2>
                    
                     <table id="master-regulator-grid" class="table table-bordered table-striped ">
@@ -2001,7 +1996,7 @@
                         </tbody>
                      </table>  
                  </div>
-                 <div class="span1">
+                 <div class="col-1">
                     <a href="javascript:history.back()">Back</a>
                  </div>
              </div>
@@ -2021,7 +2016,7 @@
 				      <b>&nbsp;&nbsp;&nbsp;</b>  
                       <b>Layout:</b>	
                       <select id="cytoscape-layouts">
-                           <option value="arbor" selected="selected">Arbor</option>
+                           <option value="cola" selected="selected">Cola</option>
                            <option value="grid">Grid</option>
                            <option value="random">Random</option>
                            <option value="circle">Circle</option>
@@ -2071,10 +2066,11 @@
     </script>   
     
     <script type="text/template" id="mra-cytoscape-tmpl">
+        <div class="cytoscape-container">
         <div id="mra_progress">
             <img id="mra_progress_indicator" class="centeredImage" src="img/progress_indicator.gif" width="30" height="30" alt="Please wait ......">
         </div>
-        <div id="cytoscape">
+        <div id="mra-cytoscape">
         </div>
         <div class="well cytoscape-legend">
             <svg width="350" height="30"xmlns="http://www.w3.org/2000/svg">
@@ -2090,118 +2086,9 @@
             <br/>
             {{description}}
         </div>
-    </script>
+        </div>
+   </script>
 
-    <script type="text/template" id="existing-template-row-tmpl">
-        <tr id="template-table-row-{{id}}" class='stored-template-row'>
-            <td>{{displayName}}</td><td>{{description}}</td><td>{{project}}</td>
-                <td>{{tier}}</td><td>{{dateLastModified}}</td><td>{{isStory}}</td>
-                <td><select id='template-action-{{id}}'>
-                    <option value=''>-</option>
-                    <option value='edit'>Edit</option>
-                    <option value='preview'>Preview</option>
-                    <option value='clone'>Clone</option>
-                    <option value='delete'>Delete</option>
-                    <option value='download'>Download</option>
-                    </select>
-                </td>
-        </tr>
-    </script>
-
-    <script type="text/template" id="role-dropdown-row-tmpl">
-        <option {{selected}}>{{roleName}}</option>
-    </script>
-
-    <script type="text/template" id="template-subject-data-row-tmpl">
-        <tr id="template-subject-row-columntag-{{columnTagId}}" class="template-data-row">
-            <td style="text-align:center;"><img src="img/icons/remove.png" style="width:20px;height:20px;" id="delete-subject-{{columnTagId}}" /></td>
-            <td><select id="subject-class-dropdown-{{columnTagId}}" class='subject-classes'>
-                <option {{ subjectClass=='gene'?'selected=selected':'' }} >gene</option>
-                <option {{ subjectClass=='shrna'?'selected=selected':'' }} >shrna</option>
-                <option {{ subjectClass=='tissue_sample'?'selected=selected':'' }} >tissue_sample</option>
-                <option {{ subjectClass=='cell_sample'?'selected=selected':'' }} >cell_sample</option>
-                <option {{ subjectClass=='compound'?'selected=selected':'' }}>compound</option>
-                <option {{ subjectClass=='animal_model'?'selected=selected':'' }} >animal_model</option>
-            </select></td>
-            <td><select id="role-dropdown-{{columnTagId}}" class='subject-roles'></select></td>
-            <td><input type="text" class="form-control subject-columntag" value="{{columnTag}}" placeholder="column tag"></td>
-            <td><input type="text" class="form-control subject-descriptions collapsed-textarea" id="description-{{columnTagId}}" placeholder="subject description" value="{{subjectDescription}}"></td>
-        </tr>
-    </script>
-
-    <script type="text/template" id="evidence-type-dropdown-tmpl">
-        <option {{ selected?'selected=selected':'' }} >{{evidenceType}}</option>
-    </script>
-
-    <script type="text/template" id="template-evidence-data-row-tmpl">
-        <tr id="template-evidence-row-columntag-{{columnTagId}}" class="template-data-row">
-            <td style="text-align:center;"><img src="img/icons/remove.png" style="width:20px;height:20px;" id="delete-evidence-{{columnTagId}}" /></td>
-            <td><select id="value-type-{{columnTagId}}" class='value-types'>
-                <option {{ valueType=='numeric'?'selected=selected':'' }} >numeric</option>
-                <option {{ valueType=='label'?'selected=selected':'' }} >label</option>
-                <option {{ valueType=='file'?'selected=selected':'' }} >file</option>
-                <option {{ valueType=='url'?'selected=selected':'' }} >url</option>
-            </select></td>
-            <td><select id="evidence-type-{{columnTagId}}" class='evidence-types'></select></td>
-            <td><input type="text" class="form-control evidence-columntag" value="{{columnTag}}" placeholder="column tag"></td>
-            <td><input type="text" class="form-control evidence-descriptions collapsed-textarea" id="evd-descr-{{columnTagId}}" placeholder="evidence description" value="{{evidenceDescription}}"></td>
-        </tr>
-    </script>
-
-    <script type="text/template" id="submitter-information-tmpl">
-        <tr><th>Submitter First Name *</th>
-            <td><input id="first-name" placeholder="first name is required" class="input-xxxlarge" value="{{firstName}}"></td></tr>
-        <tr><th>Submitter Last Name *</th><td>
-            <input id="last-name" placeholder="last name is required" class="input-xxxlarge" value="{{lastName}}"></td></tr>
-        <tr><th>Contact E-mail</th><td><input id="email" placeholder="email is required" class="input-xxxlarge" value="{{email}}"></td></tr>
-        <tr><th>Contact phone number</th>
-            <td><input id="phone" placeholder="phone number is optional" class="input-xxxlarge" value="{{phone}}"></td></tr>
-    </script>
-
-    <script type="text/template" id="template-description-tmpl">
-        <tr><th>Submission Name *</th>
-            <td><input id="template-name" placeholder="e.g. centername_your_description" class="input-xxlarge" value="{{displayName}}"></td></tr>
-        <tr><th>Submission Description</th>
-            <td><textarea id="template-submission-desc" placeholder="e.g. Down-regulated genes in PTEN-null cell lines" class="input-xxxlarge">{{description}}</textarea></td>
-        </tr>
-        <tr><th>Project Title</th>
-            <td><input id="template-project-title" placeholder="Please enter a title for this or a collection of related subissions (correponds e.g. to an entire paper)" class="input-xxxlarge" value="{{project}}">
-            </td>
-        </tr>
-        <tr><th>Request Tier</th>
-            <td><select id="template-tier" style="width:300px">
-                <option value=1 {{tier==1?'selected=selected':null}}>Tier 1 (initial or screening)</option>
-                <option value=2 {{tier==2?'selected=selected':null}}>Tier 2 (in vitro)</option>
-                <option value=3 {{tier==3?'selected=selected':null}}>Tier 3 (in vivo validation)</option>
-            </slect></td>
-        </tr>
-        <tr><th>Is this submission a story?</th><td><input id="template-is-story" type="checkbox" {{isStory?'checked':''}} /></td></tr>
-        <tr id='story-title-row'><th>Story Title</th><td><input id='story-title' class="input-xxlarge" value='{{storyTitle}}' /></td></tr>
-    </script>
-
-    <script type="text/template" id="observation-option-tmpl">
-        <option value={{observation_id}}>observation {{observation_id+1}}</option>
-    </script>
-
-    <script type="text/template" id="column-tag-item-tmpl">
-        <li id={{id}} class=helper-tag>{{tag}}</li>
-    </script>
-
-    <script type="text/template" id="temp-observation-tmpl">
-        <td><div class='uploaded'>{{uploaded}}</div><input type="{{type}}" class="form-control" id="observation-{{obvNumber}}-{{obvColumn}}" value="{{obvText}}" placeholder="enter value"></td>
-    </script>
-
-    <script type="text/template" id="template-helper-center-tmpl">
-        <option value="{{id}}">{{displayName}}</option>
-    </script>
-
-    <script type="text/template" id="template-header-col-tmpl">
-        <td class="{{id}}" data-type="{{columnType}}"></td>
-    </script>
-
-    <script type="text/template" id="template-sample-data-tmpl">
-        <input placeholder="enter data" class="sample-data-input">
-    </script>
 
     <script type="text/template" id="more-observations-tmpl">
         <div class="alert alert-warning">
@@ -2243,8 +2130,8 @@
     
     <script type="text/template" id="genelist-view-tmpl" >
          <div class="container common-container" id="genelist-container" > 
-             
-                 <div class="span10" align="center">                   
+            <div class=row>
+                <div class="col-10" align="center">
                     <h4>  Gene List</h4>
 
                      <div class="alert alert-warning">
@@ -2269,29 +2156,33 @@
                     <a href="#cnkb-query" id="cnkb-query">Find Gene Interactions in  Networks (CNKB)</a>
                  </div>
 
-                 <div class="span1">
+                 <div class="col-1">
                     <a href="javascript:history.back()">Back</a>
                  </div>
-             </div>
+            </div>
+        </div>
 
-            <div class="modal hide fade" id="addgene-modal">
-                <div class="modal-body">
+        <div class="modal hide fade" id="addgene-modal">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
                     <br>
                     Add gene symbols
                     <input id="gene-symbols" placeholder="e.g. CTNNB1" class="input-xlarge">
                     <button id="add-gene-symbols" class="btn">Submit</button><br><br>
-                </div>
-                <div class="modal-footer">
-                     
-                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
             </div>
+            <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+        </div>
       </script>
       
       <script type="text/template" id="cnkb-query-tmpl" >
          <div class="container common-container" id="cnkbquery-container" > 
-                    
-                    <div class="span10">
+            <div class=row>
+                    <div class="col-10">
                        <h3>Cellular Network Knowledge Base</h3>
 
                        <medium>Select Interactome:</medium>
@@ -2318,16 +2209,17 @@
                      <a href="#cnkb-result" id="cnkb-result">Submit</a>
                  </div>
 
-                 <div class="span1">
+                 <div class="col-1">
                     <a href="javascript:history.back()">Back</a>
                  </div>
              </div>
+        </div>
       </script>
       
       <script type="text/template" id="cnkb-result-tmpl" >
          <div class="container common-container" id="cnkbresult-container" > 
                <div class="row">
-                  <div class="span10">
+                  <div class="col-10">
                      <h3>Cellular Network Knowledge Base</h2>
                      <a href="#" id="cnkbExport"  target="_blank" title="Export all selected interaction to a SIF file."> Export </a>
                      <br>
@@ -2349,7 +2241,7 @@
                          </tbody>
                       </table>  
                    </div>
-                   <div class="span1">
+                   <div class="col-1">
                       <a href="javascript:history.back()">Back</a>
                    </div>
                 </div>
@@ -2372,7 +2264,7 @@
 				  
                      <b>Layout:</b>	
                      <select id="cytoscape-layouts">
-                           <option value="arbor" selected="selected">Arbor</option>
+                           <option value="cola" selected="selected">Cola</option>
                            <option value="grid">Grid</option>
                            <option value="random">Random</option>
                            <option value="circle">Circle</option>
@@ -2398,7 +2290,7 @@
       </script>
       
       <script type="text/template" id="cnkb-cytoscape-tmpl">
-        
+        <div class="cytoscape-container">
         <div id="cnkb_cytoscape_progress">
             <img id="cnkb_cytoscape_progress_indicator" class="centeredImage" src="img/progress_indicator.gif" width="30" height="30" alt="Please wait ......">
         </div>
@@ -2411,11 +2303,13 @@
             <br/>
             {{description}}  
         </div>
+        </div>
       </script>
      
     <script type="text/template" id="gene-cart-help-tmpl" >
-         <div class="container common-container" id="cnkbhelp-container" > 
-               <div class="span10">
+         <div class="container common-container" id="cnkbhelp-container" >
+            <div class=row>
+               <div class="col-10">
                     <h3>Gene Cart Help</h3>
                     <p>The Gene Cart allows users to build a list of genes and query the Cellular Networks Knowledge Base (CNKB) for molecular interactions involving these genes.  The CNKB is a repository of molecular interactions networks. It contains computationally-derived networks obtained by applying state of the art Systems and Structure Biology algorithms from the laboratories of Drs. Andrea Califano and Barry Honig at Columbia University. A detailed <a target="_blank" href="http://wiki.c2b2.columbia.edu/workbench/index.php/Cellular_Networks_KnowledgeBase">description of the CNKB</a> is available which also describes how the CNKB can be accessed from within the software platform <a target="_blank" href="http://www.geworkbench.org">geWorkbench</a>.</p>
                     <p>In the Observations for a particular Dashboard submission, those entries that are genes will have a green "+" sign to right of the gene symbol. Clicking this "+" sign will add the gene to the Gene Cart. The Gene Cart is limited to 25 genes.</p>
@@ -2424,9 +2318,10 @@
                     <p>Several layout options are available for Cytoscape and can be selected using the "Layout" pulldown.</p>
                     <p>In Cytoscape.js, several common interaction types have been assigned specific colors used for the lines representing them, and these will be shown on the legend of the graph.  The genes used in the CNKB query (hub genes) will be highlighted in yellow.</p>
                 </div>
-                <div class="span1">
+                <div class="col-1">
                    <a href="javascript:history.back()">Back</a>
                 </div>
+            </div>
          </div>
      </script>
      
@@ -2493,24 +2388,19 @@
 
     <!-- end of templates -->
     
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.buttons.min.js"></script>
-    <script src="js/buttons.html5.min.js"></script>
-    <script src="js/jszip.min.js"></script>
+    <script src="js/datatables.min.js"></script>
     <script src="js/paging.js"></script>
-    <script src="js/holder.js"></script>
-    <script src="js/underscore.js"></script>
-    <script src="js/json2.js"></script>
+    <script src="js/underscore-min.js"></script>
     <script src="js/backbone-min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.fancybox-1.3.4.pack.js"></script>
-    <script src="js/jquery.easing-1.3.pack.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
     <script src="js/jquery.expander.min.js"></script>
-    <script src="js/arbor.js"></script>
     <script src="js/cytoscape.min.js"></script>
+    <script src="js/cola.min.js"></script>
+    <script src="js/cytoscape-cola.js"></script>
     <script src="js/encoder.js"></script>
-    <script src="js/jquery.contextMenu.js"></script>
-    <script src="js/jquery.ui.position.js"></script>
+    <script src="js/jquery.contextMenu.min.js"></script>
+    <script src="js/jquery.ui.position.min.js"></script>
     <script src="js/hipc-signature.js"></script>
 
   </body>

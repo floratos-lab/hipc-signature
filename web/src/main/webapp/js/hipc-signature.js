@@ -32,7 +32,7 @@
             "smart": false
         },
         // These are for bootstrap-styled datatables
-        "sDom": "<'row'<'span6'i><'span6'f>r>t<'row'<'span6'l><'span6'p>>",
+        "sDom": "<ifrtlp>",
         "sPaginationType": "bootstrap"
     });
 
@@ -268,8 +268,6 @@
                         counter++;
                     });
 
-                    Holder.run();
-
                     $('.stories-pagination a.story-link').click(function (e) {
                         e.preventDefault();
                         $(this).tab('show');
@@ -277,7 +275,6 @@
                 }
             });
 
-            $('#myCarousel').carousel('pause');
             $("#omni-search-form").submit(function () {
                 var searchTerm = $("#omni-search").val();
                 window.location.hash = "search/" + searchTerm;
@@ -299,11 +296,9 @@
         render: function () {
             var content = this.template({});
 
-            $.fancybox(
+            $.fancybox.open(
                 content, {
                     'autoDimensions': false,
-                    'width': '75%',
-                    'height': '99%',
                     'centerOnScroll': true,
                     'transitionIn': 'none',
                     'transitionOut': 'none'
@@ -365,9 +360,9 @@
                                     );
                                 });
 
-                                $.fancybox(
+                                $.fancybox.open(
                                     _.template(
-                                        $("#html-story-container-tmpl").html(), {
+                                        $("#html-story-container-tmpl").html())( {
                                             story: summary,
                                             centerName: observation.submission.observationTemplate.submissionCenter.displayName
                                         }
@@ -414,7 +409,7 @@
 
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
-                            _.template($("#summary-subject-replacement-tmpl").html(), observedSubject.subject)
+                            _.template($("#summary-subject-replacement-tmpl").html())( observedSubject.subject)
                         );
                     });
 
@@ -452,7 +447,7 @@
 
                                 summary = summary.replace(
                                     new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
-                                    _.template($("#summary-evidence-replacement-tmpl").html(), observedEvidence.evidence)
+                                    _.template($("#summary-evidence-replacement-tmpl").html())( observedEvidence.evidence)
                                 );
                             });
 
@@ -487,7 +482,7 @@
 
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
-                            _.template($("#summary-subject-replacement-tmpl").html(), observedSubject.subject)
+                            _.template($("#summary-subject-replacement-tmpl").html())( observedSubject.subject)
                         );
                     });
 
@@ -525,7 +520,7 @@
 
                                 summary = summary.replace(
                                     new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
-                                    _.template($("#summary-evidence-replacement-tmpl").html(), observedEvidence.evidence)
+                                    _.template($("#summary-evidence-replacement-tmpl").html())( observedEvidence.evidence)
                                 );
                             });
 
@@ -626,7 +621,7 @@
 
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
-                            _.template($("#summary-subject-replacement-tmpl").html(), observedSubject.subject)
+                            _.template($("#summary-subject-replacement-tmpl").html())( observedSubject.subject)
                         );
 
                         $("#observation-summary").html(summary);
@@ -652,7 +647,7 @@
                         observedEvidenceRowView.render();
                         summary = summary.replace(
                             new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
-                            _.template($("#summary-evidence-replacement-tmpl").html(), observedEvidence.evidence)
+                            _.template($("#summary-evidence-replacement-tmpl").html())( observedEvidence.evidence)
                         );
 
                         $("#observation-summary").html(summary);
@@ -669,7 +664,10 @@
                     ]);
 
                     $('.desc-tooltip').tooltip({
-                        placement: "left"
+                        placement: "left",
+                        trigger: "hover",
+                    }).on('click', function () {
+                        $(this).tooltip('hide')
                     });
 
                     $("a.evidence-images").fancybox({
@@ -686,7 +684,7 @@
                         var val = $(this).html();
                         var vals = val.split("e"); // capture scientific notation
                         if (vals.length > 1) {
-                            $(this).html(_.template($("#observeddatanumericevidence-val-tmpl").html(), {
+                            $(this).html(_.template($("#observeddatanumericevidence-val-tmpl").html())( {
                                 firstPart: vals[0],
                                 secondPart: vals[1].replace("+", "")
                             }));
@@ -705,13 +703,12 @@
                             dataType: "json",
                             contentType: "json",
                             success: function (data) {
-                                $.fancybox(
-                                    _.template($("#cytoscape-tmpl").html(), {
+                                $.fancybox.open(
+                                    _.template($("#cytoscape-tmpl").html())( {
                                         description: sifDesc
                                     }), {
+                                        touch: false,
                                         'autoDimensions': false,
-                                        'width': '100%',
-                                        'height': '100%',
                                         'transitionIn': 'none',
                                         'transitionOut': 'none'
                                     }
@@ -720,10 +717,11 @@
                                 // load cytoscape
                                 //var div_id = "cytoscape-sif";
 
-                                var container = $('#cytoscape-sif');
-                                var cyOptions = {
+                                cytoscape({
+                                    container: $('#cytoscape-sif'),
+
                                     layout: {
-                                        name: 'arbor',
+                                        name: 'cola',
                                         liveUpdate: false,
                                         maxSimulationTime: 1000,
                                         stop: function () {
@@ -741,7 +739,7 @@
                                         })
                                         .selector("edge")
                                         .css({
-                                            "width": "mapData(weight, 0, 100, 1, 4)",
+                                            "width": 1,
                                             "target-arrow-shape": "triangle",
                                             "source-arrow-shape": "circle",
                                             "line-color": "#444"
@@ -774,11 +772,10 @@
                                         }),
 
                                     ready: function () {
-                                        window.cy = this; // for debugging
+                                        // for debugging
                                     }
-                                };
+                                });
 
-                                container.cy(cyOptions);
                                 // end load cytoscape
                             }
                         });
@@ -794,13 +791,16 @@
                 $("#small-hide-sub-details").show();
             });
 
-            $("#small-hide-sub-details").click(function (event) {
-                event.preventDefault();
+            var hide_submission_detail = function() {
                 $("#obs-submission-details").slideUp();
                 $("#small-hide-sub-details").hide();
                 $("#small-show-sub-details").show();
+            };
+            $("#small-show-sub-details").click(function (event) {
+                event.preventDefault();
+                hide_submission_detail();
             });
-
+            hide_submission_detail();
 
             if (result.submission.observationTemplate.submissionDescription == "") {
                 $("#obs-submission-summary").hide();
@@ -919,7 +919,7 @@
 
                         $.ajax("count/submission/?filterBy=" + aCenter.id).done(function (count) {
                             var cntContent = _.template(
-                                $("#count-submission-tmpl").html(), {
+                                $("#count-submission-tmpl").html())( {
                                     count: count
                                 }
                             );
@@ -977,8 +977,6 @@
                         storyView.render();
                         counter++;
                     });
-
-                    Holder.run();
                 }
             });
 
@@ -1102,7 +1100,7 @@
                         });
 
                         var oTable = $(thatEl).dataTable({
-                            'dom': 'iBfrtlp',
+                            'dom': '<iBfrtlp>',
                             "sPaginationType": "bootstrap",
                             "columns": [{
                                     "orderDataType": "dashboard-date"
@@ -1126,6 +1124,7 @@
                                 },
                             }],
                         });
+                        $(thatEl).width( "100%" );
 
                         oTable.fnSort([
                             [2, 'desc']
@@ -1320,7 +1319,7 @@
             thatEl = $("ul.refs");
             $.getJSON("findProteinFromGene/" + result.id, function (proteins) {
                 _.each(proteins, function (protein) {
-                    thatEl.append(_.template($("#gene-uniprot-tmpl").html(), {
+                    thatEl.append(_.template($("#gene-uniprot-tmpl").html())( {
                         uniprotId: protein.uniprotId
                     }));
                 });
@@ -1494,7 +1493,7 @@
                     var ids = xref.databaseId.split(";");
                     _.each(ids, function (xrefid) {
                         $(thatEl).find("ul.xrefs").append(
-                            _.template($("#ncithesaurus-tmpl").html(), {
+                            _.template($("#ncithesaurus-tmpl").html())( {
                                 nciId: xrefid
                             })
                         );
@@ -1672,7 +1671,7 @@
 
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
-                            _.template($("#summary-subject-replacement-tmpl").html(), observedSubject.subject)
+                            _.template($("#summary-subject-replacement-tmpl").html())( observedSubject.subject)
                         );
                     });
 
@@ -1689,11 +1688,11 @@
 
                                 summary = summary.replace(
                                     new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
-                                    _.template($("#summary-evidence-replacement-tmpl").html(), observedEvidence.evidence)
+                                    _.template($("#summary-evidence-replacement-tmpl").html())( observedEvidence.evidence)
                                 );
                             });
 
-                            summary += _.template($("#submission-obs-tbl-row-tmpl").html(), thatModel);
+                            summary += _.template($("#submission-obs-tbl-row-tmpl").html())( thatModel);
                             $(thatEl).html(summary);
                             var dataTable = $(tableEl).parent().DataTable();
                             dataTable.cells(cellId).invalidate();
@@ -1806,7 +1805,7 @@
                                         $(rows)
                                             .eq(i)
                                             .before(
-                                                _.template($("#tbl-project-title-tmpl").html(), {
+                                                _.template($("#tbl-project-title-tmpl").html())( {
                                                     project: group,
                                                     centerStableURL: centerModel.stableURL
                                                 })
@@ -1872,7 +1871,7 @@
 
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
-                            _.template($("#summary-subject-replacement-tmpl").html(), observedSubject.subject)
+                            _.template($("#summary-subject-replacement-tmpl").html())( observedSubject.subject)
                         );
                     });
 
@@ -1889,11 +1888,11 @@
 
                                 summary = summary.replace(
                                     new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
-                                    _.template($("#summary-evidence-replacement-tmpl").html(), observedEvidence.evidence)
+                                    _.template($("#summary-evidence-replacement-tmpl").html())( observedEvidence.evidence)
                                 );
                             });
 
-                            summary += _.template($("#submission-obs-tbl-row-tmpl").html(), thatModel);
+                            summary += _.template($("#submission-obs-tbl-row-tmpl").html())( thatModel);
                             $(thatEl).html(summary);
 
                             // let the datatable know about the update
@@ -1936,7 +1935,7 @@
                         else simSub.toomany = '';
                         $(thatEl)
                             .find("ul.similar-submission-list")
-                            .append(_.template($("#similar-submission-item-tmpl").html(), simSub));
+                            .append(_.template($("#similar-submission-item-tmpl").html())( simSub));
                         count++;
                     });
                     if(count>2) {
@@ -1977,7 +1976,9 @@
                             submissionRowView.render();
                         });
 
-                        $(sTable).dataTable();
+                        $(sTable).dataTable({
+                            dom: "<'fullwidth'ifrtlp>",
+                        });
 
                     }
                 });
@@ -2169,7 +2170,7 @@
             var updateElId = "#subject-observation-count-" + result.id;
             var updateEl = $(updateElId);
             var cntContent = _.template(
-                $("#count-observations-tmpl").html(), {
+                $("#count-observations-tmpl").html())( {
                     count: model.observationCount
                 }
             );
@@ -2358,7 +2359,7 @@
                     });
 
                     var oTable1 = $('#master-regulator-grid').dataTable({
-                        "sDom": "<'row'<'span5'i><'span5'f>r>t<'row'<'span5'l><'span5'p>>",
+                        "sDom": "<'fullwidth'ifrtlp>",
                         "sScrollY": "200px",
                         "bPaginate": false
                     });
@@ -2405,21 +2406,21 @@
                             return;
                         }
 
-                        $.fancybox(
-                            _.template($("#mra-cytoscape-tmpl").html(), {
+                        $.fancybox.open(
+                            _.template($("#mra-cytoscape-tmpl").html())( {
                                 description: mraDesc
                             }), {
+                                touch: false,
                                 'autoDimensions': false,
-                                'width': '100%',
-                                'height': '85%',
                                 'transitionIn': 'none',
                                 'transitionOut': 'none'
                             }
                         );
 
-                        var container = $('#cytoscape');
+                        window.cy = this;
+                        cytoscape({
+                            container: $('#mra-cytoscape'),
 
-                        var cyOptions = {
                             layout: {
                                 name: layoutName,
                                 fit: true,
@@ -2480,11 +2481,9 @@
                                 }),
 
                             ready: function () {
-                                window.cy = this; // for debugging
+                                // for debugging
                             }
-                        };
-
-                        container.cy(cyOptions);
+                        });
 
                     }
                 }); //end ajax
@@ -2681,7 +2680,7 @@
                         table_data.push([reformatted, nameLink, role, n3link, n2link, n1link]);
                     });
                     $("#explore-table").dataTable({
-                        'dom': 'iBfrtlp',
+                        'dom': '<iBfrtlp>',
                         'data': table_data,
                         "deferRender": true,
                         "columns": [
@@ -2709,8 +2708,9 @@
                             className: "extra-margin",
                         }],
                     });
+                    $("#explore-table").parent().width( "100%" );
+                    $("#explore-table").width( "100%" );
 
-                    $(".explore-thumbnail h4").tooltip();
                     var blurb = $("#text-blurb");
                     if (blurb.length > 0) {
                         $("#explore-blurb").append(_.template(blurb.html(), {
@@ -2756,7 +2756,7 @@
                             var newRoles = [];
                             $("#role-modal input").each(function () {
                                 var aRole = $(this).attr("data-role");
-                                if ($(this).attr("checked")) {
+                                if ($(this).prop("checked")) {
                                     newRoles.push(aRole);
                                 }
 
@@ -2819,7 +2819,7 @@
             $(this.el).html(this.template({}));
             $.each(geneList, function (aData) {
                 var value = Encoder.htmlEncode(this.toString());
-                $("#geneNames").append(_.template($("#gene-cart-option-tmpl").html(), {
+                $("#geneNames").append(_.template($("#gene-cart-option-tmpl").html())( {
                     displayItem: value
                 }));
             });
@@ -2983,7 +2983,7 @@
                     localStorage.genelist = JSON.stringify(geneList);
                     $.each(newGenes, function () {
                         var value = this.toString();
-                        $("#geneNames").append(_.template($("#gene-cart-option-tmpl").html(), {
+                        $("#geneNames").append(_.template($("#gene-cart-option-tmpl").html())( {
                             displayItem: value
                         }));
                     });
@@ -3049,7 +3049,7 @@
                                     $('#interactomeDescription').html(convertUrl(data.description));
                                     $('#interactomeVersionList').html("");
                                     _.each(data.versionDescriptorList, function (aData) {
-                                        $("#interactomeVersionList").append(_.template($("#gene-cart-option-tmpl").html(), {
+                                        $("#interactomeVersionList").append(_.template($("#gene-cart-option-tmpl").html())( {
                                             displayItem: aData.version
                                         }));
                                     });
@@ -3059,7 +3059,7 @@
                                 }
                             }); //ajax
                         } else
-                            $("#interactomeList").append(_.template($("#gene-cart-option-tmpl").html(), {
+                            $("#interactomeList").append(_.template($("#gene-cart-option-tmpl").html())( {
                                 displayItem: aData
                             }));
                     });
@@ -3090,7 +3090,7 @@
                         var list = data.versionDescriptorList;
                         $('#interactomeVersionList').html("");
                         _.each(list, function (aData) {
-                            $("#interactomeVersionList").append(_.template($("#gene-cart-option-tmpl").html(), {
+                            $("#interactomeVersionList").append(_.template($("#gene-cart-option-tmpl").html())( {
                                 displayItem: aData.version
                             }));
                         });
@@ -3188,7 +3188,7 @@
                     });
 
                     var oTable1 = $('#cnkb-result-grid').dataTable({
-                        "sDom": "<'row'<'span5'i><'span5'f>r>t<'row'<'span5'l><'span5'p>>",
+                        "sDom": "<'fullwidth'ifrtlp>",
                         "sScrollY": "200px",
                         "bPaginate": false
 
@@ -3416,14 +3416,13 @@
             x2 = x2 + aData.type.length * 11;
         });
 
-        $.fancybox(
-            _.template($("#cnkb-cytoscape-tmpl").html(), {
+        $.fancybox.open(
+            _.template($("#cnkb-cytoscape-tmpl").html())( {
                 description: description,
                 svgHtml: svgHtml
             }), {
+                touch: false,
                 'autoDimensions': false,
-                'width': '100%',
-                'height': '85%',
                 'transitionIn': 'none',
                 'transitionOut': 'none'
             }
@@ -3508,7 +3507,6 @@
                 selector: '#cytoscape',
 
                 callback: function (key, options) {
-                    var m = "clicked: " + key + " on " + sym;
                     if (!key || 0 === key.length) {
                         $.contextMenu('destroy', '#cytoscape');
                         return;
@@ -3516,6 +3514,8 @@
 
                     var linkUrl = "";
                     switch (key) {
+                        case 'linkout':
+                            return;
                         case 'gene':
                             linkUrl = "http://www.ncbi.nlm.nih.gov/gene?cmd=Search&term=" + sym;
                             break;
