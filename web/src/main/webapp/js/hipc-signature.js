@@ -667,7 +667,7 @@
                         placement: "left",
                         trigger: "hover",
                     }).on('click', function () {
-                        $(this).tooltip('hide')
+                        $(this).tooltip('hide');
                     });
 
                     $("a.evidence-images").fancybox({
@@ -3596,7 +3596,6 @@
         routes: {
             "centers": "listCenters",
             "stories": "listStories",
-            "explore": "scrollToExplore",
             "explore/:type/:roles": "explore",
             "center/:name/:project": "showCenterProject",
             "center/:name": "showCenter",
@@ -3628,35 +3627,16 @@
             "transcript/:name/:role": "showTranscript",
             "transcript/:name/:role/:tier": "showTranscript",
             "mra/:filename": "showMraView",
-            "about": "helpNavigate",
             "genes": "showGeneList",
             "cnkb-query": "showCnkbQuery",
             "cnkb-result": "showCnkbResult",
             "gene-cart-help": "showGeneCartHelp",
-            "help-navigate": "helpNavigate",
             "*actions": "home"
         },
 
         home: function (actions) {
             var homeView = new HomeView();
             homeView.render();
-        },
-
-        helpNavigate: function () {
-            var homeView = new HomeView();
-            homeView.render();
-            var helpNavigateView = new HelpNavigateView();
-            helpNavigateView.render();
-        },
-
-        scrollToExplore: function () {
-            var homeView = new HomeView();
-            homeView.render();
-
-            var whereTo = $(".ctd2-boxes").offset().top - 5;
-            $('html, body').animate({
-                scrollTop: whereTo
-            }, 500);
         },
 
         search: function (term) {
