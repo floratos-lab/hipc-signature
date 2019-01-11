@@ -578,42 +578,42 @@
                                     });
 
                                     imgTemplate = $("#search-results-compound-image-tmpl");
-                                    thatEl2.append(_.template(imgTemplate.html(), compound));
+                                    thatEl2.append(_.template(imgTemplate.html()) (compound));
                                 }
                             });
                         } else if (subject.class == "AnimalModel") {
                             imgTemplate = $("#search-results-animalmodel-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "CellSample") {
                             imgTemplate = $("#search-results-cellsample-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "TissueSample") {
                             imgTemplate = $("#search-results-tissuesample-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "Vaccine") {
                             imgTemplate = $("#search-results-vaccine-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "CellSubset") {
                             imgTemplate = $("#search-results-cellsubset-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "Pathogen") {
                             imgTemplate = $("#search-results-pathogen-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "Gene") {
                             imgTemplate = $("#search-results-gene-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "ShRna" && subject.type.toLowerCase() == "sirna") {
                             subject.class = "SiRNA";
                             imgTemplate = $("#search-results-sirna-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "ShRna") {
                             imgTemplate = $("#search-results-shrna-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else if (subject.class == "Protein") {
                             imgTemplate = $("#search-results-protein-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         } else {
-                            thatEl2.append(_.template(imgTemplate.html(), subject));
+                            thatEl2.append(_.template(imgTemplate.html()) (subject));
                         }
 
                         if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
@@ -1767,7 +1767,7 @@
                                 "#count-story-tmpl" :
                                 "#count-observations-tmpl";
                             submission.details = _.template(
-                                $(tmplName).html(), {
+                                $(tmplName).html()) ({
                                     count: count
                                 }
                             );
@@ -2164,7 +2164,7 @@
             } else if (result.class == "Protein") {
                 imgTemplate = $("#search-results-protein-image-tmpl");
             }
-            imageEl.append(_.template(imgTemplate.html(), result));
+            imageEl.append(_.template(imgTemplate.html()) (result));
 
             // some of the elements will be hidden in the pagination. Use magic-scoping!
             var updateElId = "#subject-observation-count-" + result.id;
@@ -2286,7 +2286,7 @@
                                     "#count-story-tmpl" :
                                     "#count-observations-tmpl";
                                 var cntContent = _.template(
-                                    $(tmplName).html(), {
+                                    $(tmplName).html()) ({
                                         count: submission.observationCount
                                     }
                                 );
@@ -2713,7 +2713,7 @@
 
                     var blurb = $("#text-blurb");
                     if (blurb.length > 0) {
-                        $("#explore-blurb").append(_.template(blurb.html(), {
+                        $("#explore-blurb").append(_.template(blurb.html())( {
                             subject_type: subjectType[thatModel.type],
                             roles: thatModel.roles
                         }));
@@ -3028,7 +3028,7 @@
                     var list = data.interactomeList;
                     _.each(list, function (aData) {
                         if (aData.toLowerCase().startsWith("preppi")) {
-                            $("#interactomeList").prepend(_.template($("#gene-cart-option-tmpl-preselected").html(), {
+                            $("#interactomeList").prepend(_.template($("#gene-cart-option-tmpl-preselected").html()) ({
                                 displayItem: aData
                             }));
                             var interactome = aData.split("(")[0].trim();
