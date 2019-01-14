@@ -76,11 +76,7 @@ span.loggedInUser {
 
 #header h1 span#title {display:block;  float: left;}
 
-#header h1 span#title a {color: #2e75a5;} /*
-#header h1 span#title a  span.em{
-	display:block;}
-
-#header h1 span#title a  span.main {display:block; margin:0 0 0 25px;}  */
+#header h1 span#title a {color: #2e75a5;} 
 
 /***********MAIN-NAV************/
 
@@ -747,22 +743,6 @@ h4.error-title h4 { color: #8b0000; font-weight: bold; }
   border-color: #c6edf9;
 }
 
-
-
-.home-content-narrow ul.user-menu-items {}
-
-
-
-	/*
-ul#memberstabs {
-	list-style-type: none;
-	height: 27px;
-	clear: both;
-	width: 100%;
-	margin-bottom:7px;
-	border-bottom: 1px solid #ebebeb;
-	}
-      */
 .project-page project {
     width:530px;}
 
@@ -968,7 +948,6 @@ label.longlabel {padding-top:3px; width: 250px !important;}
 label.mediumlabel {padding-top:3px; width: 200px !important;}
 
 label.nowidth {
-    width: auto;
     padding: 0;
     display: inline;
     float: none;
@@ -1037,10 +1016,6 @@ input.search
 input.search:hover, input.search:focus{
     background-position: 98% -21px;
 }
-
-#footer .container {}
-
-
 
 .row .span7 {
   width: 400px;
@@ -1226,8 +1201,6 @@ th.headerSortUp {
 th.headerSortDown {
     background-image: url("../images/arrow-down.gif")
 }
-
-.admin-menu {}
 
 .admin-menu .expandable {      font-weight:bold;}
 .admin-menu .expandable a {display: inline;}
