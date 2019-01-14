@@ -2183,6 +2183,7 @@
     });
 
     var tabulate_matching_observations = function (m_observations) {
+        $("#observation-search-results").hide();
         if (m_observations.length <= 0) return;
 
         $("#observation-search-results").fadeIn();
@@ -2265,6 +2266,7 @@
                             ]
 
                         });
+                        $(oTable).parent().width("100%");
                         oTable.fnSort([
                             [4, 'desc'],
                             [5, 'desc'],
@@ -2272,6 +2274,7 @@
                         ]);
 
                         // OK done with the subjects; let's build the submissions table
+                        $("#submission-search-results").hide();
                         if (submissions.length > 0) {
                             $("#submission-search-results").fadeIn();
 

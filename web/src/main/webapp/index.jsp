@@ -1755,7 +1755,7 @@
                 </tbody>
             </table>
 
-            <div id="submission-search-results" class="hide">
+            <div id="submission-search-results">
                 <h3>Submissions</h3>
                 <table id="searched-submissions" class="table table-bordered table-striped">
                     <thead>
@@ -1773,7 +1773,7 @@
                 </table>
             </div>
 
-            <div id="observation-search-results" class="d-none">
+            <div id="observation-search-results">
                 <h3>Observations Matching all Search Terms</h3>
                 <table id="searched-observation-grid" class="table table-bordered table-striped observations">
                     <thead>
