@@ -657,6 +657,7 @@
                     var oTable = $('#observed-evidences-grid').dataTable({
                         "iDisplayLength": tableLength
                     });
+                    $(oTable).parent().width("100%");
 
                     oTable.fnSort([
                         [1, 'asc'],
@@ -945,6 +946,7 @@
                         // might want to increase this number if we have incredible number of centers
                         "iDisplayLength": 25
                     });
+                    $(tableEl).parent().width( "100%" );
 
                     cTable.fnSort([
                         [1, 'asc']
@@ -1124,7 +1126,7 @@
                                 },
                             }],
                         });
-                        $(thatEl).width( "100%" );
+                        $(thatEl).parent().width( "100%" );
 
                         oTable.fnSort([
                             [2, 'desc']
