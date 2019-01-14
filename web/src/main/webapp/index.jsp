@@ -65,10 +65,9 @@
                 </ul>
             </li>
             <li>
-            <form class="form-search" id="omnisearch" style="margin:0px">
-                <div class="input-append">
-                    <input type="text" id="omni-input" class="search-query" title="Search" placeholder="e.g. CTNNB1 or ABT-737" style="padding:0px">
-                    <button type="submit" class="btn search-button" style="padding:0px">Search</button>
+            <form id="omnisearch">
+                    <input type="text" id="omni-input" title="Search" placeholder="e.g. CTNNB1 or ABT-737">
+                    <button type="submit">Search</button>
                     <span class="d-none" id="search-help-content">
                         <p>Please enter the keyword you would like to search on the website.</p>
                         <strong>Examples:</strong>
@@ -81,7 +80,6 @@
                         </ul>
                         <br>
                     </span>
-                </div>
             </form>
             </li>
         </ul>
