@@ -178,6 +178,7 @@ public class DashboardDaoImpl implements DashboardDao {
         typesWithStableURL.put("submission", "SubmissionImpl");
         typesWithStableURL.put("observation", "ObservationImpl");
         typesWithStableURL.put("observedevidence", "ObservedEvidenceImpl");
+        typesWithStableURL.put("cell-subset", "CellSubsetImpl");
     }
 
     @Override

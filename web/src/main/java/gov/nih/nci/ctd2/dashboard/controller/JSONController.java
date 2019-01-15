@@ -34,14 +34,18 @@ public class JSONController {
 
     private static Set<String> typesWithStableURL = new HashSet<String>();
     static {
-        Collections.addAll(typesWithStableURL, new String[] { "center", "animal-model", "cell-sample", "compound",
-                "protein", "rna", "tissue", "transcript", "submission", "observation", "observedevidence" });
+        Collections.addAll(typesWithStableURL,
+                new String[] { "center", "animal-model", "cell-sample", "compound", "protein", "rna", "tissue",
+                        "transcript", "submission", "observation", "observedevidence", "cell-subset" });
     }
 
-    /* gene needs a separate method because it asks for different number of parameters */
+    /*
+     * gene needs a separate method because it asks for different number of
+     * parameters
+     */
     @Transactional
     @RequestMapping(value = "{type}/{species}/{symbol}", method = { RequestMethod.GET,
-        RequestMethod.POST }, headers = "Accept=application/json")
+            RequestMethod.POST }, headers = "Accept=application/json")
     public ResponseEntity<String> getGeneInJson(@PathVariable String type, @PathVariable String species,
             @PathVariable String symbol) {
         HttpHeaders headers = new HttpHeaders();
@@ -69,14 +73,15 @@ public class JSONController {
     }
 
     @Transactional
-    @RequestMapping(value="{type}/{id}", method = {RequestMethod.GET, RequestMethod.POST}, headers = "Accept=application/json")
+    @RequestMapping(value = "{type}/{id}", method = { RequestMethod.GET,
+            RequestMethod.POST }, headers = "Accept=application/json")
     public ResponseEntity<String> getEntityInJson(@PathVariable String type, @PathVariable String id) {
         DashboardEntity entityById = null;
 
         Class<? extends DashboardEntity> clazz = Subject.class;
-        if(type.equalsIgnoreCase("subject")) {
+        if (type.equalsIgnoreCase("subject")) {
             clazz = Subject.class;
-        } else if(type.equals("observedsubject")) {
+        } else if (type.equals("observedsubject")) {
             clazz = ObservedSubject.class;
         }
 
@@ -86,24 +91,19 @@ public class JSONController {
         log.debug("JSONController " + type + " " + id);
         if (typesWithStableURL.contains(type)) {
             String stableURL = type + "/" + id;
-            if(type.equals("observedevidence")) stableURL = "mra/" + id;
+            if (type.equals("observedevidence"))
+                stableURL = "mra/" + id;
             entityById = dashboardDao.getEntityByStableURL(type, stableURL);
         } else {
             entityById = dashboardDao.getEntityById(clazz, Integer.parseInt(id));
         }
 
-        if(entityById == null) {
+        if (entityById == null) {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
         }
 
-        JSONSerializer jsonSerializer = new JSONSerializer()
-                .transform(new ImplTransformer(), Class.class)
-                .transform(new DateTransformer(), Date.class)
-                ;
-        return new ResponseEntity<String>(
-                jsonSerializer.deepSerialize(entityById),
-                headers,
-                HttpStatus.OK
-        );
+        JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)
+                .transform(new DateTransformer(), Date.class);
+        return new ResponseEntity<String>(jsonSerializer.deepSerialize(entityById), headers, HttpStatus.OK);
     }
 }

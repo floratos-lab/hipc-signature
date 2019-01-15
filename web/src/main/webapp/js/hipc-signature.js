@@ -234,6 +234,10 @@
         urlRoot: CORE_API_URL + "get/transcript",
     });
 
+    var CellSubset = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/cell-subset"
+    });
+
     var Subject = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/subject"
     });
@@ -3607,6 +3611,7 @@
             "submission/:id": "showSubmission",
             "observation/:id": "showObservation",
             "search/:term": "search",
+            "cell-subset/:id": "showCellSubset",
             "animal-model/:name": "showAnimalModel",
             "animal-model/:name/:role": "showAnimalModel",
             "animal-model/:name/:role/:tier": "showAnimalModel",
@@ -3664,6 +3669,22 @@
                 }
             });
             exploreView.render();
+        },
+
+        showCellSubset: function (id) {
+            var cellsubset = new CellSubset({
+                id: id,
+            });
+            cellsubset.fetch({
+                success: function() {
+                    var view = new CellSubsetView({
+                        model: {
+                            subject: cellsubset,
+                        }
+                    });
+                    view.render();
+                }
+            });
         },
 
         showAnimalModel: function (name, role, tier) {
