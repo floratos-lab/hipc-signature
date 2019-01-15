@@ -128,21 +128,30 @@
         urlRoot: CORE_API_URL + "get/observation"
     });
 
-    var Observations = Backbone.Collection.extend({
-        url: CORE_API_URL + "list/observation/?filterBy=",
+    var ObservationsBySubmission = Backbone.Collection.extend({
+        url: CORE_API_URL + "observations/bySubmission/?submissionId=",
         model: Observation,
 
         initialize: function (attributes) {
-            if (attributes.subjectId != undefined) {
-                this.url += attributes.subjectId;
-                if (attributes.role != undefined) {
-                    this.url += "&role=" + attributes.role;
-                }
-                if (attributes.tier != undefined) {
-                    this.url += "&tier=" + attributes.tier;
-                }
-            } else {
-                this.url += attributes.submissionId;
+            this.url += attributes.submissionId;
+
+            if (attributes.getAll != undefined) {
+                this.url += "&getAll=" + attributes.getAll;
+            }
+        }
+    });
+
+    var ObservationsBySubject = Backbone.Collection.extend({
+        url: CORE_API_URL + "observations/bySubject/?subjectId=",
+        model: Observation,
+
+        initialize: function (attributes) {
+            this.url += attributes.subjectId;
+            if (attributes.role != undefined) {
+                this.url += "&role=" + attributes.role;
+            }
+            if (attributes.tier != undefined) {
+                this.url += "&tier=" + attributes.tier;
             }
 
             if (attributes.getAll != undefined) {
@@ -1079,7 +1088,7 @@
             var tier = thatModel.tier; // possibly undefined
             var role = thatModel.role; // possibly undefined
 
-            var countUrl = "count/observation/?filterBy=" + subjectId;
+            var countUrl = "observations/countBySubject/?subjectId=" + subjectId;
             if (role != undefined) {
                 countUrl += "&role=" + role;
             }
@@ -1088,7 +1097,7 @@
             }
 
             $.ajax(countUrl).done(function (count) {
-                var observations = new Observations({
+                var observations = new ObservationsBySubject({
                     subjectId: subjectId,
                     role: role,
                     tier: tier
@@ -1766,7 +1775,7 @@
                             model: submission
                         });
 
-                        $.ajax("count/observation/?filterBy=" + submission.id, {
+                        $.ajax("observations/countBySubmission/?submissionId=" + submission.id, {
                             "async": false
                         }).done(function (count) {
                             var tmplName = submission.observationTemplate.isSubmissionStory ?
@@ -1961,8 +1970,8 @@
                 }
             });
 
-            $.ajax("count/observation/?filterBy=" + submissionId).done(function (count) {
-                var observations = new Observations({
+            $.ajax("observations/countBySubmission/?submissionId=" + submissionId).done(function (count) {
+                var observations = new ObservationsBySubmission({
                     submissionId: submissionId
                 });
                 observations.fetch({
@@ -2028,12 +2037,12 @@
 
                 var observations;
                 if (model.submissionId != undefined) {
-                    observations = new Observations({
+                    observations = new ObservationsBySubmission({
                         submissionId: model.submissionId,
                         getAll: true
                     });
                 } else if (model.subjectId != undefined) {
-                    observations = new Observations({
+                    observations = new ObservationsBySubject({
                         subjectId: model.subjectId,
                         getAll: true,
                         role: role,
