@@ -1097,56 +1097,6 @@
             }
 
             $.ajax(countUrl).done(function (count) {
-                var observations = new ObservationsBySubject({
-                    subjectId: subjectId,
-                    role: role,
-                    tier: tier
-                });
-                observations.fetch({
-                    success: function () {
-                        $(".subject-observations-loading", thatEl).remove();
-                        _.each(observations.models, function (observation) {
-                            observation = observation.toJSON();
-                            var observationRowView = new ObservationRowView({
-                                el: $(thatEl).find("tbody"),
-                                model: observation
-                            });
-                            observationRowView.render();
-                        });
-
-                        var oTable = $(thatEl).dataTable({
-                            'dom': '<iBfrtlp>',
-                            "sPaginationType": "bootstrap",
-                            "columns": [{
-                                    "orderDataType": "dashboard-date"
-                                },
-                                null,
-                                null,
-                                null
-                            ],
-                            'buttons': [{
-                                extend: 'excelHtml5',
-                                text: 'Export as Spreadsheet',
-                                className: "extra-margin",
-                                customizeData: function (data) {
-                                    var body = data.body;
-                                    for (var i = 0; i < body.length; i++) {
-                                        var raw_content = body[i][1].split(/ +/);
-                                        raw_content.pop();
-                                        raw_content.pop();
-                                        body[i][1] = raw_content.join(' ');
-                                    }
-                                },
-                            }],
-                        });
-                        $(thatEl).parent().width( "100%" );
-
-                        oTable.fnSort([
-                            [2, 'desc']
-                        ]);
-
-                    }
-                });
 
                 if (count > maxNumberOfEntities) {
                     var moreObservationView = new MoreObservationView({
@@ -1168,6 +1118,57 @@
                         }
                     });
                     moreObservationView.render();
+                }
+            });
+
+            var observations = new ObservationsBySubject({
+                subjectId: subjectId,
+                role: role,
+                tier: tier
+            });
+            observations.fetch({
+                success: function () {
+                    $(".subject-observations-loading", thatEl).remove();
+                    _.each(observations.models, function (observation) {
+                        observation = observation.toJSON();
+                        var observationRowView = new ObservationRowView({
+                            el: $(thatEl).find("tbody"),
+                            model: observation
+                        });
+                        observationRowView.render();
+                    });
+
+                    var oTable = $(thatEl).dataTable({
+                        'dom': '<iBfrtlp>',
+                        "sPaginationType": "bootstrap",
+                        "columns": [{
+                                "orderDataType": "dashboard-date"
+                            },
+                            null,
+                            null,
+                            null
+                        ],
+                        'buttons': [{
+                            extend: 'excelHtml5',
+                            text: 'Export as Spreadsheet',
+                            className: "extra-margin",
+                            customizeData: function (data) {
+                                var body = data.body;
+                                for (var i = 0; i < body.length; i++) {
+                                    var raw_content = body[i][1].split(/ +/);
+                                    raw_content.pop();
+                                    raw_content.pop();
+                                    body[i][1] = raw_content.join(' ');
+                                }
+                            },
+                        }],
+                    });
+                    $(thatEl).parent().width( "100%" );
+
+                    oTable.fnSort([
+                        [2, 'desc']
+                    ]);
+
                 }
             });
 
@@ -1786,6 +1787,11 @@
                                     count: count
                                 }
                             );
+                        }).fail(function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR.status);
+                            console.log(jqXHR.responseText);
+                            console.log(textStatus);
+                            console.log(errorThrown);
                         });
 
                         centerSubmissionRowView.render();

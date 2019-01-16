@@ -1,13 +1,13 @@
 package gov.nih.nci.ctd2.dashboard.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -33,6 +33,8 @@ import gov.nih.nci.ctd2.dashboard.util.ImplTransformer;
 @Controller
 @RequestMapping("/observations")
 public class ObservationController {
+    private static Log log = LogFactory.getLog(ObservationController.class);
+
     @Autowired
     private DashboardDao dashboardDao;
 
@@ -58,6 +60,7 @@ public class ObservationController {
     }
 
     private List<Observation> getBySubjectId(Integer subjectId, String role, Integer tier) {
+        log.debug("subjectId=" + subjectId);
         Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
         if (subject != null) {
             Set<Observation> observations = new HashSet<Observation>();
@@ -71,13 +74,10 @@ public class ObservationController {
                 }
             }
             List<Observation> list = new ArrayList<Observation>(observations);
-            Collections.sort(list, new Comparator<Observation>() {
-                @Override
-                public int compare(Observation o1, Observation o2) {
-                    Integer tier2 = o2.getSubmission().getObservationTemplate().getTier();
-                    Integer tier1 = o1.getSubmission().getObservationTemplate().getTier();
-                    return tier2 - tier1;
-                }
+            list.sort((Observation o1, Observation o2) -> {
+                Integer tier2 = o2.getSubmission().getObservationTemplate().getTier();
+                Integer tier1 = o1.getSubmission().getObservationTemplate().getTier();
+                return tier2 - tier1;
             });
 
             return list;
@@ -93,9 +93,14 @@ public class ObservationController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
-        List<? extends DashboardEntity> entities = getBySubmissionId(submissionId);
+        try {
+            List<? extends DashboardEntity> entities = getBySubmissionId(submissionId);
 
-        return new ResponseEntity<String>("" + entities.size(), headers, HttpStatus.OK);
+            return new ResponseEntity<String>("" + entities.size(), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>("Failed to get a count of observations for submission ID="+submissionId, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Transactional
@@ -107,8 +112,8 @@ public class ObservationController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
-        List<? extends DashboardEntity> entities = getBySubjectId(subjectId, role, tier);
-        return new ResponseEntity<String>("" + entities.size(), headers, HttpStatus.OK);
+        Long count = dashboardDao.countObservationsBySubjectId(new Long(subjectId));
+        return new ResponseEntity<String>(count.toString(), headers, HttpStatus.OK);
     }
 
     @Transactional
@@ -141,13 +146,15 @@ public class ObservationController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
-        List<? extends DashboardEntity> entities = getBySubjectId(subjectId, role, tier);
-        if (!getAll && entities.size() > getMaxNumberOfEntities()) {
-            entities = entities.subList(0, getMaxNumberOfEntities());
+        List<? extends DashboardEntity> entities = null;
+        if(getAll) {
+            entities = getBySubjectId(subjectId, role, tier);
+        } else { // if not 'get all', ignore other criteria as well
+            entities = dashboardDao.findObservationsBySubjectId(new Long(subjectId), maxNumberOfEntities);
         }
 
         JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)
-                .transform(new DateTransformer(), Date.class);
+            .transform(new DateTransformer(), Date.class);
 
         return new ResponseEntity<String>(jsonSerializer.serialize(entities), headers, HttpStatus.OK);
     }

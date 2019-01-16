@@ -19,6 +19,7 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.springframework.cache.annotation.Cacheable;
 
+import java.math.BigInteger;
 import java.util.*;
 
 import javax.persistence.TypedQuery;
@@ -479,6 +480,30 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Observation> findObservationsBySubmission(Submission submission) {
         return queryWithClass("from ObservationImpl where submission = :submission", "submission", submission);
+    }
+
+    @Override
+    public Long countObservationsBySubjectId(Long subjectId) {
+        Session session = getSession();
+        org.hibernate.Query query = session.createSQLQuery("SELECT COUNT(observation_id) FROM observed_subject S WHERE subject_id="+subjectId);
+        BigInteger count = (BigInteger)query.uniqueResult();
+        session.close();
+        return count.longValue();
+    }
+
+    @Override
+    public List<Observation> findObservationsBySubjectId(Long subjectId, int limit) {
+        Session session = getSession();
+        org.hibernate.Query query = session.createSQLQuery("SELECT observation_id FROM observed_subject S WHERE subject_id="+subjectId+" LIMIT "+limit);
+        List<?> ids = query.list();
+        List<Observation> list = new ArrayList<Observation>();
+        for(Object id : ids) {
+            org.hibernate.Query obsvnQuery = session.createQuery("FROM ObservationImpl WHERE id="+id);
+            Observation observation = (Observation)obsvnQuery.uniqueResult();
+            list.add(observation);
+        }
+        session.close();
+        return list;
     }
 
     @Override

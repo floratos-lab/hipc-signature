@@ -16,6 +16,8 @@ public interface DashboardDao {
     <T extends DashboardEntity> T getEntityById(Class<T> entityClass, Integer id);
     <T extends DashboardEntity> T getEntityByStableURL(String type, String stableURL);
     Long countEntities(Class<? extends DashboardEntity> entityClass);
+    Long countObservationsBySubjectId(Long subjectId);
+    List<Observation> findObservationsBySubjectId(Long subjectId, int limit);
     DashboardFactory getDashboardFactory();
     void setDashboardFactory(DashboardFactory dashboardFactory);
     <T extends DashboardEntity> List<T> findEntities(Class<T> entityClass);
