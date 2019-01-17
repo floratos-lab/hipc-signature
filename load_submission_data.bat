@@ -7,6 +7,9 @@ java -ea -jar admin\target\dashboard-admin.jar -cv
 echo start loading submission data %time%
 java -ea -jar admin\target\dashboard-admin.jar -o
 
+echo start indexing %time%
+java -jar admin\target\dashboard-admin.jar -i
+
 echo start subject ranking %time%
 java -jar admin\target\dashboard-admin.jar -r
 
