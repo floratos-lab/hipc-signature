@@ -3636,7 +3636,11 @@
             "search/:term": "search",
             "cell-subset/:id": "showCellSubset",
             "pathogen/:id": "showPathogen",
+            "pathogen/:id/:role": "showPathogen",
+            "pathogen/:id/:role/:tier": "showPathogen",
             "vaccine/:id": "showVaccine",
+            "vaccine/:id/:role": "showVaccine",
+            "vaccine/:id/:role/:tier": "showVaccine",
             "animal-model/:name": "showAnimalModel",
             "animal-model/:name/:role": "showAnimalModel",
             "animal-model/:name/:role/:tier": "showAnimalModel",
@@ -3712,7 +3716,7 @@
             });
         },
 
-        showPathogen: function (id) {
+        showPathogen: function (id, role, tier) {
             var pathogen = new Pathogen({
                 id: id,
             });
@@ -3721,6 +3725,8 @@
                     var view = new PathogenView({
                         model: {
                             subject: pathogen,
+                            tier: tier,
+                            role: role
                         }
                     });
                     view.render();
@@ -3728,7 +3734,7 @@
             });
         },
 
-        showVaccine: function (id) {
+        showVaccine: function (id, role, tier) {
             var vaccine = new Vaccine({
                 id: id,
             });
@@ -3737,6 +3743,8 @@
                     var view = new VaccineView({
                         model: {
                             subject: vaccine,
+                            tier: tier,
+                            role: role
                         }
                     });
                     view.render();
