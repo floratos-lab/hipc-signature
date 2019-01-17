@@ -247,6 +247,14 @@
         urlRoot: CORE_API_URL + "get/cell-subset"
     });
 
+    var Pathogen = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/pathogen"
+    });
+
+    var Vaccine = Backbone.Model.extend({
+        urlRoot: CORE_API_URL + "get/vaccine"
+    });
+
     var Subject = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/subject"
     });
@@ -3627,6 +3635,8 @@
             "observation/:id": "showObservation",
             "search/:term": "search",
             "cell-subset/:id": "showCellSubset",
+            "pathogen/:id": "showPathogen",
+            "vaccine/:id": "showVaccine",
             "animal-model/:name": "showAnimalModel",
             "animal-model/:name/:role": "showAnimalModel",
             "animal-model/:name/:role/:tier": "showAnimalModel",
@@ -3695,6 +3705,38 @@
                     var view = new CellSubsetView({
                         model: {
                             subject: cellsubset,
+                        }
+                    });
+                    view.render();
+                }
+            });
+        },
+
+        showPathogen: function (id) {
+            var pathogen = new Pathogen({
+                id: id,
+            });
+            pathogen.fetch({
+                success: function() {
+                    var view = new PathogenView({
+                        model: {
+                            subject: pathogen,
+                        }
+                    });
+                    view.render();
+                }
+            });
+        },
+
+        showVaccine: function (id) {
+            var vaccine = new Vaccine({
+                id: id,
+            });
+            vaccine.fetch({
+                success: function() {
+                    var view = new VaccineView({
+                        model: {
+                            subject: vaccine,
                         }
                     });
                     view.render();

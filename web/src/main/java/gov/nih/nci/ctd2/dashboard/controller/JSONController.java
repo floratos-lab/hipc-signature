@@ -36,7 +36,7 @@ public class JSONController {
     static {
         Collections.addAll(typesWithStableURL,
                 new String[] { "center", "animal-model", "cell-sample", "compound", "protein", "rna", "tissue",
-                        "transcript", "submission", "observation", "observedevidence", "cell-subset" });
+                        "transcript", "submission", "observation", "observedevidence", "cell-subset", "pathogen", "vaccine" });
     }
 
     /*

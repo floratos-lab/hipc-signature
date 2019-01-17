@@ -180,6 +180,8 @@ public class DashboardDaoImpl implements DashboardDao {
         typesWithStableURL.put("observation", "ObservationImpl");
         typesWithStableURL.put("observedevidence", "ObservedEvidenceImpl");
         typesWithStableURL.put("cell-subset", "CellSubsetImpl");
+        typesWithStableURL.put("pathogen", "PathogenImpl");
+        typesWithStableURL.put("vaccine", "VaccineImpl");
     }
 
     @Override
@@ -485,7 +487,7 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public Long countObservationsBySubjectId(Long subjectId) {
         Session session = getSession();
-        org.hibernate.Query query = session.createSQLQuery("SELECT COUNT(observation_id) FROM observed_subject S WHERE subject_id="+subjectId);
+        org.hibernate.query.Query query = session.createNativeQuery("SELECT COUNT(observation_id) FROM observed_subject S WHERE subject_id="+subjectId);
         BigInteger count = (BigInteger)query.uniqueResult();
         session.close();
         return count.longValue();
@@ -494,12 +496,12 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Observation> findObservationsBySubjectId(Long subjectId, int limit) {
         Session session = getSession();
-        org.hibernate.Query query = session.createSQLQuery("SELECT observation_id FROM observed_subject S WHERE subject_id="+subjectId+" LIMIT "+limit);
+        org.hibernate.query.Query query = session.createNativeQuery("SELECT observation_id FROM observed_subject S WHERE subject_id="+subjectId+" LIMIT "+limit);
         List<?> ids = query.list();
         List<Observation> list = new ArrayList<Observation>();
         for(Object id : ids) {
-            org.hibernate.Query obsvnQuery = session.createQuery("FROM ObservationImpl WHERE id="+id);
-            Observation observation = (Observation)obsvnQuery.uniqueResult();
+            TypedQuery<Observation> obsvnQuery = session.createQuery("FROM ObservationImpl WHERE id="+id, Observation.class);
+            Observation observation = obsvnQuery.getSingleResult();
             list.add(observation);
         }
         session.close();

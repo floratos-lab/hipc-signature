@@ -27,7 +27,7 @@ public class CellSubsetDataWriter implements ItemWriter<CellSubset> {
  
 	public void write(List<? extends CellSubset> items) throws Exception {
         for(CellSubset cellSubset: items) {
-            String stableURL = new StableURL().createURLWithPrefix("cell-subset", cellSubset.getDisplayName());
+            String stableURL = new StableURL().createURLWithPrefix("cell-subset", cellSubset.getCellOntologyId());
             cellSubset.setStableURL(stableURL);
         }
         dashboardDao.batchSave(items, batchSize);
