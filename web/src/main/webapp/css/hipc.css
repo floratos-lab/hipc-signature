@@ -224,23 +224,6 @@ body {
 
 ul.items {margin-left:0;}
 
-.project {
-    padding: 15px 10px 0px 0;
-    /*border-bottom:  1px solid #d1e4f1;*/
-    clear: both;
-    }
-
-.project .row {
-    margin-bottom:5px;}
-
-.project:after {
-    display: block;
-    clear: both;
-    content:"";}
-
-.project p {margin-bottom: 5px; line-height: 18px !important; font-size: 12px;}
-.project b {color: #2e75a5;;}
-
 hr {
 	height:0px;
 	font-size:0px;
