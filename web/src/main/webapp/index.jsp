@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="css/buttons.dataTables.min.css" type="text/css" />
     <link rel="stylesheet" href="css/jquery.fancybox.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/jquery.contextMenu.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/ctd2.css" type="text/css" />
-    <link rel="stylesheet" href="css/hipc.css?ts=2018" type="text/css" />
+    <link rel="stylesheet" href="css/hipc.css?ts=2019" type="text/css" />
   </head>
 
   <body>
@@ -34,8 +33,7 @@
         <div class="container">
 
         <h1>
-            <span id="logo"><a href=""></a></span>
-            <span id="title"><a href="#"><span class="em">Human Immunology</span> <span class="main">Project Consortium</span></a></span>
+            <a href="#"><span>Human Immunology Project Consortium</span></a>
         </h1>
 
         <ul id="main-nav">
