@@ -242,7 +242,7 @@
 
         <div style="background-color:#f1f5de">
         <div class="container marketing ctd2-boxes">
-          <div style="display:table">
+          <div class="row">
             <div class="col-4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Genes</h4>
                 <p>
