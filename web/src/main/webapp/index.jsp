@@ -2341,7 +2341,7 @@
             </p>
 
             <ul>
-                <li><i>Center</i>: One of 13 academic research teams that make up the HIPC. To learn more about the current Centers, visit <a target="_blank" href="https://ocg.cancer.gov/programs/ctd2/centers">https://ocg.cancer.gov/programs/ctd2/centers</a>.</li>
+                <li><i>Center</i>: One of the academic research teams that make up the HIPC.</li>
 
                 <li><i>Submission</i>: A Dashboard entry that represents a dataset associated with positive experimental results, a set of data-related figures, or a polished story.</li>
 
