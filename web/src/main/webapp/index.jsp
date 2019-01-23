@@ -240,34 +240,32 @@
 
         <div class="dark-separator"></div>
 
-        <div style="background-color:#f1f5de">
-        <div class="container marketing ctd2-boxes">
-          <div class="row">
+        <div class="container ctd2-boxes">
+          <div class="row browse-menu">
             <div class="col-4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Genes</h4>
                 <p>
                     Explore genes identified as components of vaccine response signatures
                 </p>
-                <a class="btn btn-success btn-block" href="#explore/response-agent/Gene" style="position:absolute;bottom:0;">Browse &raquo;</a>
+                <a class="btn btn-success btn-block browse-button" href="#explore/response-agent/Gene">Browse &raquo;</a>
             </div>
             <div class="col-4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Pathogens</h4>
                 <p>
                     Explore pathogens targeted in vaccination response studies
                 </p>
-                <a class="btn btn-info btn-block" href="#explore/pathogen/Pathogen" style="position:absolute;bottom:0;">Browse &raquo;</a>
+                <a class="btn btn-info btn-block browse-button" href="#explore/pathogen/Pathogen">Browse &raquo;</a>
             </div>
               <div class="col-4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
                   <h4>Vaccines</h4>
                   <p>
                     Explore vaccines investigated in vaccination response studies
                   </p>
-                  <a class="btn btn-warning btn-block" href="#explore/vaccine/Vaccine" style="position:absolute;bottom:0;">Browse &raquo;</a>
+                  <a class="btn btn-warning btn-block browse-button" href="#explore/vaccine/Vaccine">Browse &raquo;</a>
               </div>
 
           </div><!-- /.row -->
         </div><!-- /.container -->
-        </div><!-- force the background color -->
 
         <!-- Carousel
         ================================================== -->

@@ -122,18 +122,6 @@ a,a:not([href]):not([tabindex]){color:#9c0001}
 
 }
 
-.marketing .span4 {
-  text-align: center;
-  width: 34%;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .span4 p {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
 #overview-text {
     overflow: hidden; /* Vertically center images part 2: clear their floats. */
     padding-left: 40px;
@@ -150,28 +138,18 @@ a,a:not([href]):not([tabindex]){color:#9c0001}
 
 .pagination ul>.active>a,.pagination ul>.active>span{color: #5a5a5a;cursor:default;}
 
+.browse-menu { margin: 0}
+.browse-button { width: auto; margin-left: -20px; margin-right: -20px; }
 .target {
     border-top: 15px solid #1ea44b;
-}
-
-.target-link {
-    color: #1ea44b;
 }
 
 .drug {
     border-top: 15px solid #17a2b8;
 }
 
-.drug-link {
-    color: #17a2b8;
-}
-
 .context {
     border-top: 15px solid #f99910;
-}
-
-.context-link {
-    color: #f99910;
 }
 
 .active-box {
@@ -479,18 +457,6 @@ div.dark-separator {
     height: 2px;
     width: 100%;
     background-color: #555555;
-}
-
-#explore-container .span3 {
-    min-height: 500px;
-}
-
-#explore-container .span4 {
-    min-height: 500px;
-}
-
-#explore-container .span2 {
-    min-height: 360px;
 }
 
 h2.target, h3.target, h4.target, h5.target {
