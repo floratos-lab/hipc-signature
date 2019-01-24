@@ -818,7 +818,7 @@
                 $("#small-hide-sub-details").hide();
                 $("#small-show-sub-details").show();
             };
-            $("#small-show-sub-details").click(function (event) {
+            $("#small-hide-sub-details").click(function (event) {
                 event.preventDefault();
                 hide_submission_detail();
             });

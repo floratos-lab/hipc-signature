@@ -1843,7 +1843,6 @@
         <div class="row one-story">
             <div class="col-8">
                 <h4>{{submission.observationTemplate.description}}</h4>
-                <!--<p class="lead stories-lead">{{submission.observationTemplate.description}}</p>-->
                 <p id="story-summary-{{id}}" class="stories-text">
                     <!-- leaving this blank, we have to construct the summary from the scratch. -->
                 </p>
