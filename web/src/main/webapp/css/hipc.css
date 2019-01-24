@@ -9,6 +9,18 @@ body {
   overflow-y: scroll;
 }
 
+h1 {
+  font-family: 'Bodoni MT', 'Fanwood Text', serif;
+  font-weight: normal;
+  color:#2e75a5;
+  font-size: 44px;
+  float: left;
+  margin:40px 0 0 0;
+  width:900px;
+}
+h1 a {color: #2e75a5;}
+h1 a:hover {text-decoration:none;color: #2e75a5}
+
 .extra-margin {
     margin-left: 20px;
 }
@@ -162,10 +174,6 @@ a,a:not([href]):not([tabindex]){color:#9c0001}
 }
 
 .carousel-well p {
-    color: #5A5A5A;
-}
-
-.carousel-caption h1 {
     color: #5A5A5A;
 }
 
@@ -525,7 +533,7 @@ h2.context, h3.context, h4.context, h5.context {
 }
 
 h3 {margin: 13px 0}
-h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+h2 small, h3 small, h4 small, h5 small, h6 small {
     color: #777777;
 }
 
@@ -634,7 +642,7 @@ div.center-link-container {
 }
 
 /* the follow styles are based on the original HIPC website */
-h1, h2, h3, h4 {
+h2, h3, h4 {
 	font-family: 'Bodoni MT', 'Fanwood Text', serif;
     font-weight: normal;}
 
@@ -660,17 +668,6 @@ b {font-weight: bold;}
 	}
 
 #header .container {padding:0; position: relative; height: 160px; }
-
-#header h1 {
-	color:#2e75a5;
-	font-size: 44px;
-	float: left;
-	margin:40px 0 0 0;
-	width:900px;
-	}
-
-    #header h1 a:hover {text-decoration:none;}
-    #header h1 a {color: #2e75a5;} 
 
 /***********MAIN-NAV************/
 
