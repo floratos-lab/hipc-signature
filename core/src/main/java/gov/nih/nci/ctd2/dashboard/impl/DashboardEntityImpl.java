@@ -14,6 +14,7 @@ import org.apache.lucene.analysis.core.StopFilterFactory;
 import org.apache.lucene.analysis.core.WhitespaceTokenizerFactory;
 import org.hibernate.annotations.Proxy;
 import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.AnalyzerDef;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Fields;
@@ -43,6 +44,7 @@ import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 public class DashboardEntityImpl implements DashboardEntity {
     private static final long serialVersionUID = 6953675960325146562L;
     public final static String FIELD_DISPLAYNAME = "keyword";
+    public final static String FIELD_DISPLAYNAME_WS = "keywordWS";
     public final static String FIELD_DISPLAYNAME_UT = "keywordUT";
 
     private Integer id;
@@ -50,6 +52,7 @@ public class DashboardEntityImpl implements DashboardEntity {
 
     @Fields({
         @Field(name = FIELD_DISPLAYNAME, index = org.hibernate.search.annotations.Index.YES, store = Store.YES),
+        @Field(name = FIELD_DISPLAYNAME_WS, index = org.hibernate.search.annotations.Index.YES, store = Store.YES, analyzer = @Analyzer(definition = "ctd2analyzer")),
         @Field(name = FIELD_DISPLAYNAME_UT, index = org.hibernate.search.annotations.Index.YES, analyze = Analyze.NO)
     })
     public String getDisplayName() {

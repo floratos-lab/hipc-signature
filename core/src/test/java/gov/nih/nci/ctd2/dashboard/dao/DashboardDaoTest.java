@@ -652,5 +652,21 @@ public class DashboardDaoTest {
         // assertTrue(dashboardDao.search("737").isEmpty()); // in the new version of hibernate-seaech 737 was picked up as a token
         assertFalse(dashboardDao.search("ABT*").isEmpty());
     }
-}
 
+    @Test
+    public void hyphenSearchTest() {
+        TissueSample ts = dashboardFactory.create(TissueSample.class);
+        ts.setDisplayName("diffuse large B-cell lymphoma");
+        dashboardDao.save(ts);
+
+        assertTrue("search B-CELL", dashboardDao.search("B-CELL").isEmpty());
+        assertFalse("search b cell", dashboardDao.search("b cell").isEmpty());
+        assertFalse("search b-cell", dashboardDao.search("b-cell").isEmpty());
+        assertTrue("search B-cell", dashboardDao.search("B-cell").isEmpty());
+        assertFalse("search cell", dashboardDao.search("cell").isEmpty());
+        assertFalse("search diffuse large B-cell lymphoma", dashboardDao.search("diffuse large B-cell lymphoma").isEmpty());
+        assertFalse("search diffuse large", dashboardDao.search("diffuse large").isEmpty());
+        assertTrue("search \"diffuse large B-cell lymphoma\"", dashboardDao.search("\"diffuse large B-cell lymphoma\"").isEmpty());
+        assertFalse("search \"diffuse large\"", dashboardDao.search("\"diffuse large\"").isEmpty());
+    }
+}
