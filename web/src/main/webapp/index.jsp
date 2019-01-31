@@ -1648,17 +1648,17 @@
     </script>
 
     <script type="text/template" id="search-results-vaccine-image-tmpl">
-        <a href="#subject/{{id}}"><!-- TODO -->
+        <a href="#{{stableURL}}">
             <img src="img/vaccine.png" title="Vaccine" alt="vaccine" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
     <script type="text/template" id="search-results-cellsubset-image-tmpl">
-        <a href="#subject/{{id}}"><!-- TODO -->
+        <a href="#{{stableURL}}">
             <img src="img/cellsubset.png" title="Cell Subset" alt="Cell Subset" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
     <script type="text/template" id="search-results-pathogen-image-tmpl">
-        <a href="#subject/{{id}}"><!-- TODO -->
+        <a href="#{{stableURL}}">
             <img src="img/pathogen.png" title="Pathogen" alt="Pathogen" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
