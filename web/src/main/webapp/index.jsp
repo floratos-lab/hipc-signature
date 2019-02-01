@@ -2368,10 +2368,6 @@
             <p>
                 During the <b>submission</b> process, <b>subjects</b> from HIPC studies are ordered by relevance based on the number of <b>observations</b> associated with a <b>submission</b>, the <b>Tiers</b> of these <b>observations</b>, and the number of different <b>Centers</b> providing <b>observations</b> about that particular <b>subject</b>.
             </p>
-
-            <br>
-            <hr>
-            <br>
         </div>
     </script>
 

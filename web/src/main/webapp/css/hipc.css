@@ -562,7 +562,6 @@ h2 small, h3 small, h4 small, h5 small, h6 small {
     padding-left: 20px;
     padding-right: 20px;
     width: 80%;
-    height: 95%;
 }
 
 table.dataTable tr.odd {
@@ -770,14 +769,6 @@ b {font-weight: bold;}
 }
 
 ul.items {margin-left:0;}
-
-hr {
-	height:0px;
-	font-size:0px;
-	border:0;
-	padding:0 !important;
-	margin:10px 0 20px 0 !important;
-	border-bottom: 1px solid #D1E4F1;}
 
 .required {
 	color: #933535;}
