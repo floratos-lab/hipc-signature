@@ -763,19 +763,6 @@ ul.items {margin-left:0;}
 	color: #4f543c;
 	font-size: 11px;}
 
-input.search
-{
-    background-image:url('../images/search-mag.png');
-    background-position: 98% 4px;
-    background-repeat: no-repeat;
-    padding-right:30px;
-    width: 185px;
-}
-
-input.search:hover, input.search:focus{
-    background-position: 98% -21px;
-}
-
 .row { margin-bottom:18px;}
 
 .tooltip-inner {text-align: left;}
