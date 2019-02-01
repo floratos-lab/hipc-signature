@@ -455,21 +455,6 @@ div.dark-separator {
     background-color: #555555;
 }
 
-h2.target, h3.target, h4.target, h5.target {
-    color: #1ea84d;
-    border-top: 0px;
-}
-
-h2.compound, h3.compound, h4.compound, h5.compound {
-    color: #006cbb;
-    border-top: 0px;
-}
-
-h2.context, h3.context, h4.context, h5.context {
-    color: #f99a14;
-    border-top: 0px;
-}
-
 .nonewline {
     white-space: nowrap;
 }

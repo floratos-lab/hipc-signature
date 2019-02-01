@@ -2213,7 +2213,7 @@
          <div class="container common-container" id="cnkbresult-container" > 
                <div class="row">
                   <div class="col-10">
-                     <h3>Cellular Network Knowledge Base</h2>
+                     <h2>Cellular Network Knowledge Base</h2>
                      <a href="#" id="cnkbExport"  target="_blank" title="Export all selected interaction to a SIF file."> Export </a>
                      <br>
                      <form method="POST" action="cnkb/download" id="cnkbExport-form" style="display: none;">
