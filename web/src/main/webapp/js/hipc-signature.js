@@ -2656,7 +2656,7 @@
         "Protein": "protein",
     };
 
-    var ExploreView = Backbone.View.extend({
+    const ExploreView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#explore-tmpl").html()),
 
@@ -2664,10 +2664,8 @@
             var exploreLimit = 36;
 
             var thatModel = this.model;
+            thatModel.roles_label = subjectType[thatModel.type];
             $(this.el).html(this.template(thatModel));
-            if(thatModel.roles=="Gene") {
-                thatModel.roles = "gene_biomarker";
-            }
             var data_url = $("#explore-tmpl").attr("data-url");
             var subjectWithSummaryCollection = new SubjectWithSummaryCollection(thatModel);
             subjectWithSummaryCollection.fetch({
@@ -2805,14 +2803,17 @@
         }
     });
 
-    var browseRole = {
-        'response-agent': ["gene_biomarker"],
+    /* this does not have any effect for now because the 'select roles' button is hidden. */
+    const browseRole = {
+        response_agent: ["gene_biomarker"],
+        cellsubset: ['cell_biomarker'],
         pathogen: ["pathogen"],
         vaccine: ["vaccine"]
     };
 
-    var subjectType = {
-        'response-agent': "Genes",
+    const subjectType = {
+        response_agent: "Genes",
+        cellsubset: 'Cell Subset',
         pathogen: "Pathogens",
         vaccine: "Vaccines"
     };
@@ -3635,6 +3636,8 @@
             "observation/:id": "showObservation",
             "search/:term": "search",
             "cell-subset/:id": "showCellSubset",
+            "cell-subset/:id/:role": "showCellSubset",
+            "cell-subset/:id/:role/:tier": "showCellSubset",
             "pathogen/:id": "showPathogen",
             "pathogen/:id/:role": "showPathogen",
             "pathogen/:id/:role/:tier": "showPathogen",

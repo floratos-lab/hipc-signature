@@ -50,7 +50,8 @@
                 <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b class="caret"></b></a>
                 <ul id="dropdown-menu-browse" class="dropdown">
                     <li><a href="#stories">Stories</a></li>
-                    <li><a href="#explore/response-agent/Gene">Genes</a></li>
+                    <li><a href="#explore/response_agent/gene_biomarker">Genes</a></li>
+                    <li><a href="#explore/cellsubset/cell_biomarker">Cell Subset</a></li>
                     <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
                     <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
                 </ul>
@@ -247,7 +248,7 @@
                 <p>
                     Explore genes identified as components of vaccine response signatures
                 </p>
-                <a class="btn btn-success btn-block browse-button" href="#explore/response-agent/Gene">Browse &raquo;</a>
+                <a class="btn btn-success btn-block browse-button" href="#explore/response_agent/gene_biomarker">Browse &raquo;</a>
             </div>
             <div class="col-4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Pathogens</h4>
@@ -1876,7 +1877,8 @@
 
     <script type="text/template" id="explore-tmpl" data-url="<%=dataURL%>">
         <div class="container common-container" id="explore-container">
-            <h2>Explore: <i>{{_.map(decodeURIComponent(roles).split(","), function(o) { return o + "s"; }, []).join(", ")}}</i></h2>
+            <!-- this had to be changed because we need the label to be different from the roles for the actual query as in CTD2 dashboard -->
+            <h2>Explore: <i>{{roles_label}}</i></h2>
 
             <div id="explore-blurb"></div>
             <div class="container" style="padding-bottom:5px;">
