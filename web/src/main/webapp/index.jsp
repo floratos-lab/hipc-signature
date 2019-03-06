@@ -612,12 +612,10 @@
     </script>
 
     <script type="text/template" id="summary-subject-replacement-tmpl">
-        <a class="summary-replacement" href="#{{stableURL}}">{{displayName}}</a>
-    </script>
+        <a class="summary-replacement" href="#{{stableURL}}">{{displayName}}</a></script>
 
     <script type="text/template" id="summary-evidence-replacement-tmpl">
-        <strong class="summary-replacement">{{displayName}}</strong>
-    </script>
+        <strong class="summary-replacement">{{displayName}}</strong></script>
 
     <script type="text/template" id="observedevidence-row-tmpl">
         <tr>
