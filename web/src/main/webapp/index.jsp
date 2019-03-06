@@ -258,14 +258,15 @@
                 <a class="btn btn-info btn-block browse-button" href="#explore/pathogen/Pathogen">Browse &raquo;</a>
             </div>
               <div class="col-4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-                  <h4>Vaccines</h4>
+                  <h4>Cell Subset</h4>
                   <p>
-                    Explore vaccines investigated in vaccination response studies
+                    Explore cell subsets identified as components of vaccine response signatures
                   </p>
-                  <a class="btn btn-warning btn-block browse-button" href="#explore/vaccine/Vaccine">Browse &raquo;</a>
+                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker">Browse &raquo;</a>
               </div>
 
           </div><!-- /.row -->
+          <p>For more types, please use the browse menu above.</p>
         </div><!-- /.container -->
 
         <!-- Carousel
