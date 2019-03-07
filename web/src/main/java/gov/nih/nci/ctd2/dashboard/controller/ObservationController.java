@@ -59,7 +59,7 @@ public class ObservationController {
         }
     }
 
-    private List<Observation> getBySubjectId(Integer subjectId, String role, Integer tier) {
+    private List<Observation> getBySubjectId(Integer subjectId, String role, Integer tier, final int limit) {
         log.debug("subjectId=" + subjectId);
         Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
         if (subject != null) {
@@ -71,6 +71,9 @@ public class ObservationController {
                         .getTier();
                 if ((role.equals("") || role.equals(subjectRole)) && (tier == 0 || tier == observationTier)) {
                     observations.add(observedSubject.getObservation());
+                    if (limit > 0 && observations.size() >= limit) {
+                        break;
+                    }
                 }
             }
             List<Observation> list = new ArrayList<Observation>(observations);
@@ -99,7 +102,8 @@ public class ObservationController {
             return new ResponseEntity<String>("" + entities.size(), headers, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("Failed to get a count of observations for submission ID="+submissionId, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<String>("Failed to get a count of observations for submission ID=" + submissionId,
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -112,7 +116,26 @@ public class ObservationController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
-        Long count = dashboardDao.countObservationsBySubjectId(new Long(subjectId));
+        Long count = 0L;
+        if (tier > 0 || role.trim().length() > 0) { // then we cannot get a quick counting.
+            // this is very inefficient, but the only possible way with the current data
+            // model
+            Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
+            Set<Observation> observations = new HashSet<Observation>();
+            for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectBySubject(subject)) {
+                ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
+                String subjectRole = observedSubjectRole.getSubjectRole().getDisplayName();
+                Integer observationTier = observedSubject.getObservation().getSubmission().getObservationTemplate()
+                        .getTier();
+                if ((role.equals("") || role.equals(subjectRole)) && (tier == 0 || tier == observationTier)) {
+                    observations.add(observedSubject.getObservation());
+                }
+            }
+            count = new Long(observations.size());
+        } else { // quick counting
+            count = dashboardDao.countObservationsBySubjectId(new Long(subjectId));
+        }
+
         return new ResponseEntity<String>(count.toString(), headers, HttpStatus.OK);
     }
 
@@ -147,14 +170,16 @@ public class ObservationController {
         headers.add("Content-Type", "application/json; charset=utf-8");
 
         List<? extends DashboardEntity> entities = null;
-        if(getAll) {
-            entities = getBySubjectId(subjectId, role, tier);
-        } else { // if not 'get all', ignore other criteria as well
+        if (getAll) {
+            entities = getBySubjectId(subjectId, role, tier, 0); // 0 means no limit
+        } else if (tier > 0 || role.trim().length() > 0) {
+            entities = getBySubjectId(subjectId, role, tier, maxNumberOfEntities);
+        } else { // fast query if we can ignore other criteria
             entities = dashboardDao.findObservationsBySubjectId(new Long(subjectId), maxNumberOfEntities);
         }
 
         JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)
-            .transform(new DateTransformer(), Date.class);
+                .transform(new DateTransformer(), Date.class);
 
         return new ResponseEntity<String>(jsonSerializer.serialize(entities), headers, HttpStatus.OK);
     }

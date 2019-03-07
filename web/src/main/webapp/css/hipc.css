@@ -705,6 +705,7 @@ b {font-weight: bold;}
 	top:32px;
 	width:160px;
     margin: 0;
+    padding: 0;
 
 	-moz-box-shadow: 1px 1px 5px #28658e;
 	-webkit-box-shadow: 1px 1px 5px #28658e;

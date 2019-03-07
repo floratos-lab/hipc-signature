@@ -3703,7 +3703,7 @@
             exploreView.render();
         },
 
-        showCellSubset: function (id) {
+        showCellSubset: function (id, role, tier) {
             var cellsubset = new CellSubset({
                 id: id,
             });
@@ -3712,6 +3712,8 @@
                     var view = new CellSubsetView({
                         model: {
                             subject: cellsubset,
+                            tier: tier,
+                            role: role,
                         }
                     });
                     view.render();
