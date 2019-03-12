@@ -183,4 +183,24 @@ public class ObservationController {
 
         return new ResponseEntity<String>(jsonSerializer.serialize(entities), headers, HttpStatus.OK);
     }
+
+    @Transactional
+    @RequestMapping(value = "countByX", method = { RequestMethod.GET,
+            RequestMethod.POST }, headers = "Accept=application/json")
+    public ResponseEntity<String> countByX(@RequestParam("subjectId") Integer subjectId) {
+        System.out.println("request received by countByX");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        try {
+            // this is a test text to search
+            Long count = new Long(dashboardDao.countObservationsBySubjectIdAndText(subjectId, "was significantly"));
+            JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)
+                    .transform(new DateTransformer(), Date.class);
+
+            return new ResponseEntity<String>(jsonSerializer.serialize(count.toString()), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>("error in countByX", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -2089,8 +2089,11 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <p>
                 Only {{numOfObservations}} of {{numOfAllObservations}} observations are listed in the table below.
+                <a href="observations/countByX?subjectId={{subjectId}}">TEST NEW QUERY</a>
+                <!--
                 To load all observations please <a href="#" class="load-more-observations">click here</a>
                 (<i>this might take a while</i>).
+                -->
             </p>
         </div>
     </script>

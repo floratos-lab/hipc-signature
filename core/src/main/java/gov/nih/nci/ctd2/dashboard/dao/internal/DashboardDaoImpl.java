@@ -544,6 +544,58 @@ public class DashboardDaoImpl implements DashboardDao {
         return list;
     }
 
+    /*
+     * the basic requirement of this method is real-time response the largest cases
+     */
+    // @Override
+    public int countObservationsBySubjectIdAndText_1(Integer subjectId, String text) {
+        Session session = getSession();
+        System.out.println(new java.util.Date());
+        org.hibernate.query.Query<?> query = session.createNativeQuery(
+                "SELECT DISTINCT observation_id FROM observed_subject S WHERE subject_id=" + subjectId);
+        List<?> ids = query.list();
+        int count = 0;
+        Map<Integer, Boolean> templates = new HashMap<Integer, Boolean>();
+        for (Object id : ids) {
+            org.hibernate.query.Query<?> query2 = session.createNativeQuery(
+                    "SELECT observationTemplate_id FROM submission JOIN observation ON observation.submission_id=submission.id WHERE observation.id="
+                            + id);
+            Integer templateId = (Integer) query2.getSingleResult(); // assume this is safe
+            Boolean matched = templates.get(templateId);
+            if (matched == null) { // new observation template
+                TypedQuery<ObservationTemplate> q = session
+                        .createQuery("FROM ObservationTemplateImpl WHERE id=" + templateId, ObservationTemplate.class);
+                ObservationTemplate template = q.getSingleResult();
+                matched = template.getObservationSummary().contains(text);
+                templates.put(templateId, matched);
+            }
+
+            if (matched) {
+                count++;
+            }
+        }
+        System.out.println(new java.util.Date());
+        session.close();
+        return count;
+    }
+
+    /* the above version takes more than 30 seconds, I can do better */
+    @Override
+    public int countObservationsBySubjectIdAndText(Integer subjectId, String text) {
+        Session session = getSession();
+        System.out.println(new java.util.Date());
+
+        org.hibernate.query.Query<?> query = session.createNativeQuery(
+                "SELECT DISTINCT observation_id FROM observed_subject JOIN observation on observed_subject.observation_id=observation.id WHERE subject_id="
+                        + subjectId
+                        + " AND observation.submission_id IN (SELECT submission.id FROM observation_template JOIN submission ON submission.observationTemplate_id=observation_template.id WHERE observation_template.observationSummary LIKE '%"
+                        + text + "%')");
+        int count = query.list().size();
+        System.out.println(new java.util.Date());
+        session.close();
+        return count;
+    }
+
     @Override
     public List<ObservedSubject> findObservedSubjectBySubject(Subject subject) {
         return queryWithClass("from ObservedSubjectImpl where subject = :subject ", "subject", subject);
