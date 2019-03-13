@@ -2089,8 +2089,10 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <p>
                 Only {{numOfObservations}} of {{numOfAllObservations}} observations are listed in the table below.
-                To load all observations please <a href="#" class="load-more-observations">click here</a>
-                (<i>this might take a while</i>).
+                Enter the text to filter <input id=filter_text />
+                <button id=filter_button>Filter</button>
+                The number after filtering is <span id=filtered_number></span>.
+                <button id=load-filtered style="display: none;">Load the observations</button>
             </p>
         </div>
     </script>

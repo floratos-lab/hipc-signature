@@ -773,4 +773,33 @@ public class DashboardDaoImpl implements DashboardDao {
         log.debug("pathogen name=" + name);
         return queryWithClass("from PathogenImpl where displayName = :name", "name", name);
     }
+
+    @Override
+    public Integer countObservationsFiltered(Integer subjectId, String filterBy) {
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(
+                "SELECT COUNT(*) FROM expanded_summary JOIN observed_subject ON expanded_summary.observation_id=observed_subject.observation_id WHERE subject_id="
+                        + subjectId + " AND summary LIKE '%" + filterBy + "%'");
+        BigInteger x = query.uniqueResult();
+        session.close();
+        return x.intValue();
+    }
+
+    @Override
+    public List<Observation> getObservationsFiltered(Integer subjectId, String filterBy) {
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Integer> query = session.createNativeQuery(
+                "SELECT expanded_summary.observation_id FROM expanded_summary JOIN observed_subject ON expanded_summary.observation_id=observed_subject.observation_id WHERE subject_id="
+                        + subjectId + " AND summary LIKE '%" + filterBy + "%'");
+        List<Integer> list = query.list();
+        List<Observation> observations = new ArrayList<Observation>();
+        for (Integer id : list) {
+            Observation observation = session.get(Observation.class, id);
+            observations.add(observation);
+        }
+        session.close();
+        return observations;
+    }
 }

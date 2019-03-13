@@ -183,4 +183,39 @@ public class ObservationController {
 
         return new ResponseEntity<String>(jsonSerializer.serialize(entities), headers, HttpStatus.OK);
     }
+
+    @Transactional
+    @RequestMapping(value = "countFiltered", method = { RequestMethod.POST,
+            RequestMethod.GET }, headers = "Accept=application/json")
+    public ResponseEntity<String> countFiltered(@RequestParam("subjectId") Integer subjectId,
+            @RequestParam("filterBy") String filterBy) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        JSONSerializer jsonSerializer = new JSONSerializer();
+
+        Integer result = dashboardDao.countObservationsFiltered(subjectId, filterBy);
+        return new ResponseEntity<String>(jsonSerializer.deepSerialize(result), headers, HttpStatus.OK);
+    }
+
+    @Transactional
+    @RequestMapping(value = "filtered", method = { RequestMethod.POST,
+            RequestMethod.GET }, headers = "Accept=application/json")
+    public ResponseEntity<String> filtered(@RequestParam("subjectId") Integer subjectId,
+            @RequestParam("filterBy") String filterBy) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+
+        try {
+            List<Observation> result = dashboardDao.getObservationsFiltered(subjectId, filterBy);
+            JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)
+                    .transform(new DateTransformer(), Date.class);
+            return new ResponseEntity<String>(jsonSerializer.deepSerialize(result), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>("error in observations/filtered", headers,
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

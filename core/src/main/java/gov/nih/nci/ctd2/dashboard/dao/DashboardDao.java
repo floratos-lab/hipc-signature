@@ -141,4 +141,8 @@ public interface DashboardDao {
     List<SubjectWithSummaries> findSubjectWithSummariesByRole(String role, Integer minScore);
 
     List<Protein> findProteinByGene(Gene gene);
+
+    Integer countObservationsFiltered(Integer subjectId, String text);
+
+    List<Observation> getObservationsFiltered(Integer subjectId, String filterBy);
 }
