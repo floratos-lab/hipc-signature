@@ -7,7 +7,7 @@ This project starts with rebranding the codebase of CTD^2 Dashboard project. It 
 
 # Install
 The code is structured as a _Maven_ project. 
-We suggest you work in an environment with `JDK 1.6.x`, `Tomcat 6.x`, `MySQL 5.0.x` and `Maven 3.x.x` properly installed.
+We suggest you work in an environment with `JDK 1.8.x`, `Tomcat 8.5.x`, `MySQL 5.7.x` and `Maven 3.x.x` properly installed.
 You will need two databases: one for the production, by default **hipc_signature**, and one for the testing, again by default **hipc_test**.
 
 Before running any _mvn_ jobs, make sure you do the basic configuration.
