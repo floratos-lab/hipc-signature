@@ -2093,6 +2093,7 @@
             });
 
             $("#filter_button").click(function () {
+                $("#filtered_number").hide();
                 $("#load-filtered").hide();
                 $.ajax({
                     url: "observations/countFiltered",
@@ -2103,13 +2104,15 @@
                     contentType: "json",
 
                     success: function (data) {
-                        $("#filtered_number").text(data);
+                        $("#filtered_number").text("The number after filtering is " + data + ".");
+                        $("#filtered_number").show();
                         // data is expected to be a number
-                        if (data < 1000) {
+                        if (data < 1000 && data > 0) {
                             $("#load-filtered").show();
                         }
                     },
                     error: function () {
+                        $("#filtered_number").hide();
                         console.log('error from observations/countFiltered');
                     }
                 }); //ajax
