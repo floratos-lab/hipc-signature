@@ -9,9 +9,11 @@
     String dataURL = (String) context.getBean("dataURL");
     Integer maxNumOfObservations = (Integer) context.getBean("maxNumberOfEntities");
     String dashboardReleaseVersion = (String) context.getBean("dashboardReleaseVersion");
-%><!DOCTYPE html>
+%>
+<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-  <head>
+
+<head>
     <!-- X-UA-Compatible meta tag to disable IE compatibility view must always be first -->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -26,71 +28,75 @@
     <link rel="stylesheet" href="css/jquery.fancybox.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/jquery.contextMenu.min.css" type="text/css" />
     <link rel="stylesheet" href="css/hipc.css?ts=2019" type="text/css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="header">
         <div class="container">
 
-        <h1>
-            <a href="#"><span>Human Immunology Project Consortium</span></a>
-        </h1>
+            <h1>
+                <a href="#"><span>Human Immunology Project Consortium</span></a>
+            </h1>
 
-        <ul id="main-nav">
-            <li><a id="navlink-dashboard" class="navlink" href="#">HIPC DASHBOARD</a></li>
-            <li><a id="navlink-centers" class="navlink" href="#centers">Centers</a></li>
-            <li>
-                <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b class="caret"></b></a>
-                <ul class="dropdown">
-                    <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show">HIPC Home Page</a></li>
-                    <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show?pg=publications">Publications</a></li>
-                </ul>
-            </li>
-            <li>
-                <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b class="caret"></b></a>
-                <ul id="dropdown-menu-browse" class="dropdown">
-                    <li><a href="#stories">Stories</a></li>
-                    <li><a href="#explore/response_agent/gene_biomarker">Genes</a></li>
-                    <li><a href="#explore/cellsubset/cell_biomarker">Cell Subset</a></li>
-                    <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
-                    <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
-                </ul>
-            </li>
-            <li>
-                <a id="navlink-genecart" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Gene Cart <b class="caret"></b></a>
-                <ul id="dropdown-menu-genecart" class="dropdown">
-                    <li><a href="#genes">Go To Cart</a></li> 
-                    <li><a href="#gene-cart-help">Help</a></li>
-                </ul>
-            </li>
-            <li>
-            <form id="omnisearch">
-                    <input type="text" id="omni-input" title="Search" placeholder="e.g. CTNNB1 or ABT-737">
-                    <button type="submit">Search</button>
-                    <span class="d-none" id="search-help-content">
-                        <p>Please enter the keyword you would like to search on the website.</p>
-                        <strong>Examples:</strong>
-                        <ul>
-                            <li><em>Gene: </em> <a href="#search/CTNNB1">CTNNB1</a></li>
-                            <li><em>Gene: </em> <a href="#search/YAP*">YAP*</a></li>
-                            <li><em>Compound: </em> <a href="#search/dasatinib">dasatinib</a></li>
-                            <li><em>Cell Sample: </em> <a href="#search/OVCAR8">OVCAR8</a></li>
-                            <li><em>Multiple: </em> <a href="#search/dexamethasone AKT1">dexamethasone AKT1</a></li>
-                        </ul>
-                        <br>
-                    </span>
-            </form>
-            </li>
-        </ul>
+            <ul id="main-nav">
+                <li><a id="navlink-dashboard" class="navlink" href="#">HIPC DASHBOARD</a></li>
+                <li><a id="navlink-centers" class="navlink" href="#centers">Centers</a></li>
+                <li>
+                    <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b class="caret"></b></a>
+                    <ul class="dropdown">
+                        <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show">HIPC Home Page</a></li>
+                        <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show?pg=publications">Publications</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b
+                            class="caret"></b></a>
+                    <ul id="dropdown-menu-browse" class="dropdown">
+                        <li><a href="#stories">Stories</a></li>
+                        <li><a href="#explore/response_agent/gene_biomarker">Genes</a></li>
+                        <li><a href="#explore/cellsubset/cell_biomarker">Cell Subset</a></li>
+                        <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
+                        <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a id="navlink-genecart" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Gene Cart
+                        <b class="caret"></b></a>
+                    <ul id="dropdown-menu-genecart" class="dropdown">
+                        <li><a href="#genes">Go To Cart</a></li>
+                        <li><a href="#gene-cart-help">Help</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <form id="omnisearch">
+                        <input type="text" id="omni-input" title="Search" placeholder="e.g. CTNNB1 or ABT-737">
+                        <button type="submit">Search</button>
+                        <span class="d-none" id="search-help-content">
+                            <p>Please enter the keyword you would like to search on the website.</p>
+                            <strong>Examples:</strong>
+                            <ul>
+                                <li><em>Gene: </em> <a href="#search/CTNNB1">CTNNB1</a></li>
+                                <li><em>Gene: </em> <a href="#search/YAP*">YAP*</a></li>
+                                <li><em>Compound: </em> <a href="#search/dasatinib">dasatinib</a></li>
+                                <li><em>Cell Sample: </em> <a href="#search/OVCAR8">OVCAR8</a></li>
+                                <li><em>Multiple: </em> <a href="#search/dexamethasone AKT1">dexamethasone AKT1</a></li>
+                            </ul>
+                            <br>
+                        </span>
+                    </form>
+                </li>
+            </ul>
 
-        </div><!--end header container-->
-    </div><!--end header-->
+        </div>
+        <!--end header container-->
+    </div>
+    <!--end header-->
 
     <!-- NAVBAR
     ================================================== -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
-    $(function() {
+        $(function() {
         // Bind an event to window.onhashchange that, when the hash changes, 
         // gets the hash and alters class of desired navlinks
         window.onhashchange  = function() {
@@ -139,48 +145,53 @@
     });
     </script>
 
-<!-- all the backbone magic will happen here, right in this div -->
+    <!-- all the backbone magic will happen here, right in this div -->
     <div id="main-container"></div>
 
     <div class="container">
         <!-- FOOTER -->
-       <footer>
-        <p><small>HIPC DASHBOARD Release <%=dashboardReleaseVersion%></small></p>
-     	<p>
-            <small>
-                <p>
-                    As the HIPC Network continues to refine the Signature, input from the research community is highly valued to help improve usability.<br>
-                    <b>Note</b>: Data users must acknowledge HIPC Network and visit <a href="https://www.immuneprofiling.org">HIPC publication guidelines</a> for more information.<br>
-                    To provide feedback, please send comments to <a href="mailto:hipcfeedback?subject=HIPC DASHBOARD Feedback">hipcfeedback@columbia.edu</a>.
-                </p>
-           </small>
-        </p>
+        <footer>
+            <p><small>HIPC DASHBOARD Release
+                    <%=dashboardReleaseVersion%></small></p>
+            <p>
+                <small>
+                    <p>
+                        As the HIPC Network continues to refine the Signature, input from the research community is
+                        highly valued to help improve usability.<br>
+                        <b>Note</b>: Data users must acknowledge HIPC Network and visit <a href="https://www.immuneprofiling.org">HIPC
+                            publication guidelines</a> for more information.<br>
+                        To provide feedback, please send comments to <a href="mailto:hipcfeedback?subject=HIPC DASHBOARD Feedback">hipcfeedback@columbia.edu</a>.
+                    </p>
+                </small>
+            </p>
 
-           <p>
-               <a class="help-navigate" href="#help-navigate">Glossary</a> &middot;
-               <a href="https://www.immuneprofiling.org" target="_blank">Policies</a> &middot;
-               <a href="https://www.immuneprofiling.org" target="_blank">Accessibility</a> &middot;
-               <a href="https://www.immuneprofiling.org" target="_blank">FOIA</a>
-           </p>
+            <p>
+                <a class="help-navigate" href="#help-navigate">Glossary</a> &middot;
+                <a href="https://www.immuneprofiling.org" target="_blank">Policies</a> &middot;
+                <a href="https://www.immuneprofiling.org" target="_blank">Accessibility</a> &middot;
+                <a href="https://www.immuneprofiling.org" target="_blank">FOIA</a>
+            </p>
 
-       </footer>
+        </footer>
     </div>
-     
-    <div class="modal hide fade" id="alert-message-modal">  <!-- a hidden div for showing alert message -->
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-body" >
-            <br><medium id="alertMessage"></medium>
+
+    <div class="modal hide fade" id="alert-message-modal">
+        <!-- a hidden div for showing alert message -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <br>
+                    <medium id="alertMessage"></medium>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal">Close</button>
-        </div>
-    </div>
-    </div>
     </div>
 
     <div class="modal hide fade" id="popup-textarea-modal">
-        <div class="modal-body" >
+        <div class="modal-body">
             <textarea id="temporary-text" style='width:95%' rows='10' cols='100'></textarea>
         </div>
         <div class="modal-footer">
@@ -201,7 +212,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmed-delete">Yes, delete it.</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmed-delete">Yes,
+                        delete it.</button>
                 </div>
             </div>
         </div>
@@ -949,7 +961,7 @@
     </script>
 
     <script type="text/template" id="gene-tmpl">
-         <div class="container common-container" id="gene-container">
+        <div class="container common-container" id="gene-container">
              <h2>{{displayName}}</h2>
 
              <div class="row">
@@ -1457,7 +1469,7 @@
     </script>
 
     <script type="text/template" id="compound-tmpl">
-          <div class="container common-container" id="compound-container">
+        <div class="container common-container" id="compound-container">
               <h2>{{displayName}}</h2>
 
               <div class="row">
@@ -1539,7 +1551,7 @@
             <td>{{observedSubjectRole.displayText}}</td>
         </tr>
     </script>
-    
+
     <script type="text/template" id="observedsubject-gene-summary-row-tmpl">
         <tr>
             <td id="subject-image-{{id}}"></td>
@@ -1693,7 +1705,7 @@
             </td>
         </tr>
     </script>
-    
+
     <script type="text/template" id="search-result-gene-row-tmpl">
         <tr>
             <td id="search-image-{{dashboardEntity.id}}"></td>
@@ -1968,10 +1980,10 @@
                 </div>
             </td>
         </tr>
-    </script>  
-    
+    </script>
+
     <script type="text/template" id="mra-view-tmpl" mra-data-url="<%=dataURL%>">
-         <div class="container common-container" id="mra-container" > 
+        <div class="container common-container" id="mra-container" > 
                <div class="row">
                  <div class="col-10">
                     <h2>Master Regulator View</h2>
@@ -2038,8 +2050,8 @@
                   </table>
 
         </div>
-    </script>   
-    
+    </script>
+
     <script type="text/template" id="mra-view-row-tmpl">
         <tr>
             <td><input type="checkbox" id="checkbox_{{entrezId}}" value="{{entrezId}}"></td>
@@ -2048,7 +2060,7 @@
             <td>{{dataRowCount}}</td>
         </tr>
     </script>
-    
+
     <script type="text/template" id="mra-barcode-view-row-tmpl">
         <tr>             
 			<td><canvas id="draw-{{entrezId}}" width="450" height="36"></canvas></td>
@@ -2057,8 +2069,8 @@
             <td>{{deRank}}</td>
             <td>{{geneSymbol}}</td>
         </tr>
-    </script>   
-    
+    </script>
+
     <script type="text/template" id="mra-cytoscape-tmpl">
         <div class="cytoscape-container">
         <div id="mra_progress">
@@ -2123,9 +2135,9 @@
     <script type="text/template" id="maxNumberOfEntites">
         <%=maxNumOfObservations%>
     </script>
-    
-    <script type="text/template" id="genelist-view-tmpl" >
-         <div class="container common-container" id="genelist-container" > 
+
+    <script type="text/template" id="genelist-view-tmpl">
+        <div class="container common-container" id="genelist-container" > 
             <div class=row>
                 <div class="col-10" align="center">
                     <h4>  Gene List</h4>
@@ -2174,9 +2186,9 @@
         </div>
         </div>
       </script>
-      
-      <script type="text/template" id="cnkb-query-tmpl" >
-         <div class="container common-container" id="cnkbquery-container" > 
+
+    <script type="text/template" id="cnkb-query-tmpl">
+        <div class="container common-container" id="cnkbquery-container" > 
             <div class=row>
                     <div class="col-10">
                        <h3>Cellular Network Knowledge Base</h3>
@@ -2211,9 +2223,9 @@
              </div>
         </div>
       </script>
-      
-      <script type="text/template" id="cnkb-result-tmpl" >
-         <div class="container common-container" id="cnkbresult-container" > 
+
+    <script type="text/template" id="cnkb-result-tmpl">
+        <div class="container common-container" id="cnkbresult-container" > 
                <div class="row">
                   <div class="col-10">
                      <h2>Cellular Network Knowledge Base</h2>
@@ -2277,15 +2289,15 @@
                   <br/>	
              </div>
       </script>
-    
-      <script type="text/template" id="cnkb-result-row-tmpl">
+
+    <script type="text/template" id="cnkb-result-row-tmpl">
         <tr id="tr_{{geneName}}">
             <td><input type="checkbox" id="checkbox_{{geneName}}" value="{{geneName}}" class="cnkb_checkbox"></td> 
 		    <td>{{geneName}}</td>; 
         </tr>
       </script>
-      
-      <script type="text/template" id="cnkb-cytoscape-tmpl">
+
+    <script type="text/template" id="cnkb-cytoscape-tmpl">
         <div class="cytoscape-container">
         <div id="cnkb_cytoscape_progress">
             <img id="cnkb_cytoscape_progress_indicator" class="centeredImage" src="img/progress_indicator.gif" width="30" height="30" alt="Please wait ......">
@@ -2301,9 +2313,9 @@
         </div>
         </div>
       </script>
-     
-    <script type="text/template" id="gene-cart-help-tmpl" >
-         <div class="container common-container" id="cnkbhelp-container" >
+
+    <script type="text/template" id="gene-cart-help-tmpl">
+        <div class="container common-container" id="cnkbhelp-container" >
             <div class=row>
                <div class="col-10">
                     <h3>Gene Cart Help</h3>
@@ -2320,12 +2332,12 @@
             </div>
          </div>
      </script>
-     
-     <script type="text/template" id="gene-cart-option-tmpl">
+
+    <script type="text/template" id="gene-cart-option-tmpl">
         <option value="{{displayItem}}">{{displayItem}}</option>
      </script>
 
-     <script type="text/template" id="gene-cart-option-tmpl-preselected">
+    <script type="text/template" id="gene-cart-option-tmpl-preselected">
         <option value="{{displayItem}}" selected>{{displayItem}}</option>
      </script>
 
@@ -2379,7 +2391,7 @@
     </script>
 
     <!-- end of templates -->
-    
+
     <script src="js/datatables.min.js"></script>
     <script src="js/paging.js"></script>
     <script src="js/underscore-min.js"></script>
@@ -2395,5 +2407,6 @@
     <script src="js/jquery.ui.position.min.js"></script>
     <script src="js/hipc-signature.js"></script>
 
-  </body>
+</body>
+
 </html>
