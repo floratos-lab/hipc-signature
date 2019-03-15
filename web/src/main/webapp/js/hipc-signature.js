@@ -1995,7 +1995,6 @@
                 });
                 observations.fetch({
                     success: function () {
-                        $(".submission-observations-loading").hide();
 
                         _.each(observations.models, function (observation) {
                             observation = observation.toJSON();
@@ -2047,50 +2046,6 @@
             var tier = model.tier;
             var thatEl = this.el;
             $(thatEl).html(this.template(model));
-            $(thatEl).find("a.load-more-observations").click(function (e) {
-                e.preventDefault();
-                $(thatEl).slideUp();
-
-                $(".submission-observations-loading").show();
-                var sTableId = model.tableEl;
-
-                var observations;
-                if (model.submissionId != undefined) {
-                    observations = new ObservationsBySubmission({
-                        submissionId: model.submissionId,
-                        getAll: true
-                    });
-                } else if (model.subjectId != undefined) {
-                    observations = new ObservationsBySubject({
-                        subjectId: model.subjectId,
-                        getAll: true,
-                        role: role,
-                        tier: tier
-                    });
-                } else {
-                    console.log("something is wrong here!");
-                }
-                observations.fetch({
-                    success: function () {
-                        $(sTableId).DataTable().rows().remove().draw().destroy();
-
-                        _.each(observations.models, function (observation, i) {
-                            observation = observation.toJSON();
-
-                            var submissionRowView = new model.rowView({
-                                el: $(model.tableEl).find("tbody"),
-                                model: observation
-                            });
-                            submissionRowView.render();
-                        });
-
-                        $(sTableId).dataTable({
-                            "columns": model.columns
-                        });
-
-                    }
-                });
-            });
 
             $("#filter_button").click(function () {
                 $("#filtered_number").hide();
@@ -2121,8 +2076,7 @@
                 e.preventDefault();
                 $(thatEl).slideUp();
 
-                $(".submission-observations-loading").show();
-                var sTableId = model.tableEl;
+                const sTableId = model.tableEl;
 
                 const observations = new ObservationsFiltered({
                     subjectId: model.subjectId,
