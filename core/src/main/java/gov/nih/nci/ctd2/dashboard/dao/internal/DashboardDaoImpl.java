@@ -2,12 +2,15 @@ package gov.nih.nci.ctd2.dashboard.dao.internal;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -774,13 +777,30 @@ public class DashboardDaoImpl implements DashboardDao {
         return queryWithClass("from PathogenImpl where displayName = :name", "name", name);
     }
 
+    private static String createLikeClauses(String filterBy) {
+        // process quote first
+        Pattern p = Pattern.compile("\"(.+)\"");
+        Matcher matcher = p.matcher(filterBy);
+        List<String> terms = new ArrayList<String>();
+        while (matcher.find()) {
+            terms.add(matcher.group(1));
+        }
+        String[] unquoted = filterBy.replaceAll("\"(.+)\"", "").split("\\s");
+        terms.addAll(Arrays.asList(unquoted));
+        StringBuilder sb = new StringBuilder();
+        for (String t : terms) {
+            sb.append(" AND summary LIKE '%" + t + "%'");
+        }
+        return sb.toString();
+    }
+
     @Override
     public Integer countObservationsFiltered(Integer subjectId, String filterBy) {
         Session session = getSession();
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(
                 "SELECT COUNT(*) FROM expanded_summary JOIN observed_subject ON expanded_summary.observation_id=observed_subject.observation_id WHERE subject_id="
-                        + subjectId + " AND summary LIKE '%" + filterBy + "%'");
+                        + subjectId + createLikeClauses(filterBy));
         BigInteger x = query.uniqueResult();
         session.close();
         return x.intValue();
@@ -792,7 +812,7 @@ public class DashboardDaoImpl implements DashboardDao {
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Integer> query = session.createNativeQuery(
                 "SELECT expanded_summary.observation_id FROM expanded_summary JOIN observed_subject ON expanded_summary.observation_id=observed_subject.observation_id WHERE subject_id="
-                        + subjectId + " AND summary LIKE '%" + filterBy + "%'");
+                        + subjectId + createLikeClauses(filterBy));
         List<Integer> list = query.list();
         List<Observation> observations = new ArrayList<Observation>();
         for (Integer id : list) {
