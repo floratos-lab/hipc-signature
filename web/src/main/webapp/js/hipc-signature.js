@@ -2673,6 +2673,9 @@
         "ShRna": "shRNA",
         "Transcript": "transcript",
         "Protein": "protein",
+        "CellSubset": "cell subset",
+        "Pathogen": "pathogen",
+        "Vaccine": "caccine",
     };
 
     const ExploreView = Backbone.View.extend({
