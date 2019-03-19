@@ -52,7 +52,6 @@
                     <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b
                             class="caret"></b></a>
                     <ul id="dropdown-menu-browse" class="dropdown">
-                        <li><a href="#stories">Stories</a></li>
                         <li><a href="#explore/response_agent/gene_biomarker">Genes</a></li>
                         <li><a href="#explore/cellsubset/cell_biomarker">Cell Subset</a></li>
                         <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
@@ -281,38 +280,6 @@
           <p>For more types, please use the browse menu above.</p>
         </div><!-- /.container -->
 
-        <!-- Carousel
-        ================================================== -->
-        <div class="carousel slide">
-          <div class="carousel-inner">
-            <div class="item active" style="background-color:#f1f5de">
-              <div class="container">
-                  <div class="carousel-caption">
-                        <h3 class="homepage-stories-title">Recent Stories</h3>
-                        <div class="well carousel-well">
-                            <div class="tab-content stories-tabs">
-                                <div class="container tab-pane active fade in show" id="story-1"></div>
-                                <div class="container tab-pane fade" id="story-2"></div>
-                                <div class="container tab-pane fade" id="story-3"></div>
-                                <div class="container tab-pane fade" id="story-4"></div>
-                            </div>
-                            <div class="pagination pagination-centered stories-pagination">
-                                <ul class="nav">
-                                    <li class="active"><a href="#story-1" class="story-link">&bull;</a></li>
-                                    <li><a href="#story-2" class="story-link">&bull;</a></li>
-                                    <li><a href="#story-3" class="story-link">&bull;</a></li>
-                                    <li><a href="#story-4" class="story-link">&bull;</a></li>
-                                    <li><a href="#stories">More stories &raquo;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /.carousel -->
-
     </script>
 
     <script type="text/template" id="centers-tmpl">
@@ -332,48 +299,6 @@
                 </tbody>
             </table>
         </div>
-    </script>
-
-    <script type="text/template" id="stories-tmpl">
-        <div class="container common-container" id="stories-container">
-            <h2>Stories</h2>
-            <table class="table table-bordered table-striped table-compact" id="stories-list">
-                <thead>
-                <tr>
-                    <th class="center-image-column">Center</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Details</th>
-                </tr>
-                </thead>
-                <tbody id="stories-tbody">
-                <!-- here will come the stories... -->
-                </tbody>
-            </table>
-        </div>
-    </script>
-
-
-    <script type="text/template" id="stories-tbl-row-tmpl">
-        <tr>
-            <td class="center-image-column">
-                <a href="#{{submission.observationTemplate.submissionCenter.stableURL}}">
-                    <img src="img/slogos/{{submission.observationTemplate.submissionCenter.displayName}}.png" alt="{{submission.observationTemplate.submissionCenter.displayName}}" title="{{submission.observationTemplate.submissionCenter.displayName}}" class="img-circle">
-                </a>
-            </td>
-            <td>
-                <b>{{submission.observationTemplate.description}}</b><br>
-                <p id="story-list-summary-{{id}}" class="stories-text"></p>
-            </td>
-            <td class="story-date">
-                <small>{{submission.submissionDate}}</small>
-            </td>
-            <td class="story-details">
-                <a target="_blank" href="<%=dataURL%>" id="file-link2-{{id}}">view full story</a>
-                <br>or<br>
-                <a href="#{{stableURL}}">see observation</a>
-            </td>
-        </tr>
     </script>
 
     <script type="text/template" id="centers-tbl-row-tmpl">
@@ -1848,27 +1773,6 @@
         <div id="cytoscape-sif"></div>
         <div class="well sif-legend">
             {{description}}
-        </div>
-    </script>
-
-    <script type="text/template" id="story-homepage-tmpl">
-        <div class="row one-story">
-            <div class="col-8">
-                <h4>{{submission.observationTemplate.description}}</h4>
-                <p id="story-summary-{{id}}" class="stories-text">
-                    <!-- leaving this blank, we have to construct the summary from the scratch. -->
-                </p>
-                <p class="pull-right">
-                    (
-                        <a target="_blank" href="<%=dataURL%>" id="file-link-{{id}}">
-                            view full story</a>
-                    |
-                    <a href="#{{stableURL}}">see observation</a>)
-                </p>
-            </div>
-            <div class="col-4">
-                <img class="img-circle" src="img/slogos/{{submission.observationTemplate.submissionCenter.displayName}}.png" alt="{{submission.observationTemplate.submissionCenter.displayName}}" title="{{submission.observationTemplate.submissionCenter.displayName}}" height=150>
-            </div>
         </div>
     </script>
 

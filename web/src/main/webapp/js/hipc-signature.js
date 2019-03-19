@@ -1,6 +1,5 @@
 (function ($) {
     // This is strictly coupled to the homepage design!
-    var numOfStoriesHomePage = 4;
     var numOfCartGene = 25;
 
     // These seperators are for replacing items within the observation summary
@@ -108,20 +107,6 @@
         initialize: function (attributes) {
             this.url += attributes.centerId;
         }
-    });
-
-    var StorySubmissions = Backbone.Collection.extend({
-        url: CORE_API_URL + "stories/?limit=",
-        model: Submission,
-
-        initialize: function (attributes) {
-            if (attributes != undefined && attributes.limit != undefined) {
-                this.url += attributes.limit;
-            } else {
-                this.url += numOfStoriesHomePage;
-            }
-        }
-
     });
 
     var Observation = Backbone.Model.extend({
@@ -283,27 +268,6 @@
             // Load the template
             $(this.el).html(this.template({}));
 
-            // and load the stories
-            var storySubmissions = new StorySubmissions();
-            storySubmissions.fetch({
-                success: function () {
-                    var counter = 1;
-                    _.each(storySubmissions.models, function (aStory) {
-                        var storyView = new StorySubmissionView({
-                            el: $("#story-" + counter),
-                            model: aStory.toJSON()
-                        });
-                        storyView.render();
-                        counter++;
-                    });
-
-                    $('.stories-pagination a.story-link').click(function (e) {
-                        e.preventDefault();
-                        $(this).tab('show');
-                    });
-                }
-            });
-
             $("#omni-search-form").submit(function () {
                 var searchTerm = $("#omni-search").val();
                 window.location.hash = "search/" + searchTerm;
@@ -411,154 +375,6 @@
 
             return this;
 
-        }
-    });
-
-    var StoryListItemView = Backbone.View.extend({
-        template: _.template($("#stories-tbl-row-tmpl").html()),
-
-        render: function () {
-            var mainContainer = $(this.el);
-            mainContainer.append(this.template(this.model));
-
-            var summary = this.model.submission.observationTemplate.observationSummary;
-            var thatModel = this.model;
-            var thatEl = $("#story-list-summary-" + this.model.id);
-            var observedSubjects = new ObservedSubjects({
-                observationId: this.model.id
-            });
-            observedSubjects.fetch({
-                success: function () {
-                    _.each(observedSubjects.models, function (observedSubject) {
-                        observedSubject = observedSubject.toJSON();
-
-                        if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
-                            return;
-
-                        summary = summary.replace(
-                            new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
-                            _.template($("#summary-subject-replacement-tmpl").html())(observedSubject.subject)
-                        );
-                    });
-
-                    var observedEvidences = new ObservedEvidences({
-                        observationId: thatModel.id
-                    });
-                    observedEvidences.fetch({
-                        success: function () {
-                            _.each(observedEvidences.models, function (observedEvidence) {
-                                observedEvidence = observedEvidence.toJSON();
-
-                                if (observedEvidence.observedEvidenceRole == null || observedEvidence.evidence == null)
-                                    return;
-
-                                // If there are more than one file evidences, then we might have a problem here
-                                if (observedEvidence.evidence.class == "FileEvidence" &&
-                                    (observedEvidence.evidence.mimeType.toLowerCase().search("html") > -1 || observedEvidence.evidence.mimeType.toLowerCase().search("pdf") > -1)) {
-                                    // If this is a summary, then it should be a pdf/html file evidence
-                                    var elId = "#file-link2-" + thatModel.id;
-                                    var url = $(elId).attr("href") + observedEvidence.evidence.filePath;
-                                    $(elId).attr("href", url);
-
-                                    if (observedEvidence.evidence.mimeType.toLowerCase().search("html") > -1) {
-                                        $(elId).on("click", function (e) {
-                                            e.preventDefault();
-                                            (new HtmlStoryView({
-                                                model: {
-                                                    observation: thatModel,
-                                                    url: url
-                                                }
-                                            })).render();
-                                        });
-                                    }
-                                }
-
-                                summary = summary.replace(
-                                    new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
-                                    _.template($("#summary-evidence-replacement-tmpl").html())(observedEvidence.evidence)
-                                );
-                            });
-
-                            $(thatEl).html(summary);
-                        }
-                    });
-                }
-            });
-
-            return this;
-        }
-    });
-
-    var StorySubmissionView = Backbone.View.extend({
-        template: _.template($("#story-homepage-tmpl").html()),
-        render: function () {
-            $(this.el).append(this.template(this.model));
-
-            var summary = this.model.submission.observationTemplate.observationSummary;
-            var thatModel = this.model;
-            var thatEl = $("#story-summary-" + this.model.id);
-            var observedSubjects = new ObservedSubjects({
-                observationId: this.model.id
-            });
-            observedSubjects.fetch({
-                success: function () {
-                    _.each(observedSubjects.models, function (observedSubject) {
-                        observedSubject = observedSubject.toJSON();
-
-                        if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
-                            return;
-
-                        summary = summary.replace(
-                            new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
-                            _.template($("#summary-subject-replacement-tmpl").html())(observedSubject.subject)
-                        );
-                    });
-
-                    var observedEvidences = new ObservedEvidences({
-                        observationId: thatModel.id
-                    });
-                    observedEvidences.fetch({
-                        success: function () {
-                            _.each(observedEvidences.models, function (observedEvidence) {
-                                observedEvidence = observedEvidence.toJSON();
-
-                                if (observedEvidence.observedEvidenceRole == null || observedEvidence.evidence == null)
-                                    return;
-
-                                // If there are more than one file evidences, then we might have a problem here
-                                if (observedEvidence.evidence.class == "FileEvidence" &&
-                                    (observedEvidence.evidence.mimeType.toLowerCase().search("html") > -1 || observedEvidence.evidence.mimeType.toLowerCase().search("pdf") > -1)) {
-                                    // If this is a summary, then it should be a pdf/html file evidence
-                                    var elId = "#file-link-" + thatModel.id;
-                                    var url = $(elId).attr("href") + observedEvidence.evidence.filePath;
-                                    $(elId).attr("href", url);
-
-                                    if (observedEvidence.evidence.mimeType.toLowerCase().search("html") > -1) {
-                                        $(elId).on("click", function (e) {
-                                            e.preventDefault();
-                                            (new HtmlStoryView({
-                                                model: {
-                                                    observation: thatModel,
-                                                    url: url
-                                                }
-                                            })).render();
-                                        });
-                                    }
-                                }
-
-                                summary = summary.replace(
-                                    new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
-                                    _.template($("#summary-evidence-replacement-tmpl").html())(observedEvidence.evidence)
-                                );
-                            });
-
-                            $(thatEl).html(summary);
-                        }
-                    });
-                }
-            });
-
-            return this;
         }
     });
 
@@ -980,35 +796,6 @@
                     ]);
                 }
             });
-            return this;
-        }
-    });
-
-    var StoriesListView = Backbone.View.extend({
-        el: $("#main-container"),
-        template: _.template($("#stories-tmpl").html()),
-
-        render: function () {
-            $(this.el).html(this.template({}));
-
-            // and load the stories
-            var storySubmissions = new StorySubmissions({
-                limit: -1
-            });
-            storySubmissions.fetch({
-                success: function () {
-                    var counter = 1;
-                    _.each(storySubmissions.models, function (aStory) {
-                        var storyView = new StoryListItemView({
-                            el: $("#stories-list #stories-tbody"),
-                            model: aStory.toJSON()
-                        });
-                        storyView.render();
-                        counter++;
-                    });
-                }
-            });
-
             return this;
         }
     });
@@ -3650,7 +3437,6 @@
     AppRouter = Backbone.Router.extend({
         routes: {
             "centers": "listCenters",
-            "stories": "listStories",
             "explore/:type/:roles": "explore",
             "center/:name/:project": "showCenterProject",
             "center/:name": "showCenter",
@@ -3999,11 +3785,6 @@
         listCenters: function () {
             var centerListView = new CenterListView();
             centerListView.render();
-        },
-
-        listStories: function () {
-            var storiesListView = new StoriesListView();
-            storiesListView.render();
         },
 
         showMraView: function (id) {
