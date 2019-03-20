@@ -42,10 +42,14 @@
                 <li><a id="navlink-dashboard" class="navlink" href="#">HIPC DASHBOARD</a></li>
                 <li><a id="navlink-centers" class="navlink" href="#centers">Centers</a></li>
                 <li>
-                    <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b class="caret"></b></a>
+                    <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b
+                            class="caret"></b></a>
                     <ul class="dropdown">
-                        <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show">HIPC Home Page</a></li>
-                        <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show?pg=publications">Publications</a></li>
+                        <li><a target="_blank" href="https://www.immuneprofiling.org/hipc/page/show">HIPC Home Page</a>
+                        </li>
+                        <li><a target="_blank"
+                                href="https://www.immuneprofiling.org/hipc/page/show?pg=publications">Publications</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -95,53 +99,51 @@
     ================================================== -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
-        $(function() {
-        // Bind an event to window.onhashchange that, when the hash changes, 
-        // gets the hash and alters class of desired navlinks
-        window.onhashchange  = function() {
-            var hash = location.hash || '#';
-            $('[id^="navlink-"]').each(function() {
-                // navbar regular items
-                if (
-                    $(this).attr('id') == 'navlink-dashboard' ||
-                    $(this).attr('id') == 'navlink-centers'
-                ) {
-                    if ($(this).attr('href') === decodeURIComponent(hash)) {
-                        $(this).removeClass('navlink');
-                        $(this).addClass('navlink-current');
-                    }
-                    else {
-                        $(this).removeClass('navlink-current');
-                        $(this).addClass('navlink');
-                    }
-                }
-                // navbar dropdown menu items
-                else if (
-                    $(this).attr('id') == 'navlink-browse' ||
-                    $(this).attr('id') == 'navlink-genecart'
-                ) {
-                    var id = $(this).attr('id') == 'navlink-browse'
-                           ? 'dropdown-menu-browse'
-                           : 'dropdown-menu-genecart';
-                    var dropdownLink = $(this);
-                    $('#' + id + ' li a').each(function() {
+        $(function () {
+            // Bind an event to window.onhashchange that, when the hash changes, 
+            // gets the hash and alters class of desired navlinks
+            window.onhashchange = function () {
+                var hash = location.hash || '#';
+                $('[id^="navlink-"]').each(function () {
+                    // navbar regular items
+                    if (
+                        $(this).attr('id') == 'navlink-dashboard' ||
+                        $(this).attr('id') == 'navlink-centers'
+                    ) {
                         if ($(this).attr('href') === decodeURIComponent(hash)) {
-                            dropdownLink.removeClass('navlink');
-                            dropdownLink.addClass('navlink-current');
-                            return false;
+                            $(this).removeClass('navlink');
+                            $(this).addClass('navlink-current');
+                        } else {
+                            $(this).removeClass('navlink-current');
+                            $(this).addClass('navlink');
                         }
-                        else {
-                            dropdownLink.removeClass('navlink-current');
-                            dropdownLink.addClass('navlink');
-                        }
-                    });
-                }
-            });
-        };
-        // Since the event is only triggered when the hash changes, we need to trigger
-        // the event now, to handle the hash the page may have been loaded with.
-        window.onhashchange();
-    });
+                    }
+                    // navbar dropdown menu items
+                    else if (
+                        $(this).attr('id') == 'navlink-browse' ||
+                        $(this).attr('id') == 'navlink-genecart'
+                    ) {
+                        var id = $(this).attr('id') == 'navlink-browse' ?
+                            'dropdown-menu-browse' :
+                            'dropdown-menu-genecart';
+                        var dropdownLink = $(this);
+                        $('#' + id + ' li a').each(function () {
+                            if ($(this).attr('href') === decodeURIComponent(hash)) {
+                                dropdownLink.removeClass('navlink');
+                                dropdownLink.addClass('navlink-current');
+                                return false;
+                            } else {
+                                dropdownLink.removeClass('navlink-current');
+                                dropdownLink.addClass('navlink');
+                            }
+                        });
+                    }
+                });
+            };
+            // Since the event is only triggered when the hash changes, we need to trigger
+            // the event now, to handle the hash the page may have been loaded with.
+            window.onhashchange();
+        });
     </script>
 
     <!-- all the backbone magic will happen here, right in this div -->
@@ -157,9 +159,11 @@
                     <p>
                         As the HIPC Network continues to refine the Signature, input from the research community is
                         highly valued to help improve usability.<br>
-                        <b>Note</b>: Data users must acknowledge HIPC Network and visit <a href="https://www.immuneprofiling.org">HIPC
+                        <b>Note</b>: Data users must acknowledge HIPC Network and visit <a
+                            href="https://www.immuneprofiling.org">HIPC
                             publication guidelines</a> for more information.<br>
-                        To provide feedback, please send comments to <a href="mailto:hipcfeedback?subject=HIPC DASHBOARD Feedback">hipcfeedback@columbia.edu</a>.
+                        To provide feedback, please send comments to <a
+                            href="mailto:hipcfeedback?subject=HIPC DASHBOARD Feedback">hipcfeedback@columbia.edu</a>.
                     </p>
                 </small>
             </p>
@@ -203,7 +207,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Delete Confirmation</h4>
                 </div>
                 <div class="modal-body">
@@ -1780,12 +1785,7 @@
         <div class="alert alert-warning">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <p>
-                Entries listed below are ordered by relevance, based on the number of Centers providing observations and Tier evidence level.
-                For each Center, only its highest Tier of evidence counts toward the score.
-                Entries must have Tier 2 evidence or higher to be in the list.
-                Currently displaying observations involving {{subject_type}} that have been assigned one of the following roles:
-                {{ decodeURIComponent(roles).split(",").join(", ") }}
-                (see <a class="blurb-help" href="#help-navigate">background information</a> for the meaning of observations, roles, and Tiers).
+                Entries listed below are ordered by number of observations.
             </p>
         </div>
     </script>

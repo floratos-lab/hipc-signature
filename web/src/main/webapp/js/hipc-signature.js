@@ -2552,14 +2552,7 @@
 
                     var blurb = $("#text-blurb");
                     if (blurb.length > 0) {
-                        $("#explore-blurb").append(_.template(blurb.html())({
-                            subject_type: subjectType[thatModel.type],
-                            roles: thatModel.roles
-                        }));
-                        $("#explore-blurb .blurb-help").click(function (e) {
-                            e.preventDefault();
-                            (new HelpNavigateView()).render();
-                        });
+                        $("#explore-blurb").append(_.template(blurb.html())());
                     }
                     $("#reset-ordering").click(function () {
                         $("#explore-table").DataTable().order.neutral().draw();
