@@ -79,10 +79,10 @@
                             <strong>Examples:</strong>
                             <ul>
                                 <li><em>Gene: </em> <a href="#search/CTNNB1">CTNNB1</a></li>
-                                <li><em>Gene: </em> <a href="#search/%2522alpha-beta T cell%2522">"alpha-beta T cell"</a></li>
-                                <li><em>Compound: </em> <a href="#search/Yellow fever">Yellow fever</a></li>
-                                <li><em>Cell Sample: </em> <a href="#search/%2522(B%252FBrisbane%252F60%252F2008)%2522">"(B/Brisbane/60/2008)"</a></li>
-                                <li><em>Multiple: </em> <a href="#search/Menactra">Menactra</a></li>
+                                <li><em>Cell Subset:: </em> <a href="#search/%2522alpha-beta T cell%2522">"alpha-beta T cell"</a></li>
+                                <li><em>Pathogen: </em> <a href="#search/Yellow fever">Yellow fever</a></li>
+                                <li><em>Pathogen: </em> <a href="#search/%2522(B%252FBrisbane%252F60%252F2008)%2522">"(B/Brisbane/60/2008)"</a></li>
+                                <li><em>Vaccine: </em> <a href="#search/Menactra">Menactra</a></li>
                                 <li><em>Multiple: </em> <a href="#search/STAT3 Zostavax">STAT3 Zostavax</a></li>
                             </ul>
                             <br>
