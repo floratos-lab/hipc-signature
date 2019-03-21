@@ -72,17 +72,18 @@
                 </li>
                 <li>
                     <form id="omnisearch">
-                        <input type="text" id="omni-input" title="Search" placeholder="e.g. CTNNB1 or ABT-737">
+                        <input type="text" id="omni-input" title="Search" placeholder="e.g. CTNNB1 or T cell">
                         <button type="submit">Search</button>
                         <span class="d-none" id="search-help-content">
                             <p>Please enter the keyword you would like to search on the website.</p>
                             <strong>Examples:</strong>
                             <ul>
                                 <li><em>Gene: </em> <a href="#search/CTNNB1">CTNNB1</a></li>
-                                <li><em>Gene: </em> <a href="#search/YAP*">YAP*</a></li>
-                                <li><em>Compound: </em> <a href="#search/dasatinib">dasatinib</a></li>
-                                <li><em>Cell Sample: </em> <a href="#search/OVCAR8">OVCAR8</a></li>
-                                <li><em>Multiple: </em> <a href="#search/dexamethasone AKT1">dexamethasone AKT1</a></li>
+                                <li><em>Gene: </em> <a href="#search/%2522alpha-beta T cell%2522">"alpha-beta T cell"</a></li>
+                                <li><em>Compound: </em> <a href="#search/Yellow fever">Yellow fever</a></li>
+                                <li><em>Cell Sample: </em> <a href="#search/%2522(B%252FBrisbane%252F60%252F2008)%2522">"(B/Brisbane/60/2008)"</a></li>
+                                <li><em>Multiple: </em> <a href="#search/Menactra">Menactra</a></li>
+                                <li><em>Multiple: </em> <a href="#search/STAT3 Zostavax">STAT3 Zostavax</a></li>
                             </ul>
                             <br>
                         </span>
