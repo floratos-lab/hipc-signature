@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
+import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 
 /* 
@@ -43,7 +44,9 @@ public class SearchTester {
             c++;
             if (c > 10)
                 break;
-            System.out.println(x.getDashboardEntity().getId() + "," + x.getDashboardEntity().getDisplayName());
+            DashboardEntity dashboardEntity = x.getDashboardEntity();
+            System.out.println(dashboardEntity.getId() + "," + dashboardEntity.getDisplayName() + ","
+                    + dashboardEntity.getClass());
         }
         log.debug("done with testing " + new Date());
     }
