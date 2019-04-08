@@ -577,6 +577,7 @@ public class DashboardDaoImpl implements DashboardDao {
 
     private void createIndexForClass(FullTextSession fullTextSession, Class<? extends DashboardEntity> clazz,
             int batchSize) {
+        log.debug("indexing " + clazz);
         CriteriaBuilder cb = fullTextSession.getCriteriaBuilder();
         CriteriaQuery<? extends DashboardEntity> cq = cb.createQuery(clazz);
         cq.from(clazz);
@@ -584,6 +585,14 @@ public class DashboardDaoImpl implements DashboardDao {
 
         int cnt = 0;
         for (DashboardEntity entity : typedQuery.getResultList()) {
+
+            if (Subject.class.isAssignableFrom(clazz)) {
+                Long count = countObservationsBySubjectId(new Long(entity.getId()));
+                if (count == 0) { // skip indexing if there is no observation having this subject
+                    continue;
+                }
+            }
+
             fullTextSession.purge(DashboardEntityImpl.class, entity);
             fullTextSession.index(entity);
 
