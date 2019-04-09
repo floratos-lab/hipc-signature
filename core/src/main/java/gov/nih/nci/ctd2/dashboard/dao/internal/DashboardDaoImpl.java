@@ -564,18 +564,18 @@ public class DashboardDaoImpl implements DashboardDao {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void createIndex(int batchSize) {
+    public void cleanIndex(int batchSize) {
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
         fullTextSession.setHibernateFlushMode(FlushMode.MANUAL);
         for (Class<?> searchableClass : searchableClasses) {
-            createIndexForClass(fullTextSession, (Class<? extends DashboardEntity>) searchableClass, batchSize);
+            cleanIndexForClass(fullTextSession, (Class<? extends DashboardEntity>) searchableClass, batchSize);
         }
         fullTextSession.flushToIndexes();
         fullTextSession.clear();
         fullTextSession.close();
     }
 
-    private void createIndexForClass(FullTextSession fullTextSession, Class<? extends DashboardEntity> clazz,
+    private void cleanIndexForClass(FullTextSession fullTextSession, Class<? extends DashboardEntity> clazz,
             int batchSize) {
         log.debug("indexing " + clazz);
         CriteriaBuilder cb = fullTextSession.getCriteriaBuilder();

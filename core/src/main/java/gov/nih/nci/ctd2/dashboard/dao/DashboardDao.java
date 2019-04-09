@@ -124,7 +124,7 @@ public interface DashboardDao {
 
     void batchSave(Collection<? extends DashboardEntity> entities, int batchSize);
 
-    void createIndex(int batchSize);
+    void cleanIndex(int batchSize);
 
     ArrayList<DashboardEntityWithCounts> search(String keyword);
 

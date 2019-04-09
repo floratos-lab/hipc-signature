@@ -22,7 +22,7 @@ public class PathogenDataWriter implements ItemWriter<Pathogen> {
 	private static final Log log = LogFactory.getLog(PathogenDataWriter.class);
 
     @Autowired
-    @Qualifier("indexBatchSize")
+    @Qualifier("batchSize")
     private Integer batchSize;
  
 	public void write(List<? extends Pathogen> items) throws Exception {

@@ -627,7 +627,7 @@ public class DashboardDaoTest {
         observationTemplate.setPrincipalInvestigator("PI");
         dashboardDao.save(observationTemplate);
 
-        dashboardDao.createIndex(10);
+        //dashboardDao.createIndex(10);
 
         assertTrue(dashboardDao.search("something").isEmpty());
 

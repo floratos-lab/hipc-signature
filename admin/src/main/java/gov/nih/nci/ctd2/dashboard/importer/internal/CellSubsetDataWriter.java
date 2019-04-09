@@ -22,7 +22,7 @@ public class CellSubsetDataWriter implements ItemWriter<CellSubset> {
 	private static final Log log = LogFactory.getLog(CellSubsetDataWriter.class);
 
     @Autowired
-    @Qualifier("indexBatchSize")
+    @Qualifier("batchSize")
     private Integer batchSize;
  
 	public void write(List<? extends CellSubset> items) throws Exception {

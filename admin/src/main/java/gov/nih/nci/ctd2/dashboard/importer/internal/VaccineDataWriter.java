@@ -22,7 +22,7 @@ public class VaccineDataWriter implements ItemWriter<Vaccine> {
 	private static final Log log = LogFactory.getLog(VaccineDataWriter.class);
 
     @Autowired
-    @Qualifier("indexBatchSize")
+    @Qualifier("batchSize")
     private Integer batchSize;
  
 	public void write(List<? extends Vaccine> items) throws Exception {
