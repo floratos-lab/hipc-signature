@@ -588,13 +588,10 @@ public class DashboardDaoImpl implements DashboardDao {
 
             if (Subject.class.isAssignableFrom(clazz)) {
                 Long count = countObservationsBySubjectId(new Long(entity.getId()));
-                if (count == 0) { // skip indexing if there is no observation having this subject
-                    continue;
+                if (count == 0) { // purge the index if there is no observation having this subject
+                    fullTextSession.purge(DashboardEntityImpl.class, entity.getId());
                 }
             }
-
-            fullTextSession.purge(DashboardEntityImpl.class, entity);
-            fullTextSession.index(entity);
 
             if (++cnt % batchSize == 0) {
                 fullTextSession.flushToIndexes();
