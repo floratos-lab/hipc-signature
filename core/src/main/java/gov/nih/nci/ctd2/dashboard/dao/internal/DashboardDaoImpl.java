@@ -24,6 +24,8 @@ import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.Query;
 import org.hibernate.FlushMode;
+import org.hibernate.ScrollMode;
+import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.proxy.HibernateProxy;
@@ -562,41 +564,32 @@ public class DashboardDaoImpl implements DashboardDao {
         return queryWithClass("from ObservedEvidenceImpl where observation = :observation", "observation", observation);
     }
 
+    /* purge the index if there is no observation having this subject */
     @SuppressWarnings("unchecked")
     @Override
     public void cleanIndex(int batchSize) {
+        Session session = getSession();
+        org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(
+                "SELECT id FROM subject WHERE id NOT IN (SELECT DISTINCT subject_id FROM observed_subject)");
+        ScrollableResults scrollableResults = query.scroll(ScrollMode.FORWARD_ONLY);
+
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
         fullTextSession.setHibernateFlushMode(FlushMode.MANUAL);
-        for (Class<?> searchableClass : searchableClasses) {
-            cleanIndexForClass(fullTextSession, (Class<? extends DashboardEntity>) searchableClass, batchSize);
-        }
-        fullTextSession.flushToIndexes();
-        fullTextSession.clear();
-        fullTextSession.close();
-    }
-
-    private void cleanIndexForClass(FullTextSession fullTextSession, Class<? extends DashboardEntity> clazz,
-            int batchSize) {
-        log.debug("indexing " + clazz);
-        CriteriaBuilder cb = fullTextSession.getCriteriaBuilder();
-        CriteriaQuery<? extends DashboardEntity> cq = cb.createQuery(clazz);
-        cq.from(clazz);
-        TypedQuery<? extends DashboardEntity> typedQuery = fullTextSession.createQuery(cq);
 
         int cnt = 0;
-        for (DashboardEntity entity : typedQuery.getResultList()) {
-
-            if (Subject.class.isAssignableFrom(clazz)) {
-                Long count = countObservationsBySubjectId(new Long(entity.getId()));
-                if (count == 0) { // purge the index if there is no observation having this subject
-                    fullTextSession.purge(DashboardEntityImpl.class, entity.getId());
-                }
-            }
+        while (scrollableResults.next()) {
+            Integer id = (Integer) scrollableResults.get(0);
+            fullTextSession.purge(DashboardEntityImpl.class, id);
 
             if (++cnt % batchSize == 0) {
                 fullTextSession.flushToIndexes();
             }
         }
+
+        fullTextSession.flushToIndexes();
+        fullTextSession.clear();
+
+        session.close();
     }
 
     private static String getMatchedTerm(String[] allTerms, String context) {
