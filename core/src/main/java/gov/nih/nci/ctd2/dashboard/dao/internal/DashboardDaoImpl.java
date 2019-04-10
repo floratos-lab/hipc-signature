@@ -652,36 +652,26 @@ public class DashboardDaoImpl implements DashboardDao {
         }
 
         ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
-        Map<Observation, Set<String>> matchingObservations = new HashMap<Observation, Set<String>>();
+        Map<Integer, Set<String>> matchingObservations = new HashMap<Integer, Set<String>>();
         for (DashboardEntity entity : entitiesUnique) {
             DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
             entityWithCounts.setDashboardEntity(entity);
             if (entity instanceof Subject) {
-                int observations = 0;
-                int maxTier = 0;
-                HashSet<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
-                HashSet<String> roles = new HashSet<String>();
-                for (ObservedSubject observedSubject : findObservedSubjectBySubject((Subject) entity)) {
-                    Observation observation = observedSubject.getObservation();
+                final int MAXIMUM_OBSERVATION_NUMBER = 100000;
+                List<Integer> observationIds = findObservationIdsBySubjectId(new Long(entity.getId()),
+                        MAXIMUM_OBSERVATION_NUMBER);
+                for (Integer observationId : observationIds) {
                     String term = getMatchedTerm(allTerms, entity.getDisplayName());
                     if (term != null) {
-                        Set<String> terms = matchingObservations.get(observation);
+                        Set<String> terms = matchingObservations.get(observationId);
                         if (terms == null) {
                             terms = new HashSet<String>();
-                            matchingObservations.put(observation, terms);
+                            matchingObservations.put(observationId, terms);
                         }
                         terms.add(term);
                     }
-                    observations++;
-                    ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
-                    maxTier = Math.max(maxTier, observationTemplate.getTier());
-                    submissionCenters.add(observationTemplate.getSubmissionCenter());
-                    roles.add(observedSubject.getObservedSubjectRole().getSubjectRole().getDisplayName());
                 }
-                entityWithCounts.setObservationCount(observations);
-                entityWithCounts.setMaxTier(maxTier);
-                entityWithCounts.setRoles(roles);
-                entityWithCounts.setCenterCount(submissionCenters.size());
+                entityWithCounts.setObservationCount(observationIds.size());
             } else if (entity instanceof Submission) {
                 entityWithCounts.setObservationCount(findObservationsBySubmission((Submission) entity).size());
                 entityWithCounts.setMaxTier(((Submission) entity).getObservationTemplate().getTier());
@@ -692,16 +682,29 @@ public class DashboardDaoImpl implements DashboardDao {
         }
 
         // add observations
-        for (Observation ob : matchingObservations.keySet()) {
-            Set<String> terms = matchingObservations.get(ob);
+        for (Integer obId : matchingObservations.keySet()) {
+            Set<String> terms = matchingObservations.get(obId);
             if (total <= 1 || terms.size() < total)
                 continue;
             DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
+            Session session = getSession();
+            Observation ob = session.get(Observation.class, obId);
+            session.close();
             oneObservationResult.setDashboardEntity(ob);
             entitiesWithCounts.add(oneObservationResult);
         }
 
         return entitiesWithCounts;
+    }
+
+    private List<Integer> findObservationIdsBySubjectId(Long subjectId, int limit) {
+        Session session = getSession();
+        org.hibernate.query.Query<?> query = session.createNativeQuery(
+                "SELECT observation_id FROM observed_subject S WHERE subject_id=" + subjectId + " LIMIT " + limit);
+        @SuppressWarnings("unchecked")
+        List<Integer> ids = (List<Integer>) query.list();
+        session.close();
+        return ids;
     }
 
     @Override
