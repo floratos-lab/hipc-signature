@@ -145,4 +145,6 @@ public interface DashboardDao {
     Integer countObservationsFiltered(Integer subjectId, String text);
 
     List<Observation> getObservationsFiltered(Integer subjectId, String filterBy);
+
+	String[] getSignature();
 }

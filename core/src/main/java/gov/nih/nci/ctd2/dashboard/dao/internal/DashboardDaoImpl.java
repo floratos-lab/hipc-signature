@@ -824,4 +824,9 @@ public class DashboardDaoImpl implements DashboardDao {
         session.close();
         return observations;
     }
+
+    @Override
+    public String[] getSignature() {
+        return new String[]{"member 1", "member 2"}; // placeholer for the actual 'signature memebers' TODO
+    }
 }

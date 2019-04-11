@@ -462,16 +462,4 @@ public class MraController {
 
 		return divisor;
 	}
-
-	// test
-	public static void main(String[] args) {
-
-		MraController mraController = new MraController();
-		String dataUrl = "http://localhost:8080/ctd2-dashboard/submissions/MRA_Combine-gbm-filtered.txt";
-	   //  mraController.convertMRAtoJSON(dataUrl, "mra", "", "");
-
-		mraController.convertMRAtoJSON(dataUrl, "cytoscape", "2355,1051", 1000, "");
-		//mraController.convertMRAtoJSON(dataUrl, "throttle", "", 150, null);
-
-	}
 }

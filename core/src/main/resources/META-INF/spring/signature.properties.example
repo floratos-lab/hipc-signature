@@ -22,10 +22,11 @@ search.test.indexDir=/tmp/dashboard-index-test
 search.max.number.results=50
 
 # when proxying files through dashboard, these hosts will be allowed to serve resource
-allowed.hosts=https://ctd2-dashboard.nci.nih.gov,https://localhost
+allowed.hosts=https://www.example.com,https://localhost
 
 # this is the URL of where the downloadable data files are located
-web.data.url=https://ctd2-dashboard.nci.nih.gov/data/
+#web.data.url=https://www.example.com/data/
+web.data.url=./data/
 
 # this is to cap the number obs/results we want to show on a subject/submission page
 # If you make this too high and the client will suffer a lot to load details for each observation
