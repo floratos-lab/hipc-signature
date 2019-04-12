@@ -27,7 +27,7 @@ public class DataController {
 
         try {
             PrintWriter pw = new PrintWriter(response.getOutputStream());
-            String[] signature = dashboardDao.getSignature();
+            String[] signature = dashboardDao.getSignature(id);
             for (String s : signature) {
                 pw.println(s);
             }

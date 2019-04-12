@@ -826,7 +826,17 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public String[] getSignature() {
-        return new String[]{"member 1", "member 2"}; // placeholer for the actual 'signature memebers' TODO
+    public String[] getSignature(Integer submissionId) {
+        Session session = getSession();
+        String sql = "SELECT DISTINCT dashboard_entity.displayName FROM observed_subject"
+                + " JOIN dashboard_entity ON observed_subject.subject_id=dashboard_entity.id"
+                + " JOIN observed_subject_role ON observed_subject.observedSubjectRole_id=observed_subject_role.id"
+                + " JOIN submission ON observed_subject_role.observationTemplate_id=submission.observationTemplate_id"
+                + " WHERE observed_subject_role.columnName='response_agent' AND submission.id=" + submissionId;
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<String> query = session.createNativeQuery(sql);
+        List<String> list = query.list();
+        session.close();
+        return list.toArray(new String[list.size()]);
     }
 }
