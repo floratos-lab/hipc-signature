@@ -2,6 +2,7 @@ package gov.nih.nci.ctd2.dashboard;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.importer.internal.SampleImporter;
+import gov.nih.nci.ctd2.dashboard.util.DataZipper;
 import gov.nih.nci.ctd2.dashboard.util.SubjectScorer;
 
 import java.util.HashSet;
@@ -120,6 +121,7 @@ public class DashboardAdminMain {
 			}
 
 			if( commandLine.hasOption("o") ) {
+                new DataZipper().createZip();
                 launchJob("observationDataImporterJob");
 			}
 
