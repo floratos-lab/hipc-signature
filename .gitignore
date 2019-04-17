@@ -10,3 +10,14 @@ bin/
 .classpath
 .project
 Thumbs.db
+
+web/src/main/webapp/data/submissions/*.zip
+
+application.log
+logs/*
+web/**/webContext.xml
+
+hipc_signature*.sql
+hipc_signature.sql.backup
+*.tmp
+*.pyc

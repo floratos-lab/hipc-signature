@@ -2,6 +2,10 @@ rem load the data. hipc_signature database should be cleared out before doing th
 
 IF NOT DEFINED HIPC_DATA_HOME SET HIPC_DATA_HOME=C:\data_collection\hipc_data
 
+rem remove the index completely
+SET INDEX_BASE=C:\index-base
+rmdir /s %INDEX_BASE%\hipc-signatures-index\gov.nih.nci.ctd2.dashboard.impl.DashboardEntityImpl
+
 mysql -u root -p%DB_PASSWORD% < tools\reset_database.sql
 
 echo start loading background data %time%
