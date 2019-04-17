@@ -1,0 +1,128 @@
+-------------------------------gov.nih.nci.ctd2.dashboard.impl.VaccineImpl (total 41)
+Dryvax
+FluMist
+Fluarix
+Fluvirin
+Fluzone
+M-M-R II
+Menactra
+Pneumovax 23 (USA)
+Prevnar (USA)
+TICE BCG
+Twinrix
+YF-Vax
+Zostavax
+F. tularensis vaccine LVS
+Pandemrix
+Measles virus vaccine
+human papillomavirus vaccine
+Ebola virus vaccine
+Diphtheria-Tetanus-Pertussis vaccine
+BCG vaccine
+P. falciparum RTS,S/AS02A
+inactivated influenza vaccine
+Menveo
+P. falciparum RTS,S/AS01
+MVA85A
+BCG Vaccine SSI
+VPM1002
+MRKAd5 HIV-1 gag/pol/nef
+YF-17D vaccine
+YF 17DD-YFV
+ACWY Vax
+Stamaril
+Imuvac
+LIPO-5
+Live attenuated vaccine TC-83
+Fluad
+rVSV-EBOV
+rBCG-Ag85A/Ag85B
+APSV Wetvax
+2011?2012 trivalent inactivated vaccine (A/California/7/09 (H1N1,), A/Perth /16/2009 (H3N2), and B/Brisbane/60/2008).
+Menomune A/C/Y/W-135
+------------------------------------ gov.nih.nci.ctd2.dashboard.impl.CellSubsetImpl (total 50)
+blood
+cell
+T cell
+granulocyte
+erythrocyte
+B cell
+dendritic cell
+lymphocyte
+T-helper 1 cell
+T-helper 2 cell
+monocyte
+natural killer cell
+CD4-positive, alpha-beta T cell
+CD8-positive, alpha-beta T cell
+leukocyte
+eosinophil
+neutrophil
+myeloid dendritic cell
+plasmacytoid dendritic cell
+mature B cell
+plasma cell
+memory B cell
+naive B cell
+CD4-positive, CD25-positive, alpha-beta regulatory T cell
+gamma-delta T cell
+transitional stage B cell
+activated CD4-positive, alpha-beta T cell
+naive thymus-derived CD8-positive, alpha-beta T cell
+central memory CD4-positive, alpha-beta T cell
+effector memory CD4-positive, alpha-beta T cell
+effector memory CD8-positive, alpha-beta T cell
+CD8-positive, CD25-positive, alpha-beta regulatory T cell
+CD8-positive, CD28-negative, alpha-beta regulatory T cell
+CD16-negative, CD56-bright natural killer cell
+CD16-positive, CD56-dim natural killer cell
+antibody secreting cell
+IgM memory B cell
+class switched memory B cell
+IgA memory B cell
+plasmablast
+IgG plasmablast
+IgM plasmablast
+IgA plasmablast
+CD8-positive, CXCR3-positive, alpha-beta regulatory T cell
+IgD-negative memory B cell
+CD14-positive monocyte
+CD14-positive, CD16-negative classical monocyte
+CD14-positive, CD16-positive monocyte
+NKGA2-positive natural killer cell
+peripheral blood mononuclear cell
+------------------------------------- gov.nih.nci.ctd2.dashboard.impl.PathogenImpl (total 32)
+Vaccinia virus
+Human alphaherpesvirus 3
+Hepatitis B virus
+Human papillomavirus
+Venezuelan equine encephalitis virus (strain TC-83)
+Rubella virus vaccine strain RA27/3
+Yellow fever virus 17D
+Measles virus strain Edmonston
+Influenza B virus
+Human immunodeficiency virus 1
+Human poliovirus 1
+Human poliovirus 2
+Human poliovirus 3
+Influenza A virus (A/Victoria/361/2011(H3N2))
+Streptococcus pneumoniae
+Influenza A virus (A/California/7/2009(H1N1))
+Clostridium tetani
+Ebola virus
+Corynebacterium diphtheriae
+Francisella tularensis
+Mycobacterium bovis BCG
+Influenza A virus (A/Wisconsin/67/2005(H3N2))
+Influenza B virus (B/Florida/4/2006)
+Influenza B virus (B/Malaysia/2506/2004)
+Influenza A virus (A/Solomon Islands/3/2006(H1N1))
+Influenza A virus (A/Brisbane/10/2007(H3N2))
+Neisseria meningitidis
+Influenza A virus (A/Brisbane/59/2007(H1N1))
+Plasmodium falciparum
+Influenza B virus (B/Brisbane/60/2008)
+Influenza A virus (A/Perth/16/2009(H3N2))
+Measles virus strain Edmonston-Zagreb
+============================================================================
+total number of subjects that were 'observed' is 123.
