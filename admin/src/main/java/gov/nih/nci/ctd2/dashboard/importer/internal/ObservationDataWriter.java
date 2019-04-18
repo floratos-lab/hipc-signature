@@ -38,8 +38,11 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
     private Map<String, Integer> observationIndex = new HashMap<String, Integer>();
 
     public void write(List<? extends ObservationData> items) throws Exception {
+        log.debug("start writing "+items.size());
         ArrayList<DashboardEntity> entities = new ArrayList<DashboardEntity>();
         List<ExpandedSummary> expandedSummaries = new ArrayList<ExpandedSummary>();
+        int observationCount = 0, evidenceCount = 0, observedCount = 0, submissionCount = 0;
+        String x = "";
 
         StableURL stableURL = new StableURL();
         for (ObservationData observationData : items) {
@@ -50,6 +53,8 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
             if (!submissionCache.containsKey(submissionCacheKey)) {
                 submission.setStableURL(stableURL.createURLWithPrefix("submission", submissionName));
                 entities.add(submission);
+                submissionCount++;
+                x = submissionName;
                 if (observationIndex.get(submissionName) == null) {
                     observationIndex.put(submissionName, 0);
                 }
@@ -59,11 +64,16 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
             observationIndex.put(submissionName, observationIndex.get(submissionName) + 1);
             observation.setStableURL(stableURL.createURLWithPrefix("observation", submissionName) + "-" + index);
             entities.add(observationData.observation);
+            observationCount++;
             entities.addAll(observationData.evidence);
+            evidenceCount += observationData.evidence.size();
             entities.addAll(observationData.observedEntities);
+            observedCount += observationData.observedEntities.size();
         }
 
+        log.debug("entities size="+entities.size()+" "+x);
         dashboardDao.batchSave(entities, batchSize);
+        log.debug(" ObservationData written. observationCount "+observationCount+"; evidenceCount "+evidenceCount+"; 'observed' count "+observedCount+"; submission count "+submissionCount);
 
         // generate 'expanded summary'
         // this must be done after observations are saved so they already have IDs
@@ -90,6 +100,6 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
             expandedSummaries.add(es);
         }
         dashboardDao.batchSave(expandedSummaries, batchSize);
-        log.debug("ObservationData written");
+        log.debug(expandedSummaries.size()+" expanded summaries written");
     }
 }

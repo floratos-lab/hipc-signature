@@ -7,342 +7,346 @@
 							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 							http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	<batch:job id="observationDataImporterJob">
-		<batch:step id="hipciof_ctf_17651872Step" parent="observationDataStep" next="hipciof_ctf_18378159Step">
+	<batch:split id="split1" task-executor="taskExecutor">
+		<batch:flow><batch:step id="hipciof_ctf_17651872Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_17651872Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_18378159Step" parent="observationDataStep" next="hipciof_ctf_21743478Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_18378159Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_18378159Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_21743478Step" parent="observationDataStep" next="hipciof_ctf_23151505Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_21743478Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_21743478Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_23151505Step" parent="observationDataStep" next="hipciof_ctf_23290835Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_23151505Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_23151505Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_23290835Step" parent="observationDataStep" next="hipciof_ctf_23591775Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_23290835Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_23290835Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_23591775Step" parent="observationDataStep" next="hipciof_ctf_23601689Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_23591775Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_23591775Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_23601689Step" parent="observationDataStep" next="hipciof_ctf_23844129Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_23601689Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_23601689Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_23844129Step" parent="observationDataStep" next="hipciof_ctf_24336226Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_23844129Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_23844129Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_24336226Step" parent="observationDataStep" next="hipciof_ctf_24495909Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_24336226Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_24336226Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_24495909Step" parent="observationDataStep" next="hipciof_ctf_24725414Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_24495909Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_24495909Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_24725414Step" parent="observationDataStep" next="hipciof_ctf_24912498Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_24725414Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_24725414Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_24912498Step" parent="observationDataStep" next="hipciof_ctf_25535378Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_24912498Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_24912498Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_25535378Step" parent="observationDataStep" next="hipciof_ctf_26682988Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_25535378Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_25535378Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_26682988Step" parent="observationDataStep" next="hipciof_ctf_26726811Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_26682988Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_26682988Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_26726811Step" parent="observationDataStep" next="hipciof_ctf_26742691Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_26726811Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_26726811Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_26742691Step" parent="observationDataStep" next="hipciof_ctf_26755593Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_26742691Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_26742691Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_26755593Step" parent="observationDataStep" next="hipciof_ctf_27030598Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_26755593Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_26755593Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_27030598Step" parent="observationDataStep" next="hipciof_ctf_27317456Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_27030598Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_27030598Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_27317456Step" parent="observationDataStep" next="hipciof_ctf_27436422Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_27317456Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_27317456Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_27436422Step" parent="observationDataStep" next="hipciof_ctf_27764254Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_27436422Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_27436422Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_27764254Step" parent="observationDataStep" next="hipciof_ctf_27974398Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_27764254Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_27764254Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_27974398Step" parent="observationDataStep" next="hipciof_ctf_28137280Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_27974398Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_27974398Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_28137280Step" parent="observationDataStep" next="hipciof_ctf_28193898Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_28137280Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_28137280Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_28193898Step" parent="observationDataStep" next="hipciof_ctf_28502771Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_28193898Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_28193898Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_28502771Step" parent="observationDataStep" next="hipciof_ctf_28687661Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_28502771Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_28502771Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_28687661Step" parent="observationDataStep" next="hipciof_ctf_28854372Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_28687661Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_28687661Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_28854372Step" parent="observationDataStep" next="hipciof_gene_17349694Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_ctf_28854372Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_28854372Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_17349694Step" parent="observationDataStep" next="hipciof_gene_17651872Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_17349694Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_17349694Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_17651872Step" parent="observationDataStep" next="hipciof_gene_19047440Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_17651872Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_17651872Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_19047440Step" parent="observationDataStep" next="hipciof_gene_19155521Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_19047440Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_19047440Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_19155521Step" parent="observationDataStep" next="hipciof_gene_19239680Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_19155521Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_19155521Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_19239680Step" parent="observationDataStep" next="hipciof_gene_20078211Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_19239680Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_19239680Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_20078211Step" parent="observationDataStep" next="hipciof_gene_21357945Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_20078211Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_20078211Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_21357945Step" parent="observationDataStep" next="hipciof_gene_21645573Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_21357945Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_21357945Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_21645573Step" parent="observationDataStep" next="hipciof_gene_21743478Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_21645573Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_21645573Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_21743478Step" parent="observationDataStep" next="hipciof_gene_22617845Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_21743478Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_21743478Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_22617845Step" parent="observationDataStep" next="hipciof_gene_22949304Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_22617845Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_22617845Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_22949304Step" parent="observationDataStep" next="hipciof_gene_23151505Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_22949304Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_22949304Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_23151505Step" parent="observationDataStep" next="hipciof_gene_23591775Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_23151505Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_23151505Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_23591775Step" parent="observationDataStep" next="hipciof_gene_23594957Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_23591775Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_23591775Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_23594957Step" parent="observationDataStep" next="hipciof_gene_23658707Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_23594957Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_23594957Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_23658707Step" parent="observationDataStep" next="hipciof_gene_23759749Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_23658707Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_23658707Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_23759749Step" parent="observationDataStep" next="hipciof_gene_23844129Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_23759749Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_23759749Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_23844129Step" parent="observationDataStep" next="hipciof_gene_23878721Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_23844129Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_23844129Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_23878721Step" parent="observationDataStep" next="hipciof_gene_24336226Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_23878721Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_23878721Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_24336226Step" parent="observationDataStep" next="hipciof_gene_24495909Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_24336226Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_24336226Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_24495909Step" parent="observationDataStep" next="hipciof_gene_24725414Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_24495909Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_24495909Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_24725414Step" parent="observationDataStep" next="hipciof_gene_24912498Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_24725414Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_24725414Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_24912498Step" parent="observationDataStep" next="hipciof_gene_25596819Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_24912498Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_24912498Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_25596819Step" parent="observationDataStep" next="hipciof_gene_25706537Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_25596819Step" parent="observationDataStep">
 			<batch:tasklet>
-				<batch:chunk reader="hipciof_gene_25596819Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
+				<batch:chunk reader="hipciof_gene_25596819Reader" processor="observationDataProcessor" writer="observationDataWriter" commit-interval="100"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_25706537Step" parent="observationDataStep" next="hipciof_gene_26682988Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_25706537Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_25706537Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_26682988Step" parent="observationDataStep" next="hipciof_gene_26726811Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_26682988Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_26682988Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_26726811Step" parent="observationDataStep" next="hipciof_gene_26742691Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_26726811Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_26726811Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_26742691Step" parent="observationDataStep" next="hipciof_gene_26755593Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_26742691Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_26742691Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_26755593Step" parent="observationDataStep" next="hipciof_gene_27030598Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_26755593Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_26755593Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27030598Step" parent="observationDataStep" next="hipciof_gene_27317456Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27030598Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27030598Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27317456Step" parent="observationDataStep" next="hipciof_gene_27322481Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27317456Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27317456Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27322481Step" parent="observationDataStep" next="hipciof_gene_27441275Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27322481Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27322481Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27441275Step" parent="observationDataStep" next="hipciof_gene_27529750Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27441275Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27441275Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27529750Step" parent="observationDataStep" next="hipciof_gene_27764254Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27529750Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27529750Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27764254Step" parent="observationDataStep" next="hipciof_gene_27870591Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27764254Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27764254Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27870591Step" parent="observationDataStep" next="hipciof_gene_27974398Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27870591Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27870591Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_27974398Step" parent="observationDataStep" next="hipciof_gene_28137280Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_27974398Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_27974398Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_28137280Step" parent="observationDataStep" next="hipciof_gene_28193898Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_28137280Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_28137280Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_28193898Step" parent="observationDataStep" next="hipciof_gene_28502771Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_28193898Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_28193898Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_28502771Step" parent="observationDataStep" next="hipciof_gene_28854372Step">
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_28502771Step" parent="observationDataStep">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_28502771Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_gene_28854372Step" parent="observationDataStep" >
+		</batch:step></batch:flow>
+		<batch:flow><batch:step id="hipciof_gene_28854372Step" parent="observationDataStep" >
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_gene_28854372Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
-		</batch:step>
+		</batch:step></batch:flow>
+		</batch:split>
 	</batch:job>
+
+	<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>
 
     <bean id="observationDataStep" class="org.springframework.batch.core.step.item.SimpleStepFactoryBean" abstract="true">
         <property name="transactionManager" ref="transactionManager" />
