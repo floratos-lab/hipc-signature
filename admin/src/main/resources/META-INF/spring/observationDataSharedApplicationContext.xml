@@ -255,7 +255,7 @@
 		</batch:step></batch:flow>
 		<batch:flow><batch:step id="hipciof_gene_25596819Step" parent="observationDataStep">
 			<batch:tasklet>
-				<batch:chunk reader="hipciof_gene_25596819Reader" processor="observationDataProcessor" writer="observationDataWriter" commit-interval="100"/>
+				<batch:chunk reader="hipciof_gene_25596819Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
 		</batch:step></batch:flow>
 		<batch:flow><batch:step id="hipciof_gene_25706537Step" parent="observationDataStep">
@@ -351,7 +351,7 @@
     <bean id="observationDataStep" class="org.springframework.batch.core.step.item.SimpleStepFactoryBean" abstract="true">
         <property name="transactionManager" ref="transactionManager" />
         <property name="jobRepository" ref="jobRepository" />
-        <property name="commitInterval" value="${spring.batch.commit.interval}" />
+        <property name="commitInterval" value="1000" />
     </bean>
 
 	<bean name="hipciof_ctf_17651872LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
