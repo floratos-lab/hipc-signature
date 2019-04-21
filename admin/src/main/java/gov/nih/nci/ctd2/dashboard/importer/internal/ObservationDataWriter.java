@@ -1,9 +1,9 @@
 package gov.nih.nci.ctd2.dashboard.importer.internal;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -29,13 +29,13 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
 
     private static final Log log = LogFactory.getLog(ObservationDataWriter.class);
 
-    private HashMap<String, Submission> submissionCache = new HashMap<String, Submission>();
+    private Map<String, Submission> submissionCache = new ConcurrentHashMap<String, Submission>();
 
     @Autowired
     @Qualifier("batchSize")
     private Integer batchSize;
 
-    private Map<String, Integer> observationIndex = new HashMap<String, Integer>();
+    private Map<String, Integer> observationIndex = new ConcurrentHashMap<String, Integer>();
 
     public void write(List<? extends ObservationData> items) throws Exception {
         log.debug("start writing " + items.size());
@@ -51,6 +51,8 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
             String submissionCacheKey = ObservationDataFieldSetMapper.getSubmissionCacheKey(submission);
             String submissionName = submission.getDisplayName();
             if (!submissionCache.containsKey(submissionCacheKey)) {
+                /* FIXME this is the point that breaks this approach of parallel loading of one submission
+                because there is no guarantee that the submission is saved first */
                 submission.setStableURL(stableURL.createURLWithPrefix("submission", submissionName));
                 // save a new submission. this is expected to happen at most once in this method
                 dashboardDao.save(submission);

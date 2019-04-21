@@ -19,7 +19,7 @@
 			</batch:tasklet>
 		</batch:step></batch:flow>
 		<batch:flow><batch:step id="hipciof_ctf_21743478Step" parent="observationDataStep">
-			<batch:tasklet>
+			<batch:tasklet task-executor="taskExecutor2">
 				<batch:chunk reader="hipciof_ctf_21743478Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
 		</batch:step></batch:flow>
@@ -347,6 +347,7 @@
 	</batch:job>
 
 	<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>
+	<bean id="taskExecutor2" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>
 
     <bean id="observationDataStep" class="org.springframework.batch.core.step.item.SimpleStepFactoryBean" abstract="true">
         <property name="transactionManager" ref="transactionManager" />
