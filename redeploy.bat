@@ -1,6 +1,6 @@
 rem rebuild and deploy the project to local tomcat
 
-IF NOT DEFINED CATALINA_HOME SET CATALINA_HOME=C:\apache-tomcat-7.0.41
+IF NOT DEFINED CATALINA_HOME SET CATALINA_HOME=C:\apache-tomcat-8.5.34
 IF NOT DEFINED HIPC_DATA_HOME SET HIPC_DATA_HOME=C:\data_collection\hipc_data
 echo CATALINA_HOME is %CATALINA_HOME%
 echo HIPC_DATA_HOME is %HIPC_DATA_HOME%
