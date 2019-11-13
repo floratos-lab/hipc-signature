@@ -35,6 +35,7 @@
 	<property name="resource" value="${dashboard.cv.per.template.data.location}" />
     <property name="lineMapper" ref="controlledVocabularyPerTemplateLineMapper" />
 	<property name="linesToSkip" value="1" />
+	<property name="encoding" value="UTF-8" />
   </bean>
 
   <bean name="controlledVocabularyPerTemplateLineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
@@ -53,6 +54,7 @@
 	<property name="resource" value="${dashboard.cv.per.column.data.location}" />
     <property name="lineMapper" ref="controlledVocabularyPerColumnLineMapper" />
 	<property name="linesToSkip" value="1" />
+	<property name="encoding" value="UTF-8" />
   </bean>
 
   <bean name="controlledVocabularyPerColumnLineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
