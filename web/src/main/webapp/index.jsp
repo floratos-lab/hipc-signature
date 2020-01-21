@@ -346,7 +346,6 @@
             <table id="center-submission-grid" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Tier</th>
                         <th>Project</th>
                         <th>Description</th>
                         <th width="90">Date</th>
@@ -362,7 +361,6 @@
 
     <script type="text/template" id="center-submission-tbl-row-tmpl">
         <tr>
-            <td><span class="badge tier-badge">Tier {{observationTemplate.tier}}</span></td>
             <td>{{observationTemplate.project}}</td>
             <td>
                 {{(observationTemplate.submissionDescription != "") ? observationTemplate.submissionDescription : observationTemplate.description}}

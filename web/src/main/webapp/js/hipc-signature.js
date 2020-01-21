@@ -1600,7 +1600,6 @@
                     $(".template-description").tooltip();
                     $(tableElId).dataTable({
                         "columns": [
-                            null,
                             {
                                 "visible": false
                             },
@@ -1617,7 +1616,7 @@
                             }).nodes();
                             var last = null;
 
-                            api.column(1, {
+                            api.column(0, {
                                     page: 'current'
                                 })
                                 .data()
@@ -1636,9 +1635,7 @@
                                     }
                                 });
                         }
-                    }).fnSort([
-                        [0, 'desc']
-                    ]);
+                    });
 
                     if (filterProject != null) {
                         $(tableElId).DataTable().search(filterProject).draw();
