@@ -1,13 +1,13 @@
 (function ($) {
     // This is strictly coupled to the homepage design!
-    var numOfCartGene = 25;
+    const numOfCartGene = 25;
 
     // These seperators are for replacing items within the observation summary
-    var leftSep = "<";
-    var rightSep = ">";
+    const leftSep = "<";
+    const rightSep = ">";
 
     // To make URL constructing more configurable
-    var CORE_API_URL = "./";
+    const CORE_API_URL = "./";
 
     // This is for the moustache-like templates
     // prevents collisions with JSP tags <%...%>
@@ -16,7 +16,7 @@
     };
 
     // Get these options from the page
-    var maxNumberOfEntities = $("#maxNumberOfEntites").html() * 1;
+    const maxNumberOfEntities = $("#maxNumberOfEntites").html() * 1;
 
     // Datatables fix
     $.extend($.fn.dataTableExt.oStdClasses, {
@@ -88,19 +88,19 @@
     });
 
     /* Models */
-    var SubmissionCenter = Backbone.Model.extend({
+    const SubmissionCenter = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/center"
     });
-    var SubmissionCenters = Backbone.Collection.extend({
+    const SubmissionCenters = Backbone.Collection.extend({
         url: CORE_API_URL + "list/center/?filterBy=",
         model: SubmissionCenter
     });
 
-    var Submission = Backbone.Model.extend({
+    const Submission = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/submission"
     });
 
-    var CenterSubmissions = Backbone.Collection.extend({
+    const CenterSubmissions = Backbone.Collection.extend({
         url: CORE_API_URL + "list/submission/?filterBy=",
         model: Submission,
 
@@ -109,11 +109,11 @@
         }
     });
 
-    var Observation = Backbone.Model.extend({
+    const Observation = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/observation"
     });
 
-    var ObservationsBySubmission = Backbone.Collection.extend({
+    const ObservationsBySubmission = Backbone.Collection.extend({
         url: CORE_API_URL + "observations/bySubmission/?submissionId=",
         model: Observation,
 
@@ -126,7 +126,7 @@
         }
     });
 
-    var ObservationsBySubject = Backbone.Collection.extend({
+    const ObservationsBySubject = Backbone.Collection.extend({
         url: CORE_API_URL + "observations/bySubject/?subjectId=",
         model: Observation,
 
@@ -153,17 +153,17 @@
         },
     });
 
-    var SubjectRole = Backbone.Model.extend({});
-    var SubjectRoles = Backbone.Collection.extend({
+    const SubjectRole = Backbone.Model.extend({});
+    const SubjectRoles = Backbone.Collection.extend({
         url: CORE_API_URL + "list/role?filterBy=",
         model: SubjectRole
     });
 
-    var ObservedEvidence = Backbone.Model.extend({
+    const ObservedEvidence = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/observedevidence"
     });
 
-    var ObservedEvidences = Backbone.Collection.extend({
+    const ObservedEvidences = Backbone.Collection.extend({
         url: CORE_API_URL + "list/observedevidence/?filterBy=",
         model: ObservedEvidence,
 
@@ -172,11 +172,11 @@
         }
     });
 
-    var ObservedSubject = Backbone.Model.extend({
+    const ObservedSubject = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/observedsubject"
     });
 
-    var ObservedSubjects = Backbone.Collection.extend({
+    const ObservedSubjects = Backbone.Collection.extend({
         url: CORE_API_URL + "list/observedsubject/?filterBy=",
         model: ObservedSubject,
 
@@ -189,9 +189,9 @@
         }
     });
 
-    var SearchResult = Backbone.Model.extend({});
+    const SearchResult = Backbone.Model.extend({});
 
-    var SearchResults = Backbone.Collection.extend({
+    const SearchResults = Backbone.Collection.extend({
         url: CORE_API_URL + "search/",
         model: SearchResult,
 
@@ -200,11 +200,11 @@
         }
     });
 
-    var AnimalModel = Backbone.Model.extend({
+    const AnimalModel = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/animal-model"
     });
 
-    var Gene = Backbone.Model.extend({
+    const Gene = Backbone.Model.extend({
         urlRoot: 'get/gene',
 
         initialize: function (attributes) {
@@ -212,47 +212,47 @@
         }
     });
 
-    var CellSample = Backbone.Model.extend({
+    const CellSample = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/cell-sample",
     });
 
-    var Compound = Backbone.Model.extend({
+    const Compound = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/compound",
     });
 
-    var Protein = Backbone.Model.extend({
+    const Protein = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/protein",
     });
 
-    var ShRna = Backbone.Model.extend({
+    const ShRna = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/rna",
     });
 
-    var TissueSample = Backbone.Model.extend({
+    const TissueSample = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/tissue",
     });
 
-    var Transcript = Backbone.Model.extend({
+    const Transcript = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/transcript",
     });
 
-    var CellSubset = Backbone.Model.extend({
+    const CellSubset = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/cell-subset"
     });
 
-    var Pathogen = Backbone.Model.extend({
+    const Pathogen = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/pathogen"
     });
 
-    var Vaccine = Backbone.Model.extend({
+    const Vaccine = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/vaccine"
     });
 
-    var Subject = Backbone.Model.extend({
+    const Subject = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/subject"
     });
 
-    var SubjectWithSummaryCollection = Backbone.Collection.extend({
+    const SubjectWithSummaryCollection = Backbone.Collection.extend({
         url: CORE_API_URL + "explore/",
 
         initialize: function (attributes) {
@@ -261,7 +261,7 @@
     });
 
     /* Views */
-    var HomeView = Backbone.View.extend({
+    const HomeView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#home-tmpl").html()),
         render: function () {
@@ -283,7 +283,7 @@
         }
     });
 
-    var HelpNavigateView = Backbone.View.extend({
+    const HelpNavigateView = Backbone.View.extend({
         template: _.template($("#help-navigate-tmpl").html()),
 
         render: function () {
@@ -302,7 +302,7 @@
         }
     });
 
-    var HtmlStoryView = Backbone.View.extend({
+    const HtmlStoryView = Backbone.View.extend({
         render: function () {
             var url = this.model.url;
             url = url.replace(/\\/g, '\/'); // in case data loaded from a Windows machine
@@ -378,7 +378,7 @@
         }
     });
 
-    var ObservationView = Backbone.View.extend({
+    const ObservationView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#observation-tmpl").html()),
         render: function () {
@@ -655,7 +655,7 @@
         }
     });
 
-    var ObservedEvidenceRowView = Backbone.View.extend({
+    const ObservedEvidenceRowView = Backbone.View.extend({
         render: function () {
             var result = this.model;
             var type = result.evidence.class;
@@ -722,7 +722,7 @@
         }
     });
 
-    var CenterListRowView = Backbone.View.extend({
+    const CenterListRowView = Backbone.View.extend({
         template: _.template($("#centers-tbl-row-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -731,7 +731,7 @@
 
     });
 
-    var defaultPI = {
+    const defaultPI = {
         "Boston Children's Hospital": "Ofer Levy",
         "Center for Infectious Disease Research": "Kenneth Stuart",
         "Columbia University": "Donna Farber",
@@ -742,7 +742,7 @@
         "University of California Los Angeles": "Elaine Reed (UCLA) and Minnie Sarwal (UCSF)",
         "Yale University": "David Hafler and Ruth Montgomery",
     };
-    var CenterListView = Backbone.View.extend({
+    const CenterListView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#centers-tmpl").html()),
         render: function () {
@@ -800,7 +800,7 @@
         }
     });
 
-    var CenterSubmissionRowView = Backbone.View.extend({
+    const CenterSubmissionRowView = Backbone.View.extend({
         template: _.template($("#center-submission-tbl-row-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -808,7 +808,7 @@
         }
     });
 
-    var SearchSubmissionRowView = Backbone.View.extend({
+    const SearchSubmissionRowView = Backbone.View.extend({
         el: "#searched-submissions tbody",
         template: _.template($("#search-submission-tbl-row-tmpl").html()),
         render: function () {
@@ -818,7 +818,7 @@
     });
 
 
-    var SubmissionDescriptionView = Backbone.View.extend({
+    const SubmissionDescriptionView = Backbone.View.extend({
         el: "#optional-submission-description",
         template: _.template($("#submission-description-tmpl").html()),
         render: function () {
@@ -827,7 +827,7 @@
         }
     });
 
-    var CompoundView = Backbone.View.extend({
+    const CompoundView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#compound-tmpl").html()),
         render: function () {
@@ -881,7 +881,7 @@
         }
     });
 
-    var SubjectObservationsView = Backbone.View.extend({
+    const SubjectObservationsView = Backbone.View.extend({
         render: function () {
             var thatEl = $(this.el);
             var thatModel = this.model;
@@ -977,7 +977,7 @@
         }
     });
 
-    var PathogenView = Backbone.View.extend({
+    const PathogenView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#pathogen-tmpl").html()),
         render: function () {
@@ -1030,7 +1030,7 @@
         }
     });
 
-    var CellSubsetView = Backbone.View.extend({
+    const CellSubsetView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#cellsubset-tmpl").html()),
         render: function () {
@@ -1083,7 +1083,7 @@
         }
     });
 
-    var VaccineView = Backbone.View.extend({
+    const VaccineView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#vaccine-tmpl").html()),
         render: function () {
@@ -1108,7 +1108,7 @@
         }
     });
 
-    var GeneView = Backbone.View.extend({
+    const GeneView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#gene-tmpl").html()),
         render: function () {
@@ -1163,7 +1163,7 @@
         }
     });
 
-    var ProteinView = Backbone.View.extend({
+    const ProteinView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#protein-tmpl").html()),
         render: function () {
@@ -1210,7 +1210,7 @@
         }
     });
 
-    var ShrnaView = Backbone.View.extend({
+    const ShrnaView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#shrna-tmpl").html()),
         render: function () {
@@ -1236,7 +1236,7 @@
         }
     });
 
-    var SirnaView = Backbone.View.extend({
+    const SirnaView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#sirna-tmpl").html()),
         render: function () {
@@ -1262,7 +1262,7 @@
         }
     });
 
-    var TranscriptView = Backbone.View.extend({
+    const TranscriptView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#transcript-tmpl").html()),
         render: function () {
@@ -1288,7 +1288,7 @@
         }
     });
 
-    var TissueSampleView = Backbone.View.extend({
+    const TissueSampleView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#tissuesample-tmpl").html()),
         render: function () {
@@ -1347,7 +1347,7 @@
     });
 
 
-    var AnimalModelView = Backbone.View.extend({
+    const AnimalModelView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#animalmodel-tmpl").html()),
         render: function () {
@@ -1395,14 +1395,14 @@
     });
 
 
-    var AnnotationView = Backbone.View.extend({
+    const AnnotationView = Backbone.View.extend({
         template: _.template($("#annotation-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
         }
     });
 
-    var CellSampleView = Backbone.View.extend({
+    const CellSampleView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#cellsample-tmpl").html()),
         render: function () {
@@ -1465,7 +1465,7 @@
         }
     });
 
-    var ObservationRowView = Backbone.View.extend({
+    const ObservationRowView = Backbone.View.extend({
         template: _.template($("#observation-row-tmpl").html()),
         render: function () {
             var tableEl = this.el;
@@ -1527,7 +1527,7 @@
         }
     });
 
-    var ObservedSubjectSummaryRowView = Backbone.View.extend({
+    const ObservedSubjectSummaryRowView = Backbone.View.extend({
         template: _.template($("#observedsubject-summary-row-tmpl").html()),
         render: function () {
             var result = this.model;
@@ -1555,32 +1555,27 @@
         }
     });
 
-    var CenterView = Backbone.View.extend({
+    const CenterView = Backbone.View.extend({
         el: $("#main-container"),
         tableEl: '#center-submission-grid',
         template: _.template($("#center-tmpl").html()),
         render: function (filterProject) {
-            var centerModel = this.model.toJSON();
+            const centerModel = this.model.toJSON();
             $(this.el).html(this.template(centerModel));
 
-            var thatEl = this.el;
-            var thatTableEl = this.tableEl;
-            var centerSubmissions = new CenterSubmissions({
+            const thatEl = this.el;
+            const tableElId = this.tableEl;
+            const centerSubmissions = new CenterSubmissions({
                 centerId: centerModel.id
             });
             centerSubmissions.fetch({
                 success: function () {
-                    var tableElId = thatTableEl;
                     _.each(centerSubmissions.toJSON(), function (submission) {
-                        var centerSubmissionRowView = new CenterSubmissionRowView({
-                            el: $(thatEl).find("tbody"),
-                            model: submission
-                        });
 
                         $.ajax("observations/countBySubmission/?submissionId=" + submission.id, {
                             "async": false
                         }).done(function (count) {
-                            var tmplName = submission.observationTemplate.isSubmissionStory ?
+                            const tmplName = submission.observationTemplate.isSubmissionStory ?
                                 "#count-story-tmpl" :
                                 "#count-observations-tmpl";
                             submission.details = _.template(
@@ -1594,7 +1589,10 @@
                             console.log(errorThrown);
                         });
 
-                        centerSubmissionRowView.render();
+                        new CenterSubmissionRowView({
+                            el: $(thatEl).find("tbody"),
+                            model: submission
+                        }).render();
                     });
 
                     $(".template-description").tooltip();
@@ -1610,11 +1608,11 @@
                             null
                         ],
                         "drawCallback": function (settings) {
-                            var api = this.api();
-                            var rows = api.rows({
+                            const api = this.api();
+                            const rows = api.rows({
                                 page: 'current'
                             }).nodes();
-                            var last = null;
+                            let last = null;
 
                             api.column(0, {
                                     page: 'current'
@@ -1639,14 +1637,13 @@
 
                     if (filterProject != null) {
                         $(tableElId).DataTable().search(filterProject).draw();
-                        var mpModel = {
+                        const mpModel = {
                             filterProject: filterProject,
                             centerStableURL: centerModel.stableURL
                         };
-                        var moreProjectsView = new MoreProjectsView({
+                        new MoreProjectsView({
                             model: mpModel
-                        });
-                        moreProjectsView.render();
+                        }).render();
                     }
                 }
             });
@@ -1656,7 +1653,7 @@
 
     });
 
-    var MoreProjectsView = Backbone.View.extend({
+    const MoreProjectsView = Backbone.View.extend({
         template: _.template($("#more-projects-tmpl").html()),
         el: "#more-project-container",
 
@@ -1665,7 +1662,7 @@
         }
     });
 
-    var SubmissionRowView = Backbone.View.extend({
+    const SubmissionRowView = Backbone.View.extend({
         template: _.template($("#submission-tbl-row-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -1725,7 +1722,7 @@
         }
     });
 
-    var SubmissionView = Backbone.View.extend({
+    const SubmissionView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#submission-tmpl").html()),
         render: function () {
@@ -1821,7 +1818,7 @@
         }
     });
 
-    var MoreObservationView = Backbone.View.extend({
+    const MoreObservationView = Backbone.View.extend({
         el: ".more-observations-message",
         template: _.template($("#more-observations-tmpl").html()),
         render: function () {
@@ -1894,7 +1891,7 @@
         }
     });
 
-    var TranscriptItemView = Backbone.View.extend({
+    const TranscriptItemView = Backbone.View.extend({
         template: _.template($("#transcript-item-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -1903,7 +1900,7 @@
     });
 
 
-    var SynonymView = Backbone.View.extend({
+    const SynonymView = Backbone.View.extend({
         template: _.template($("#synonym-item-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -1911,7 +1908,7 @@
         }
     });
 
-    var RoleView = Backbone.View.extend({
+    const RoleView = Backbone.View.extend({
         template: _.template($("#role-item-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -1919,7 +1916,7 @@
         }
     });
 
-    var EmptyResultsView = Backbone.View.extend({
+    const EmptyResultsView = Backbone.View.extend({
         template: _.template($("#search-empty-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -1928,7 +1925,7 @@
         }
     });
 
-    var SearchResultsRowView = Backbone.View.extend({
+    const SearchResultsRowView = Backbone.View.extend({
         template: _.template($("#search-result-row-tmpl").html()),
         render: function () {
             var model = this.model;
@@ -2013,7 +2010,7 @@
         }
     });
 
-    var tabulate_matching_observations = function (m_observations) {
+    const tabulate_matching_observations = function (m_observations) {
         $("#observation-search-results").hide();
         if (m_observations.length <= 0) return;
 
@@ -2030,7 +2027,7 @@
         });
     };
 
-    var SearchView = Backbone.View.extend({
+    const SearchView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#search-tmpl").html()),
         render: function () {
@@ -2157,7 +2154,7 @@
     });
 
     //MRA View
-    var MraView = Backbone.View.extend({
+    const MraView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#mra-view-tmpl").html()),
         render: function () {
@@ -2393,7 +2390,7 @@
         }
     });
 
-    var MraViewRowView = Backbone.View.extend({
+    const MraViewRowView = Backbone.View.extend({
         render: function () {
             var result = this.model;
 
@@ -2408,7 +2405,7 @@
     });
 
 
-    var MraBarcodeRowView = Backbone.View.extend({
+    const MraBarcodeRowView = Backbone.View.extend({
         render: function () {
             var result = this.model;
 
@@ -2449,7 +2446,7 @@
         }
     });
 
-    var reformattedClassName = {
+    const reformattedClassName = {
         "Gene": "gene",
         "AnimalModel": "animal model",
         "Compound": "compound",
@@ -2619,7 +2616,7 @@
     };
 
     //customize-roles-item-tmpl
-    var CustomRoleItemView = Backbone.View.extend({
+    const CustomRoleItemView = Backbone.View.extend({
         el: "#customized-roles-tbl tbody",
         template: _.template($("#customize-roles-item-tmpl").html()),
 
@@ -2634,7 +2631,7 @@
     });
 
     //Gene List View
-    var GeneListView = Backbone.View.extend({
+    const GeneListView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#genelist-view-tmpl").html()),
         render: function () {
@@ -2828,7 +2825,7 @@
         }
     });
 
-    var CnkbQueryView = Backbone.View.extend({
+    const CnkbQueryView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#cnkb-query-tmpl").html()),
         render: function () {
@@ -2974,7 +2971,7 @@
 
     });
 
-    var CnkbResultView = Backbone.View.extend({
+    const CnkbResultView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#cnkb-result-tmpl").html()),
         render: function () {
@@ -3162,7 +3159,7 @@
     });
 
 
-    var CnkbResultRowView = Backbone.View.extend({
+    const CnkbResultRowView = Backbone.View.extend({
         render: function () {
             var result = this.model;
 
@@ -3182,7 +3179,7 @@
         }
     });
 
-    var GeneCartHelpView = Backbone.View.extend({
+    const GeneCartHelpView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#gene-cart-help-tmpl").html()),
         render: function () {
@@ -3192,7 +3189,7 @@
     });
 
 
-    var updateGeneList = function (addedGene) {
+    const updateGeneList = function (addedGene) {
         var geneNames = JSON.parse(localStorage.getItem("genelist"));
         if (geneNames == null)
             geneNames = [];
@@ -3213,19 +3210,19 @@
     };
 
 
-    var showAlertMessage = function (message) {
+    const showAlertMessage = function (message) {
         $("#alertMessage").text(message);
         $("#alertMessage").css('color', '#5a5a5a');
         $("#alert-message-modal").modal('show');
     };
 
-    var showInvalidMessage = function (message) {
+    const showInvalidMessage = function (message) {
         $("#alertMessage").text(message);
         $("#alertMessage").css('color', 'red');
         $("#alert-message-modal").modal('show');
     };
 
-    var convertUrl = function (description) {
+    const convertUrl = function (description) {
         if (description.indexOf("http:") > -1) {
             var word = description.split("http:");
             var temp = $.trim(word[1]);
@@ -3238,7 +3235,7 @@
             return description;
     };
 
-    var drawCNKBCytoscape = function (data, description) {
+    const drawCNKBCytoscape = function (data, description) {
         var svgHtml = "";
         var interactions = data.interactions;
         var x1 = 20 + 90 * (3 - interactions.length),
@@ -3425,7 +3422,7 @@
 
 
     /* Routers */
-    AppRouter = Backbone.Router.extend({
+    const AppRouter = Backbone.Router.extend({
         routes: {
             "centers": "listCenters",
             "explore/:type/:roles": "explore",
@@ -3854,14 +3851,4 @@
         });
     });
 
-    var subjectWithSummaryCollection = new SubjectWithSummaryCollection({
-        roles: "Perturbagen,Candidate Drug",
-        type: "compound",
-        customized: false
-    });
-    subjectWithSummaryCollection.fetch({
-        success: function () {
-            console.log('long query pre-prepared ' + performance.now());
-        }
-    });
 })(window.jQuery);
