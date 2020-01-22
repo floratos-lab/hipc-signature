@@ -40,7 +40,7 @@
 
             <ul id="main-nav">
                 <li><a id="navlink-dashboard" class="navlink" href="#">HIPC DASHBOARD</a></li>
-                <li><a id="navlink-centers" class="navlink" href="#centers">Centers</a></li>
+                <li><a id="navlink-centers" class="navlink" href="#center/hipc">Submissions</a></li>
                 <li>
                     <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b
                             class="caret"></b></a>
