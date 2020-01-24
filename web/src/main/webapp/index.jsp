@@ -408,7 +408,7 @@
                         <tr>
                             <th>Source Data</th>
                             <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download Submission</a> |
-                                <a href="./data/signature?submission={{id}}" target=_blank>Download Signature</a></td>
+                                <a href="./data/responseagents?submission={{id}}" target=_blank id=download-responseagents>Download all response agents</a></td>
                         </tr>
                     </table>
                 </div>
@@ -490,6 +490,7 @@
                 </div>
             </div>
 
+            <a href="" target=_blank id=download-signature>Download Signature</a></td>
 
             <h3>Submission <small>(<a href="#" id="small-show-sub-details">show details</a><a href="#" id="small-hide-sub-details">hide details</a>)</small></h3>
             <div id="obs-submission-details">
@@ -515,8 +516,7 @@
                     </tr>
                     <tr>
                         <th>Source Data</th>
-                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.zip" target=_blank>Download Submission</a> |
-                            <a href="./data/signature?submission={{submission.id}}" target=_blank>Download Signature</a></td>
+                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.zip" target=_blank>Download Submission</a>
                     </tr>
 
 

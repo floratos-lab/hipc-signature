@@ -291,11 +291,11 @@
 
             $.fancybox.open(
                 content, {
-                    'autoDimensions': false,
-                    'centerOnScroll': true,
-                    'transitionIn': 'none',
-                    'transitionOut': 'none'
-                }
+                'autoDimensions': false,
+                'centerOnScroll': true,
+                'transitionIn': 'none',
+                'transitionOut': 'none'
+            }
             );
 
             return this;
@@ -356,16 +356,16 @@
                                 $.fancybox.open(
                                     _.template(
                                         $("#html-story-container-tmpl").html())({
-                                        story: summary,
-                                        centerName: observation.submission.observationTemplate.submissionCenter.displayName
-                                    }), {
-                                        'autoDimensions': false,
-                                        'width': '99%',
-                                        'height': '99%',
-                                        'centerOnScroll': true,
-                                        'transitionIn': 'none',
-                                        'transitionOut': 'none'
-                                    }
+                                            story: summary,
+                                            centerName: observation.submission.observationTemplate.submissionCenter.displayName
+                                        }), {
+                                    'autoDimensions': false,
+                                    'width': '99%',
+                                    'height': '99%',
+                                    'centerOnScroll': true,
+                                    'transitionIn': 'none',
+                                    'transitionOut': 'none'
+                                }
                                 );
                             }
                         });
@@ -382,34 +382,33 @@
         el: $("#main-container"),
         template: _.template($("#observation-tmpl").html()),
         render: function () {
-            var result = this.model.toJSON();
+            const result = this.model.toJSON();
             $(this.el).html(this.template(result));
 
             // We will replace the values in this summary
-            var summary = result.submission.observationTemplate.observationSummary;
+            let summary = result.submission.observationTemplate.observationSummary;
 
             // Load Subjects
-            var observedSubjects = new ObservedSubjects({
+            const observedSubjects = new ObservedSubjects({
                 observationId: result.id
             });
-            var thatEl = $("#observed-subjects-grid");
+            const thatEl = $("#observed-subjects-grid");
             observedSubjects.fetch({
                 success: function () {
                     _.each(observedSubjects.models, function (observedSubject) {
                         observedSubject = observedSubject.toJSON();
 
-                        var observedSubjectRowView = new ObservedSubjectSummaryRowView({
+                        new ObservedSubjectSummaryRowView({
                             el: $(thatEl).find("tbody"),
                             model: observedSubject
-                        });
-                        observedSubjectRowView.render();
+                        }).render();
 
 
-                        var subject = observedSubject.subject;
-                        var thatEl2 = $("#subject-image-" + observedSubject.id);
-                        var imgTemplate = $("#search-results-unknown-image-tmpl");
+                        const subject = observedSubject.subject;
+                        const thatEl2 = $("#subject-image-" + observedSubject.id);
+                        let imgTemplate = $("#search-results-unknown-image-tmpl");
                         if (subject.class == "Compound") {
-                            var compound = new Subject({
+                            let compound = new Subject({
                                 id: subject.id
                             });
                             compound.fetch({
@@ -474,21 +473,26 @@
             });
 
             // Load evidences
-            var observedEvidences = new ObservedEvidences({
+            const observedEvidences = new ObservedEvidences({
                 observationId: result.id
             });
-            var thatEl2 = $("#observed-evidences-grid");
+            const thatEl2 = $("#observed-evidences-grid");
             observedEvidences.fetch({
                 success: function () {
                     _.each(observedEvidences.models, function (observedEvidence) {
                         observedEvidence = observedEvidence.toJSON();
 
-                        var observedEvidenceRowView = new ObservedEvidenceRowView({
+                        // this is getting as convoluted as it is possible to be. data model and actual requirement went totally different directions, to say the least
+                        const columnName = observedEvidence.observedEvidenceRole.columnName;
+                        if (columnName == 'uniqObsID') {
+                            const uniqobsid = observedEvidence.displayName;
+                            $("#download-signature").attr('href', './data/signature?submission=' + result.submission.id + '&uniqobsid=' + uniqobsid);
+                        }
+
+                        new ObservedEvidenceRowView({
                             el: $(thatEl2).find("tbody"),
                             model: observedEvidence
-                        });
-
-                        observedEvidenceRowView.render();
+                        }).render();
                         summary = summary.replace(
                             new RegExp(leftSep + observedEvidence.observedEvidenceRole.columnName + rightSep, "g"),
                             _.template($("#summary-evidence-replacement-tmpl").html())(observedEvidence.evidence)
@@ -497,8 +501,8 @@
                         $("#observation-summary").html(summary);
                     });
 
-                    var tableLength = (observedEvidences.models.length > 25 ? 10 : 25);
-                    var oTable = $('#observed-evidences-grid').dataTable({
+                    const tableLength = (observedEvidences.models.length > 25 ? 10 : 25);
+                    const oTable = $('#observed-evidences-grid').dataTable({
                         "iDisplayLength": tableLength
                     });
                     $(oTable).parent().width("100%");
@@ -526,8 +530,7 @@
                     });
 
                     $(".numeric-value").each(function (idx) {
-                        var val = $(this).html();
-                        var vals = val.split("e"); // capture scientific notation
+                        const vals = $(this).html().split("e"); // capture scientific notation
                         if (vals.length > 1) {
                             $(this).html(_.template($("#observeddatanumericevidence-val-tmpl").html())({
                                 firstPart: vals[0],
@@ -538,8 +541,8 @@
                     $(".cytoscape-view").click(function (event) {
                         event.preventDefault();
 
-                        var sifUrl = $(this).attr("data-sif-url");
-                        var sifDesc = $(this).attr("data-description");
+                        const sifUrl = $(this).attr("data-sif-url");
+                        const sifDesc = $(this).attr("data-description");
                         $.ajax({
                             url: "sif/",
                             data: {
@@ -552,11 +555,11 @@
                                     _.template($("#cytoscape-tmpl").html())({
                                         description: sifDesc
                                     }), {
-                                        touch: false,
-                                        'autoDimensions': false,
-                                        'transitionIn': 'none',
-                                        'transitionOut': 'none'
-                                    }
+                                    touch: false,
+                                    'autoDimensions': false,
+                                    'transitionIn': 'none',
+                                    'transitionOut': 'none'
+                                }
                                 );
 
                                 // load cytoscape
@@ -636,7 +639,7 @@
                 $("#small-hide-sub-details").show();
             });
 
-            var hide_submission_detail = function () {
+            const hide_submission_detail = function () {
                 $("#obs-submission-details").slideUp();
                 $("#small-hide-sub-details").hide();
                 $("#small-show-sub-details").show();
@@ -765,8 +768,8 @@
                         $.ajax("count/submission/?filterBy=" + aCenter.id).done(function (count) {
                             var cntContent = _.template(
                                 $("#count-submission-tmpl").html())({
-                                count: count
-                            });
+                                    count: count
+                                });
 
                             var countCellId = "#submission-count-" + aCenter.id;
                             $(countCellId).html(cntContent);
@@ -910,8 +913,8 @@
                             tableEl: thatEl,
                             rowView: ObservationRowView,
                             columns: [{
-                                    "orderDataType": "dashboard-date"
-                                },
+                                "orderDataType": "dashboard-date"
+                            },
                                 null,
                                 null,
                                 null
@@ -943,8 +946,8 @@
                         'dom': '<iBfrtlp>',
                         "sPaginationType": "bootstrap",
                         "columns": [{
-                                "orderDataType": "dashboard-date"
-                            },
+                            "orderDataType": "dashboard-date"
+                        },
                             null,
                             null,
                             null
@@ -1580,8 +1583,8 @@
                                 "#count-observations-tmpl";
                             submission.details = _.template(
                                 $(tmplName).html())({
-                                count: count
-                            });
+                                    count: count
+                                });
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             console.log(jqXHR.status);
                             console.log(jqXHR.responseText);
@@ -1615,8 +1618,8 @@
                             let last = null;
 
                             api.column(0, {
-                                    page: 'current'
-                                })
+                                page: 'current'
+                            })
                                 .data()
                                 .each(function (group, i) {
                                     if (last != group) {
@@ -1726,25 +1729,29 @@
         el: $("#main-container"),
         template: _.template($("#submission-tmpl").html()),
         render: function () {
-            var submission = this.model.toJSON();
+            const submission = this.model.toJSON();
             $(this.el).html(this.template(submission));
+            $("#download-responseagents").popover({
+                placement: 'top',
+                trigger: 'hover',
+                content: 'Response agents for all signatures in this submission.',
+            });
 
             if (submission.observationTemplate.submissionDescription.length > 0) {
-                var submissionDescriptionView = new SubmissionDescriptionView({
+                new SubmissionDescriptionView({
                     model: submission
-                });
-                submissionDescriptionView.render();
+                }).render();
             }
 
-            var thatEl = this.el;
-            var submissionId = this.model.get("id");
-            var sTable = '#submission-observation-grid';
+            const thatEl = this.el;
+            const submissionId = this.model.get("id");
+            const sTable = '#submission-observation-grid';
 
             $.ajax("list/similar/" + submissionId).done(function (similarSubmissions) {
                 if (similarSubmissions.length < 1) {
                     $("#similar-submission-info").hide();
                 } else {
-                    var count = 0;
+                    let count = 0;
                     _.each(similarSubmissions, function (simSub) {
                         if (count >= 2) simSub.toomany = 'toomany';
                         else simSub.toomany = '';
@@ -1754,7 +1761,7 @@
                         count++;
                     });
                     if (count > 2) {
-                        var SEE_ALL = "See all";
+                        const SEE_ALL = "See all";
                         $("#see-all-switch").text(SEE_ALL);
                         $(".toomany").hide();
                         $("#see-all-switch").click(function () {
@@ -1771,7 +1778,7 @@
             });
 
             $.ajax("observations/countBySubmission/?submissionId=" + submissionId).done(function (count) {
-                var observations = new ObservationsBySubmission({
+                const observations = new ObservationsBySubmission({
                     submissionId: submissionId
                 });
                 observations.fetch({
@@ -1780,14 +1787,13 @@
                         _.each(observations.models, function (observation) {
                             observation = observation.toJSON();
 
-                            var submissionRowView = new SubmissionRowView({
+                            new SubmissionRowView({
                                 el: $(thatEl).find(".observations tbody"),
                                 model: observation,
                                 attributes: {
                                     table: sTable
                                 }
-                            });
-                            submissionRowView.render();
+                            }).render();
                         });
 
                         $(sTable).dataTable({
@@ -1798,7 +1804,7 @@
                 });
 
                 if (count > maxNumberOfEntities) {
-                    var moreObservationView = new MoreObservationView({
+                    new MoreObservationView({
                         model: {
                             numOfObservations: maxNumberOfEntities,
                             numOfAllObservations: count,
@@ -1807,8 +1813,7 @@
                             rowView: SubmissionRowView,
                             columns: [null]
                         }
-                    });
-                    moreObservationView.render();
+                    }).render();
                 }
 
             });
@@ -2002,8 +2007,8 @@
             var updateEl = $(updateElId);
             var cntContent = _.template(
                 $("#count-observations-tmpl").html())({
-                count: model.observationCount
-            });
+                    count: model.observationCount
+                });
             updateEl.html(cntContent);
 
             return this;
@@ -2121,8 +2126,8 @@
                                     "#count-observations-tmpl";
                                 var cntContent = _.template(
                                     $(tmplName).html())({
-                                    count: submission.observationCount
-                                });
+                                        count: submission.observationCount
+                                    });
                                 $("#search-observation-count-" + submission.dashboardEntity.id).html(cntContent);
                             });
 
@@ -2243,11 +2248,11 @@
                             _.template($("#mra-cytoscape-tmpl").html())({
                                 description: mraDesc
                             }), {
-                                touch: false,
-                                'autoDimensions': false,
-                                'transitionIn': 'none',
-                                'transitionOut': 'none'
-                            }
+                            touch: false,
+                            'autoDimensions': false,
+                            'transitionIn': 'none',
+                            'transitionOut': 'none'
+                        }
                         );
 
                         window.cy = this;
@@ -3251,11 +3256,11 @@
                 description: description,
                 svgHtml: svgHtml
             }), {
-                touch: false,
-                'autoDimensions': false,
-                'transitionIn': 'none',
-                'transitionOut': 'none'
-            }
+            touch: false,
+            'autoDimensions': false,
+            'transitionIn': 'none',
+            'transitionOut': 'none'
+        }
         );
 
         var container = $('#cytoscape');

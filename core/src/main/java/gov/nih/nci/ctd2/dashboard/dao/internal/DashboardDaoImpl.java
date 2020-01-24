@@ -828,13 +828,49 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public String[] getSignature(Integer submissionId) {
+    public String[] getAllResponseAgents(Integer submissionId) {
         Session session = getSession();
         String sql = "SELECT DISTINCT dashboard_entity.displayName FROM observed_subject"
                 + " JOIN dashboard_entity ON observed_subject.subject_id=dashboard_entity.id"
                 + " JOIN observed_subject_role ON observed_subject.observedSubjectRole_id=observed_subject_role.id"
                 + " JOIN submission ON observed_subject_role.observationTemplate_id=submission.observationTemplate_id"
                 + " WHERE observed_subject_role.columnName='response_agent' AND submission.id=" + submissionId;
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<String> query = session.createNativeQuery(sql);
+        List<String> list = query.list();
+        session.close();
+        return list.toArray(new String[list.size()]);
+    }
+
+    /* this query is so convoluted that no one will understand it again */
+    @Override
+    public String[] getSignature(Integer submissionId, String uniqobsid) {
+        Session session = getSession();
+
+        String obsSql = "SELECT observed_evidence.observation_id FROM observed_evidence_role"
+                + " JOIN submission ON observed_evidence_role.observationTemplate_id=submission.observationTemplate_id"
+                + " JOIN observed_evidence ON observed_evidence_role.id=observed_evidence.observedEvidenceRole_id"
+                + " JOIN dashboard_entity ON observed_evidence.evidence_id=dashboard_entity.id"
+                + " WHERE observed_evidence_role.columnName='uniqObsID'" + " AND submission.id=3160712"
+                + " AND displayName='" + uniqobsid + "'";
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Integer> queryObservation = session.createNativeQuery(obsSql);
+        List<Integer> observationList = queryObservation.list();
+        StringBuffer sb = new StringBuffer("(");
+        for (Integer obi : observationList) {
+            sb.append(obi).append(",");
+        }
+        if (sb.length() > 2) {
+            sb.delete(sb.length() - 1, sb.length());
+        }
+        sb.append(")");
+
+        String sql = "SELECT DISTINCT dashboard_entity.displayName FROM observed_subject"
+                + " JOIN dashboard_entity ON observed_subject.subject_id=dashboard_entity.id"
+                + " JOIN observed_subject_role ON observed_subject.observedSubjectRole_id=observed_subject_role.id"
+                + " JOIN submission ON observed_subject_role.observationTemplate_id=submission.observationTemplate_id"
+                + " WHERE observed_subject_role.columnName='response_agent' AND submission.id=" + submissionId
+                + " AND observed_subject.observation_id in " + sb.toString();
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<String> query = session.createNativeQuery(sql);
         List<String> list = query.list();
