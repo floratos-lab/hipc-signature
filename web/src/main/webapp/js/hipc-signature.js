@@ -65,11 +65,11 @@
     $.extend($.fn.dataTable.ext.type.order, {
         "observation-count-pre": function (d) {
             if (d == null || d == "") return 0;
-            var start = d.indexOf(">");
-            var end = d.indexOf("<", start);
+            const start = d.indexOf(">");
+            const end = d.indexOf("<", start);
             if (end <= start) return 0;
-            var count_text = d.substring(start + 1, end);
-            var count = 0;
+            const count_text = d.substring(start + 1, end);
+            let count = 0;
             if (count_text != undefined) count = parseInt(count_text);
             return count;
         }
@@ -269,8 +269,7 @@
             $(this.el).html(this.template({}));
 
             $("#omni-search-form").submit(function () {
-                var searchTerm = $("#omni-search").val();
-                window.location.hash = "search/" + searchTerm;
+                window.location.hash = "search/" + $("#omni-search").val();
                 return false;
             });
 
@@ -287,7 +286,7 @@
         template: _.template($("#help-navigate-tmpl").html()),
 
         render: function () {
-            var content = this.template({});
+            const content = this.template({});
 
             $.fancybox.open(
                 content, {
@@ -304,19 +303,18 @@
 
     const HtmlStoryView = Backbone.View.extend({
         render: function () {
-            var url = this.model.url;
-            url = url.replace(/\\/g, '\/'); // in case data loaded from a Windows machine
-            var observation = this.model.observation;
+            const url = this.model.url;
+            const observation = this.model.observation;
 
             $.post("html", {
-                url: url
+                url: url.replace(/\\/g, '\/'), // in case data loaded from a Windows machine
             }).done(function (summary) {
                 summary = summary.replace(
                     new RegExp("#submission_center", "g"),
                     "#" + observation.submission.observationTemplate.submissionCenter.stableURL
                 );
 
-                var observedSubjects = new ObservedSubjects({
+                const observedSubjects = new ObservedSubjects({
                     observationId: observation.id
                 });
                 observedSubjects.fetch({
@@ -333,7 +331,7 @@
                             );
                         });
 
-                        var observedEvidences = new ObservedEvidences({
+                        const observedEvidences = new ObservedEvidences({
                             observationId: observation.id
                         });
                         observedEvidences.fetch({
@@ -563,8 +561,6 @@
                                 );
 
                                 // load cytoscape
-                                //var div_id = "cytoscape-sif";
-
                                 cytoscape({
                                     container: $('#cytoscape-sif'),
 
@@ -660,8 +656,8 @@
 
     const ObservedEvidenceRowView = Backbone.View.extend({
         render: function () {
-            var result = this.model;
-            var type = result.evidence.class;
+            const result = this.model;
+            const type = result.evidence.class;
             result.evidence.type = type;
 
             if (result.observedEvidenceRole == null) {
@@ -673,8 +669,8 @@
                 };
             }
 
-            var templateId = "#observedevidence-row-tmpl";
-            var isHtmlStory = false;
+            let templateId = "#observedevidence-row-tmpl";
+            let isHtmlStory = false;
             if (type == "FileEvidence") {
                 result.evidence.filePath = result.evidence.filePath.replace(/\\/g, "/");
                 if (result.evidence.mimeType.toLowerCase().search("image") > -1) {
@@ -702,13 +698,13 @@
             }
 
             this.template = _.template($(templateId).html());
-            var thatEl = $(this.el);
+            const thatEl = $(this.el);
             $(this.el).append(this.template(result));
 
             if (isHtmlStory) {
                 thatEl.find(".html-story-link").on("click", function (e) {
                     e.preventDefault();
-                    var url = $(this).attr("href");
+                    const url = $(this).attr("href");
                     (new HtmlStoryView({
                         model: {
                             observation: result.observation,
@@ -751,44 +747,42 @@
         render: function () {
             $(this.el).html(this.template({}));
 
-            var centers = new SubmissionCenters();
-            var thatEl = this.el;
-            var cTable = null;
+            const centers = new SubmissionCenters();
+            const thatEl = this.el;
             centers.fetch({
                 success: function () {
-                    var tableEl = $(thatEl).find("table");
+                    const tableEl = $(thatEl).find("table");
 
                     _.each(centers.toJSON(), function (aCenter) {
-                        var centerListRowView = new CenterListRowView({
+                        new CenterListRowView({
                             el: $(thatEl).find("#centers-tbody"),
                             model: aCenter
-                        });
-                        centerListRowView.render();
+                        }).render();
 
                         $.ajax("count/submission/?filterBy=" + aCenter.id).done(function (count) {
-                            var cntContent = _.template(
+                            const cntContent = _.template(
                                 $("#count-submission-tmpl").html())({
                                     count: count
                                 });
 
-                            var countCellId = "#submission-count-" + aCenter.id;
+                            const countCellId = "#submission-count-" + aCenter.id;
                             $(countCellId).html(cntContent);
                             tableEl.DataTable().cells(countCellId).invalidate();
                         });
 
                         $.ajax("list/observationtemplate/?filterBy=" + aCenter.id).done(function (templates) {
-                            var pis = [];
+                            let pis = [];
                             _.each(templates, function (template) {
                                 pis.push(template.principalInvestigator);
                             });
                             if (pis.length == 0) pis = [defaultPI[aCenter.displayName]];
-                            var piCellId = "#center-pi-" + aCenter.id;
+                            const piCellId = "#center-pi-" + aCenter.id;
                             $(piCellId).html(_.uniq(pis).join(", "));
                             tableEl.DataTable().cells(piCellId).invalidate();
                         });
                     });
 
-                    cTable = tableEl.dataTable({
+                    const cTable = tableEl.dataTable({
                         // might want to increase this number if we have incredible number of centers
                         "iDisplayLength": 25
                     });
@@ -834,8 +828,8 @@
         el: $("#main-container"),
         template: _.template($("#compound-tmpl").html()),
         render: function () {
-            var thatModel = this.model;
-            var result = thatModel.subject.toJSON();
+            const thatModel = this.model;
+            const result = thatModel.subject.toJSON();
 
             result.pubchem = result.cas = false;
 
@@ -856,26 +850,23 @@
                 role: thatModel.role ? thatModel.role : null
             })));
 
-            var thatEl = $("ul.synonyms");
             _.each(result.synonyms, function (aSynonym) {
                 if (aSynonym.displayName == result.displayName) return;
 
-                var synonymView = new SynonymView({
+                new SynonymView({
                     model: aSynonym,
-                    el: thatEl
-                });
-                synonymView.render();
+                    el: $("ul.synonyms"),
+                }).render();
             });
 
-            var subjectObservationView = new SubjectObservationsView({
+            new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
                     tier: thatModel.tier,
                     role: thatModel.role
                 },
                 el: "#compound-observation-grid"
-            });
-            subjectObservationView.render();
+            }).render();
 
             $("a.compound-image").fancybox({
                 titlePosition: 'inside'
@@ -886,13 +877,13 @@
 
     const SubjectObservationsView = Backbone.View.extend({
         render: function () {
-            var thatEl = $(this.el);
-            var thatModel = this.model;
-            var subjectId = thatModel.subjectId;
-            var tier = thatModel.tier; // possibly undefined
-            var role = thatModel.role; // possibly undefined
+            const thatEl = $(this.el);
+            const thatModel = this.model;
+            const subjectId = thatModel.subjectId;
+            const tier = thatModel.tier; // possibly undefined
+            const role = thatModel.role; // possibly undefined
 
-            var countUrl = "observations/countBySubject/?subjectId=" + subjectId;
+            let countUrl = "observations/countBySubject/?subjectId=" + subjectId;
             if (role != undefined) {
                 countUrl += "&role=" + role;
             }
@@ -903,7 +894,7 @@
             $.ajax(countUrl).done(function (count) {
 
                 if (count > maxNumberOfEntities) {
-                    var moreObservationView = new MoreObservationView({
+                    new MoreObservationView({
                         model: {
                             role: role,
                             tier: tier,
@@ -920,12 +911,11 @@
                                 null
                             ]
                         }
-                    });
-                    moreObservationView.render();
+                    }).render();
                 }
             });
 
-            var observations = new ObservationsBySubject({
+            const observations = new ObservationsBySubject({
                 subjectId: subjectId,
                 role: role,
                 tier: tier
@@ -935,14 +925,13 @@
                     $(".subject-observations-loading", thatEl).remove();
                     _.each(observations.models, function (observation) {
                         observation = observation.toJSON();
-                        var observationRowView = new ObservationRowView({
+                        new ObservationRowView({
                             el: $(thatEl).find("tbody"),
                             model: observation
-                        });
-                        observationRowView.render();
+                        }).render();
                     });
 
-                    var oTable = $(thatEl).dataTable({
+                    const oTable = $(thatEl).dataTable({
                         'dom': '<iBfrtlp>',
                         "sPaginationType": "bootstrap",
                         "columns": [{
@@ -957,9 +946,9 @@
                             text: 'Export as Spreadsheet',
                             className: "extra-margin",
                             customizeData: function (data) {
-                                var body = data.body;
-                                for (var i = 0; i < body.length; i++) {
-                                    var raw_content = body[i][1].split(/ +/);
+                                const body = data.body;
+                                for (let i = 0; i < body.length; i++) {
+                                    const raw_content = body[i][1].split(/ +/);
                                     raw_content.pop();
                                     raw_content.pop();
                                     body[i][1] = raw_content.join(' ');
