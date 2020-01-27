@@ -850,6 +850,7 @@
                         <tr><th>References</th>
                             <td>
                             Vaccine Ontology by vaccine ID: <a href="http://purl.obolibrary.org/obo/{{vaccineID}}" target="_blank">{{vaccineID}}</a><br/>
+                            EBI-EMBL Ontology Lookup Service: <a href="https://www.ebi.ac.uk/ols/ontologies/vo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F{{vaccineID}}" target="_blank">{{vaccineID}}</a><br/>
                             Violinet Vaxquery by display name: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{displayName}}" target="_blank">{{displayName}}</a><br/>
                             Violinet Vaxquery by vaccine ID: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{vaccineID}}</a>
                             </td>
