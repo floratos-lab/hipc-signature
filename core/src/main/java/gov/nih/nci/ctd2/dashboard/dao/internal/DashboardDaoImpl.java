@@ -851,11 +851,14 @@ public class DashboardDaoImpl implements DashboardDao {
                 + " JOIN submission ON observed_evidence_role.observationTemplate_id=submission.observationTemplate_id"
                 + " JOIN observed_evidence ON observed_evidence_role.id=observed_evidence.observedEvidenceRole_id"
                 + " JOIN dashboard_entity ON observed_evidence.evidence_id=dashboard_entity.id"
-                + " WHERE observed_evidence_role.columnName='uniqObsID'" + " AND submission.id=3160712"
+                + " WHERE observed_evidence_role.columnName='uniqObsID'" + " AND submission.id=" + submissionId
                 + " AND displayName='" + uniqobsid + "'";
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Integer> queryObservation = session.createNativeQuery(obsSql);
         List<Integer> observationList = queryObservation.list();
+        if (observationList.size() == 0) {
+            return new String[0];
+        }
         StringBuffer sb = new StringBuffer("(");
         for (Integer obi : observationList) {
             sb.append(obi).append(",");
