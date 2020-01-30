@@ -1,4 +1,8 @@
 name	id	definition	comment	broad	exact	related
+whole blood	UBERON_0000178	A fluid that is composed of blood plasma and erythrocytes.				
+blood plasma	UBERON_0001969	The liquid component of blood, in which erythrocytes are suspended.				
+skin of body	UBERON_0002097	The organ covering the body that consists of the demis and epidemis.				
+serum	UBERON_0001997	The portion of blood plasma that excludes clotting factors.				
 blood	UBERON_0000178	A fluid that is composed of blood plasma and erythrocytes.				
 cell	CL_0000000	A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane.	The definition of cell is intended to represent all cells, and thus a cell is defined as a material entity and not an anatomical structure, which implies that it is part of an organism (or the entirety of one).			
 primary cultured cell	CL_0000001	A cultured cell that is freshly isolated from a organismal source, or derives in culture from such a cell prior to the culture being passaged.	Covers cells actively being cultured or stored in a quiescent state for future use.		unpassaged cultured cell|primary cell culture cell	primary cell line cell

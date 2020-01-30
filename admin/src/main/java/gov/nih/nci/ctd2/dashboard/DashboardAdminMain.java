@@ -181,7 +181,7 @@ public class DashboardAdminMain {
 
             @SuppressWarnings("unchecked")
             HashSet<String> subjectNotFound = (HashSet<String>)appContext.getBean("subjectNotFound");
-            log.info("Subjects not found:");
+            log.info(subjectNotFound.size() + " subject(s) not found:");
             for(String snf : subjectNotFound) {
                 log.info(snf);
             }
