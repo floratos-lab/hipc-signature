@@ -6,9 +6,9 @@ import os
 import shutil
 from data_config import DataConfig
 
-SOURCE_DATA_LOCATION = ".\\source_data"
-TARGET_DATA_LOCATION = "C:\\data_collection\\hipc_data"
-HIPC_APPLICATION_LOCATION = "C:\\Users\\zji\\git\\hipc-signature"
+SOURCE_DATA_LOCATION = "./source_data"
+TARGET_DATA_LOCATION = "/mnt/c/data_collection/hipc_data"
+HIPC_APPLICATION_LOCATION = "."
 
 
 def read_raw_data():
@@ -115,7 +115,7 @@ def move_data_file(filename, dir):
     # print(os.path.join(dir, filename))
     # copy file to target submissin
     target_path = os.path.join(
-        TARGET_DATA_LOCATION, "submissions\\"+template_name)
+        TARGET_DATA_LOCATION, "submissions/"+template_name)
     if not os.path.exists(target_path):
         os.mkdir(target_path)
     shutil.copy(os.path.join(dir, filename),
@@ -124,9 +124,9 @@ def move_data_file(filename, dir):
 
 def update_configs(all_files):
     old_properties = open(os.path.join(HIPC_APPLICATION_LOCATION,
-                                       "admin\\src\\main\\resources\\META-INF\\spring\\admin.properties"), 'r')
+                                       "admin/src/main/resources/META-INF/spring/admin.properties"), 'r')
     new_properties = open(os.path.join(HIPC_APPLICATION_LOCATION,
-                                       "admin\\src\\main\\resources\\META-INF\\spring\\admin.properties.tmp"), 'w')
+                                       "admin/src/main/resources/META-INF/spring/admin.properties.tmp"), 'w')
     remove = False
     ids = []
     for line in old_properties:
@@ -153,9 +153,9 @@ def update_configs(all_files):
     new_properties.close()
 
     shutil.copy(os.path.join(HIPC_APPLICATION_LOCATION,
-                             "admin\\src\\main\\resources\\META-INF\\spring\\admin.properties.tmp"),
+                             "admin/src/main/resources/META-INF/spring/admin.properties.tmp"),
                 os.path.join(HIPC_APPLICATION_LOCATION,
-                             "admin\\src\\main\\resources\\META-INF\\spring\\admin.properties"))
+                             "admin/src/main/resources/META-INF/spring/admin.properties"))
 
     return ids
 

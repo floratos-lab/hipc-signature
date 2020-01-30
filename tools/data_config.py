@@ -16,7 +16,7 @@ class DataConfig:
 
     def save(self):
         config_file = os.path.join(self.APP_LOCATION,
-                                   "admin\\src\\main\\resources\\META-INF\\spring\\observationDataApplicationContext.xml")
+                                   "admin/src/main/resources/META-INF/spring/observationDataApplicationContext.xml")
         f = open(config_file+".tmp", 'w')
 
         f.write('''<?xml version="1.0" encoding="UTF-8"?>
@@ -58,7 +58,7 @@ class DataConfig:
 
     def saveSharedConfig(self):
         config_file = os.path.join(self.APP_LOCATION,
-                                   "admin\\src\\main\\resources\\META-INF\\spring\\observationDataSharedApplicationContext.xml")
+                                   "admin/src/main/resources/META-INF/spring/observationDataSharedApplicationContext.xml")
         f = open(config_file+".tmp", 'w')
         f.write('''<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
