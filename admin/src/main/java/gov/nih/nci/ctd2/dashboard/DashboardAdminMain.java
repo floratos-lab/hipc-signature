@@ -179,11 +179,13 @@ public class DashboardAdminMain {
             JobExecution jobExecution = jobLauncher.run(job, builder.toJobParameters());
             log.info("launchJob: exit code: " + jobExecution.getExitStatus().getExitCode());
 
-            @SuppressWarnings("unchecked")
-            HashSet<String> subjectNotFound = (HashSet<String>)appContext.getBean("subjectNotFound");
-            log.info(subjectNotFound.size() + " subject(s) not found:");
-            for(String snf : subjectNotFound) {
-                log.info(snf);
+            if( "observationDataImporterJob".equals(jobName) ) {
+                @SuppressWarnings("unchecked")
+                HashSet<String> subjectNotFound = (HashSet<String>)appContext.getBean("subjectNotFound");
+                log.info(subjectNotFound.size() + " subject(s) not found:");
+                for(String snf : subjectNotFound) {
+                    log.info(snf);
+                }
             }
 
         }
