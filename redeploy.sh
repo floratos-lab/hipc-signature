@@ -20,6 +20,6 @@ if [ ! $? -eq 0 ]; then
     exit 1
 fi
 $CATALINA_HOME/bin/shutdown.sh
-rmd -rf $CATALINA_HOME/webapps/hipc-signature
+rm -rf $CATALINA_HOME/webapps/hipc-signature
 cp ./web/target/hipc-signature.war $CATALINA_HOME/webapps
 $CATALINA_HOME/bin/startup.sh

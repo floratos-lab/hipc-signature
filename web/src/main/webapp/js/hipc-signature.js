@@ -936,8 +936,7 @@
                         "sPaginationType": "bootstrap",
                         "columns": [{
                             "orderDataType": "dashboard-date"
-                        },
-                            null,
+                            },
                             null,
                             null
                         ],
@@ -1503,10 +1502,9 @@
 
                             summary += _.template($("#submission-obs-tbl-row-tmpl").html())(thatModel);
                             $(thatEl).html(summary);
-                            var dataTable = $(tableEl).parent().DataTable();
+                            const dataTable = $(tableEl).parent().DataTable();
                             dataTable.cells(cellId).invalidate();
                             dataTable.order([
-                                [2, 'desc'],
                                 [0, 'desc'],
                                 [1, 'asc']
                             ]).draw();
@@ -2120,7 +2118,7 @@
                                 $("#search-observation-count-" + submission.dashboardEntity.id).html(cntContent);
                             });
 
-                            var sTable = $("#searched-submissions").dataTable({
+                            $("#searched-submissions").dataTable({
                                 "columns": [
                                     null,
                                     {
@@ -2128,11 +2126,9 @@
                                     },
                                     null,
                                     null,
-                                    null,
                                     null
                                 ]
-                            });
-                            sTable.fnSort([
+                            }).fnSort([
                                 [4, 'desc'],
                                 [2, 'desc']
                             ]);
@@ -2493,19 +2489,11 @@
                             reformatted += " <img src='img/" + subject.class.toLowerCase() + ".png' style='height:25px' alt=''>";
                         }
                         var nameLink = "<a href='#" + subject.stableURL + "/" + role + "'>" + subject.displayName + "</a>";
-                        var n3obv = sModel.numberOfTier3Observations;
-                        var n3ctr = sModel.numberOfTier3SubmissionCenters;
-                        var n3link = (n3obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/3'>" + n3obv + "</a>") +
-                            (n3obv > 1 ? " (" + n3ctr + " center" + (n3ctr > 1 ? "s" : "") + ")" : "");
-                        var n2obv = sModel.numberOfTier2Observations;
-                        var n2ctr = sModel.numberOfTier2SubmissionCenters;
-                        var n2link = (n2obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/2'>" + n2obv + "</a>") +
-                            (n2obv > 1 ? " (" + n2ctr + " center" + (n2ctr > 1 ? "s" : "") + ")" : "");
                         var n1obv = sModel.numberOfTier1Observations;
                         var n1ctr = sModel.numberOfTier1SubmissionCenters;
                         var n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/1'>" + n1obv + "</a>") +
                             (n1obv > 1 ? " (" + n1ctr + " center" + (n1ctr > 1 ? "s" : "") + ")" : "");
-                        table_data.push([reformatted, nameLink, role, n3link, n2link, n1link]);
+                        table_data.push([reformatted, nameLink, role, n1link]);
                     });
                     $("#explore-table").dataTable({
                         'dom': '<iBfrtlp>',
@@ -2515,12 +2503,6 @@
                             null,
                             null,
                             null,
-                            {
-                                "type": "observation-count"
-                            },
-                            {
-                                "type": "observation-count"
-                            },
                             {
                                 "type": "observation-count"
                             }
