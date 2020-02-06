@@ -7,14 +7,14 @@ import shutil
 from data_config import DataConfig
 
 SOURCE_DATA_LOCATION = "./source_data"
-TARGET_DATA_LOCATION = "/mnt/c/data_collection/hipc_data"
+TARGET_DATA_LOCATION = os.path.expanduser("~/data_collection/hipc_data")
 HIPC_APPLICATION_LOCATION = "."
 
 
 def read_raw_data():
     print("source data location", SOURCE_DATA_LOCATION)
     print("target data location", TARGET_DATA_LOCATION)
-    print("HIPC application location", TARGET_DATA_LOCATION)
+    print("HIPC application location", HIPC_APPLICATION_LOCATION)
 
     # there are multiple subdirectories under the source data location
     # there is no data file directly under the the source data location

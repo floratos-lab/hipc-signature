@@ -1,8 +1,8 @@
 #!/bin/bash
 # rebuild and deploy the project to local tomcat
 
-[ -v $CATALINA_HOME ] && CATALINA_HOME=~/apache-tomcat-8.5.50
-[ -v $HIPC_DATA_HOME ] && HIPC_DATA_HOME=/mnt/c/data_collection/hipc_data
+[ -z $CATALINA_HOME ] && export CATALINA_HOME=~/apache-tomcat-8.5.50
+[ -z $HIPC_DATA_HOME ] && export HIPC_DATA_HOME=~/data_collection/hipc_data
 echo CATALINA_HOME is $CATALINA_HOME
 echo HIPC_DATA_HOME is $HIPC_DATA_HOME
 
