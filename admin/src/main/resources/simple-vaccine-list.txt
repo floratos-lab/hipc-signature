@@ -2,15 +2,20 @@ name	vaccine_id	product_name	trade_name
 entity	BFO_0000001		
 continuant	BFO_0000002		
 occurrent	BFO_0000003		
-spatial region	BFO_0000006		
+independent continuant	BFO_0000004		
 temporal region	BFO_0000008		
-spatiotemporal region	BFO_0000011		
-three-dimensional spatial region	BFO_0000028		
+process	BFO_0000015		
+disposition	BFO_0000016		
+realizable entity	BFO_0000017		
+quality	BFO_0000019		
+specifically dependent continuant	BFO_0000020		
+role	BFO_0000023		
 site	BFO_0000029		
+generically dependent continuant	BFO_0000031		
 function	BFO_0000034		
 one-dimensional temporal region	BFO_0000038		
 material entity	BFO_0000040		
-zero-dimensional temporal region	BFO_0000148		
+immaterial entity	BFO_0000141		
 phenol	CHEBI_15882		
 urea	CHEBI_16199		
 lipopolysaccharide	CHEBI_16412		
@@ -22,17 +27,18 @@ gentamycin	CHEBI_17833
 sucrose	CHEBI_17992		
 molecular entity	CHEBI_23367		
 chemical entity	CHEBI_24431		
+sodium chloride	CHEBI_26710		
 aspartame	CHEBI_2877		
 glucitol	CHEBI_30911		
 saccharin	CHEBI_32111		
 aluminium hydroxide	CHEBI_33130		
+sodium phosphate	CHEBI_37586		
 dextran	CHEBI_52071		
 polysorbate 20	CHEBI_53424		
 polysorbate 80	CHEBI_53426		
 monosodium glutamate	CHEBI_64220		
 neomycin	CHEBI_7507		
 thimerosal	CHEBI_9546		
-cell line repository role	CLO_0000978		
 disease by infectious agent	DOID_0050117		
 primary bacterial infectious disease	DOID_0050338		
 cell type cancer	DOID_0050687		
@@ -56,8 +62,10 @@ Hormone	FMA_12278
 adaptive immune response	GO_0002250		
 mucosal immune response	GO_0002385		
 immune response	GO_0006955		
+biological_process	GO_0008150		
 immunoglobulin complex	GO_0019814		
 protein complex	GO_0043234		
+response to stimulus	GO_0050896		
 IgG immunoglobulin complex	GO_0071735		
 IgD immunoglobulin complex	GO_0071738		
 IgE immunoglobulin complex	GO_0071742		
@@ -66,14 +74,18 @@ IgM immunoglobulin complex	GO_0071753
 conditional specification	IAO_0000001		
 measurement unit label	IAO_0000003		
 objective specification	IAO_0000005		
+action specification	IAO_0000007		
 datum label	IAO_0000009		
 journal article	IAO_0000013		
 data item	IAO_0000027		
 information content entity	IAO_0000030		
 scalar measurement datum	IAO_0000032		
 directive information entity	IAO_0000033		
+algorithm	IAO_0000064		
+curation status specification	IAO_0000078		
 report	IAO_0000088		
 data set	IAO_0000100		
+data about an ontology part	IAO_0000102		
 plan specification	IAO_0000104		
 measurement datum	IAO_0000109		
 document	IAO_0000310		
@@ -98,21 +110,22 @@ H5N1 subtype	NCBITaxon_102793
 Herpesviridae	NCBITaxon_10292		
 Alphaherpesvirinae	NCBITaxon_10293		
 Simplexvirus	NCBITaxon_10294		
-Human herpesvirus 1	NCBITaxon_10298		
-Human herpesvirus 2	NCBITaxon_10310		
+Human alphaherpesvirus 1	NCBITaxon_10298		
+Human alphaherpesvirus 2	NCBITaxon_10310		
 Varicellovirus	NCBITaxon_10319		
-Bovine herpesvirus 1	NCBITaxon_10320		
-Equid herpesvirus 1	NCBITaxon_10326		
-Felid herpesvirus 1	NCBITaxon_10334		
-Human herpesvirus 3	NCBITaxon_10335		
-Suid herpesvirus 1	NCBITaxon_10345		
+Bovine alphaherpesvirus 1	NCBITaxon_10320		
+Equid alphaherpesvirus 1	NCBITaxon_10326		
+Felid alphaherpesvirus 1	NCBITaxon_10334		
+Human alphaherpesvirus 3	NCBITaxon_10335		
+Suid alphaherpesvirus 1	NCBITaxon_10345		
 Betaherpesvirinae	NCBITaxon_10357		
-Human herpesvirus 5	NCBITaxon_10359		
-Murid herpesvirus 1	NCBITaxon_10366		
-Gallid herpesvirus 1	NCBITaxon_10386		
-Gallid herpesvirus 2	NCBITaxon_10390		
+Human betaherpesvirus 5	NCBITaxon_10359		
+Murid betaherpesvirus 1	NCBITaxon_10366		
+Gallid alphaherpesvirus 1	NCBITaxon_10386		
+Gallid alphaherpesvirus 2	NCBITaxon_10390		
+Orthohepadnavirus	NCBITaxon_10405		
 Hepatitis B virus	NCBITaxon_10407		
-Anatid herpesvirus 1	NCBITaxon_104388		
+Anatid alphaherpesvirus 1	NCBITaxon_104388		
 unidentified baculovirus	NCBITaxon_10469		
 African swine fever virus	NCBITaxon_10497		
 Adenoviridae	NCBITaxon_10508		
@@ -121,8 +134,6 @@ Canine adenovirus 2	NCBITaxon_10514
 Canine mastadenovirus A	NCBITaxon_10537		
 Human papillomavirus	NCBITaxon_10566		
 Bovine papillomavirus	NCBITaxon_10571		
-Polyomavirus	NCBITaxon_10624		
-Budgerigar fledgling disease polyomavirus	NCBITaxon_10625		
 Clostridium perfringens D	NCBITaxon_107819		
 Feline panleukopenia virus	NCBITaxon_10786		
 Feline panleukopenia virus (strain 193)	NCBITaxon_10787		
@@ -144,12 +155,11 @@ Eastern equine encephalitis virus	NCBITaxon_11021
 Sindbis virus	NCBITaxon_11034		
 Venezuelan equine encephalitis virus	NCBITaxon_11036		
 Western equine encephalitis virus	NCBITaxon_11039		
+Rubivirus	NCBITaxon_11040		
 Rubella virus	NCBITaxon_11041		
-Arterivirus	NCBITaxon_11046		
 Equine arteritis virus	NCBITaxon_11047		
 Flaviviridae	NCBITaxon_11050		
 Flavivirus	NCBITaxon_11051		
-Japanese encephalitis virus group	NCBITaxon_11071		
 Japanese encephalitis virus	NCBITaxon_11072		
 West Nile virus	NCBITaxon_11082		
 Tick-borne encephalitis virus	NCBITaxon_11084		
@@ -166,34 +176,31 @@ Canine coronavirus	NCBITaxon_11153
 Mononegavirales	NCBITaxon_11157		
 Paramyxoviridae	NCBITaxon_11158		
 Mumps virus	NCBITaxon_11161		
-Newcastle disease virus	NCBITaxon_11176		
-Bovine parainfluenza virus 3	NCBITaxon_11215		
+Avian avulavirus 1	NCBITaxon_11176		
+Bovine respirovirus 3	NCBITaxon_11215		
 Morbillivirus	NCBITaxon_11229		
-Canine distemper virus	NCBITaxon_11232		
-Measles virus	NCBITaxon_11234		
-Rinderpest virus	NCBITaxon_11241		
+Canine morbillivirus	NCBITaxon_11232		
+Measles morbillivirus	NCBITaxon_11234		
+Rinderpest morbillivirus	NCBITaxon_11241		
 Pneumoviridae	NCBITaxon_11244		
-Bovine respiratory syncytial virus	NCBITaxon_11246		
-Human respiratory syncytial virus	NCBITaxon_11250		
+Bovine orthopneumovirus	NCBITaxon_11246		
+Human orthopneumovirus	NCBITaxon_11250		
 Filoviridae	NCBITaxon_11266		
 Rhabdoviridae	NCBITaxon_11270		
+Lyssavirus	NCBITaxon_11286		
 Viral hemorrhagic septicemia virus	NCBITaxon_11287		
 Infectious hematopoietic necrosis virus	NCBITaxon_11290		
-Rabies virus	NCBITaxon_11292		
+Rabies lyssavirus	NCBITaxon_11292		
 Orthomyxoviridae	NCBITaxon_11308		
 unidentified influenza virus	NCBITaxon_11309		
-Dhori virus	NCBITaxon_11318		
+Dhori thogotovirus	NCBITaxon_11318		
 Influenza A virus	NCBITaxon_11320		
 H1N1 subtype	NCBITaxon_114727		
-Bunyaviridae	NCBITaxon_11571		
 Rift Valley fever virus	NCBITaxon_11588		
-Crimean-Congo hemorrhagic fever virus	NCBITaxon_11593		
-Hantavirus	NCBITaxon_11598		
 Lassa mammarenavirus	NCBITaxon_11620		
 Lymphocytic choriomeningitis mammarenavirus	NCBITaxon_11623		
 Reticuloendotheliosis virus	NCBITaxon_11636		
 Lentivirus	NCBITaxon_11646		
-Primate lentivirus group	NCBITaxon_11652		
 Feline immunodeficiency virus	NCBITaxon_11673		
 Simian immunodeficiency virus	NCBITaxon_11723		
 Hyperotreti	NCBITaxon_117565		
@@ -210,9 +217,10 @@ Coxsackievirus	NCBITaxon_12066
 Human poliovirus 1	NCBITaxon_12080		
 Human poliovirus 2	NCBITaxon_12083		
 Human poliovirus 3	NCBITaxon_12086		
+Hepatovirus	NCBITaxon_12091		
 Hepatovirus A	NCBITaxon_12092		
 Foot-and-mouth disease virus	NCBITaxon_12110		
-Nipah virus	NCBITaxon_121791		
+Nipah henipavirus	NCBITaxon_121791		
 Proteobacteria	NCBITaxon_1224		
 Gammaproteobacteria	NCBITaxon_1236		
 Piscirickettsia salmonis	NCBITaxon_1238		
@@ -236,6 +244,7 @@ Dicentrarchus	NCBITaxon_13488
 Dicentrarchus labrax	NCBITaxon_13489		
 Spirochaetales	NCBITaxon_136		
 Bacillales	NCBITaxon_1385		
+Bacillus <bacterium>	NCBITaxon_1386		
 Enterovirus C	NCBITaxon_138950		
 Borreliella burgdorferi	NCBITaxon_139		
 Bacillus anthracis	NCBITaxon_1392		
@@ -250,7 +259,6 @@ Clostridium perfringens	NCBITaxon_1502
 Protoparvovirus	NCBITaxon_1506574		
 Clostridium tetani	NCBITaxon_1513		
 Papillomaviridae	NCBITaxon_151340		
-Polyomaviridae	NCBITaxon_151341		
 Gammaretrovirus	NCBITaxon_153135		
 Galloanserae	NCBITaxon_1549675		
 Treponema pallidum	NCBITaxon_160		
@@ -271,7 +279,6 @@ Mycobacterium	NCBITaxon_1763
 Mycobacterium avium	NCBITaxon_1764		
 Mycobacterium bovis	NCBITaxon_1765		
 Mycobacterium tuberculosis	NCBITaxon_1773		
-WEEV complex	NCBITaxon_177874		
 Mycobacterium marinum	NCBITaxon_1781		
 Terrabacteria group	NCBITaxon_1783272		
 Mardivirus	NCBITaxon_180252		
@@ -280,16 +287,18 @@ Marburgvirus	NCBITaxon_186537
 Clupeocephala	NCBITaxon_186625		
 Novirhabdovirus	NCBITaxon_186778		
 Orthopneumovirus	NCBITaxon_1868215		
+Yersiniaceae	NCBITaxon_1903411		
 Campylobacter	NCBITaxon_194		
 Campylobacter fetus	NCBITaxon_196		
 Campylobacter jejuni	NCBITaxon_197		
-Influenzavirus A	NCBITaxon_197911		
-Influenzavirus B	NCBITaxon_197912		
-Influenzavirus C	NCBITaxon_197913		
+Alphainfluenzavirus	NCBITaxon_197911		
+Betainfluenzavirus	NCBITaxon_197912		
+Gammainfluenzavirus	NCBITaxon_197913		
 Bacteria	NCBITaxon_2		
 Spirochaetia	NCBITaxon_203692		
 Brucella suis 1330	NCBITaxon_204722		
 Ebola virus sp.	NCBITaxon_205488		
+Neisseriales	NCBITaxon_206351		
 Mycoplasma	NCBITaxon_2093		
 Mycoplasma gallisepticum	NCBITaxon_2096		
 Mycoplasma hyopneumoniae	NCBITaxon_2099		
@@ -326,6 +335,7 @@ Laurasiatheria	NCBITaxon_314145
 Euarchontoglires	NCBITaxon_314146		
 Glires	NCBITaxon_314147		
 Simiiformes	NCBITaxon_314293		
+Tetrapoda	NCBITaxon_32523		
 Amniota	NCBITaxon_32524		
 Sauria	NCBITaxon_32561		
 Orthoretrovirinae	NCBITaxon_327045		
@@ -333,11 +343,10 @@ Canine minute virus	NCBITaxon_329639
 Opisthokonta	NCBITaxon_33154		
 Bilateria	NCBITaxon_33213		
 unclassified Papillomaviridae	NCBITaxon_333774		
-Hystricognathi	NCBITaxon_33550		
+Hystricomorpha	NCBITaxon_33550		
 Carnivora	NCBITaxon_33554		
 Riemerella anatipestifer	NCBITaxon_34085		
 dsDNA viruses, no RNA stage	NCBITaxon_35237		
-Retro-transcribing viruses	NCBITaxon_35268		
 ssRNA positive-strand viruses, no DNA stage	NCBITaxon_35278		
 ssRNA negative-strand viruses	NCBITaxon_35301		
 Replication competent viruses	NCBITaxon_353210		
@@ -349,7 +358,6 @@ H1N1 swine influenza virus	NCBITaxon_36420
 Brucella canis	NCBITaxon_36855		
 Chikungunya virus	NCBITaxon_37124		
 Caniformia	NCBITaxon_379584		
-Hirame rhabdovirus	NCBITaxon_38142		
 Avian orthoreovirus	NCBITaxon_38170		
 Leptospira kirschneri serovar Grippotyphosa	NCBITaxon_38345		
 Avian metapneumovirus	NCBITaxon_38525		
@@ -358,8 +366,8 @@ Leishmania donovani species complex	NCBITaxon_38574
 Murinae	NCBITaxon_39107		
 Bubalus bubalis bubalis	NCBITaxon_391902		
 Yersinia enterocolitica subsp. enterocolitica 8081	NCBITaxon_393305		
-Circoviridae	NCBITaxon_39724		
-Caprine herpesvirus 1	NCBITaxon_39944		
+Rubulavirus	NCBITaxon_39744		
+Caprine alphaherpesvirus 1	NCBITaxon_39944		
 African horse sickness virus	NCBITaxon_40050		
 Bluetongue virus	NCBITaxon_40051		
 Quailpox virus	NCBITaxon_400570		
@@ -381,7 +389,7 @@ Fungi	NCBITaxon_4751
 Brucella canis ATCC 23365	NCBITaxon_483179		
 Neisseria meningitidis	NCBITaxon_487		
 Flavobacteriaceae	NCBITaxon_49546		
-Psittacid herpesvirus 1	NCBITaxon_50294		
+Psittacid alphaherpesvirus 1	NCBITaxon_50294		
 Salmoninae	NCBITaxon_504568		
 Bordetella	NCBITaxon_517		
 Bordetella bronchiseptica	NCBITaxon_518		
@@ -392,7 +400,7 @@ Bovine viral diarrhea virus 2	NCBITaxon_54315
 Brucella melitensis ATCC 23457	NCBITaxon_546272		
 Coccidioides	NCBITaxon_5500		
 Vibrio anguillarum	NCBITaxon_55601		
-Infectious salmon anemia virus	NCBITaxon_55987		
+Salmon isavirus	NCBITaxon_55987		
 Dintheria	NCBITaxon_560210		
 Escherichia coli	NCBITaxon_562		
 Trypanosomatidae	NCBITaxon_5654		
@@ -442,7 +450,7 @@ Shigella sonnei	NCBITaxon_624
 Yersinia <bacteria>	NCBITaxon_629		
 Yersinia pestis	NCBITaxon_632		
 Yersinia pseudotuberculosis	NCBITaxon_633		
-Hendra virus	NCBITaxon_63330		
+Hendra henipavirus	NCBITaxon_63330		
 Trichinella spiralis	NCBITaxon_6334		
 Edwardsiella <enterobacteria>	NCBITaxon_635		
 Edwardsiella tarda	NCBITaxon_636		
@@ -450,27 +458,29 @@ Vibrionaceae	NCBITaxon_641
 Aeromonas	NCBITaxon_642		
 Aeromonas hydrophila	NCBITaxon_644		
 Aeromonas salmonicida	NCBITaxon_645		
+Borreliella	NCBITaxon_64895		
 Vibrio	NCBITaxon_662		
 Vibrio cholerae	NCBITaxon_666		
 Edwardsiella ictaluri	NCBITaxon_67780		
 delta/epsilon subdivisions	NCBITaxon_68525		
 Sedoreovirinae	NCBITaxon_689832		
-Duck hepatitis A virus	NCBITaxon_691956		
+Avihepatovirus A	NCBITaxon_691956		
 Coronavirinae	NCBITaxon_693995		
 Alphacoronavirus 1	NCBITaxon_693997		
 Betacoronavirus	NCBITaxon_694002		
 Severe acute respiratory syndrome-related coronavirus	NCBITaxon_694009		
-Avian encephalomyelitis virus	NCBITaxon_70796		
+Tremovirus A	NCBITaxon_70796		
 Pasteurellaceae	NCBITaxon_712		
 Actinobacillus pleuropneumoniae	NCBITaxon_715		
 Thiotrichales	NCBITaxon_72273		
 Haemophilus	NCBITaxon_724		
 Haemophilus influenzae	NCBITaxon_727		
 Histophilus somni	NCBITaxon_731		
-[Haemophilus] parasuis	NCBITaxon_738		
+Glaesserella parasuis	NCBITaxon_738		
 Pasteurella multocida	NCBITaxon_747		
 Mannheimia haemolytica	NCBITaxon_75985		
 Rickettsiales	NCBITaxon_766		
+Arteriviridae	NCBITaxon_76803		
 Nidovirales	NCBITaxon_76804		
 Theileria lestoquardi	NCBITaxon_77054		
 Vertebrata <Metazoa>	NCBITaxon_7742		
@@ -485,7 +495,6 @@ Oncorhynchus mykiss	NCBITaxon_8022
 Burkholderiales	NCBITaxon_80840		
 Chlamydia	NCBITaxon_810		
 Chlamydia trachomatis	NCBITaxon_813		
-Mycobacterium tuberculosis H37Rv	NCBITaxon_83332		
 Escherichia coli O157:H7	NCBITaxon_83334		
 Chlamydia psittaci	NCBITaxon_83554		
 Chlamydia abortus	NCBITaxon_83555		
@@ -504,6 +513,7 @@ Salmonella enterica subsp. enterica serovar Typhi	NCBITaxon_90370
 Salmonella enterica subsp. enterica serovar Typhimurium	NCBITaxon_90371		
 Meleagris gallopavo	NCBITaxon_9103		
 Bacilli	NCBITaxon_91061		
+Enterobacterales	NCBITaxon_91347		
 Cetartiodactyla	NCBITaxon_91561		
 Psittacidae	NCBITaxon_9224		
 Leptospira sp. Pomona	NCBITaxon_94063		
@@ -541,47 +551,55 @@ vaccine adverse event	OAE_0000004
 contraindication	OAE_0000055		
 vaccine-induced adverse event	OAE_0000097		
 planned process	OBI_0000011		
+regulator role	OBI_0000014		
 regulation-assigned role	OBI_0000016		
 regulatory role	OBI_0000017		
 processed material	OBI_0000047		
-assay	OBI_0000070		
+evaluant role	OBI_0000067		
+reagent role	OBI_0000086		
 material processing	OBI_0000094		
 population	OBI_0000181		
 antigen role	OBI_0000237		
 organization	OBI_0000245		
 protocol	OBI_0000272		
-adding a material entity into a target	OBI_0000274		
 intraperitoneal injection	OBI_0000281		
 material to be added role	OBI_0000319		
+transfer function	OBI_0000383		
+syringe	OBI_0000422		
 injection	OBI_0000426		
 intraperitoneal administration	OBI_0000429		
+adding material objective	OBI_0000434		
 assay objective	OBI_0000441		
 target of material addition role	OBI_0000444		
 regulatory agency	OBI_0000450		
+material transformation objective	OBI_0000456		
+scattered molecular aggregate	OBI_0000576		
 material combination	OBI_0000652		
-pathogen challenge	OBI_0000712		
+creating a mixture of molecules in solution	OBI_0000685		
+material combination objective	OBI_0000686		
+pathogen role	OBI_0000718		
 host role	OBI_0000725		
 study design independent variable	OBI_0000750		
 study design dependent variable	OBI_0000751		
+material maintenance objective	OBI_0000806		
 material maintenance	OBI_0000838		
+device	OBI_0000968		
 dose specification	OBI_0000969		
 dose	OBI_0000984		
+value specification	OBI_0001933		
 organism	OBI_0100026		
-phosphate buffered saline solution	OBI_0100046		
-data transformation	OBI_0200000		
+data transformation objective	OBI_0200166		
 ANOVA	OBI_0200201		
 chemical solution	OBI_0302729		
+buffer role	OBI_0302731		
+solvent role	OBI_0302732		
+solute role	OBI_0302733		
 storage	OBI_0302893		
+study design	OBI_0500000		
 administering substance in vivo	OBI_0600007		
 antigen	OBI_1110034		
-genome	OGG_0000000001		
+assay antigen role	OBI_1110120		
 gene	OGG_0000000002		
-gene disposition	OGG_0000000003		
-protein-coding gene disposition	OGG_0000000010		
-genome of Bacteria	OGG_1000000002		
-genome of Proteobacteria	OGG_1000001224		
-genome of Mycobacterium tuberculosis H37Rv	OGG_1000083332		
-genome of Brucella melitensis bv. 1 str. 16M	OGG_1000224914		
 gene of Bacteria	OGG_2000000002		
 gene of Proteobacteria	OGG_2000001224		
 gene of Mycobacterium tuberculosis H37Rv	OGG_2000083332		
@@ -599,9 +617,11 @@ drrC	OGG_3000888491
 sigE	OGG_3000888751		
 phoP	OGG_3000888772		
 BMEI1364	OGG_3001197075		
+disease	OGMS_0000031		
 disorder	OGMS_0000045		
 bodily process	OGMS_0000060		
 pathological bodily process	OGMS_0000061		
+disease course	OGMS_0000063		
 age	PATO_0000011		
 frequency	PATO_0000044		
 biological sex	PATO_0000047		
@@ -626,6 +646,8 @@ anatomical structure	UBERON_0000061
 organ	UBERON_0000062		
 organ part	UBERON_0000064		
 mouth	UBERON_0000165		
+material anatomical entity	UBERON_0000465		
+multi-tissue structure	UBERON_0000481		
 stomach	UBERON_0000945		
 anatomical entity	UBERON_0001062		
 skeletal muscle tissue	UBERON_0001134		
@@ -644,10 +666,10 @@ bladder organ	UBERON_0018707
 milliliter	UO_0000098		
 part of pathogen organism in vaccine	VO_0000000		
 vaccine	VO_0000001		
-ACAM2000	VO_0000003		ACAM2000
-ActHIB	VO_0000004	Haemophilus b Conjugate Vaccine (Tetanus Toxoid Conjugate)	ActHIB
-Adacel	VO_0000005	Tetanus Toxoid, Reduced Diphtheria Toxoid and Acellular Pertussis Vaccine, Adsorbed	Adacel
-Afluria	VO_0000006	Influenza Virus Vaccine	Afluria
+ACAM2000	VO_0000003		
+ActHIB	VO_0000004		
+Adacel	VO_0000005		
+Afluria	VO_0000006		
 Attenuvax	VO_0000007	Measles Virus Vaccine, Live	Attenuvax
 vaccine-induced lymphocyte activation	VO_0000008		
 vaccine-induced B cell antigen processing and presentation	VO_0000009		
@@ -655,8 +677,8 @@ vaccine-induced B cell cytokine production	VO_0000010
 B cell epitope in vaccine	VO_0000011		
 vaccine-induced B cell mediated immunity	VO_0000012		
 Bacillus anthracis vaccine	VO_0000013		
-Biothrax	VO_0000014	Anthrax Vaccine Adsorbed	Biothrax
-Boostrix	VO_0000015	Tetanus Toxoid, Reduced Diphtheria Toxoid and Acellular Pertussis Vaccine, Adsorbed	Boostrix
+Biothrax	VO_0000014		
+Boostrix	VO_0000015		
 killed vaccine	VO_0000017		
 Brucella abortus DNA vaccine pcDNA-SOD	VO_0000018		
 pVAX DNA vaccine plasmid	VO_0000019		
@@ -668,9 +690,8 @@ Brucella vaccine	VO_0000025
 pCMV4 DNA vaccine plasmid	VO_0000026		
 pAp031 DNA vaccine plasmid	VO_0000027		
 Comvax	VO_0000028	Haemophilus b Conjugate Vaccine (Meningococcal Protein Conjugate) & Hepatitis B Vaccine (Recombinant)	Comvax
-Daptacel	VO_0000029	Diphtheria & Tetanus Toxoids & Acellular Pertussis Vaccine Adsorbed	DAPTACEL
+Daptacel	VO_0000029		
 DECAVAC	VO_0000030	Tetanus & Diphtheria Toxoids Adsorbed for Adult Use	DECAVAC
-MenHibrix	VO_0000031		
 DNA vaccine	VO_0000032		
 Diphtheria and Tetanus Toxoids Adsorbed USP by Sanofi Pasteur Inc	VO_0000033	Diphtheria & Tetanus Toxoids Adsorbed	
 OBSOLETE - Diphtheria and Tetanus Toxoids Adsorbed by Sanofi Pasteur Ltd	VO_0000034	Diphtheria & Tetanus Toxoids Adsorbed	
@@ -682,61 +703,61 @@ pBacPAK9 DNA vaccine plasmid	VO_0000039
 pBC12/CMV DNA vaccine plasmid	VO_0000040		
 Escherichia coli vaccine	VO_0000041		
 pBHT DNA vaccine plasmid	VO_0000042		
-FluLaval	VO_0000043	Influenza Virus Vaccine, Trivalent, Types A and B	FluLaval
-FluMist	VO_0000044	Influenza Virus Vaccine, Live, Intranasal	FluMist
-Fluarix	VO_0000045	Influenza Virus Vaccine, Trivalent, Types A and B	Fluarix
-Fluvirin	VO_0000046	Influenza Virus Vaccine, Trivalent, Types A and B	Fluvirin
-Fluzone	VO_0000047	Influenza Virus Vaccine, Trivalent, Types A and B	Fluzone
+FluLaval	VO_0000043	Influenza Virus Vaccine, Trivalent, Types A and B	
+FluMist	VO_0000044		
+Fluarix	VO_0000045		
+Fluvirin	VO_0000046	Influenza Virus Vaccine, Trivalent, Types A and B	
+Fluzone	VO_0000047	Influenza Virus Vaccine, Trivalent, Types A and B	
 virmugen	VO_0000048		
-Gardasil	VO_0000049	Human Papillomavirus (Types 6, 11, 16, 18) Recombinant Vaccine	Gardasil
+Gardasil	VO_0000049		
 HIV based lentivirus vaccine vector	VO_0000050		
 Balb/c mouse	VO_0000051		
-Havrix	VO_0000052	Hepatitis A Vaccine, Inactivated	Havrix
+Havrix	VO_0000052		
 Neisseria meningitidis vaccine	VO_0000053		
-IPOL	VO_0000054	Poliovirus Vaccine Inactivated (Monkey Kidney Cell)	IPOL
+IPOL	VO_0000054		
 vaccine related journal article	VO_0000055		
-Imovax Rabies (USA)	VO_0000063	Rabies Vaccine	Imovax
-Infanrix	VO_0000064	Diphtheria & Tetanus Toxoids & Acellular Pertussis Vaccine Adsorbed	Infanrix
+Imovax Rabies (USA)	VO_0000063		
+Infanrix	VO_0000064		
 Influenza Virus Vaccine H5N1 (Sanofi Pasteur Inc)	VO_0000065	Influenza Virus Vaccine, H5N1 (for National Stockpile)	
-JE-Vax	VO_0000066	Japanese Encephalitis Virus Vaccine Inactivated	JE-Vax
+JE-Vax	VO_0000066		
 Kinrix	VO_0000067	Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed and Inactivated Poliovirus Vaccine	KINRIX
 Listeria monocytogenes vaccine vector	VO_0000068		
-M-M-R II	VO_0000069	Measles, Mumps, and Rubella Virus Vaccine, Live	M-M-R II
+M-M-R II	VO_0000069		
 M-M-Vax	VO_0000070	Measles and Mumps Virus Vaccine, Live	M-M-Vax
 Menactra	VO_0000071	Meningococcal Polysaccharide (Serogroups A, C, Y and W-135) Diphtheria Toxoid Conjugate Vaccine	Menactra
-Menomune A C Y W135	VO_0000072	Meningococcal Polysaccharide Vaccine, Groups A, C, Y and W-135 Combined	Menomune-A/C/Y/W-135
+Menomune A C Y W135	VO_0000072		
 Meruvax II	VO_0000073	Rubella Virus Vaccine Live	Meruvax II
 Mumpsvax	VO_0000074	Mumps Virus Vaccine Live	Mumpsvax
 pBI/tTA DNA vaccine plasmid	VO_0000075		
 pBISIA DNA vaccine plasmid	VO_0000076		
 Mycobacterium tuberculosis vaccine	VO_0000077		
 Mycobax	VO_0000078	BCG Vaccine	Mycobax
-Fluzone High-dose	VO_0000079	Influenza Virus Vaccine, Trivalent, Types A and B	Fluzone
+Fluzone High-dose	VO_0000079	Influenza Virus Vaccine, Trivalent, Types A and B	
 pBK-SFV DNA vaccine plasmid	VO_0000080		
 Influenza A (H1N1) 2009 Monovalent Vaccine (Novartis)	VO_0000081		
-Pediarix	VO_0000082	Diphtheria & Tetanus Toxoids & Acellular Pertussis Vaccine Adsorbed, Hepatitis B (recombinant) and Inactivated Poliovirus Vaccine Combined	Pediarix
-PedvaxHIB	VO_0000083	Haemophilus b Conjugate Vaccine (Meningococcal Protein Conjugate)	PedvaxHIB
-Pentacel	VO_0000084	Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed, Inactivated Poliovirus and Haemophilus b Conjugate (Tetanus Toxoid Conjugate) Vaccine	Pentacel
+Pediarix	VO_0000082		
+PedvaxHIB	VO_0000083		
+Pentacel	VO_0000084		
 Plague Vaccine by Greer Laboratories Inc	VO_0000085	Plague Vaccine	
 pBudCE4.1 DNA vaccine plasmid	VO_0000086		
 Plasmodium falciparum vaccine	VO_0000087		
-Pneumovax 23 (USA)	VO_0000088	Pneumococcal Vaccine, Polyvalent	Pneumovax 23
+Pneumovax 23	VO_0000088	Pneumococcal Vaccine, Polyvalent	
 Poliovax	VO_0000089	Poliovirus Vaccine Inactivated (Human Diploid Cell)	Poliovax
-Prevnar (USA)	VO_0000090	Pneumococcal 7-valent Conjugate Vaccine (Diphtheria CRM197 Protein)	Prevnar
-ProQuad	VO_0000091	Measles, Mumps, Rubella and Varicella Virus Vaccine Live	ProQuad
-Fluzone intradermal	VO_0000092		Fluzone intradermal
+Prevnar	VO_0000090	Pneumococcal 7-valent Conjugate Vaccine (Diphtheria CRM197 Protein)	
+ProQuad	VO_0000091		
+Fluzone Intradermal Quadrivalent	VO_0000092		
 mineral salt vaccine adjuvant	VO_0000093		
-RabAvert	VO_0000094	Rabies Vaccine	RabAvert
+RabAvert	VO_0000094		
 Rabies Vaccine Adsorbed by BioPort Corp	VO_0000095	Rabies Vaccine Adsorbed	
 Adenovirus Type 4 and Type 7 Vaccine, Live, Oral	VO_0000096		
-RotaTeq	VO_0000097	Rotavirus Vaccine, Live, Oral, Pentavalent	RotaTeq
+RotaTeq	VO_0000097		
 SIV based lentivirus vaccine vector	VO_0000098		
 Pcaggs DNA vaccine plasmid	VO_0000099		
 vaccine-induced T-helper 1 type immune response	VO_0000100		
 vaccine-induced T-helper 2 type immune response	VO_0000101		
-TENIVAC	VO_0000102	Tetanus & Diphtheria Toxoids Adsorbed for Adult Use	TENIVAC
-TICE BCG	VO_0000103	BCG Vaccine	TICE BCG
-TYPHIM Vi	VO_0000104	Typhoid Vi Polysaccharide Vaccine	TYPHIM Vi
+TENIVAC	VO_0000102		
+TICE BCG	VO_0000103		
+TYPHIM VI	VO_0000104		
 T cell epitope in vaccine	VO_0000105		
 vaccine-induced T cell mediated immunity	VO_0000106		
 T cell vaccine antigen processing and presentation	VO_0000107		
@@ -745,18 +766,18 @@ Tetanus Toxoid Adsorbed by Aventis Pasteur Inc	VO_0000109	Tetanus Toxoid Adsorbe
 E. coli O157:H7 intimin vaccine	VO_0000110		
 Tetanus and Diphtheria Toxoids Adsorbed by MA Biologic Lab	VO_0000111	Tetanus & Diphtheria Toxoids Adsorbed for Adult Use	
 Tripedia	VO_0000112	Diphtheria & Tetanus Toxoids & Acellular Pertussis Vaccine Adsorbed	Tripedia
-Twinrix	VO_0000113	Hepatitis A Inactivated and Hepatitis B (Recombinant) Vaccine	Twinrix
+Twinrix	VO_0000113		
 pCAGGST7 DNA vaccine plasmid	VO_0000114		
 vaccine-induced T cell activation	VO_0000115		
 pCBINT DNA vaccine plasmid	VO_0000116		
 pCdm7 DNA vaccine plasmid	VO_0000117		
 microbial derivative vaccine adjuvant	VO_0000118		
-Varivax	VO_0000119	Varicella Virus Vaccine Live	Varivax
-Vivotif (USA)	VO_0000120	Typhoid Vaccine Live Oral Ty21a	Vivotif
-YF-Vax	VO_0000121	Yellow Fever Vaccine	YF-Vax
+Varivax	VO_0000119		
+Vivotif (USA)	VO_0000120		
+YF-Vax	VO_0000121		
 Yellow fever 17D vaccine vector	VO_0000122		
 Yellow fever virus vaccine	VO_0000123		
-Zostavax	VO_0000124	Zoster Vaccine, Live, (Oka/Merck)	Zostavax
+Zostavax	VO_0000124		
 licensed turkey vaccine	VO_0000125		
 live attenuated vaccine organism	VO_0000126		
 aluminum hydroxide vaccine adjuvant	VO_0000127		
@@ -830,7 +851,7 @@ preparation of recombinant vector vaccine	VO_0000196
 West Nile virus gene	VO_0000197		
 chickenpox virus gene	VO_0000198		
 Rubella virus gene	VO_0000199		
-Hepatitis B virus gene	VO_0000200		
+influenza A virus A/California/7/2009 (H1N1) antigen	VO_0000200		
 Porcilis-PCV2	VO_0000201		
 Hepatitis A virus gene	VO_0000202		
 Suvaxyn PCV2	VO_0000203		
@@ -1211,6 +1232,7 @@ viral vaccine	VO_0000609
 viral vaccine vector	VO_0000610		
 Haemophilus parasuis vaccine	VO_0000611		
 vaccine organism virulent	VO_0000612		
+male biological sex datum	VO_0000613		
 Nontypeable H. influenzae protein P6 with cholera toxin	VO_0000614		
 vaccine role	VO_0000615		
 animal model of vaccine research	VO_0000616		
@@ -1314,7 +1336,7 @@ CVD 1204(pGA1-CS2)	VO_0000733
 CVD 1204(pGA1-CS3)	VO_0000734		
 Corynebacterium diphtheriae vaccine	VO_0000735		
 Measles-Mumps vaccine	VO_0000736		
-Measles-Mumps-Rubella-Vericella vaccine	VO_0000737		
+Measles-Mumps-Rubella-Varicella vaccine	VO_0000737		
 Diphtheria-Tetanus-Pertussis vaccine	VO_0000738		
 Shigella ribosome-based Vaccine (SRB)	VO_0000739		
 P. falciparum vaccine Combination B	VO_0000740		
@@ -1461,9 +1483,9 @@ PleuroStar APP	VO_0000889
 phenoxy ethanol vaccine preservative	VO_0000891		
 age at vaccination	VO_0000897		
 Theileria annulata vaccine by local veterinary institutes	VO_0000898		
-dose	VO_0000899		
+dose - obsolete	VO_0000899		
 challenge dose	VO_0000900		
-PROTEQ-FLU (European Union)	VO_0000902		
+Recombitek (United States)	VO_0000902		
 secondary vaccination	VO_0000903		
 Eimeria vaccine	VO_0000906		
 surface antigens from the zona pellucida	VO_0000907		
@@ -1500,7 +1522,6 @@ yeast extract cell culture residual in vaccine	VO_0000939
 yeast protein cell culture residual in vaccine	VO_0000940		
 Apex-IHN	VO_0000941		
 Diphtheria-Tetanus-Pertussis-Haemophilus b vaccine	VO_0000942		
-Diphtheria-Tetanus-Poliovirus vaccine	VO_0000943		
 V. cholerae and E. coli vaccine	VO_0000944		
 Measles-Rubella vaccine	VO_0000945		
 Diphtheria-Tetanus-Pertussis-Poliovirus-Haemophilus b-Hepatitis B vaccine	VO_0000946		
@@ -1532,9 +1553,9 @@ inactivated E. coli vaccine	VO_0000974
 uropathogenic E. coli vaccine	VO_0000975		
 extraintestinal pathogenic E. coli vaccine	VO_0000976		
 enterohemorrhagic E. coli vaccine	VO_0000977		
-Flublok	VO_0000978		Flublok
+Flublok	VO_0000978		
 Bovilis IBR Marker	VO_0000979		
-Flucelvax	VO_0000980		Flucelvax
+Flucelvax	VO_0000980		
 Porcilis Pesti	VO_0000981		
 FluMist Quadrivalent	VO_0000982		
 Fluarix Quadrivalent	VO_0000983		
@@ -3150,8 +3171,8 @@ non-infectious disease vaccine	VO_0002813
 B. abortus and B. melitensis mutants with unmarked deletion of asp24, virB2, or manBA	VO_0002814		
 Brucella abortus pgk mutant vaccine	VO_0002818		
 Brucella abortus pgm mutant vaccine	VO_0002819		
-B. melitensis WR201 (16M?purEK)	VO_0002820		
-B. melitensis WR201 (16M?purEK)	VO_0002821		
+B. melitensis WR201 (16MΔpurEK)	VO_0002820		
+B. melitensis WR201 (16MΔpurEK)	VO_0002821		
 B. abortus and B. melitensis mutants with unmarked deletion of asp24, virB2, or manBA	VO_0002822		
 arthritis vaccine	VO_0002823		
 live attenuated B. abortus with deletion of znuA	VO_0002824		
@@ -3398,11 +3419,11 @@ Bexsero	VO_0003066
 Flublok Quadrivalent	VO_0003067		Flublok Quadrivalent
 RB51 induced host immune response	VO_0003068		
 Flucelvax Quadrivalent	VO_0003070		Flucelvax Quadrivalent
-FluLaval Quadrivalent	VO_0003071	Influenza Virus Vaccine	FluLaval Quadrivalent
+FluLaval Quadrivalent	VO_0003071		
 FluLaval Tetra	VO_0003072	Quadrivalent Influenza Vaccine (Split Virion, Inactivated)	FluLaval Tetra
-Fluzone Quadrivalent	VO_0003073	Influenza Virus Vaccine	Fluzone Quadrivalent
+Fluzone Quadrivalent	VO_0003073		
 Fluzone Quadrivalent - Southern Hemisphere Formulation	VO_0003074	Influenza Virus Vaccine	Fluzone Quadrivalent Southern Hemisphere
-Gardasil 9	VO_0003075	Human Papillomavirus 9-valent Vaccine, Recombinant	Gardasil 9
+Gardasil 9	VO_0003075		
 RB51 induced protection against B. ovis	VO_0003077		
 Nimenrix	VO_0003080		
 Trumenba	VO_0003081		
@@ -3414,28 +3435,27 @@ RB51 induced immune protection	VO_0003086
 RB51 induced immune response without protection	VO_0003087		
 Boostrix-Polio	VO_0003088		Boostrix-Polio
 Tri-Immunol	VO_0003090		
-Fluogen vaccine	VO_0003091		
+Fluogen	VO_0003091		
 Orimune vaccine	VO_0003092		
 P. falciparum RTS,S/AS01	VO_0003093		
 Pnu-Imune vaccine	VO_0003094		
-Revaxis vaccine	VO_0003095		
-Ditantrix	VO_0003096		
+Revaxis	VO_0003095		
+Ditanrix	VO_0003096		
 Rotashield vaccine	VO_0003097		
 Moraten vaccine	VO_0003098		
 Tevax vaccine	VO_0003100		
-USP vaccine	VO_0003101		
 Hexavax	VO_0003102		
 Rabipur vaccine	VO_0003103		
 Rabiesvax vaccine	VO_0003104		
-Lymerix vaccine	VO_0003105		
+Lymerix	VO_0003105		
 diphtheria, tetanus and whole cell pertussis vaccine	VO_0003106		
-Rabivac vaccine	VO_0003107		
+Rabivac	VO_0003107		
 Genhevac B	VO_0003108		
 Meruvax I	VO_0003109		
-Rabie-Vax vaccine	VO_0003110		
+Rabie-Vax	VO_0003110		
 Mumpsvax II	VO_0003111		
 Rudivax	VO_0003112		
-Tetracoq vaccine	VO_0003113		
+Tetracoq	VO_0003113		
 Trihibit	VO_0003114		
 Optaflu	VO_0003115		
 TD-Rix	VO_0003116		
@@ -3445,7 +3465,7 @@ Hib-Imune	VO_0003119
 MVA85A	VO_0003120		
 OmniHIB	VO_0003121		
 Certiva	VO_0003122		
-Fluogen	VO_0003124		
+Fluogen - obsolete	VO_0003124		
 FP85A	VO_0003126		
 BCG Vaccine SSI	VO_0003129		
 recombinant BCG vaccine	VO_0003130		
@@ -3463,10 +3483,834 @@ licensed influenza vaccine	VO_0003143
 Imuvac	VO_0003144		
 LIPO-5	VO_0003148		
 Hepatitis B surface antigen vaccine	VO_0003150		
+HEPLISAV-B	VO_0003152		
+ISS 1018 CpG ODN vaccine adjuvant	VO_0003154		
+rVSV-ZEBOV	VO_0003155		
+HPV-16 L1 VLP	VO_0003156		
+J-Vax	VO_0003165		
+Oral Poliovirus vaccine	VO_0003167		
+Diphtheria-Tetanus-Acellular Pertussis-Haemophilus b vaccine	VO_0003168		
+Diphtheria-Tetanus-Whole Cell Pertussis-Haemophilus b vaccine	VO_0003169		
+Imovax ID	VO_0003170		
+MR-VAX II	VO_0003171		
+Diphtheria-Tetanus-Pertussis-Hepatitis B vaccine	VO_0003172		
+Tritanrix	VO_0003173		
+DTP-ActHIB	VO_0003174		
+Adenovirus Type 4	VO_0003175		
+Adenovirus Type 7	VO_0003176		
+Diphtheria-Tetanus-Pertussis-Poliovirus-ACT-Hib vaccine	VO_0003177		
+Quatro Virelon	VO_0003178		
+TDAP	VO_0003180		
+Measles virus vaccine foreign to USA	VO_0003181		
+Mumps-Rubella Vaccine foreign to USA	VO_0003182		
+Diphtheria-Tetanus-Pertussis-Poliovirus-Hepatitis B vaccine foreign to USA	VO_0003183		
+Diphtheria-Tetanus-Pertussis-Poliovirus vaccine foreign to USA	VO_0003184		
+HIB Polysaccharide foreign to USA	VO_0003185		
+Hepatitis B vaccine foreign to USA	VO_0003186		
+Diphtheria-Tetanus-Poliovirus vaccine foreign to USA	VO_0003187		
+Diphtheria-Tetanus-Pertussis-Poliovirus-Haemophilus b-Hepatitis B vaccine foreign to USA	VO_0003188		
+Seasonal Influenza virus vaccine foreign to USA	VO_0003189		
+Diphtheria-Tetanus-Pertussis-Poliovirus-Haemophilus b vaccine foreign to USA	VO_0003190		
+Pneumococcal vaccine foreign to USA	VO_0003191		
+Meningococcal Conjugate and Haemophilis B Vaccine	VO_0003192		
+Meningococcal Conjugate and Haemophilis B Vaccine foreign to USA	VO_0003193		
+Spring Summer Encephalitis Vaccine	VO_0003194		
+Acetone-Dried Typhoid Vi Polysaccharide vaccine	VO_0003195		
+inactivated acellular pertussis vaccine	VO_0003196		
+Hepatitis A virus-Typhoid vaccine foreign to USA	VO_0003197		
+Bordetella pertussis pertactin vaccine, inactivated	VO_0003199		
+Bordetella pertussis toxoid vaccine, inactivated	VO_0003200		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated	VO_0003201		
+Bordetella pertussis fimbriae 2/3 vaccine, inactivated	VO_0003202		
+Bordetella pertussis pertactin vaccine, inactivated 0.016 MG/ML	VO_0003203		
+Bordetella pertussis pertactin vaccine, inactivated 0.006 MG/ML	VO_0003204		
+Bordetella pertussis pertactin vaccine, inactivated 0.005 UNT/ML	VO_0003205		
+Bordetella pertussis toxoid vaccine, inactivated 0.016 MG/ML	VO_0003206		
+Bordetella pertussis toxoid vaccine, inactivated 0.05 MG/ML	VO_0003207		
+Bordetella pertussis toxoid vaccine, inactivated 0.005 MG/ML	VO_0003208		
+Bordetella pertussis toxoid vaccine, inactivated 0.02 MG/ML	VO_0003209		
+Bordetella pertussis toxoid vaccine, inactivated 0.04 MG/ML	VO_0003210		
+H1N1 Influenza Monovalent Vaccine	VO_0003211		
+pneumococcal capsular polysaccharide type 1 vaccine	VO_0003212		
+Seasonal Influenza A27:H29 vaccine	VO_0003215		
+Fluvax	VO_0003216		
+pneumococcal capsular polysaccharide type 11A vaccine	VO_0003217		
+pneumococcal capsular polysaccharide type 12F vaccine	VO_0003218		
+pneumococcal capsular polysaccharide type 14 vaccine	VO_0003219		
+pneumococcal capsular polysaccharide type 15B vaccine	VO_0003220		
+pneumococcal capsular polysaccharide type 17F vaccine	VO_0003221		
+pneumococcal capsular polysaccharide type 18C vaccine	VO_0003222		
+pneumococcal capsular polysaccharide type 19A vaccine	VO_0003223		
+pneumococcal capsular polysaccharide type 19F vaccine	VO_0003224		
+pneumococcal capsular polysaccharide type 2 vaccine	VO_0003225		
+pneumococcal capsular polysaccharide type 20 vaccine	VO_0003226		
+pneumococcal capsular polysaccharide type 22F vaccine	VO_0003227		
+1 ML Hepatitis B Surface Antigen Vaccine 0.04 MG/ML Injection [Recombivax]	VO_0003228		
+Hepatitis A virus-Typhoid vaccine	VO_0003229		
+Hepatitis B Surface Antigen Vaccine 0.04 MG/ML	VO_0003230		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.04 MG/ML Injection [Heplisav-B]	VO_0003231		
+pneumococcal capsular polysaccharide type 4 vaccine	VO_0003232		
+1 ML Hepatitis B Surface Antigen Vaccine 0.04 MG/ML Injection	VO_0003233		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.04 MG/ML Injection	VO_0003234		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML	VO_0003235		
+Hepatyrix	VO_0003236		
+Hepatitis B Surface Antigen Vaccine 0.01 MG/ML [Recombivax]	VO_0003237		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Injection [Recombivax]	VO_0003238		
+1 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Prefilled Syringe [Recombivax]	VO_0003239		
 BCG Vaccine (by Organon Teknika)	VO_0003240		
+1 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Injection [Recombivax]	VO_0003241		
+Hepatitis B Surface Antigen Vaccine Injection [Recombivax]	VO_0003242		
+Hepatitis B Surface Antigen Vaccine Prefilled Syringe [Recombivax]	VO_0003243		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Prefilled Syringe [Recombivax]	VO_0003244		
+Recombivax Injectable Product	VO_0003245		
+pneumococcal capsular polysaccharide type 8 vaccine	VO_0003246		
 vaccination site	VO_0003247		
+pneumococcal capsular polysaccharide type 3 vaccine	VO_0003248		
+pneumococcal capsular polysaccharide type 33F vaccine	VO_0003249		
+pneumococcal capsular polysaccharide type 6B vaccine	VO_0003250		
+Flu-Imune	VO_0003251		
+pneumococcal capsular polysaccharide type 23F vaccine	VO_0003252		
+pneumococcal capsular polysaccharide type 7F vaccine	VO_0003253		
+pneumococcal capsular polysaccharide type 9N vaccine	VO_0003254		
+pneumococcal capsular polysaccharide type 5 vaccine	VO_0003255		
+Hepatitis B Surface Antigen Vaccine 0.02 MG/ML	VO_0003256		
+Hepatitis B Surface Antigen Vaccine 0.005 MG/ML	VO_0003257		
+Hepatitis B Surface Antigen Vaccine Prefilled Syringe [Engerix-B]	VO_0003258		
+1 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Injection	VO_0003259		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.12 MG/ML	VO_0003260		
+QIV Dresden	VO_0003261		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Injection	VO_0003262		
+Hepatitis B Surface Antigen Vaccine 0.02 MG/ML [Engerix-B]	VO_0003263		
+1 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Prefilled Syringe [Engerix-B]	VO_0003264		
+1 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Injection [Engerix-B]	VO_0003265		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Injection [Engerix-B]	VO_0003266		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Prefilled Syringe [Engerix-B]	VO_0003267		
+Infanrix Quinta	VO_0003268		
+pneumococcal capsular polysaccharide type 12F vaccine 0.05 MG/ML	VO_0003269		
+Hepatitis B Surface Antigen Vaccine Injection [Heplisav-B]	VO_0003270		
+Infanrix Penta	VO_0003271		
+0.65 ML Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 29800 UNT/ML Injection	VO_0003272		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain	VO_0003273		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain Injection	VO_0003274		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 2700 UNT/ML	VO_0003275		
+0.5 ML Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 2700 UNT/ML Injection	VO_0003276		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain Injectable Product	VO_0003277		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 20000 UNT/ML	VO_0003278		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 29800 UNT/ML	VO_0003279		
+0.65 ML Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 29800 UNT/ML Injection	VO_0003280		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain Injection [Zostavax]	VO_0003281		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 29800 UNT/ML [Zostavax]	VO_0003282		
+0.65 ML Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 29800 UNT/ML Injection [Zostavax]	VO_0003283		
+pneumococcal capsular polysaccharide vaccine	VO_0003284		
+Streptococcus pneumoniae capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003285		
+Streptococcus pneumoniae serotype 14 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003286		
+Streptococcus pneumoniae serotype 23F capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003287		
+Streptococcus pneumoniae serotype 4 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003288		
+Streptococcus pneumoniae serotype 1 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003289		
+Streptococcus pneumoniae serotype 6B capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0088 MG/ML	VO_0003290		
+Streptococcus pneumoniae serotype 9V capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003291		
+Streptococcus pneumoniae serotype 19F capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003292		
+Streptococcus pneumoniae serotype 3 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003293		
+Streptococcus pneumoniae serotype 5 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003294		
+Streptococcus pneumoniae serotype 6A capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003295		
+Streptococcus pneumoniae serotype 19A capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003296		
+Streptococcus pneumoniae serotype 18C capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003297		
+Streptococcus pneumoniae serotype 7F capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML	VO_0003298		
+L1 protein, Human papillomavirus Vaccine	VO_0003299		
+L1 protein, Human papillomavirus type 6 Vaccine	VO_0003300		
+L1 protein, Human papillomavirus type 11 Vaccine	VO_0003301		
+L1 protein, Human papillomavirus type 18 Vaccine	VO_0003302		
+L1 protein, Human papillomavirus type 16 Vaccine	VO_0003303		
+L1 protein, Human papillomavirus type 31 Vaccine	VO_0003304		
+L1 protein, Human papillomavirus type 33 Vaccine	VO_0003305		
+L1 protein, Human papillomavirus type 45 Vaccine	VO_0003306		
+L1 protein, Human papillomavirus type 52 Vaccine	VO_0003307		
+L1 protein, Human papillomavirus type 58 Vaccine	VO_0003308		
+pneumococcal capsular polysaccharide type 23F vaccine 0.05 MG/ML	VO_0003309		
+pneumococcal capsular polysaccharide type 14 vaccine 0.05 MG/ML	VO_0003310		
+pneumococcal capsular polysaccharide type 7F vaccine 0.05 MG/ML	VO_0003311		
+pneumococcal capsular polysaccharide type 5 vaccine 0.05 MG/ML	VO_0003312		
+pneumococcal capsular polysaccharide type 11A vaccine 0.05 MG/ML	VO_0003313		
+pneumococcal capsular polysaccharide type 10A vaccine 0.05 MG/ML	VO_0003314		
+Infanrix Tetra	VO_0003315		
+Menitorix	VO_0003316		
+Shingrix	VO_0003317		
+pneumococcal capsular polysaccharide type 15B vaccine 0.05 MG/ML	VO_0003319		
+pneumococcal capsular polysaccharide type 17F vaccine 0.05 MG/ML	VO_0003320		
+pneumococcal capsular polysaccharide type 18C vaccine 0.05 MG/ML	VO_0003321		
+pneumococcal capsular polysaccharide type 19A vaccine 0.05 MG/ML	VO_0003322		
+pneumococcal capsular polysaccharide type 1 vaccine 0.05 MG/ML	VO_0003323		
+pneumococcal capsular polysaccharide type 19F vaccine 0.05 MG/ML	VO_0003324		
+pneumococcal capsular polysaccharide type 2 vaccine 0.05 MG/ML	VO_0003325		
+pneumococcal capsular polysaccharide type 20 vaccine 0.05 MG/ML	VO_0003326		
+pneumococcal capsular polysaccharide type 22F vaccine 0.05 MG/ML	VO_0003327		
+pneumococcal capsular polysaccharide type 3 vaccine 0.05 MG/ML	VO_0003328		
+pneumococcal capsular polysaccharide type 33F vaccine 0.05 MG/ML	VO_0003329		
+pneumococcal capsular polysaccharide type 4 vaccine 0.05 MG/ML	VO_0003330		
+pneumococcal capsular polysaccharide type 8 vaccine 0.05 MG/ML	VO_0003331		
+pneumococcal capsular polysaccharide type 9N vaccine 0.05 MG/ML	VO_0003332		
+Streptococcus pneumoniae serotype 7F capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003333		
+Streptococcus pneumoniae serotype 1 capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003334		
+Streptococcus pneumoniae serotype 14 capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003335		
 live attenuated vaccine-induced down-regulated gene expression compared to infection with wild type pathogen	VO_0003336		
+Streptococcus pneumoniae serotype 18C capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003337		
+Streptococcus pneumoniae serotype 19A capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003338		
+Streptococcus pneumoniae serotype 19F capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003339		
+Streptococcus pneumoniae serotype 23F capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003340		
+Streptococcus pneumoniae serotype 3 capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003341		
+Streptococcus pneumoniae serotype 4 capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003342		
+Streptococcus pneumoniae serotype 5 capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003343		
+Streptococcus pneumoniae serotype 6A capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003344		
+Streptococcus pneumoniae serotype 6B capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003345		
+Streptococcus pneumoniae serotype 9V capsular antigen diphtheria CRM197 protein conjugate vaccine	VO_0003346		
+meningococcal group B vaccine	VO_0003347		
 live attenuated vaccine-induced up-regulated gene expression compared to infection with wild type pathogen	VO_0003348		
+meningococcal group B vaccine 0.1 MG/ML	VO_0003349		
+meningococcal group B vaccine Prefilled Syringe	VO_0003350		
+meningococcal group B vaccine Injectable Product	VO_0003351		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.01 MG/ML	VO_0003352		
+Vivotif	VO_0003353		
+Typhoid Vaccine Live Ty21a Delayed Release Oral Capsule [Vivotif]	VO_0003354		
+Typhoid Vaccine Live Ty21a 2000000000 UNT Delayed Release Oral Capsule [Vivotif]	VO_0003356		
+Vivotif Oral Product	VO_0003357		
+Vivotif Pill	VO_0003358		
+meningococcal group B vaccine Prefilled Syringe [Bexsero]	VO_0003359		
+Neisseria meningitidis serogroup B recombinant FHBP fusion protein antigen	VO_0003360		
+Neisseria meningitidis serogroup B recombinant FHBP fusion protein antigen 0.1 MG/ML	VO_0003361		
+Neisseria meningitidis serogroup B recombinant NHBA fusion protein antigen	VO_0003362		
+Neisseria meningitidis serogroup B recombinant NHBA fusion protein antigen 0.1 MG/ML	VO_0003363		
+Neisseria meningitidis serogroup B strain NZ98/254 outer membrane vesicle	VO_0003364		
+Neisseria meningitidis serogroup B strain NZ98/254 outer membrane vesicle 0.05 MG/ML	VO_0003365		
+Neisseria meningitidis serogroup B recombinant LP2086 A05 protein variant antigen	VO_0003366		
+Neisseria meningitidis serogroup B recombinant LP2086 A05 protein variant antigen 0.12 MG/ML	VO_0003367		
+Neisseria meningitidis serogroup B recombinant LP2086 B01 protein variant antigen	VO_0003368		
+Neisseria meningitidis serogroup B recombinant LP2086 B01 protein variant antigen 0.12 MG/ML	VO_0003369		
+Neisseria meningitidis serogroup B recombinant NADA fusion protein antigen	VO_0003370		
+Yellow-Fever Virus Vaccine, 17D-204 strain	VO_0003371		
+Yellow-Fever Virus Vaccine, 17D-204 strain 2000 UNT/ML	VO_0003372		
+0.5 ML Yellow-Fever Virus Vaccine, 17D-204 strain 2000 UNT/ML Injection	VO_0003373		
+Bordetella pertussis fimbriae 2/3 vaccine, inactivated 0.01 MG/ML	VO_0003374		
+Yellow-Fever Virus Vaccine, 17D-204 strain Injectable Product	VO_0003375		
+Stamaril Injectable Product	VO_0003376		
+Yellow-Fever Virus Vaccine, 17D-204 strain Injection [Stamaril]	VO_0003377		
+0.5 ML Yellow-Fever Virus Vaccine, 17D-204 strain 2000 UNT/ML Injection [Stamaril]	VO_0003378		
+Yellow-Fever Virus Vaccine, 17D-204 strain Injection	VO_0003379		
+0.5 ML Yellow-Fever Virus Vaccine, 17D-204 strain 4000 UNT/ML Injection	VO_0003380		
+Yellow-Fever Virus Vaccine, 17D-204 strain 4000 UNT/ML	VO_0003381		
+Yellow-Fever Virus Vaccine, 17D-204 strain 4000 UNT/ML Injectable Suspension	VO_0003382		
+diphtheria toxoid vaccine, inactivated 5 UNT/ML	VO_0003383		
+tetanus toxoid vaccine, inactivated	VO_0003384		
+tetanus toxoid vaccine, inactivated 10 UNT/ML	VO_0003385		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.05 MG/ML	VO_0003386		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.016 MG/ML	VO_0003387		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.04 MG/ML	VO_0003388		
+Acellular Pertussis Vaccine	VO_0003389		
+acellular pertussis vaccine, inactivated	VO_0003390		
+acellular pertussis vaccine, inactivated 0.116 MG/ML	VO_0003391		
+acellular pertussis vaccine, inactivated 96 UNT/ML	VO_0003392		
+TIV Dresden	VO_0003393		
+QIV Quebec	VO_0003394		
+diphtheria toxoid vaccine, inactivated 30 UNT/ML	VO_0003395		
+tetanus toxoid vaccine	VO_0003396		
+tetanus toxoid vaccine, inactivated Injectable Solution	VO_0003397		
+tetanus toxoid vaccine, inactivated Injectable Suspension	VO_0003398		
+tetanus toxoid vaccine, inactivated Injectable Product	VO_0003399		
+tetanus toxoid vaccine, inactivated Prefilled Syringe	VO_0003400		
+tetanus toxoid vaccine, inactivated 20 UNT/ML	VO_0003401		
+0.5 ML tetanus toxoid vaccine, inactivated 20 UNT/ML Prefilled Syringe	VO_0003402		
+tetanus toxoid vaccine, inactivated 10 UNT/ML Injectable Suspension	VO_0003403		
+tetanus toxoid vaccine, inactivated 20 UNT/ML Injectable Suspension	VO_0003404		
+tetanus toxoid vaccine, inactivated 8 UNT/ML Injectable Solution	VO_0003405		
+tetanus toxoid vaccine, inactivated 8 UNT/ML	VO_0003406		
+tetanus toxoid vaccine, inactivated 4 UNT/ML	VO_0003407		
+Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine	VO_0003408		
+Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine Injection	VO_0003409		
+Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine Injectable Product	VO_0003410		
+0.5 ML Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine 0.265 MG/ML Injection	VO_0003411		
+Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine Injection [PedvaxHIB]	VO_0003412		
+Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine 0.265 MG/ML	VO_0003413		
+0.5 ML Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine 0.265 MG/ML Injection [PedvaxHIB]	VO_0003414		
+Hepatitis B Surface Antigen Vaccine Injectable Product	VO_0003415		
+Hepatitis B Surface Antigen Vaccine Injectable Suspension	VO_0003416		
+Hepatitis B Surface Antigen Vaccine 0.005 MG/ML Injectable Suspension	VO_0003417		
+Hepatitis B Surface Antigen Vaccine Prefilled Syringe	VO_0003419		
+1 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Prefilled Syringe	VO_0003420		
+Hepatitis B Surface Antigen Vaccine Injection	VO_0003421		
+1 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Prefilled Syringe	VO_0003422		
+Hepatitis B Surface Antigen Vaccine 0.01 MG/ML	VO_0003423		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Prefilled Syringe	VO_0003424		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Prefilled Syringe	VO_0003425		
+1 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Injection	VO_0003426		
+0.5 ML Hepatitis B Surface Antigen Vaccine 0.01 MG/ML Injection	VO_0003427		
+Typhoid Vaccine Live Ty21a 2000000000 UNT [Vivotif]	VO_0003428		
+diphtheria toxoid vaccine, inactivated 4 UNT/ML	VO_0003429		
+Hepatitis A Vaccine (Inactivated) Strain HM175 Injectable Product	VO_0003430		
+Hepatitis A Vaccine (Inactivated) Strain HM175 1440 UNT/ML	VO_0003431		
+Hepatitis A Vaccine (Inactivated) Strain HM175 Prefilled Syringe	VO_0003432		
+Hepatitis A Vaccine (Inactivated) Strain HM175	VO_0003433		
+Hepatitis A Vaccine (Inactivated) Strain HM175 720 UNT/ML	VO_0003434		
+Hepatitis A Vaccine (Inactivated) Strain HM175 Injection	VO_0003435		
+0.5 ML Hepatitis A Vaccine (Inactivated) Strain HM175 1440 UNT/ML Injection	VO_0003436		
+1 ML Hepatitis A Vaccine (Inactivated) Strain HM175 1440 UNT/ML Injection	VO_0003437		
+Typhoid Vaccine Live Ty21a 2000000000 UNT	VO_0003438		
+Fluzone Intradermal	VO_0003439		
+Fluzone Intradermal Trivalent	VO_0003440		
+meningococcal conjugate vaccine	VO_0003441		
+Acel-Imune	VO_0003442		
+Typhoid Vi Polysaccharide vaccine	VO_0003443		
+vaccine foreign to USA	VO_0003444		
+Typhoid Vaccine Live Ty21a 2000000000 UNT Delayed Release Oral Capsule	VO_0003445		
+Typhoid Vaccine Live Ty21a	VO_0003446		
+Typhoid Vaccine Live Ty21a Delayed Release Oral Capsule	VO_0003447		
+Typhoid Vaccine Live Ty21a Pill	VO_0003448		
+Typhoid Vaccine Live Ty21a Oral Product	VO_0003449		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.09 MG/ML	VO_0003450		
+Twinrix Injectable Product	VO_0003451		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.015 MG/ML	VO_0003452		
+influenza A virus A/Christchurch/16/2010 (H1N1) antigen	VO_0003453		
+diphtheria toxoid vaccine, inactivated 13.4 UNT/ML	VO_0003454		
+diphtheria toxoid vaccine, inactivated	VO_0003455		
+diphtheria toxoid vaccine, inactivated 50 UNT/ML	VO_0003456		
+diphtheria toxoid vaccine, inactivated 25 UNT/ML	VO_0003457		
+1 ML Hepatitis A Vaccine, Inactivated 50 UNT/ML Injection [Vaqta]	VO_0003458		
+Hepatitis A Vaccine, Inactivated 50 UNT/ML [Vaqta]	VO_0003459		
+0.5 ML Hepatitis A Vaccine, Inactivated 50 UNT/ML Prefilled Syringe [Vaqta]	VO_0003460		
+0.5 ML Hepatitis A Vaccine, Inactivated 50 UNT/ML Injection [Vaqta]	VO_0003461		
+Vaqta Injectable Product	VO_0003462		
+1 ML Hepatitis A Vaccine, Inactivated 50 UNT/ML Prefilled Syringe [Vaqta]	VO_0003463		
+Hepatitis A Vaccine, Inactivated	VO_0003464		
+Hepatitis A Vaccine, Inactivated Prefilled Syringe [Vaqta]	VO_0003465		
+Hepatitis A Vaccine, Inactivated Injection [Vaqta]	VO_0003466		
+Hepatitis A Vaccine, Inactivated Injection	VO_0003467		
+Hepatitis A Vaccine, Inactivated Injectable Product	VO_0003468		
+influenza A virus A/Christchurch/16/2010 (H1N1) antigen 0.03 MG/ML	VO_0003469		
+influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen	VO_0003470		
+influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.12 MG/ML	VO_0003471		
+influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.03 MG/ML	VO_0003472		
+influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.015 MG/ML	VO_0003473		
+influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 50000000 MG/ML	VO_0003474		
+influenza A virus A/South Australia/55/2014 (H3N2) antigen	VO_0003475		
+influenza A virus A/South Australia/55/2014 (H3N2) antigen 0.03 MG/ML	VO_0003476		
+influenza A virus A/Brisbane/10/2010 (H1N1) antigen	VO_0003477		
+influenza A virus A/Brisbane/10/2010 (H1N1) antigen 0.03 MG/ML	VO_0003478		
+influenza B virus B/Brisbane/60/2008 antigen	VO_0003479		
+influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML	VO_0003480		
+influenza B virus B/Brisbane/60/2008 antigen 50000000 MG/ML	VO_0003481		
+influenza B virus B/Brisbane/60/2008 antigen 0.09 MG/ML	VO_0003482		
+influenza B virus B/Brisbane/60/2008 antigen 0.12 MG/ML	VO_0003483		
+Neisseriales vaccine	VO_0003484		
+influenza B virus B/Brisbane/60/2008 antigen 158000000 UNT/ML	VO_0003485		
+influenza B virus B/Utah/9/2014 antigen	VO_0003486		
+influenza B virus B/Utah/9/2014 antigen 0.03 MG/ML	VO_0003487		
+influenza B virus B/Phuket/3073/2013 antigen	VO_0003488		
+influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML	VO_0003489		
+influenza B virus B/Phuket/3073/2013 antigen 0.09 MG/ML	VO_0003490		
+influenza B virus B/Phuket/3073/2013 antigen 0.12 MG/ML	VO_0003491		
+influenza B virus B/Phuket/3073/2013 antigen 158000000 UNT/ML	VO_0003492		
+influenza B virus B/Phuket/3073/2013 antigen 50000000 MG/ML	VO_0003493		
+Spirochaetes vaccine	VO_0003494		
+influenza vaccines	VO_0003495		
+Influenza Virus Vaccine, Inactivated A-Christchurch-16-2010 NIB-74 (H1N1) (A-California-7-2009) strain	VO_0003496		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus	VO_0003497		
+Influenza A (H1N1) Virus Vaccine	VO_0003498		
+Influenza A (H1N1)-like Virus	VO_0003499		
+Influenza A (H3N2)-like Virus	VO_0003500		
+Influenza A (H3N2) Virus Vaccine	VO_0003501		
+Influenza A virus vaccine, A-Texas-50-2012 (H3N2)-like virus	VO_0003502		
+Influenza A virus vaccine, A-Texas-50-2012 (H3N2)-like virus 0.03 MG/ML	VO_0003503		
+Influenza Virus Vaccine, Inactivated A-Victoria-210-2009 X-187 (H3N2) (A-Perth-16-2009) strain	VO_0003504		
+Influenza Virus Vaccine, Inactivated A-Victoria-210-2009 X-187 (H3N2) (A-Perth-16-2009) strain 0.03 MG/ML	VO_0003505		
+Influenza Virus Vaccine, Inactivated A-Victoria-210-2009 X-187 (H3N2) (A-Perth-16-2009) strain 0.09 MG/ML	VO_0003506		
+Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus	VO_0003507		
+Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.12 MG/ML	VO_0003508		
+Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.09 MG/ML	VO_0003509		
+Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.03 MG/ML	VO_0003510		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.03 MG/ML	VO_0003511		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.12 MG/ML	VO_0003512		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.09 MG/ML	VO_0003513		
+Influenza Virus Vaccine, Inactivated A-California-07-2009 X-179A (H1N1) strain	VO_0003514		
+Influenza Virus Vaccine, Inactivated A-California-07-2009 X-179A (H1N1) strain 0.03 MG/ML	VO_0003515		
+Influenza Virus Vaccine, Inactivated A-California-07-2009 X-179A (H1N1) strain 0.09 MG/ML	VO_0003516		
+Influenza Virus Vaccine, Inactivated A-California-07-2009 X-181 (H1N1) strain	VO_0003517		
+Borreliella vaccine	VO_0003518		
+Influenza B Virus Vaccine	VO_0003519		
+Influenza B-like Virus	VO_0003520		
+Influenza B virus vaccine, B-Wisconsin-1-2010-like virus	VO_0003521		
+Influenza B virus vaccine, B-Wisconsin-1-2010-like virus 0.09 MG/ML	VO_0003522		
+Influenza Virus Vaccine, Inactivated B-Brisbane-60-2008	VO_0003523		
+Influenza B virus vaccine, B-Brisbane-60-2008-like virus 0.03 MG/ML	VO_0003524		
+Influenza B virus vaccine, B-Brisbane-60-2008-like virus 0.09 MG/ML	VO_0003525		
+Influenza B virus vaccine, B-Massachusetts-2-2012-like virus	VO_0003526		
+Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 0.03 MG/ML	VO_0003527		
+Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 0.09 MG/ML	VO_0003528		
+Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 0.12 MG/ML	VO_0003529		
+Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 50000000 MG/ML	VO_0003530		
+Proteobacteria vaccine	VO_0003531		
+Betaproteobacteria vaccine	VO_0003532		
+Yersiniaceae vaccine	VO_0003533		
+Corynebacterium vaccine	VO_0003534		
+Gammaproteobacteria vaccine	VO_0003535		
+Bacillus vaccine	VO_0003536		
+Varicellovirus vaccine	VO_0003537		
+Papillomaviridae vaccine	VO_0003538		
+Orthopoxvirus vaccine	VO_0003539		
+Orthohepadnavirus vaccine	VO_0003540		
+Reoviridae vaccine	VO_0003541		
+Sedoreovirinae vaccine	VO_0003542		
+Morbillivirus vaccine	VO_0003543		
+Rubulavirus vaccine	VO_0003544		
+Lyssavirus vaccine	VO_0003545		
+Flaviviridae vaccine	VO_0003546		
+Enterovirus vaccine	VO_0003547		
+Hepatovirus vaccine	VO_0003548		
+Rubivirus vaccine	VO_0003549		
+Alphaproteobacteria vaccine	VO_0003550		
+Enterobacterales vaccine	VO_0003551		
+Enterobacteriaceae vaccine	VO_0003552		
+Spirochaetia vaccine	VO_0003553		
+Firmicutes vaccine	VO_0003554		
+Bacilli vaccine	VO_0003555		
+Lactobacillales vaccine	VO_0003556		
+Prevnar 13 vaccine 0.5 ML Prefilled Syringe	VO_0003559		
+pneumococcal capsular polysaccharide type 9V vaccine	VO_0003561		
+pneumococcal capsular polysaccharide type 9V vaccine 0.05 MG/ML	VO_0003562		
+Pneumovax 23 Injectable Product	VO_0003563		
+Pneumovax 23 Injection	VO_0003564		
+PNEUMOVAX 23 0.5 ML Injection	VO_0003565		
+PNEUMOVAX 23 vaccine Injectable Solution	VO_0003566		
+PNEUMOVAX 23 vaccine Prefilled Syringe	VO_0003567		
+PNEUMOVAX 23 vaccine 0.5 ML Prefilled Syringe	VO_0003568		
+Prevnar 13 Injectable Product	VO_0003569		
+Prevnar 13 vaccine Prefilled Syringe	VO_0003570		
+pneumococcal capsular polysaccharide type 6B vaccine 0.05 MG/ML	VO_0003571		
+ProQuad Injectable Product	VO_0003572		
+ProQuad vaccine Injection	VO_0003573		
+ProQuad vaccine 0.5 ML Injection	VO_0003574		
+pneumococcal capsular polysaccharide type 1 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 10A vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 11A vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 12F vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 14 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 15B vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 17F vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 18C vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 19A vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 19F vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 2 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 20 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 22F vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 23F vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 3 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 33F vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 4 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 5 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 6B vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 7F vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 8 vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 9N vaccine 0.05 MG/ML / pneumococcal capsular polysaccharide type 9V vaccine 0.05 MG/ML [Pneumovax 23]	VO_0003575		
+Streptococcus pneumoniae serotype 1 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 14 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 18C capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 19A capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 19F capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 23F capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 3 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 4 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 5 capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 6A capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 6B capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0088 MG/ML / Streptococcus pneumoniae serotype 7F capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML / Streptococcus pneumoniae serotype 9V capsular antigen diphtheria CRM197 protein conjugate vaccine 0.0044 MG/ML [Prevnar 13]	VO_0003576		
+Measles Virus Vaccine Live, Enders' attenuated Edmonston strain 2000 UNT/ML / Mumps Virus Vaccine Live, Jeryl Lynn Strain 40000 UNT/ML / Rubella Virus Vaccine Live (Wistar RA 27-3 Strain) 2000 UNT/ML / Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 20000 UNT/ML [ProQuad]	VO_0003577		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluzone 2015-2016]	VO_0003578		
+Fluzone Quadrivalent 2013-2014 Formula	VO_0003579		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.12 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.12 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.12 MG/ML [Fluzone 2015-2016]	VO_0003580		
+Fluzone 2015-2016 High-Dose vaccine Prefilled Syringe	VO_0003581		
+Fluzone 2015-2016 High-Dose vaccine 0.5 ML Prefilled Syringe	VO_0003582		
+Fluzone 2015-2016 vaccine Injectable Suspension	VO_0003583		
+Fluzone 2016-2017	VO_0003584		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.12 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.12 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.12 MG/ML [Fluzone 2016-2017]	VO_0003585		
+Fluzone 2016-2017 Injectable Product	VO_0003586		
+Fluzone 2016-2017 High-Dose vaccine Prefilled Syringe	VO_0003587		
+Fluzone 2016-2017 High-Dose vaccine 0.5 ML Prefilled Syringe	VO_0003588		
+Fluzone 2017-2018	VO_0003589		
+Fluzone 2017-2018 Injectable Product	VO_0003590		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.12 MG/ML / influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.12 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.12 MG/ML [Fluzone 2017-2018]	VO_0003591		
+Fluzone 2017-2018 high-dose vaccine Prefilled Syringe	VO_0003592		
+Fluzone 2017-2018 high-dose vaccine 0.5 ML Prefilled Syringe	VO_0003593		
+Fluzone 2018-2019	VO_0003594		
+Fluzone 2018-2019 Injectable Product	VO_0003595		
+influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.12 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.12 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.12 MG/ML [Fluzone 2018-2019]	VO_0003596		
+Fluzone 2018-2019 high-dose vaccine Prefilled Syringe	VO_0003597		
+Fluzone 2018-2019 high-dose vaccine 0.5 ML Prefilled Syringe	VO_0003598		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen	VO_0003599		
+influenza A virus A/Michigan/45/2015 (H1N1) antigen	VO_0003600		
+influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen	VO_0003601		
+influenza B virus B/Maryland/15/2016 antigen	VO_0003602		
+influenza B virus B/Maryland/15/2016 antigen 0.12 MG/ML	VO_0003603		
+influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.12 MG/ML	VO_0003604		
+influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.12 MG/ML	VO_0003605		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.12 MG/ML	VO_0003606		
+Fluzone Quadrivalent 2013-2014 Formula Injectable Product	VO_0003607		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.03 MG/ML / Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.03 MG/ML / Influenza B virus vaccine, B-Brisbane-60-2008-like virus 0.03 MG/ML / Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 0.03 MG/ML [Fluzone Quadrivalent 2013-2014 Formula]	VO_0003608		
+Fluzone Quadrivalent 2013-2014 Formula Influenza Virus Vaccine Prefilled Syringe	VO_0003609		
+Fluzone Quadrivalent 2013-2014 Formula Influenza Virus Vaccine 0.25 ML Prefilled Syringe	VO_0003610		
+Fluzone Quadrivalent 2014-2015 Formula	VO_0003611		
+Fluzone Quadrivalent 2014-2015 Formula Injectable Product	VO_0003612		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.09 MG/ML / Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.09 MG/ML / Influenza B virus vaccine, B-Brisbane-60-2008-like virus 0.09 MG/ML / Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 0.09 MG/ML [Fluzone Quadrivalent 2014-2015 Formula]	VO_0003613		
+Fluzone Quadrivalent 2014-2015 Formula Prefilled Syringe	VO_0003614		
+Fluzone Quadrivalent 2014-2015 Formula 0.1 ML Prefilled Syringe	VO_0003615		
+Fluzone Quadrivalent 2015-2016	VO_0003616		
+Fluzone Quadrivalent 2015-2016 Injectable Product	VO_0003617		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluzone Quadrivalent 2015-2016]	VO_0003618		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.09 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.09 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.09 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.09 MG/ML [Fluzone Quadrivalent 2015-2016]	VO_0003619		
+Fluzone Quadrivalent 2015-2016 Injection	VO_0003620		
+Fluzone Quadrivalent 2015-2016 vaccine 0.5 ML Injection	VO_0003621		
+Fluzone Quadrivalent 2015-2016 vaccine Injectable Suspension	VO_0003622		
+Fluzone Quadrivalent 2015-2016 vaccine Prefilled Syringe	VO_0003623		
+Fluzone Quadrivalent 2015-2016 vaccine 0.1 ML Prefilled Syringe	VO_0003624		
+Fluzone Quadrivalent 2015-2016 vaccine 0.25 ML Prefilled Syringe	VO_0003625		
+Fluzone Quadrivalent 2015-2016 vaccine 0.5 ML Prefilled Syringe	VO_0003626		
+Fluzone Quadrivalent 2016-2017	VO_0003627		
+Fluzone Quadrivalent 2016-2017 Injectable Product	VO_0003628		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluzone Quadrivalent 2016-2017]	VO_0003629		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.09 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.09 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.09 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.09 MG/ML [Fluzone Quadrivalent 2016-2017]	VO_0003630		
+Fluzone Quadrivalent 2016-2017 Formula Injection	VO_0003631		
+Fluzone Quadrivalent 2016-2017 Formula 0.5 ML Injection	VO_0003632		
+Fluzone Quadrivalent 2016-2017 Injectable Suspension	VO_0003633		
+Fluzone Quadrivalent 2016-2017 vaccine Prefilled Syringe	VO_0003634		
+Fluzone Quadrivalent 2016-2017 vaccine 0.1 ML Prefilled Syringe	VO_0003635		
+Fluzone Quadrivalent 2016-2017 vaccine 0.25 ML Prefilled Syringe	VO_0003636		
+Fluzone Quadrivalent 2016-2017 vaccine 0.5 ML Prefilled Syringe	VO_0003637		
+Fluzone Quadrivalent 2017-2018	VO_0003638		
+Fluzone Quadrivalent 2017-2018 Injectable Product	VO_0003639		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluzone Quadrivalent 2017-2018]	VO_0003640		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.09 MG/ML / influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.09 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.09 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.09 MG/ML [Fluzone Quadrivalent 2017-2018]	VO_0003641		
+Fluzone Quadrivalent 2017-2018 vaccine Injection	VO_0003642		
+Fluzone Quadrivalent 2017-2018 vaccine 0.5 ML Injection	VO_0003643		
+Fluzone Quadrivalent 2017-2018 vaccine Injectable Suspension	VO_0003644		
+Fluzone Quadrivalent 2017-2018 vaccine Prefilled Syringe	VO_0003645		
+Fluzone Quadrivalent 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003646		
+Fluzone Quadrivalent 2017-2018 vaccine 0.25 ML Prefilled Syringe	VO_0003647		
+Fluzone Quadrivalent 2017-2018 vaccine 0.1 ML Prefilled Syringe	VO_0003648		
+Fluzone Quadrivalent 2018-2019	VO_0003649		
+Fluzone Quadrivalent 2018-2019 Injectable Product	VO_0003650		
+influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluzone Quadrivalent 2018-2019]	VO_0003651		
+Fluzone Quadrivalent 2018-2019 vaccine Injection	VO_0003652		
+Fluzone Quadrivalent 2018-2019 vaccine 0.5 ML Injection	VO_0003653		
+Fluzone Quadrivalent 2018-2019 vaccine Injectable Suspension	VO_0003654		
+Fluzone Quadrivalent 2018-2019 Vaccine Prefilled Syringe	VO_0003655		
+Fluzone Quadrivalent Pediatric Dose for 6-35 Months of Age 2018-2019 Vaccine 0.25 ML Prefilled Syringe	VO_0003656		
+Fluzone Quadrivalent 2018-2019 vaccine 0.5 ML Prefilled Syringe	VO_0003657		
+influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.09 MG/ML	VO_0003658		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML	VO_0003659		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.09 MG/ML	VO_0003660		
+influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.03 MG/ML	VO_0003661		
+influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.09 MG/ML	VO_0003662		
+influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.03 MG/ML	VO_0003663		
+influenza B virus B/Maryland/15/2016 antigen 0.03 MG/ML	VO_0003664		
+YF-Vax Injectable Product	VO_0003665		
+YF-VAX Injection	VO_0003666		
+YF-VAX 0.5 ML Injection	VO_0003667		
+YF-Vax 4000 UNT/ML Injectable Suspension	VO_0003668		
+YF-Vax Injectable Suspension	VO_0003669		
+Yellow-Fever Virus Vaccine, 17D-204 strain 4000 UNT/ML [YF-Vax]	VO_0003670		
+PedvaxHIB Injectable Product	VO_0003671		
+Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine 0.265 MG/ML [PedvaxHIB]	VO_0003672		
+PedvaxHIB vaccine Injection	VO_0003673		
+PedvaxHIB vaccine 0.5 ML Injection	VO_0003674		
+Fluvirin 2015-2016	VO_0003675		
+Fluvirin 2015-2016 Injectable Product	VO_0003676		
+influenza A virus A/Christchurch/16/2010 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluvirin 2015-2016]	VO_0003677		
+Fluvirin 2015-2016 vaccine Injectable Suspension	VO_0003678		
+Fluvirin 2015-2016 vaccine Prefilled Syringe	VO_0003679		
+Fluvirin 2015-2016 vaccine 0.5 ML Prefilled Syringe	VO_0003680		
+Fluvirin 2016-2017	VO_0003681		
+Fluvirin 2016-2017 Injectable Product	VO_0003682		
+influenza A virus A/Christchurch/16/2010 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML [Fluvirin 2016-2017]	VO_0003683		
+Fluvirin 2016-2017 vaccine Injectable Suspension	VO_0003684		
+Fluvirin 2016-2017 vaccine Prefilled Syringe	VO_0003685		
+Fluvirin 2016-2017 vaccine 0.5 ML Prefilled Syringe	VO_0003686		
+Fluvirin 2017-2018	VO_0003687		
+Fluvirin 2017-2018 Injectable Product	VO_0003688		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML [Fluvirin 2017-2018]	VO_0003689		
+Fluvirin 2017-2018 vaccine Injectable Suspension	VO_0003690		
+Fluvirin 2017-2018 vaccine Prefilled Syringe	VO_0003691		
+Fluvirin 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003692		
+Fluarix Quadrivalent 2015-2016	VO_0003693		
+Fluarix Quadrivalent 2015-2016 Injectable Product	VO_0003694		
+influenza A virus A/Christchurch/16/2010 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluarix Quadrivalent 2015-2016]	VO_0003695		
+FLUARIX QUADRIVALENT 2015-2016 vaccine Prefilled Syringe	VO_0003696		
+FLUARIX QUADRIVALENT 2015-2016 vaccine 0.5 ML Prefilled Syringe	VO_0003697		
+Fluarix Quadrivalent 2016-2017	VO_0003698		
+Fluarix Quadrivalent 2016-2017 Injectable Product	VO_0003699		
+influenza A virus A/Christchurch/16/2010 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluarix Quadrivalent 2016-2017]	VO_0003700		
+FLUARIX QUADRIVALENT 2016-2017 vaccine Prefilled Syringe	VO_0003701		
+FLUARIX QUADRIVALENT 2016-2017 vaccine 0.5 ML Prefilled Syringe	VO_0003702		
+Fluarix Quadrivalent 2017-2018	VO_0003703		
+Fluarix Quadrivalent 2017-2018 Injectable Product	VO_0003704		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluarix Quadrivalent 2017-2018]	VO_0003705		
+Fluarix Quadrivalent 2017-2018 vaccine Prefilled Syringe	VO_0003706		
+Fluarix Quadrivalent 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003707		
+Fluarix Quadrivalent 2018-2019	VO_0003708		
+Fluarix Quadrivalent 2018-2019 Injectable Product	VO_0003709		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Fluarix Quadrivalent 2018-2019]	VO_0003710		
+FLUARIX QUADRIVALENT 2018-2019 vaccine Prefilled Syringe	VO_0003711		
+FLUARIX QUADRIVALENT 2018-2019 vaccine 0.5 ML Prefilled Syringe	VO_0003712		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen	VO_0003713		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML	VO_0003714		
+Afluria 2015-2016	VO_0003715		
+Afluria 2015-2016 Injectable Product	VO_0003716		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/South Australia/55/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Afluria 2015-2016]	VO_0003717		
+afluria 2015-2016 vaccine Injectable Suspension	VO_0003718		
+Afluria 2015-2016 Prefilled Syringe	VO_0003719		
+Afluria 2015-2016 0.5 ML Prefilled Syringe	VO_0003720		
+Afluria 2016-2017	VO_0003721		
+Afluria 2016-2017 Injectable Product	VO_0003722		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML [Afluria 2016-2017]	VO_0003723		
+Afluria 2016-2017 vaccine Injectable Suspension	VO_0003724		
+Afluria 2016-2017 vaccine Prefilled Syringe	VO_0003725		
+afluria 2016-2017 vaccine 0.5 ML Prefilled Syringe	VO_0003726		
+Afluria 2017-2018	VO_0003727		
+Afluria 2017-2018 Injectable Product	VO_0003728		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza B virus B/Brisbane/46/2015 antigen 0.03 MG/ML [Afluria 2017-2018]	VO_0003729		
+Afluria 2017-2018 vaccine Injectable Suspension	VO_0003730		
+Afluria 2017-2018 vaccine Prefilled Syringe	VO_0003731		
+Afluria 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003732		
+Afluria 2018-2019	VO_0003733		
+Afluria 2018-2019 Injectable Product	VO_0003734		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.03 MG/ML [Afluria 2018-2019]	VO_0003735		
+afluria 2018-2019 vaccine Injectable Suspension	VO_0003736		
+Afluria 2018-2019 vaccine Prefilled Syringe	VO_0003737		
+Afluria 2018-2019 vaccine 0.5 ML Prefilled Syringe	VO_0003738		
+Afluria Quadrivalent 2016-2017 Formula Injectable Product	VO_0003739		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Afluria Quadrivalent 2016-2017 Formula]	VO_0003740		
+Afluria Quadrivalent 2016-2017 Formula Influenza Virus Vaccine Injectable Suspension	VO_0003741		
+Afluria Quadrivalent 2016-2017 Formula Prefilled Syringe	VO_0003742		
+Afluria Quadrivalent 2016-2017 Formula 0.5 ML Prefilled Syringe	VO_0003743		
+Afluria Quadrivalent 2016-2017 Formula	VO_0003744		
+Afluria Quadrivalent 2017-2018	VO_0003745		
+Afluria Quadrivalent 2017-2018 Injectable Product	VO_0003746		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza B virus B/Brisbane/46/2015 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Afluria Quadrivalent 2017-2018]	VO_0003747		
+Afluria Quadrivalent 2017-2018 vaccine Injectable Suspension	VO_0003748		
+Afluria Quadrivalent 2017-2018 vaccine Prefilled Syringe	VO_0003749		
+Afluria Quadrivalent 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003750		
+Afluria Quadrivalent 2018-2019	VO_0003751		
+Afluria Quadrivalent 2018-2019 Injectable Product	VO_0003752		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Afluria Quadrivalent 2018-2019]	VO_0003753		
+Afluria Quadrivalent 2018-2019 vaccine Injectable Suspension	VO_0003754		
+Afluria Quadrivalent 2018-2019 vaccine Prefilled Syringe	VO_0003755		
+Afluria Quadrivalent 2018-2019 vaccine 0.5 ML Prefilled Syringe	VO_0003756		
+Flulaval Quadrivalent 2016-2017	VO_0003757		
+Flulaval Quadrivalent 2016-2017 Injectable Product	VO_0003758		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Flulaval Quadrivalent 2016-2017]	VO_0003759		
+FLULAVAL QUADRIVALENT 2016-2017 vaccine Injectable Suspension	VO_0003760		
+Flulaval Quadrivalent 2016-2017 vaccine Prefilled Syringe	VO_0003761		
+Flulaval Quadrivalent 2016-2017 vaccine 0.5 Prefilled Syringe	VO_0003762		
+FluLaval Quadrivalent 2015-2016	VO_0003763		
+FluLaval Quadrivalent 2015-2016 Injectable Product	VO_0003764		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [FluLaval Quadrivalent 2015-2016]	VO_0003765		
+FLULAVAL QUADRIVALENT 2015-2016 vaccine Injectable Suspension	VO_0003766		
+Flulaval Quadrivalent 2017-2018	VO_0003767		
+Flulaval Quadrivalent 2017-2018 Injectable Product	VO_0003768		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Flulaval Quadrivalent 2017-2018]	VO_0003769		
+FLULAVAL QUADRIVALENT 2017-2018 vaccine Injectable Suspension	VO_0003770		
+Flulaval Quadrivalent 2017-2018 vaccine Prefilled Syringe	VO_0003771		
+Flulaval Quadrivalent 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003772		
+Flulaval Quadrivalent 2018-2019	VO_0003773		
+Flulaval Quadrivalent 2018-2019 Injectable Product	VO_0003774		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.03 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.03 MG/ML [Flulaval Quadrivalent 2018-2019]	VO_0003775		
+Flulaval Quadrivalent 2018-2019 vaccine Injectable Suspension	VO_0003776		
+Flulaval Quadrivalent 2018-2019 vaccine Prefilled Syringe	VO_0003777		
+Flulaval Quadrivalent 2018-2019 vaccine 0.5 ML Prefilled Syringe	VO_0003778		
+Flucelvax 2015-2016	VO_0003779		
+Flucelvax 2015-2016 Injectable Product	VO_0003780		
+influenza A virus A/Brisbane/10/2010 (H1N1) antigen 0.03 MG/ML / influenza A virus A/South Australia/55/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Utah/9/2014 antigen 0.03 MG/ML [Flucelvax 2015-2016]	VO_0003781		
+FLUCELVAX 2015-2016 vaccine Prefilled Syringe	VO_0003782		
+FLUCELVAX 2015-2016 vaccine 0.5 ML Prefilled Syringe	VO_0003783		
+Flucelvax Quadrivalent 2016-2017	VO_0003784		
+Flucelvax Quadrivalent 2016-2017 Injectable Product	VO_0003785		
+influenza A virus A/Brisbane/10/2010 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Hong Kong/259/2010 antigen 0.03 MG/ML / influenza B virus B/Utah/9/2014 antigen 0.03 MG/ML [Flucelvax Quadrivalent 2016-2017]	VO_0003786		
+FLUCELVAX QUADRIVALENT 2016-2017 Prefilled Syringe	VO_0003787		
+FLUCELVAX QUADRIVALENT 2016-2017 0.5 ML Prefilled Syringe	VO_0003788		
+influenza B virus B/Hong Kong/259/2010 antigen	VO_0003789		
+influenza B virus B/Hong Kong/259/2010 antigen 0.03 MG/ML	VO_0003790		
+Flucelvax Quadrivalent 2017-2018	VO_0003791		
+Flucelvax Quadrivalent 2017-2018 Injectable Product	VO_0003792		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Singapore/GP2050/2015 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Hong Kong/259/2010 antigen 0.03 MG/ML / influenza B virus B/Utah/9/2014 antigen 0.03 MG/ML [Flucelvax Quadrivalent 2017-2018]	VO_0003793		
+FLUCELVAX Quadrivalent 2017-2018 Injectable Suspension	VO_0003794		
+Flucelvax Quadrivalent 2017-2018 vaccine Prefilled Syringe	VO_0003795		
+Flucelvax Quadrivalent 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003796		
+Shingrix Injectable Product	VO_0003797		
+Varicella zoster virus glycoprotein E, recombinant 0.1 MG/ML [Shingrix]	VO_0003798		
+Shingrix vaccine 0.5 ML Injection	VO_0003799		
+0.5 ML Shingrix 0.1 MG/ML Injection	VO_0003800		
+Varicella zoster virus glycoprotein E	VO_0003801		
+Varicella zoster virus glycoprotein E, recombinant	VO_0003802		
+Varicella zoster virus glycoprotein E, recombinant 0.1 MG/ML	VO_0003803		
+influenza A virus A/Bolivia/559/2013 (H1N1) antigen	VO_0003804		
+influenza A virus A/Bolivia/559/2013 (H1N1) antigen 50000000 MG/ML	VO_0003805		
+Flumist 2015-2016	VO_0003806		
+Flumist Quadrivalent 2016-2017	VO_0003807		
+Flumist Quadrivalent 2017-2018	VO_0003808		
+FluMist Quadrivalent, 2015-2016 Formula Nasal Spray	VO_0003809		
+influenza A virus A/Bolivia/559/2013 (H1N1) antigen 50000000 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 50000000 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 50000000 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 50000000 MG/ML [Flumist 2015-2016]	VO_0003810		
+influenza A virus A/New Caledonia/71/2014 (H3N2) antigen	VO_0003811		
+influenza A virus A/New Caledonia/71/2014 (H3N2) antigen 50000000 MG/ML	VO_0003812		
+influenza A virus A/Bolivia/559/2013 (H1N1) antigen 50000000 MG/ML / influenza A virus A/New Caledonia/71/2014 (H3N2) antigen 50000000 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 50000000 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 50000000 MG/ML [Flumist Quadrivalent 2016-2017]	VO_0003813		
+FluMist Quadrivalent, 2016-2017 Formula Nasal Spray	VO_0003814		
+influenza A virus A/New Caledonia/71/2014 (H3N2) antigen 158000000 UNT/ML / influenza A virus A/Slovenia/2903/2015 (H1N1) antigen 158000000 UNT/ML / influenza B virus B/Brisbane/60/2008 antigen 158000000 UNT/ML / influenza B virus B/Phuket/3073/2013 antigen 158000000 UNT/ML [Flumist Quadrivalent 2017-2018]	VO_0003815		
+FluMist Quadrivalent, 2017-2018 Formula Nasal Spray	VO_0003816		
+influenza A virus A/New Caledonia/71/2014 (H3N2) antigen 158000000 UNT/ML	VO_0003817		
+influenza A virus A/Slovenia/2903/2015 (H1N1) antigen	VO_0003818		
+influenza A virus A/Slovenia/2903/2015 (H1N1) antigen 158000000 UNT/ML	VO_0003819		
+Flumist Quadrivalent 2018-2019	VO_0003820		
+influenza B virus B/Colorado/06/2017 antigen	VO_0003821		
+influenza B virus B/Colorado/06/2017 antigen 158000000 UNT/ML	VO_0003822		
+influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 158000000 UNT/ML / influenza A virus A/Slovenia/2903/2015 (H1N1) antigen 158000000 UNT/ML / influenza B virus B/Colorado/06/2017 antigen 158000000 UNT/ML / influenza B virus B/Phuket/3073/2013 antigen 158000000 UNT/ML [Flumist Quadrivalent 2018-2019]	VO_0003823		
+FluMist Quadrivalent, 2018-2019 Formula Nasal Spray	VO_0003824		
+influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 158000000 UNT/ML	VO_0003825		
+Havrix Injectable Product	VO_0003826		
+Hepatitis A Vaccine (Inactivated) Strain HM175 1440 UNT/ML [Havrix]	VO_0003827		
+HAVRIX pediatric/adolescent vaccine 720 UNT in 0.5 ML Injection	VO_0003828		
+HAVRIX adult vaccine 1440 UNT in 1 ML Injection	VO_0003829		
+HAVRIX Injection	VO_0003830		
+Havrix, Hepatitis A Vaccine (Inactivated), (Pediatric Dose) 0.5 ML Prefilled Syringe	VO_0003831		
+Havrix, Hepatitis A Vaccine (Inactivated), (Adult Dose) 1 ML Prefilled Syringe	VO_0003832		
+Havrix Prefilled Syringe	VO_0003833		
+poliovirus vaccine inactivated	VO_0003834		
+poliovirus vaccine inactivated, type 1 (Mahoney)	VO_0003835		
+poliovirus vaccine inactivated, type 2 (MEF-1)	VO_0003836		
+poliovirus vaccine inactivated, type 3 (Saukett)	VO_0003837		
+PEDIARIX Injectable Product	VO_0003838		
+acellular pertussis vaccine, inactivated 0.116 MG/ML / diphtheria toxoid vaccine, inactivated 50 UNT/ML / Hepatitis B Surface Antigen Vaccine 0.02 MG/ML / poliovirus vaccine inactivated, type 1 (Mahoney) 80 UNT/ML / poliovirus vaccine inactivated, type 2 (MEF-1) 16 UNT/ML / poliovirus vaccine inactivated, type 3 (Saukett) 64 UNT/ML / tetanus toxoid vaccine, inactivated 20 UNT/ML [PEDIARIX]	VO_0003839		
+PEDIARIX vaccine Prefilled Syringe	VO_0003840		
+PEDIARIX vaccine 0.5 ML Prefilled Syringe	VO_0003841		
+poliovirus vaccine inactivated, type 1 (Mahoney) 80 UNT/ML	VO_0003842		
+poliovirus vaccine inactivated, type 2 (MEF-1) 16 UNT/ML	VO_0003843		
+poliovirus vaccine inactivated, type 3 (Saukett) 64 UNT/ML	VO_0003844		
+Haemophilus influenzae type b strain 20752, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine	VO_0003845		
+Ipol Injectable Product	VO_0003846		
+poliovirus vaccine inactivated, type 1 (Mahoney) 80 UNT/ML / poliovirus vaccine inactivated, type 2 (MEF-1) 16 UNT/ML / poliovirus vaccine inactivated, type 3 (Saukett) 64 UNT/ML [Ipol]	VO_0003847		
+IPOL vaccine Injectable Solution	VO_0003848		
+Typhoid Vi Polysaccharide Vaccine, S typhi Ty2 strain	VO_0003849		
+Typhim VI Injectable Product	VO_0003850		
+Typhoid Vi Polysaccharide Vaccine, S typhi Ty2 strain 0.05 MG/ML [Typhim VI]	VO_0003851		
+Typhim Vi Injectable Solution	VO_0003852		
+Typhim VI Prefilled Syringe	VO_0003853		
+Typhim Vi 0.5 ML Prefilled Syringe	VO_0003854		
+Typhoid Vi Polysaccharide Vaccine, S typhi Ty2 strain 0.05 MG/ML	VO_0003855		
+Typhoid Vi Polysaccharide Vaccine, S typhi Ty2 strain 0.025 MG/ML	VO_0003856		
+rabies virus vaccine wistar strain PM-1503-3M (Human), Inactivated	VO_0003857		
+rabies virus vaccine wistar strain PM-1503-3M (Human), Inactivated 2.5 UNT/ML	VO_0003858		
+Imovax Injectable Product	VO_0003859		
+rabies virus vaccine wistar strain PM-1503-3M (Human), Inactivated 2.5 UNT/ML [Imovax]	VO_0003860		
+1 ML Imovax 2.5 UNT/ML Injection	VO_0003861		
+rabies virus vaccine flury-lep strain	VO_0003862		
+rabies virus vaccine flury-lep strain 2.5 UNT/ML	VO_0003863		
+RabAvert Injectable Product	VO_0003864		
+rabies virus vaccine flury-lep strain 2.5 UNT/ML [RabAvert]	VO_0003865		
+1 ML RabAvert 2.5 UNT/ML Injection	VO_0003866		
+Hiberix Injectable Product	VO_0003867		
+Haemophilus influenzae type b strain 20752, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.07 MG/ML [Hiberix]	VO_0003868		
+HIBERIX vaccine 0.5 ML Injection	VO_0003869		
+Haemophilus influenzae type b strain 20752, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.07 MG/ML	VO_0003870		
+COMVAX Injectable Product	VO_0003871		
+COMVAX Injection 0.5 ML Injection	VO_0003872		
+Haemophilus influenzae b (Ross strain) capsular polysaccharide Meningococcal Protein Conjugate Vaccine 0.265 MG/ML / Hepatitis B Surface Antigen Vaccine 0.01 MG/ML [COMVAX]	VO_0003873		
+Flublok 2012-2013 Formula	VO_0003874		
+Flublok 2012-2013 Formula Injectable Product	VO_0003875		
+Flublok 2012-2013 Formula Influenza Virus Vaccine Injectable Solution	VO_0003876		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.09 MG/ML / Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.09 MG/ML / Influenza B virus vaccine, B-Wisconsin-1-2010-like virus 0.09 MG/ML [Flublok 2012-2013 Formula]	VO_0003877		
+Flublok 2013-2014 Formula	VO_0003878		
+Flublok 2013-2014 Formula Injectable Product	VO_0003879		
+Flublok 2013-2014 Formula Influenza Virus Vaccine Injectable Solution	VO_0003880		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.09 MG/ML / Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.09 MG/ML / Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 0.09 MG/ML [Flublok 2013-2014 Formula]	VO_0003881		
+Flublok 2014-2015 Formula	VO_0003882		
+Flublok 2014-2015 Formula Injectable Product	VO_0003883		
+Flublok 2014-2015 Formula Influenza Virus Vaccine Injectable Solution	VO_0003884		
+Influenza A virus vaccine, A-California-7-2009 (H1N1)-like virus 0.09 MG/ML / Influenza A virus vaccine, A-Victoria-361-2011 (H3N2)-like virus 0.09 MG/ML / Influenza B virus vaccine, B-Massachusetts-2-2012-like virus 0.09 MG/ML [Flublok 2014-2015 Formula]	VO_0003885		
+Flublok 2015-2016	VO_0003886		
+Flublok 2015-2016 Injectable Product	VO_0003887		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.09 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.09 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.09 MG/ML [Flublok 2015-2016]	VO_0003888		
+Flublok 2015-2016 vaccine 0.5 ML Injection	VO_0003889		
+Flublok 2016-2017	VO_0003890		
+Flublok 2016-2017 Injectable Product	VO_0003891		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.09 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.09 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.09 MG/ML [Flublok 2016-2017]	VO_0003892		
+Flublok 2016-2017 vaccine 0.5 ML Injection	VO_0003893		
+Flublok 2017-2018	VO_0003894		
+Flublok 2017-2018 Injectable Product	VO_0003895		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.09 MG/ML / influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.09 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.09 MG/ML [Flublok 2017-2018]	VO_0003896		
+Flublok 2017-2018 vaccine 0.5 ML Injection	VO_0003897		
+Flublok Quadrivalent 2017-2018	VO_0003898		
+Flublok Quadrivalent 2017-2018 Injectable Product	VO_0003899		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.09 MG/ML / influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.09 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.09 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.09 MG/ML [Flublok Quadrivalent 2017-2018]	VO_0003900		
+Flublok Quadrivalent 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003901		
+Flublok Quadrivalent 2017-2018 vaccine Prefilled Syringe	VO_0003902		
+Flublok Quadrivalent 2018-2019	VO_0003903		
+Flublok Quadrivalent 2018-2019 Injectable Product	VO_0003904		
+influenza A virus A/Michigan/45/2015 (H1N1) antigen 0.09 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.09 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.09 MG/ML / influenza B virus B/Phuket/3073/2013 antigen 0.09 MG/ML [Flublok Quadrivalent 2018-2019]	VO_0003905		
+Flublok Quadrivalent 2018-2019 vaccine Prefilled Syringe	VO_0003906		
+Flublok Quadrivalent 2018-2019 vaccine 0.5 ML Prefilled Syringe	VO_0003907		
+influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.09 MG/ML	VO_0003908		
+influenza B virus B/Maryland/15/2016 antigen 0.09 MG/ML	VO_0003909		
+FLUAD 2015-2016	VO_0003910		
+Fluad 2016-2017	VO_0003911		
+Fluad 2017-2018	VO_0003912		
+Fluad 2018-2019	VO_0003913		
+influenza B virus B/Brisbane/9/2014 antigen	VO_0003914		
+influenza B virus B/Brisbane/9/2014 antigen 0.015 MG/ML	VO_0003915		
+FLUAD 2015-2016 Injectable Product	VO_0003916		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.015 MG/ML / influenza A virus A/Switzerland/9715293/2013 (H3N2) antigen 0.015 MG/ML / influenza B virus B/Brisbane/9/2014 antigen 0.015 MG/ML [FLUAD 2015-2016]	VO_0003917		
+FLUAD 2015-2016 vaccine Prefilled Syringe	VO_0003918		
+FLUAD 2015-2016 vaccine 0.5 ML Prefilled Syringe	VO_0003919		
+Fluad 2016-2017 Injectable Product	VO_0003920		
+influenza A virus A/California/7/2009 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML [Fluad 2016-2017]	VO_0003921		
+Fluad 2016-2017 vaccine Prefilled Syringe	VO_0003922		
+Fluad 2016-2017 vaccine 0.5 ML Prefilled Syringe	VO_0003923		
+Fluad 2017-2018 Injectable Product	VO_0003924		
+influenza A virus A/Hong Kong/4801/2014 (H3N2) antigen 0.03 MG/ML / influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza B virus B/Brisbane/60/2008 antigen 0.03 MG/ML [Fluad 2017-2018]	VO_0003925		
+Fluad 2017-2018 vaccine Prefilled Syringe	VO_0003926		
+Fluad 2017-2018 vaccine 0.5 ML Prefilled Syringe	VO_0003927		
+Fluad 2018-2019 Injectable Product	VO_0003928		
+influenza A virus A/Singapore/GP1908/2015 (H1N1) antigen 0.03 MG/ML / influenza A virus A/Singapore/INFIMH-16-0019/2016 (H3N2) antigen 0.03 MG/ML / influenza B virus B/Maryland/15/2016 antigen 0.03 MG/ML [Fluad 2018-2019]	VO_0003929		
+Fluad 2018-2019 vaccine Prefilled Syringe	VO_0003930		
+Fluad 2018-2019 vaccine 0.5 ML Prefilled Syringe	VO_0003931		
+Gardasil Injectable Product	VO_0003932		
+L1 protein, Human papillomavirus type 11 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 16 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 18 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 6 Vaccine 0.04 MG/ML [Gardasil]	VO_0003933		
+GARDASIL Injection	VO_0003934		
+GARDASIL 0.5 ML Injection	VO_0003935		
+GARDASIL Prefilled Syringe	VO_0003936		
+GARDASIL 0.5 ML Prefilled Syringe	VO_0003937		
+L1 protein, Human papillomavirus type 16 Vaccine 0.08 MG/ML	VO_0003938		
+L1 protein, Human papillomavirus type 6 Vaccine 0.04 MG/ML	VO_0003939		
+Human papillomavirus type 16, L1 capsid protein (residues 2-471) vaccine	VO_0003940		
+Human papillomavirus type 18, L1 capsid protein (residues 2-472) vaccine	VO_0003941		
+Human papillomavirus type 16, L1 capsid protein (residues 2-471) vaccine 0.04 MG/ML	VO_0003942		
+Human papillomavirus type 18, L1 capsid protein (residues 2-472) vaccine 0.04 MG/ML	VO_0003943		
+Cervarix Injectable Product	VO_0003944		
+Human papillomavirus type 16, L1 capsid protein (residues 2-471) vaccine 0.04 MG/ML / Human papillomavirus type 18, L1 capsid protein (residues 2-472) vaccine 0.04 MG/ML [Cervarix]	VO_0003945		
+CERVARIX Prefilled Syringe	VO_0003946		
+CERVARIX 0.5 ML Prefilled Syringe	VO_0003947		
+Japanese encephalitis virus vaccine, inactivated	VO_0003948		
+Japanese encephalitis virus vaccine Nakayama-NIH strain, inactivated	VO_0003949		
+Japanese encephalitis virus vaccine Nakayama-NIH strain, inactivated 0.012 MG/ML	VO_0003950		
+Ixiaro Injectable Product	VO_0003951		
+Japanese encephalitis virus vaccine Nakayama-NIH strain, inactivated 0.012 MG/ML [Ixiaro]	VO_0003952		
+Ixiaro (Japanese Encephalitis Vaccine, Inactivated, Adsorbed) Prefilled Syringe	VO_0003953		
+0.5 ML Ixiaro 0.012 MG/ML Prefilled Syringe	VO_0003954		
+vibrio cholerae CVD 103-HGR strain live antigen	VO_0003955		
+vibrio cholerae CVD 103-HGR strain live antigen 12000000 UNT/ML	VO_0003956		
+Vaxchora Oral Product	VO_0003957		
+Infanrix Injectable Product	VO_0003958		
+pneumococcal capsular polysaccharide type 10A vaccine	VO_0003959		
+Neisseria meningitidis vaccine antigen	VO_0003960		
+ChAd63-KH vaccine	VO_0003961		
+Vaxchora Oral Suspension	VO_0003962		
+Vaxchora 1,200,000,000 UNT per 100 ML Oral Suspension	VO_0003963		
+vibrio cholerae CVD 103-HGR strain live antigen 12000000 UNT/ML [Vaxchora]	VO_0003964		
+Heplisav-B Injectable Product	VO_0003965		
+HEPLISAV-B Prefilled Syringe	VO_0003966		
+HEPLISAV-B 20 MCG per 0.5 ML Prefilled Syringe	VO_0003967		
+Hepatitis B Surface Antigen Vaccine 0.04 MG/ML [Heplisav-B]	VO_0003968		
+Haemophilus influenzae type b, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 68 UNT/ML	VO_0003969		
+Pentacel Injectable Product	VO_0003970		
+acellular pertussis vaccine, inactivated 96 UNT/ML / diphtheria toxoid vaccine, inactivated 30 UNT/ML / Haemophilus influenzae type b, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 68 UNT/ML / poliovirus vaccine inactivated, type 1 (Mahoney) 80 UNT/ML / poliovirus vaccine inactivated, type 2 (MEF-1) 16 UNT/ML / poliovirus vaccine inactivated, type 3 (Saukett) 64 UNT/ML / tetanus toxoid vaccine, inactivated 20 UNT/ML [Pentacel]	VO_0003971		
+Pentacel vaccine Injection	VO_0003972		
+Pentacel vaccine 0.5 ML Injection	VO_0003973		
+Kinrix Injectable Product	VO_0003974		
+acellular pertussis vaccine, inactivated 0.116 MG/ML / diphtheria toxoid vaccine, inactivated 50 UNT/ML / poliovirus vaccine inactivated, type 1 (Mahoney) 80 UNT/ML / poliovirus vaccine inactivated, type 2 (MEF-1) 16 UNT/ML / poliovirus vaccine inactivated, type 3 (Saukett) 64 UNT/ML / tetanus toxoid vaccine, inactivated 20 UNT/ML [Kinrix]	VO_0003975		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.05 MG/ML / Bordetella pertussis pertactin vaccine, inactivated 0.016 MG/ML / Bordetella pertussis toxoid vaccine, inactivated 0.05 MG/ML / diphtheria toxoid vaccine, inactivated 50 UNT/ML / poliovirus vaccine inactivated, type 1 (Mahoney) 80 UNT/ML / poliovirus vaccine inactivated, type 2 (MEF-1) 16 UNT/ML / poliovirus vaccine inactivated, type 3 (Saukett) 64 UNT/ML / tetanus toxoid vaccine, inactivated 20 UNT/ML [Kinrix]	VO_0003976		
+KINRIX vaccine Prefilled Syringe	VO_0003977		
+KINRIX vaccine 0.5 ML Prefilled Syringe	VO_0003978		
+KINRIX vaccine Injection	VO_0003979		
+KINRIX vaccine 0.5 ML Injection	VO_0003980		
+Daptacel Injectable Product	VO_0003981		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.01 MG/ML / Bordetella pertussis fimbriae 2/3 vaccine, inactivated 0.01 MG/ML / Bordetella pertussis pertactin vaccine, inactivated 0.006 MG/ML / Bordetella pertussis toxoid vaccine, inactivated 0.02 MG/ML / diphtheria toxoid vaccine, inactivated 30 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML [Daptacel]	VO_0003982		
+DAPTACEL vaccine 0.5 ML Injection	VO_0003983		
+Adacel Injectable Product	VO_0003984		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.01 MG/ML / Bordetella pertussis fimbriae 2/3 vaccine, inactivated 0.01 MG/ML / Bordetella pertussis pertactin vaccine, inactivated 0.006 MG/ML / Bordetella pertussis toxoid vaccine, inactivated 0.005 MG/ML / diphtheria toxoid vaccine, inactivated 4 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML [Adacel]	VO_0003985		
+Adacel Prefilled Syringe	VO_0003986		
+Adacel 0.5 ML Prefilled Syringe	VO_0003987		
+Adacel Injection	VO_0003988		
+Adacel 0.5 ML Injection	VO_0003989		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.05 MG/ML / Bordetella pertussis pertactin vaccine, inactivated 0.016 MG/ML / Bordetella pertussis toxoid vaccine, inactivated 0.05 MG/ML / diphtheria toxoid vaccine, inactivated 50 UNT/ML / tetanus toxoid vaccine, inactivated 20 UNT/ML [Infanrix]	VO_0003990		
+INFANRIX vaccine Injection	VO_0003991		
+INFANRIX vaccine 0.5 ML Injection	VO_0003992		
+INFANRIX vaccine Prefilled Syringe	VO_0003993		
+INFANRIX vaccine 0.5 ML Prefilled Syringe	VO_0003994		
+Boostrix Injectable Product	VO_0003995		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.016 MG/ML / Bordetella pertussis pertactin vaccine, inactivated 0.005 UNT/ML / Bordetella pertussis toxoid vaccine, inactivated 0.016 MG/ML / diphtheria toxoid vaccine, inactivated 5 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML [Boostrix]	VO_0003996		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.016 MG/ML / Bordetella pertussis pertactin vaccine, inactivated 0.005 MG/ML / Bordetella pertussis toxoid vaccine, inactivated 0.016 MG/ML / diphtheria toxoid vaccine, inactivated 5 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML [Boostrix]	VO_0003997		
+BOOSTRIX vaccine Injection	VO_0003998		
+BOOSTRIX vaccine 0.5 ML Injection	VO_0003999		
 Brucella melitensis bp26 mutant vaccine	VO_0004000		
 Brucella melitensis omp25 mutant vaccine	VO_0004001		
 Brucella melitensis omp31 mutant vaccine	VO_0004002		
@@ -3580,7 +4424,7 @@ Chimeric SIN/VEE Virus SIN-83	VO_0004111
 Live attenuated VEE vaccines	VO_0004112		
 Live attenuated V3526 virus	VO_0004113		
 Nontypeable H. influenzae outer membrane recombinant P4 vaccine	VO_0004114		
-Non-typeable H. influenzae dLOS�P6 vaccine	VO_0004115		
+Non-typeable H. influenzae dLOS–P6 vaccine	VO_0004115		
 Defective adenovirus expressing VEEV E2 glycoprotein	VO_0004116		
 Marburg virus-like particles	VO_0004117		
 Adenovirus vectors expressing Marburg virus glycoprotein	VO_0004118		
@@ -3670,12 +4514,20 @@ J5dLPS/OMP	VO_0004201
 C. muridarum Tarp subunit vaccine	VO_0004202		
 C. jejuni PorA protein vaccine	VO_0004203		
 P. falciparum pfCelTos protein vaccine	VO_0004204		
+BOOSTRIX vaccine Prefilled Syringe	VO_0004205		
+BOOSTRIX vaccine 0.5 ML Prefilled Syringe	VO_0004206		
+Bordetella pertussis pertactin vaccine, inactivated 0.005 MG/ML	VO_0004207		
+BACILLUS ANTHRACIS STRAIN V770-NP1-R ANTIGENS	VO_0004208		
 Ovine Ecthyma Live Virus Vaccine	VO_0004209		
 Ovine Ecthyma Live Virus Vaccine	VO_0004210		
 West Nile Virus DNA Vaccine (USDA: 1995.D0)	VO_0004211		
 Canine Parainfluenza Modified Live Virus Vaccine-Leptospira Canicola-Icterohaemorrhagiae Bacterin (USDA: 47A9.20)	VO_0004212		
+BACILLUS ANTHRACIS STRAIN V770-NP1-R ANTIGENS 0.1 MG/ML	VO_0004213		
 Porcine Reproductive & Respiratory Syndrome Respiratory Form, Modified Live Virus Vaccine-Erysipelothrix Rhusiopathiae-Haemophilus Parasuis Bacterin (USDA: 49V9.20)	VO_0004214		
+Biothrax Injectable Product	VO_0004215		
+BACILLUS ANTHRACIS STRAIN V770-NP1-R ANTIGENS 0.1 MG/ML [Biothrax]	VO_0004216		
 Porcine Reproductive & Respiratory Syndrome Respiratory Form, Modified Live Virus Vaccine-Haemophilus Parasuis Bacterin (USDA: 49Q9.20)	VO_0004217		
+Biothrax Injectable Suspension	VO_0004218		
 T. gondii DNA vaccine encoding MIC8	VO_0004219		
 S. aureus IsdB subunit vaccine (V710)	VO_0004220		
 P. multocida rOmpH Vaccine	VO_0004221		
@@ -3759,7 +4611,7 @@ Influenza virus DNA vaccine pIRES/HA/GM-CSF encoding HA	VO_0004298
 Influenza virus DNA vaccine pIRES/NA/GM-CSF encoding NA	VO_0004299		
 Influenza virus DNA vaccine pIRES/HA/IL-12p35 + pIRES/NA/IL-12p40	VO_0004300		
 Influenza virus DNA vaccine pRSV-NP encoding the coding sequence from influenza virus A/PR/8/34.	VO_0004301		
-Influenza virus DNA vaccine pHA/NP147â€“155 encoding NP147-155	VO_0004302		
+Influenza virus DNA vaccine pHA/NP147Ã¢â‚¬â€œ155 encoding NP147-155	VO_0004302		
 Influenza virus DNA vaccine pBK-SFV-NP	VO_0004303		
 Influenza virus DNA vaccine pBK-SFV-HA	VO_0004304		
 Influenza virus DNA vaccine HA-DNA	VO_0004305		
@@ -3793,7 +4645,7 @@ Human papillomavirus DNA vaccine E7IR	VO_0004332
 Human papillomavirus DNA vaccine E7SH DNA	VO_0004333		
 Ebola virus DNA vaccine GP DNA	VO_0004334		
 Ebola virus recombinant rAD-GP encoding GP	VO_0004335		
-Ebola virus recombinant VSVdelta?G-GP encoding GP	VO_0004336		
+Ebola virus recombinant VSVdeltaG-GP encoding GP	VO_0004336		
 Ebola virus recombinant vector vaccine EBO7 encoding GP from SEBOV and ZEBOV	VO_0004337		
 VHSV DNA vaccine pCMV-vhsG encoding glycoprotein G	VO_0004338		
 VHSV DNA vaccine pCMV-vhsN encoding nucleocapsid protein N and glycoprotein G	VO_0004339		
@@ -4007,7 +4859,7 @@ B. abortus DNA vaccine pVF278	VO_0004546
 Dengue Virus DNA Vaccine expressing prM/E proteins	VO_0004547		
 Dengue Virus DNA Vaccine D1ME-VRP	VO_0004548		
 Dengue Virus DNA Vaccine encoding NS1	VO_0004549		
-Feline immunodeficiency virus recombinant vector vaccine FIV-Delta-?RT	VO_0004550		
+Feline immunodeficiency virus recombinant vector vaccine FIV-Delta-RT	VO_0004550		
 Foot-and-Mouth Disease Virus DNA Vaccine pSinCMV-Vac-MEG990	VO_0004551		
 Foot-and-Mouth Disease Virus Cationic Microparticle-coated DNA Vaccine	VO_0004552		
 FMDV DNA Vaccine encoding P1 and non-structural proteins 2A, 3C, and 3D	VO_0004553		
@@ -4264,13 +5116,96 @@ LM1-2-E7	VO_0004803
 BL21(DE3)/pUTa-E + pET28a-FT	VO_0004804		
 rVEE-Ebola-NP	VO_0004805		
 M. bovis DNA vaccine pCI-Ag85B	VO_0004806		
-Bacillus Calmette-Gu�rin Danish (BCG)	VO_0004807		
+Bacillus Calmette-Guérin Danish (BCG)	VO_0004807		
 APSV Wetvax	VO_0004808		
 2008-2009 trivalent influenza vaccine	VO_0004809		
-2011�2012 trivalent inactivated vaccine (A/California/7/09 (H1N1,), A/Perth /16/2009 (H3N2), and B/Brisbane/60/2008).	VO_0004810		
+2011–2012 trivalent inactivated vaccine (A/California/7/09 (H1N1,), A/Perth /16/2009 (H3N2), and B/Brisbane/60/2008).	VO_0004810		
 Recombinant Aeromonas hydrophila vaccine (Aera)	VO_0004811		
 C-KCE (vBAC-C-KCE)	VO_0004812		
 v2RVFH	VO_0004813		
+Biothrax 0.5 ML Injectable Suspension	VO_0004814		
+Rotavirus Vaccine, Live Attenuated, G1P[8] Human 89-12 strain	VO_0004815		
+Rotavirus Vaccine, Live Attenuated, G1P[8] Human 89-12 strain 1000000 UNT/ML	VO_0004816		
+Rotavirus Vaccine, Live Attenuated, G1P[8] Human 89-12 strain 1000000 UNT/ML [Rotarix]	VO_0004817		
+Rotarix, Rotavirus, live attenuated (RV1) G1P[8] Oral Vaccine	VO_0004818		
+Rotarix Oral Liquid Product	VO_0004819		
+Human-Bovine Reassortant Rotavirus Strain G4 Vaccine	VO_0004820		
+Human-Bovine Reassortant Rotavirus Strain G4 Vaccine 1000000 UNT/ML	VO_0004821		
+Human-Bovine Reassortant Rotavirus Strain P1A[8] Vaccine	VO_0004822		
+Human-Bovine Reassortant Rotavirus Strain G2 Vaccine	VO_0004823		
+Human-Bovine Reassortant Rotavirus Strain G3 Vaccine	VO_0004824		
+Human-Bovine Reassortant Rotavirus Strain G1 Vaccine	VO_0004825		
+Human-Bovine Reassortant Rotavirus Strain G3 Vaccine 1100000 UNT/ML	VO_0004826		
+Human-Bovine Reassortant Rotavirus Strain G1 Vaccine 1100000 UNT/ML	VO_0004827		
+Human-Bovine Reassortant Rotavirus Strain P1A[8] Vaccine 1150000 UNT/ML	VO_0004828		
+Human-Bovine Reassortant Rotavirus Strain G2 Vaccine 1400000 UNT/ML	VO_0004829		
+RotaTeq Oral Liquid Product	VO_0004830		
+Human-Bovine Reassortant Rotavirus Strain G1 Vaccine 1100000 UNT/ML / Human-Bovine Reassortant Rotavirus Strain G2 Vaccine 1400000 UNT/ML / Human-Bovine Reassortant Rotavirus Strain G3 Vaccine 1100000 UNT/ML / Human-Bovine Reassortant Rotavirus Strain G4 Vaccine 1000000 UNT/ML / Human-Bovine Reassortant Rotavirus Strain P1A[8] Vaccine 1150000 UNT/ML [RotaTeq]	VO_0004831		
+RotaTeq, Rotavirus, live pentavalent (RV5) Oral Vaccine	VO_0004832		
+Quadracel Injectable Product	VO_0004833		
+Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.04 MG/ML / Bordetella pertussis fimbriae 2/3 vaccine, inactivated 0.01 MG/ML / Bordetella pertussis pertactin vaccine, inactivated 0.006 MG/ML / Bordetella pertussis toxoid vaccine, inactivated 0.04 MG/ML / diphtheria toxoid vaccine, inactivated 30 UNT/ML / poliovirus vaccine inactivated, type 1 (Mahoney) 80 UNT/ML / poliovirus vaccine inactivated, type 2 (MEF-1) 16 UNT/ML / poliovirus vaccine inactivated, type 3 (Saukett) 64 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML [Quadracel]	VO_0004834		
+Quadracel vaccine 0.5 ML Injection	VO_0004835		
+Neisseria meningitidis serogroup W-135 oligosaccharide diphtheria CRM197 protein conjugate vaccine	VO_0004836		
+Neisseria meningitidis serogroup C oligosaccharide diphtheria CRM197 protein conjugate vaccine	VO_0004837		
+Neisseria meningitidis serogroup Y oligosaccharide diphtheria CRM197 protein conjugate vaccine	VO_0004838		
+Neisseria meningitidis serogroup A oligosaccharide diphtheria CRM197 protein conjugate vaccine	VO_0004839		
+Neisseria meningitidis serogroup W-135 oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.01 MG/ML	VO_0004840		
+Neisseria meningitidis serogroup C oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.01 MG/ML	VO_0004841		
+Neisseria meningitidis serogroup Y oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.01 MG/ML	VO_0004842		
+Neisseria meningitidis serogroup A oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.02 MG/ML	VO_0004843		
+Menveo Injectable Product	VO_0004844		
+Neisseria meningitidis serogroup A oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.02 MG/ML / Neisseria meningitidis serogroup C oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.01 MG/ML / Neisseria meningitidis serogroup W-135 oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.01 MG/ML / Neisseria meningitidis serogroup Y oligosaccharide diphtheria CRM197 protein conjugate vaccine 0.01 MG/ML [Menveo]	VO_0004845		
+MENVEO vaccine 0.5 ML Injection	VO_0004846		
+Trumenba Injectable Product	VO_0004847		
+Neisseria meningitidis serogroup B recombinant LP2086 A05 protein variant antigen 0.12 MG/ML / Neisseria meningitidis serogroup B recombinant LP2086 B01 protein variant antigen 0.12 MG/ML [Trumenba]	VO_0004848		
+Trumenba vaccine Prefilled Syringe	VO_0004849		
+Trumenba vaccine 0.5 ML Prefilled Syringe	VO_0004850		
+Bexsero Injectable Product	VO_0004851		
+meningococcal group B vaccine 0.1 MG/ML / Neisseria meningitidis serogroup B recombinant FHBP fusion protein antigen 0.1 MG/ML / Neisseria meningitidis serogroup B recombinant NHBA fusion protein antigen 0.1 MG/ML / Neisseria meningitidis serogroup B strain NZ98/254 outer membrane vesicle 0.05 MG/ML [Bexsero]	VO_0004852		
+BEXSERO vaccine 0.5 ML Prefilled Syringe	VO_0004853		
+smallpox vaccine live vaccinia virus	VO_0004854		
+smallpox vaccine live vaccinia virus 500000000 UNT/ML	VO_0004855		
+ACAM2000 Injectable Product	VO_0004856		
+ACAM2000 smallpox (vaccinia) vaccine, live Injectable Solution	VO_0004857		
+smallpox vaccine live vaccinia virus 500000000 UNT/ML [ACAM2000]	VO_0004858		
+meningococcal group C polysaccharide	VO_0004859		
+MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP Y	VO_0004860		
+meningococcal group C polysaccharide 0.01 MG/ML	VO_0004861		
+meningococcal group C polysaccharide 0.1 MG/ML	VO_0004862		
+MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP Y 0.01 MG/ML	VO_0004863		
+MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP Y 0.1 MG/ML	VO_0004864		
+MenHibrix Injectable Product	VO_0004865		
+Haemophilus influenzae type b strain 1482, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.005 MG/ML / meningococcal group C polysaccharide 0.01 MG/ML / MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP Y 0.01 MG/ML [MenHibrix]	VO_0004866		
+MENHIBRIX vaccine 0.5 ML Injection	VO_0004867		
+Haemophilus influenzae type b strain 1482, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.005 MG/ML	VO_0004868		
+HUMAN ADENOVIRUS E SEROTYPE 4 STRAIN CL-68578	VO_0004869		
+Menomune A/C/Y/W-135 Injectable Product	VO_0004870		
+HUMAN ADENOVIRUS B SEROTYPE 7 STRAIN 55142	VO_0004871		
+Adenovirus Type 4 Vaccine Live Oral Product	VO_0004872		
+Adenovirus Type 4 Vaccine Live Pill	VO_0004873		
+Adenovirus Type 4 Vaccine Live Delayed Release Oral Tablet	VO_0004874		
+Adenovirus Type 4 Vaccine Live 32000 UNT Delayed Release Oral Tablet	VO_0004875		
+Adenovirus Type 4 Vaccine Live 32000 UNT	VO_0004876		
+Adenovirus Type 7 Vaccine Live Oral Product	VO_0004877		
+Adenovirus Type 7 Vaccine Live Pill	VO_0004878		
+Adenovirus Type 7 Vaccine Live Delayed Release Oral Tablet	VO_0004879		
+Adenovirus Type 7 Vaccine Live 32000 UNT Delayed Release Oral Tablet	VO_0004880		
+Adenovirus Type 7 Vaccine Live 32000 UNT	VO_0004881		
+meningococcal group A polysaccharide 0.1 MG/ML / meningococcal group C polysaccharide 0.1 MG/ML / MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP W-135 0.1 MG/ML / MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP Y 0.1 MG/ML [Menomune A/C/Y/W-135]	VO_0004882		
+Menomune A/C/Y/W-135 Vaccine Injection	VO_0004883		
+Menomune A/C/Y/W-135 Vaccine 0.5 ML Injection	VO_0004884		
+Menomune A/C/Y/W-135 Vaccine Injectable Solution	VO_0004885		
+MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP W-135	VO_0004886		
+MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP W-135 0.1 MG/ML	VO_0004887		
+meningococcal group A polysaccharide	VO_0004888		
+meningococcal group A polysaccharide 0.1 MG/ML	VO_0004889		
+gH1-Qbeta vaccine	VO_0004890		
+CN54gp140 + GLA	VO_0004891		
+Fluenz	VO_0004893		
+quadrivalent seasonal inactivated influenza vaccine 2014	VO_0004894		
+female biological sex datum	VO_0004895		
+intersex biological sex datum	VO_0004896		
+coronavirus vaccine	VO_0004897		
 pCAGGSP7 DNA vaccine plasmid	VO_0005000		
 pCAGGS/MCS DNA vaccine plasmid	VO_0005001		
 pWRG DNA vaccine plasmid	VO_0005002		
@@ -4361,11 +5296,11 @@ Avaxim - Pediatric	VO_0010707		Avaxim - Pediatric
 BCG Vaccine (Freeze-Dried) (by Sanofi Pasteur)	VO_0010708		BCG Vaccine (Freeze-Dried)
 DT Polio Adsorbed	VO_0010709		DT Polio Adsorbed
 Dukoral	VO_0010710		Dukoral
-Engerix-B	VO_0010711	Hepatitis B Vaccine (Recombinant)	Engerix-B
+Engerix-B	VO_0010711		
 Eolarix	VO_0010712		Eolarix
 Epaxal	VO_0010713		Epaxal
 FSME - IMMUN	VO_0010714		FSME - IMMUN
-Hiberix	VO_0010715		Hiberix
+Hiberix	VO_0010715		
 Imovax Polio	VO_0010716		Imovax Polio
 Imovax Rabies (Canada)	VO_0010717		Imovax Rabies
 Inactivated Poliomyelitis Vaccine - IPV	VO_0010718		Inactived Poliomyelitis Vaccine - IPV
@@ -4387,8 +5322,8 @@ Prevnar (Canada)	VO_0010733		Prevnar
 Priorix	VO_0010734		Priorix
 Priorix-Tetra	VO_0010735		Priorix-Tetra
 Quadracel	VO_0010736		Quadracel
-Recombivax HB	VO_0010737		Recombivax HB
-Rotarix	VO_0010738		Rotarix
+Recombivax HB	VO_0010737		
+Rotarix	VO_0010738		
 Td Adsorbed	VO_0010739		Td Adsorbed
 Tripacel	VO_0010742		Tripacel
 Twinrix Junior	VO_0010743		Twinrix Junior
@@ -4751,10 +5686,10 @@ ICP27 from Herpes simplex virus type 1	VO_0011101
 US4	VO_0011102		
 UL44	VO_0011103		
 US8	VO_0011104		
-E7	VO_0011105		
-L2	VO_0011106		
-E6	VO_0011107		
-L1	VO_0011108		
+HPV E7	VO_0011105		
+HPV L2	VO_0011106		
+HPV E6	VO_0011107		
+HPV L1	VO_0011108		
 G glycoprotein	VO_0011109		
 NP from Influenza B virus	VO_0011110		
 NP from Influenza A virus H3N2	VO_0011111		
@@ -4808,7 +5743,7 @@ MspC	VO_0011158
 ORFF	VO_0011159		
 BT1	VO_0011160		
 NH	VO_0011161		
-HASPB1	VO_0011162		
+L. donovani HASPB1	VO_0011162		
 NP from Lake Victoria marburgvirus	VO_0011163		
 MDV040	VO_0011164		
 MDV095	VO_0011165		
@@ -5169,7 +6104,7 @@ C. abortus DNA vaccine encoding CAB049	VO_0011526
 C. abortus DNA vaccine encoding CAB613	VO_0011527		
 Infleunza virus DNA vaccine encoding NP from Influenza A virus (A/chicken/Henan/12/2004(H5N1))	VO_0011528		
 Influenza virus DNA vaccine encoding NP from Influenza A virus (A/chicken/Hubei/489/2004(H5N1))	VO_0011529		
-L. donovani DNA Vaccine KMP-11 Protein	VO_0011530		
+L. donovani DNA vaccine encoding KMP-11	VO_0011530		
 Influenza virus NP protein vaccine (Influenza A virus (A/nt/60/1968(H3N2)))	VO_0011531		
 L. donovani gp63 Protein Subunit Vaccine	VO_0011532		
 C. muridarum DNA vaccine encoding TC0439	VO_0011533		
@@ -5289,4 +6224,74 @@ NucA	VO_0012405
 OmpP1	VO_0012406		
 PstS1	VO_0012407		
 DnaK	VO_0012408		
-has_specified_output	VO_0012409		
+MPT83	VO_0012409		
+Hepatitis A Vaccine (Inactivated) Strain HM175 720 UNT/ML / Hepatitis B Surface Antigen Vaccine 0.02 MG/ML [Twinrix]	VO_0015001		
+1 ML Hepatitis A Vaccine (Inactivated) Strain HM175 720 UNT/ML / Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Prefilled Syringe [Twinrix]	VO_0015003		
+1 ML Hepatitis A Vaccine (Inactivated) Strain HM175 720 UNT/ML / Hepatitis B Surface Antigen Vaccine 0.02 MG/ML Injection [Twinrix]	VO_0015004		
+Hepatitis A Vaccine (Inactivated) Strain HM175 / Hepatitis B Surface Antigen Vaccine Injection [Twinrix]	VO_0015005		
+Hepatitis A Vaccine (Inactivated) Strain HM175 / Hepatitis B Surface Antigen Vaccine Prefilled Syringe [Twinrix]	VO_0015006		
+0.5 ML Haemophilus influenzae type b strain 1482, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.068 MG/ML Injection [ActHIB]	VO_0015008		
+Haemophilus influenzae type b strain 1482, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.068 MG/ML [ActHIB]	VO_0015009		
+Haemophilus influenzae type b, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine Injection [ActHIB]	VO_0015010		
+ActHIB Injectable Product	VO_0015011		
+Haemophilus influenzae type b strain 1482, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.068 MG/ML	VO_0015012		
+Haemophilus influenzae type b strain 1482, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine	VO_0015013		
+Haemophilus influenzae type b, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine	VO_0015014		
+0.5 ML Haemophilus influenzae type b strain 1482, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine 0.068 MG/ML Injection	VO_0015015		
+Haemophilus influenzae type b, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine Injection	VO_0015016		
+Haemophilus influenzae type b, capsular polysaccharide inactivated tetanus toxoid conjugate vaccine Injectable Product	VO_0015017		
+Engerix-B Injectable Product	VO_0015019		
+Hepatitis B Surface Antigen Vaccine Injection [Engerix-B]	VO_0015020		
+0.5 ML diphtheria toxoid vaccine, inactivated 4 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML Injection [Tenivac]	VO_0015022		
+0.5 ML diphtheria toxoid vaccine, inactivated 4 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML Prefilled Syringe [Tenivac]	VO_0015023		
+diphtheria toxoid vaccine, inactivated / tetanus toxoid vaccine, inactivated Prefilled Syringe [Tenivac]	VO_0015024		
+diphtheria toxoid vaccine, inactivated / tetanus toxoid vaccine, inactivated Injection [Tenivac]	VO_0015025		
+Tenivac Injectable Product	VO_0015026		
+diphtheria toxoid vaccine, inactivated 4 UNT/ML / tetanus toxoid vaccine, inactivated 10 UNT/ML [Tenivac]	VO_0015027		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 2700 UNT/ML [Varivax]	VO_0015028		
+0.5 ML Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain 2700 UNT/ML Injection [Varivax]	VO_0015029		
+Varivax Injectable Product	VO_0015030		
+Varicella-Zoster Virus Vaccine Live (Oka-Merck) strain Injection [Varivax]	VO_0015031		
+L1 protein, Human papillomavirus type 18 Vaccine 0.04 MG/ML	VO_0015032		
+L1 protein, Human papillomavirus type 18 Vaccine 0.08 MG/ML	VO_0015033		
+0.5 ML L1 protein, Human papillomavirus type 11 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 16 Vaccine 0.12 MG/ML / L1 protein, Human papillomavirus type 18 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 31 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 33 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 45 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 52 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 58 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 6 Vaccine 0.06 MG/ML Injection [Gardasil 9]	VO_0015034		
+L1 protein, Human papillomavirus type 11 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 16 Vaccine 0.12 MG/ML / L1 protein, Human papillomavirus type 18 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 31 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 33 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 45 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 52 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 58 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 6 Vaccine 0.06 MG/ML [Gardasil 9]	VO_0015035		
+0.5 ML L1 protein, Human papillomavirus type 11 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 16 Vaccine 0.12 MG/ML / L1 protein, Human papillomavirus type 18 Vaccine 0.08 MG/ML / L1 protein, Human papillomavirus type 31 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 33 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 45 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 52 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 58 Vaccine 0.04 MG/ML / L1 protein, Human papillomavirus type 6 Vaccine 0.06 MG/ML Prefilled Syringe [Gardasil 9]	VO_0015036		
+Gardasil 9 injection	VO_0015037		
+Gardasil 9 Injectable Product	VO_0015038		
+Gardasil 9 prefilled syringe	VO_0015039		
+L1 protein, Human papillomavirus type 11 Vaccine 0.08 MG/ML	VO_0015040		
+L1 protein, Human papillomavirus type 16 Vaccine 0.12 MG/ML	VO_0015041		
+L1 protein, Human papillomavirus type 31 Vaccine 0.04 MG/ML	VO_0015042		
+L1 protein, Human papillomavirus type 33 Vaccine 0.04 MG/ML	VO_0015043		
+L1 protein, Human papillomavirus type 45 Vaccine 0.04 MG/ML	VO_0015044		
+L1 protein, Human papillomavirus type 52 Vaccine 0.04 MG/ML	VO_0015045		
+L1 protein, Human papillomavirus type 58 Vaccine 0.04 MG/ML	VO_0015046		
+L1 protein, Human papillomavirus type 6 Vaccine 0.06 MG/ML	VO_0015047		
+Measles Virus Vaccine Live, Enders' attenuated Edmonston strain 2000 UNT/ML / Mumps Virus Vaccine Live, Jeryl Lynn Strain 25000 UNT/ML / Rubella Virus Vaccine Live (Wistar RA 27-3 Strain) 2000 UNT/ML [M-M-R II]	VO_0015048		
+0.5 ML Measles Virus Vaccine Live, Enders' attenuated Edmonston strain 2000 UNT/ML / Mumps Virus Vaccine Live, Jeryl Lynn Strain 25000 UNT/ML / Rubella Virus Vaccine Live (Wistar RA 27-3 Strain) 2000 UNT/ML Injection [M-M-R II]	VO_0015049		
+Measles Virus Vaccine Live, Enders' attenuated Edmonston strain / Mumps Virus Vaccine Live, Jeryl Lynn Strain / Rubella Virus Vaccine Live (Wistar RA 27-3 Strain) Injection [M-M-R II]	VO_0015050		
+M-M-R II Injectable Product	VO_0015051		
+Measles Virus Vaccine Live, Enders' attenuated Edmonston strain	VO_0015052		
+Measles Virus Vaccine Live, Enders' attenuated Edmonston strain 2000 UNT/ML	VO_0015053		
+Rubella Virus Vaccine Live (Wistar RA 27-3 Strain)	VO_0015054		
+Rubella Virus Vaccine Live (Wistar RA 27-3 Strain) 2000 UNT/ML	VO_0015055		
+Mumps Virus Vaccine Live, Jeryl Lynn Strain	VO_0015056		
+Mumps Virus Vaccine Live, Jeryl Lynn Strain 40000 UNT/ML	VO_0015057		
+Mumps Virus Vaccine Live, Jeryl Lynn Strain Injectable Product	VO_0015058		
+Mumps Virus Vaccine Live, Jeryl Lynn Strain 40000 UNT/ML Injectable Solution	VO_0015059		
+Mumps Virus Vaccine Live, Jeryl Lynn Strain 25000 UNT/ML	VO_0015060		
+Neisseria meningitidis serogroup A capsular polysaccharide diphtheria toxoid protein conjugate vaccine	VO_0015063		
+Neisseria meningitidis serogroup A capsular polysaccharide diphtheria toxoid protein conjugate vaccine 0.104 MG/ML	VO_0015064		
+Neisseria meningitidis serogroup C capsular polysaccharide diphtheria toxoid protein conjugate vaccine 0.104 MG/ML	VO_0015066		
+Neisseria meningitidis serogroup C capsular polysaccharide diphtheria toxoid protein conjugate vaccine	VO_0015067		
+Neisseria meningitidis serogroup Y capsular polysaccharide diphtheria toxoid protein conjugate vaccine 0.104 MG/ML	VO_0015068		
+Neisseria meningitidis serogroup W-135 capsular polysaccharide diphtheria toxoid protein conjugate vaccine	VO_0015069		
+Neisseria meningitidis serogroup Y capsular polysaccharide diphtheria toxoid protein conjugate vaccine	VO_0015070		
+Neisseria meningitidis serogroup W-135 capsular polysaccharide diphtheria toxoid protein conjugate vaccine 0.104 MG/ML	VO_0015071		
+Fluzone 2015-2016	VO_0015080		
+Fluzone 2015-2016 Injectable Product	VO_0015081		
+influenza A virus (H1N1) antigen	VO_0015084		
+influenza A virus (H3N2) antigen	VO_0015085		
+influenza B virus antigen	VO_0015086		
+cell line repository role	VO_0015978		
