@@ -40,7 +40,7 @@
 
             <ul id="main-nav">
                 <li><a id="navlink-dashboard" class="navlink" href="#">HIPC DASHBOARD</a></li>
-                <li><a id="navlink-centers" class="navlink" href="#center/hipc">Submissions</a></li>
+                <li><a id="navlink-centers" class="navlink" href="#center/hipc">Studies</a></li>
                 <li>
                     <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b
                             class="caret"></b></a>
@@ -287,53 +287,11 @@
 
     </script>
 
-    <script type="text/template" id="centers-tmpl">
-        <div class="container common-container" id="centers-container">
-            <h2>Centers</h2>
-            <table class="table table-bordered table-striped table-compact" id="centers-list-table">
-                <thead>
-                    <tr>
-                        <th class="center-image-column"></th>
-                        <th>Center name</th>
-                        <th>Principal Investigator</th>
-                        <th class="submission-count">Submissions</th>
-                    </tr>
-                </thead>
-                <tbody id="centers-tbody">
-                <!-- here will come the centers... -->
-                </tbody>
-            </table>
-        </div>
-    </script>
-
-    <script type="text/template" id="centers-tbl-row-tmpl">
-        <tr>
-            <td class="center-image-column">
-                <a href="#{{stableURL}}">
-                    <img src="img/{{displayName}}.png" alt="{{displayName}}" title="{{displayName}}" class="img-polaroid">
-                </a>
-            </td>
-            <td class="center-name">
-                <a href="#{{stableURL}}">
-                    {{displayName}}
-                </a>
-            </td>
-            <td class="center-pi">
-                <span id="center-pi-{{id}}">loading...</span>
-            </td>
-            <td>
-                <a href="#{{stableURL}}" id="submission-count-{{id}}">
-                    loading...
-                </a>
-            </td>
-        </tr>
-    </script>
-
     <script type="text/template" id="center-tmpl">
         <div class="container common-container" id="center-submission-container">
             <div class="row">
                 <div class="col-9">
-                    <h2 class="center-title">{{displayName}} <small>submissions</small></h2>
+                    <h2 class="center-title">{{displayName}} <small>studies</small></h2>
                 </div>
                 <div class="col-3">
                     <img src="img/{{displayName}}.png" title="{{displayName}}" alt="{{displayName}}" class="img-polaroid" width="200">
@@ -377,7 +335,7 @@
             <div class="row">
                 <div class="col-10">
                     <h2>
-                        Submission
+                        Study
                     </h2>
 
 
@@ -391,19 +349,19 @@
                             <td>{{observationTemplate.description}}</td>
                         </tr>
                         <tr id="similar-submission-info">
-                            <th>Similar Submissions</th>
+                            <th>Similar Studies</th>
                             <td>
                                 <ul class="similar-submission-list"></ul>
                                 [<a id='see-all-switch'></a>]
                             </td>
                         </tr>
                         <tr>
-                            <th width="175">Submission Date</th>
+                            <th width="175">Publication Date</th>
                             <td>{{submissionDate}}</td>
                         </tr>
                         <tr>
                             <th>Source Data</th>
-                            <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download Submission</a> |
+                            <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download Study</a> |
                                 <a href="./data/responseagents?submission={{id}}" target=_blank id=download-responseagents>Download all response agents</a></td>
                         </tr>
                     </table>
@@ -424,7 +382,7 @@
 
             </div>
 
-            <h3>Observations within this submission</h3>
+            <h3>Observations within this study</h3>
 
             <div class="more-observations-message"></div>
 
@@ -488,7 +446,7 @@
 
             <a href="" target=_blank id=download-signature>Download Signature</a></td>
 
-            <h3>Submission <small>(<a href="#" id="small-show-sub-details">show details</a><a href="#" id="small-hide-sub-details">hide details</a>)</small></h3>
+            <h3>Study <small>(<a href="#" id="small-show-sub-details">show details</a><a href="#" id="small-hide-sub-details">hide details</a>)</small></h3>
             <div id="obs-submission-details">
                 <table id="obs-submission-details-grid" class="table table-bordered table-striped">
                     <tr>
@@ -512,7 +470,7 @@
                     </tr>
                     <tr>
                         <th>Source Data</th>
-                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.zip" target=_blank>Download Submission</a>
+                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.zip" target=_blank>Download Study</a>
                     </tr>
 
 
@@ -545,7 +503,7 @@
     </script>
 
     <script type="text/template" id="submission-description-tmpl">
-        <h3>Submission summary</h3>
+        <h3>Study summary</h3>
         <blockquote>
             <p>{{observationTemplate.submissionDescription}}</p>
         </blockquote>
@@ -1677,7 +1635,7 @@
             </table>
 
             <div id="submission-search-results">
-                <h3>Submissions</h3>
+                <h3>Study</h3>
                 <table id="searched-submissions" class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -1750,11 +1708,6 @@
     <script type="text/template" id="count-observations-tmpl">
         {{count}} observation{{count == 1 ? "" : "s"}}
     </script>
-
-    <script type="text/template" id="count-submission-tmpl">
-        {{count}} submission{{count == 1 ? "" : "s"}}
-    </script>
-
 
     <script type="text/template" id="cytoscape-tmpl">
         <div id="cytoscape-sif"></div>
@@ -1994,8 +1947,8 @@
         <div class="alert alert-warning">
             <p><a href="#" class="close" data-dismiss="alert">&times;</a></p>
             <p>
-                The table below lists all submissions that belong to the project "<b>{{filterProject}}</b>".
-                To view all submissions from this center, please click <a href="#{{centerStableURL}}">here</a>.
+                The table below lists all studies that belong to the project "<b>{{filterProject}}</b>".
+                To view all studies, please click <a href="#{{centerStableURL}}">here</a>.
             </p>
         </div>
     </script>
@@ -2200,7 +2153,7 @@
                <div class="col-10">
                     <h3>Gene Cart Help</h3>
                     <p>The Gene Cart allows users to build a list of genes and query the Cellular Networks Knowledge Base (CNKB) for molecular interactions involving these genes.  The CNKB is a repository of molecular interactions networks. It contains computationally-derived networks obtained by applying state of the art Systems and Structure Biology algorithms from the laboratories of Drs. Andrea Califano and Barry Honig at Columbia University. A detailed <a target="_blank" href="http://wiki.c2b2.columbia.edu/workbench/index.php/Cellular_Networks_KnowledgeBase">description of the CNKB</a> is available which also describes how the CNKB can be accessed from within the software platform <a target="_blank" href="http://www.geworkbench.org">geWorkbench</a>.</p>
-                    <p>In the Observations for a particular Dashboard submission, those entries that are genes will have a green "+" sign to right of the gene symbol. Clicking this "+" sign will add the gene to the Gene Cart. The Gene Cart is limited to 25 genes.</p>
+                    <p>In the Observations for a particular HIPC study, those entries that are genes will have a green "+" sign to right of the gene symbol. Clicking this "+" sign will add the gene to the Gene Cart. The Gene Cart is limited to 25 genes.</p>
                     <p>In the Gene Cart, clicking on "Find Interactions in Networks (CNKB)" will bring the user to the Cellular Networks Knowledge Base page where a particular interactome and version can be chosen. Descriptive text for each is available by selecting any particular interactome or version. Clicking "Submit" will initiate a query of the CNKB using the genes in the cart.  "Version" may represent different types of interactions inferred on a given dataset.  See the description of each version for details.</p>
                     <p>The query result is displayed in a table showing the number and type of interactions found for each query gene. A check box to the left of each gene allows individual results to be selected. The interactions for selected genes can then be downloaded in the form of a Cytoscape "SIF"-format file, or displayed directly in Cytoscape.js in the browser. The number of interactions to display is controlled using the "Interactions Limit" pulldown. Interactions to display are then chosen based on a ranking by a measure of likelihood, e.g. the top 100 interactions.</p>
                     <p>Several layout options are available for Cytoscape and can be selected using the "Layout" pulldown.</p>
@@ -2235,9 +2188,9 @@
             <ul>
                 <li><i>Center</i>: One of the academic research teams that make up the HIPC.</li>
 
-                <li><i>Submission</i>: A Dashboard entry that represents a dataset associated with positive experimental results, a set of data-related figures, or a polished story.</li>
+                <li><i>Study</i>: A Dashboard entry that represents a dataset associated with positive experimental results, a set of data-related figures, or a polished story.</li>
 
-                <li><i>Subject</i>: The focus of an experiment or result in a Dashboard <b>submission</b> (<i>e.g.</i>, genes, proteins, small molecules, cell lines, animal models).</li>
+                <li><i>Subject</i>: The focus of an experiment or result in a Dashboard <b>study</b> (<i>e.g.</i>, genes, proteins, small molecules, cell lines, animal models).</li>
                 <ul>
                     <li>Class</i>: A set of objects representing the same molecular or biological category (DNA, RNA, protein, small molecule, tissue, animal model) and sharing a set of required and optional attributes.</li>
                     <li><i>Role</i>: The <b>Center</b>-designated function of a gene, protein, or compound based on their interpretation of observations within a particular experimental or computational context. Assigning <b>role</b>s from a restricted list of terms (biomarkers, diseases, master regulators, interactors, oncogenes, perturbagens, candidate drugs, or targets) helps organize subjects in Dashboard for browsing and searching.
@@ -2253,7 +2206,7 @@
 
             <h3>Dashboard Organization</h3>
             <p>
-                During the <b>submission</b> process, <b>subjects</b> from HIPC studies are ordered by relevance based on the number of <b>observations</b> associated with a <b>submission</b>, the <b>Tiers</b> of these <b>observations</b>, and the number of different <b>Centers</b> providing <b>observations</b> about that particular <b>subject</b>.
+                During the submission process, <b>subjects</b> from HIPC studies are ordered by relevance based on the number of <b>observations</b> associated with a <b>study</b>, the <b>Tiers</b> of these <b>observations</b>, and the number of different <b>Centers</b> providing <b>observations</b> about that particular <b>subject</b>.
             </p>
         </div>
     </script>

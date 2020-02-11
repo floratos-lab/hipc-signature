@@ -721,82 +721,6 @@
         }
     });
 
-    const CenterListRowView = Backbone.View.extend({
-        template: _.template($("#centers-tbl-row-tmpl").html()),
-        render: function () {
-            $(this.el).append(this.template(this.model));
-            return this;
-        }
-
-    });
-
-    const defaultPI = {
-        "Boston Children's Hospital": "Ofer Levy",
-        "Center for Infectious Disease Research": "Kenneth Stuart",
-        "Columbia University": "Donna Farber",
-        "Drexel University": "Elias K Haddad",
-        "Emory University": "Bali Pulendran",
-        "Icahn School of Medicine at Mount Sinai": "Ana Fernandez-Sesma and Eva Harris",
-        "La Jolla Institute for Allergy and Immunology": "Alessandro D. Sette",
-        "University of California Los Angeles": "Elaine Reed (UCLA) and Minnie Sarwal (UCSF)",
-        "Yale University": "David Hafler and Ruth Montgomery",
-    };
-    const CenterListView = Backbone.View.extend({
-        el: $("#main-container"),
-        template: _.template($("#centers-tmpl").html()),
-        render: function () {
-            $(this.el).html(this.template({}));
-
-            const centers = new SubmissionCenters();
-            const thatEl = this.el;
-            centers.fetch({
-                success: function () {
-                    const tableEl = $(thatEl).find("table");
-
-                    _.each(centers.toJSON(), function (aCenter) {
-                        new CenterListRowView({
-                            el: $(thatEl).find("#centers-tbody"),
-                            model: aCenter
-                        }).render();
-
-                        $.ajax("count/submission/?filterBy=" + aCenter.id).done(function (count) {
-                            const cntContent = _.template(
-                                $("#count-submission-tmpl").html())({
-                                    count: count
-                                });
-
-                            const countCellId = "#submission-count-" + aCenter.id;
-                            $(countCellId).html(cntContent);
-                            tableEl.DataTable().cells(countCellId).invalidate();
-                        });
-
-                        $.ajax("list/observationtemplate/?filterBy=" + aCenter.id).done(function (templates) {
-                            let pis = [];
-                            _.each(templates, function (template) {
-                                pis.push(template.principalInvestigator);
-                            });
-                            if (pis.length == 0) pis = [defaultPI[aCenter.displayName]];
-                            const piCellId = "#center-pi-" + aCenter.id;
-                            $(piCellId).html(_.uniq(pis).join(", "));
-                            tableEl.DataTable().cells(piCellId).invalidate();
-                        });
-                    });
-
-                    const cTable = tableEl.dataTable({
-                        // might want to increase this number if we have incredible number of centers
-                        "iDisplayLength": 25
-                    });
-                    $(tableEl).parent().width("100%");
-
-                    cTable.fnSort([
-                        [1, 'asc']
-                    ]);
-                }
-            });
-            return this;
-        }
-    });
-
     const CenterSubmissionRowView = Backbone.View.extend({
         template: _.template($("#center-submission-tbl-row-tmpl").html()),
         render: function () {
@@ -3448,168 +3372,158 @@
             "*actions": "home"
         },
 
-        home: function (actions) {
-            var homeView = new HomeView();
-            homeView.render();
+        home: function () {
+            new HomeView().render();
         },
 
         search: function (term) {
-            var searchView = new SearchView({
+            new SearchView({
                 model: {
                     term: decodeURI(term)
                         .replace(new RegExp("<", "g"), "")
                         .replace(new RegExp(">", "g"), "")
                 }
-            });
-            searchView.render();
+            }).render();
         },
 
         explore: function (type, roles) {
-            var exploreView = new ExploreView({
+            new ExploreView({
                 model: {
                     roles: roles.replace(new RegExp("<", "g"), "").replace(new RegExp(">", "g"), ""),
                     type: type.replace(new RegExp("<", "g"), "").replace(new RegExp(">", "g"), ""),
                     customized: false
                 }
-            });
-            exploreView.render();
+            }).render();
         },
 
         showCellSubset: function (id, role, tier) {
-            var cellsubset = new CellSubset({
+            const cellsubset = new CellSubset({
                 id: id,
             });
             cellsubset.fetch({
                 success: function () {
-                    var view = new CellSubsetView({
+                    new CellSubsetView({
                         model: {
                             subject: cellsubset,
                             tier: tier,
                             role: role,
                         }
-                    });
-                    view.render();
+                    }).render();
                 }
             });
         },
 
         showPathogen: function (id, role, tier) {
-            var pathogen = new Pathogen({
+            const pathogen = new Pathogen({
                 id: id,
             });
             pathogen.fetch({
                 success: function () {
-                    var view = new PathogenView({
+                    new PathogenView({
                         model: {
                             subject: pathogen,
                             tier: tier,
                             role: role
                         }
-                    });
-                    view.render();
+                    }).render();
                 }
             });
         },
 
         showVaccine: function (id, role, tier) {
-            var vaccine = new Vaccine({
+            const vaccine = new Vaccine({
                 id: id,
             });
             vaccine.fetch({
                 success: function () {
-                    var view = new VaccineView({
+                    new VaccineView({
                         model: {
                             subject: vaccine,
                             tier: tier,
                             role: role
                         }
-                    });
-                    view.render();
+                    }).render();
                 }
             });
         },
 
         showAnimalModel: function (name, role, tier) {
-            var animalModel = new AnimalModel({
+            const animalModel = new AnimalModel({
                 id: name
             });
             animalModel.fetch({
                 success: function () {
-                    var animalModelView = new AnimalModelView({
+                    new AnimalModelView({
                         model: {
                             subject: animalModel,
                             tier: tier,
                             role: role
                         }
-                    });
-                    animalModelView.render();
+                    }).render();
                 }
             });
         },
 
         showCellSample: function (name, role, tier) {
-            var cellSample = new CellSample({
+            const cellSample = new CellSample({
                 id: name
             });
 
             cellSample.fetch({
                 success: function () {
-                    var cellSampleView = new CellSampleView({
+                    new CellSampleView({
                         model: {
                             subject: cellSample,
                             tier: tier,
                             role: role
                         }
-                    });
-                    cellSampleView.render();
+                    }).render();
                 }
             });
         },
 
         showCompound: function (name, role, tier) {
-            var compound = new Compound({
+            const compound = new Compound({
                 id: name
             });
             compound.fetch({
                 success: function () {
-                    var compoundView = new CompoundView({
+                    new CompoundView({
                         model: {
                             subject: compound,
                             tier: tier,
                             role: role
                         }
-                    });
-                    compoundView.render();
+                    }).render();
                 }
             });
         },
 
         showProtein: function (name, role, tier) {
-            var protein = new Protein({
+            const protein = new Protein({
                 id: name
             });
             protein.fetch({
                 success: function () {
-                    var proteinView = new ProteinView({
+                    new ProteinView({
                         model: {
                             subject: protein,
                             tier: tier,
                             role: role
                         }
-                    });
-                    proteinView.render();
+                    }).render();
                 }
             });
         },
 
         showShRna: function (name, role, tier) {
-            var shRna = new ShRna({
+            const shRna = new ShRna({
                 id: name
             });
             shRna.fetch({
                 success: function () {
                     // shRna covers both siRNA and shRNA
-                    var rnaView;
+                    let rnaView;
                     if (shRna.get("type").toLowerCase() == "sirna") {
                         rnaView = new SirnaView({
                             model: {
@@ -3633,156 +3547,143 @@
         },
 
         showTissueSample: function (name, role, tier) {
-            var tissueSample = new TissueSample({
+            const tissueSample = new TissueSample({
                 id: name
             });
             tissueSample.fetch({
                 success: function () {
-                    var tissueSampleView = new TissueSampleView({
+                    new TissueSampleView({
                         model: {
                             subject: tissueSample,
                             tier: tier,
                             role: role
                         }
-                    });
-                    tissueSampleView.render();
+                    }).render();
                 }
             });
         },
 
         showTranscript: function (name, role, tier) {
-            var transcript = new Transcript({
+            const transcript = new Transcript({
                 id: name
             });
             transcript.fetch({
                 success: function () {
-                    var transcriptView = new TranscriptView({
+                    new TranscriptView({
                         model: {
                             subject: transcript,
                             tier: tier,
                             role: role
                         }
-                    });
-                    transcriptView.render();
+                    }).render();
                 }
             });
         },
 
         showGene: function (species, symbol, role, tier) {
-            var gmodel = new Gene({
+            const gmodel = new Gene({
                 species: species,
                 symbol: symbol
             });
             gmodel.fetch({
                 success: function () {
-                    var modelView = new GeneView({
+                    new GeneView({
                         model: {
                             subject: gmodel,
                             tier: tier,
                             role: role
                         }
-                    });
-                    modelView.render();
+                    }).render();
                 }
             });
         },
 
         showCenter: function (name) {
-            var center = new SubmissionCenter({
+            const center = new SubmissionCenter({
                 id: name
             });
             center.fetch({
                 success: function () {
-                    var centerView = new CenterView({
+                    new CenterView({
                         model: center
-                    });
-                    centerView.render(null);
+                    }).render(null);
                 }
             });
         },
 
         showCenterProject: function (name, project) {
-            var center = new SubmissionCenter({
+            const center = new SubmissionCenter({
                 id: name
             });
             center.fetch({
                 success: function () {
-                    var centerView = new CenterView({
-                        model: center
-                    });
                     project = decodeURI(project)
                         .replace(new RegExp("<", "g"), "")
                         .replace(new RegExp(">", "g"), "");
-                    centerView.render(project);
+                    new CenterView({
+                        model: center
+                    }).render(project);
                 }
             });
         },
 
         showSubmission: function (id) {
-            var submission = new Submission({
+            const submission = new Submission({
                 id: id
             });
             submission.fetch({
                 success: function () {
-                    var submissionView = new SubmissionView({
+                    new SubmissionView({
                         model: submission
-                    });
-                    submissionView.render();
+                    }).render();
                 }
             });
         },
 
         showObservation: function (id) {
-            var observation = new Observation({
+            const observation = new Observation({
                 id: id
             });
             observation.fetch({
                 success: function () {
-                    var observationView = new ObservationView({
+                    new ObservationView({
                         model: observation
-                    });
-                    observationView.render();
+                    }).render();
                 }
             });
         },
 
         listCenters: function () {
-            var centerListView = new CenterListView();
-            centerListView.render();
+            new CenterListView().render();
         },
 
         showMraView: function (id) {
-            var observedEvidence = new ObservedEvidence({
+            const observedEvidence = new ObservedEvidence({
                 id: id
             });
             observedEvidence.fetch({
                 success: function () {
-                    var mraView = new MraView({
+                    new MraView({
                         model: observedEvidence
-                    });
-                    mraView.render();
+                    }).render();
                 }
             });
         },
 
         showGeneList: function () {
-            var geneListView = new GeneListView();
-            geneListView.render();
+            new GeneListView().render();
         },
 
         showCnkbQuery: function () {
-            var cnkbQueryView = new CnkbQueryView();
-            cnkbQueryView.render();
+            new CnkbQueryView().render();
         },
 
         showCnkbResult: function () {
-            var cnkbResultView = new CnkbResultView();
-            cnkbResultView.render();
+            new CnkbResultView().render();
         },
 
         showGeneCartHelp: function () {
-            var geneCartHelpView = new GeneCartHelpView();
-            geneCartHelpView.render();
+            new GeneCartHelpView().render();
         },
     });
 
@@ -3791,7 +3692,7 @@
         Backbone.history.start();
 
         $("#omnisearch").submit(function () {
-            var searchTerm = $("#omni-input").val();
+            const searchTerm = $("#omni-input").val();
             window.location.hash = "search/" + encodeURI(encodeURIComponent(searchTerm));
             return false;
         });
@@ -3807,13 +3708,13 @@
                 return $("#search-help-content").html();
             },
         }).on("mouseenter", function () {
-            var _this = this;
+            const _this = this;
             $(this).popover("show");
             $(".popover").on("mouseleave", function () {
                 $(_this).popover('hide');
             });
         }).on("mouseleave", function () {
-            var _this = this;
+            const _this = this;
             setTimeout(function () {
                 if (!$(".popover:hover").length) {
                     $(_this).popover("hide");
