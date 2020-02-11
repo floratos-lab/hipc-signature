@@ -212,14 +212,9 @@
 				<batch:chunk reader="hipciof_ctf_corr_28193898Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
 		</batch:step>
-		<batch:step id="hipciof_ctf_corr_28854372Step" parent="observationDataStep" next="hipciof_ctf_corr_28123889Step">
+		<batch:step id="hipciof_ctf_corr_28854372Step" parent="observationDataStep" next="hipciof_gene_17349694Step">
 			<batch:tasklet>
 				<batch:chunk reader="hipciof_ctf_corr_28854372Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
-			</batch:tasklet>
-		</batch:step>
-		<batch:step id="hipciof_ctf_corr_28123889Step" parent="observationDataStep" next="hipciof_gene_17349694Step">
-			<batch:tasklet>
-				<batch:chunk reader="hipciof_ctf_corr_28123889Reader" processor="observationDataProcessor" writer="observationDataWriter"/>
 			</batch:tasklet>
 		</batch:step>
 		<batch:step id="hipciof_gene_17349694Step" parent="observationDataStep" next="hipciof_gene_17651872Step">
@@ -1008,15 +1003,6 @@
 		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm_and_extra,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url,subObsID,uniqObsID"/>
 	</bean >
 
-	<bean name="hipciof_ctf_corr_28123889LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
-		<property name="fieldSetMapper" ref="observationDataMapper" />
-		<property name="lineTokenizer" ref="hipciof_ctf_corr_28123889LineTokenizer" />
-	</bean>
-	<bean name="hipciof_ctf_corr_28123889LineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
-		<property name="delimiter" value="&#9;"/>
-		<property name="names" value="dummy,submission_name,submission_date,template_name,tissue_type,response_agent_orig,response_agent,proterm_and_extra,response_behavior_type,response_behavior,subgroup,time_point,time_point_units,target_pathogen,vaccine_year,exposure_material_text,exposure_material,additional_exposure_material,comparison,baseline_time,cohort,publication_reference,publication_year,publication_reference_url,subObsID,uniqObsID"/>
-	</bean >
-
 	<bean name="hipciof_gene_17349694LineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 		<property name="fieldSetMapper" ref="observationDataMapper" />
 		<property name="lineTokenizer" ref="hipciof_gene_17349694LineTokenizer" />
@@ -1787,28 +1773,28 @@
 				<entry key="hipciof_ctf_20:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_20:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_31:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_31:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_31:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_31:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_31:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_31:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_31:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_30:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_30:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_30:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_30:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_30:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_30:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_ctf_7:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_7:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
@@ -2132,28 +2118,28 @@
 				<entry key="hipciof_ctf_12:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_12:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_30:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_30:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_30:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_30:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_30:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_30:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_30:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_29:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_29:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_29:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_29:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_29:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_29:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_ctf_25:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_25:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
@@ -2178,28 +2164,28 @@
 				<entry key="hipciof_ctf_25:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_25:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_36:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_36:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_36:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_36:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_36:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_36:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_36:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_35:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_35:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_35:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_35:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_35:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_35:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_ctf_14:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_14:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
@@ -2224,28 +2210,28 @@
 				<entry key="hipciof_ctf_14:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_14:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_35:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_35:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_35:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_35:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_35:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_35:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_35:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_34:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_34:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_34:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_34:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_34:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_34:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_ctf_10:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_10:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
@@ -2316,28 +2302,28 @@
 				<entry key="hipciof_ctf_27:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_27:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_37:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_37:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_37:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_37:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_37:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_37:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_37:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_36:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_36:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_36:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_36:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_36:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_36:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_ctf_8:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_8:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
@@ -2362,29 +2348,6 @@
 				<entry key="hipciof_ctf_8:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_8:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_34:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_34:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_34:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_34:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_34:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_34:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_34:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
-
 				<entry key="hipciof_ctf_33:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_33:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_33:response_agent" value="subject:findCellSubsetByName" />
@@ -2408,29 +2371,6 @@
 				<entry key="hipciof_ctf_33:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_33:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_29:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_29:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_29:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_29:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_29:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_29:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_29:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
-
 				<entry key="hipciof_ctf_32:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_32:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_32:response_agent" value="subject:findCellSubsetByName" />
@@ -2453,6 +2393,52 @@
 				<entry key="hipciof_ctf_32:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 				<entry key="hipciof_ctf_32:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_32:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+
+				<entry key="hipciof_ctf_28:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_28:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_28:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_28:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_28:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_28:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_28:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+
+				<entry key="hipciof_ctf_31:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_31:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_31:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_31:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_31:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_31:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_31:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_ctf_corr_22:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_corr_22:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
@@ -2638,28 +2624,28 @@
 				<entry key="hipciof_ctf_corr_11:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_corr_11:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
-				<entry key="hipciof_ctf_corr_35:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_corr_35:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_corr_35:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_corr_35:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_corr_35:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_corr_35:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_35:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:tissue_type" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_corr_34:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:response_agent" value="subject:findCellSubsetByName" />
+				<entry key="hipciof_ctf_corr_34:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:subgroup" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:time_point" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:target_pathogen" value="subject:findPathogenByName" />
+				<entry key="hipciof_ctf_corr_34:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:exposure_material" value="subject:findVaccineByName" />
+				<entry key="hipciof_ctf_corr_34:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:comparison" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:cohort" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:publication_year" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
+				<entry key="hipciof_ctf_corr_34:subObsID" value="evidence:readString:createObservedLabelEvidence" />
+				<entry key="hipciof_ctf_corr_34:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_ctf_corr_8:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_ctf_corr_8:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
@@ -2706,29 +2692,6 @@
 				<entry key="hipciof_ctf_corr_4:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
 				<entry key="hipciof_ctf_corr_4:subObsID" value="evidence:readString:createObservedLabelEvidence" />
 				<entry key="hipciof_ctf_corr_4:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
-
-				<entry key="hipciof_ctf_corr_28:tissue_type" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_corr_28:response_agent_orig" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:response_agent" value="subject:findCellSubsetByName" />
-				<entry key="hipciof_ctf_corr_28:proterm_and_extra" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:response_behavior_type" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:response_behavior" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:subgroup" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:time_point" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:time_point_units" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:target_pathogen" value="subject:findPathogenByName" />
-				<entry key="hipciof_ctf_corr_28:vaccine_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:exposure_material_text" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:exposure_material" value="subject:findVaccineByName" />
-				<entry key="hipciof_ctf_corr_28:additional_exposure_material" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:comparison" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:baseline_time" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:cohort" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:publication_reference" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:publication_year" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:publication_reference_url" value="evidence:readString:createObservedUrlEvidence" />
-				<entry key="hipciof_ctf_corr_28:subObsID" value="evidence:readString:createObservedLabelEvidence" />
-				<entry key="hipciof_ctf_corr_28:uniqObsID" value="evidence:readString:createObservedLabelEvidence" />
 
 				<entry key="hipciof_gene_19:tissue_type" value="subject:findCellSubsetByName" />
 				<entry key="hipciof_gene_19:response_agent" value="subject:findGenesBySymbol" />
