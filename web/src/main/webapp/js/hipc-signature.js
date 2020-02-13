@@ -2536,19 +2536,18 @@
         template: _.template($("#genelist-view-tmpl").html()),
         render: function () {
 
-            var geneList = JSON.parse(localStorage.getItem("genelist"));
+            let geneList = JSON.parse(localStorage.getItem("genelist"));
             if (geneList == null)
                 geneList = [];
             else if (geneList.length > numOfCartGene) {
-                var len = geneList.length;
+                const len = geneList.length;
                 geneList.slice(numOfCartGene, len - 1);
                 localStorage.genelist = JSON.stringify(geneList);
             }
 
-            var html = "";
             $(this.el).html(this.template({}));
             $.each(geneList, function (aData) {
-                var value = Encoder.htmlEncode(this.toString());
+                const value = Encoder.htmlEncode(this.toString());
                 $("#geneNames").append(_.template($("#gene-cart-option-tmpl").html())({
                     displayItem: value
                 }));
@@ -2563,8 +2562,8 @@
             });
 
             $("#add-gene-symbols").click(function () {
-                var inputGenes = $("#gene-symbols").val();
-                var genes = Encoder.htmlEncode(inputGenes).split(/[\s,]+/);
+                const inputGenes = $("#gene-symbols").val();
+                const genes = Encoder.htmlEncode(inputGenes).split(/[\s,]+/);
 
                 processInputGenes(genes);
 
@@ -2573,7 +2572,7 @@
 
             $("#deleteGene").click(function (e) {
                 e.preventDefault();
-                var selectedGenes = [];
+                const selectedGenes = [];
                 $('#geneNames :selected').each(function (i, selected) {
                     selectedGenes[i] = $(selected).text();
                 });
@@ -2586,8 +2585,8 @@
 
                 $.each(selectedGenes, function () {
 
-                    var gene = $.trim(this.toString()).toUpperCase();
-                    var index = $.inArray(gene, geneList);
+                    const gene = $.trim(this.toString()).toUpperCase();
+                    const index = $.inArray(gene, geneList);
                     if (index >= 0) geneList.splice(index, 1);
 
                 });
@@ -2618,14 +2617,14 @@
 
             if (window.FileReader) {
                 $('#geneFileInput').on('change', function (e) {
-                    var file = e.target.files[0];
+                    const file = e.target.files[0];
                     if (file.size > 1000) {
                         showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
                         return;
                     }
-                    var reader = new FileReader();
+                    const reader = new FileReader();
                     reader.onload = function (e) {
-                        var genes = reader.result.split(/[\s,]+/);
+                        const genes = reader.result.split(/[\s,]+/);
 
                         processInputGenes(genes);
                     };
@@ -2640,7 +2639,7 @@
 
             $("#cnkb-query").click(function (e) {
 
-                var selectedGenes = [];
+                const selectedGenes = [];
                 $('#geneNames :selected').each(function (i, selected) {
                     selectedGenes[i] = $(selected).text();
                 });
@@ -2654,11 +2653,11 @@
 
             });
 
-            var processInputGenes = function (genes) {
-                var geneNames = JSON.parse(localStorage.getItem("genelist"));
+            const processInputGenes = function (genes) {
+                let geneNames = JSON.parse(localStorage.getItem("genelist"));
                 if (geneNames == null)
                     geneNames = [];
-                var num = genes.length + geneNames.length;
+                const num = genes.length + geneNames.length;
                 if (num > numOfCartGene) {
                     showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
                     return;
@@ -2672,7 +2671,7 @@
                     dataType: "json",
                     contentType: "json",
                     success: function (data) {
-                        var invalidGenes = "";
+                        const invalidGenes = "";
                         _.each(data, function (aData) {
                             if (invalidGenes.length > 0)
                                 invalidGenes = aData;
@@ -2696,11 +2695,11 @@
             };
 
 
-            var addGenes = function (genes) {
-                var alreadyHave = [];
-                var newGenes = [];
+            const addGenes = function (genes) {
+                const alreadyHave = [];
+                const newGenes = [];
                 $.each(genes, function () {
-                    var eachGene = Encoder.htmlEncode($.trim(this.toString())).toUpperCase();
+                    const eachGene = Encoder.htmlEncode($.trim(this.toString())).toUpperCase();
                     if (geneList.indexOf(eachGene) > -1)
                         alreadyHave.push(eachGene);
                     else if (newGenes.indexOf(eachGene.toUpperCase()) == -1 && eachGene != "") {
@@ -2712,7 +2711,7 @@
                 if (newGenes.length > 0) {
                     localStorage.genelist = JSON.stringify(geneList);
                     $.each(newGenes, function () {
-                        var value = this.toString();
+                        const value = this.toString();
                         $("#geneNames").append(_.template($("#gene-cart-option-tmpl").html())({
                             displayItem: value
                         }));
@@ -2729,11 +2728,11 @@
         el: $("#main-container"),
         template: _.template($("#cnkb-query-tmpl").html()),
         render: function () {
-            var selectedGenes = JSON.parse(sessionStorage.getItem("selectedGenes"));
-            var count = 0;
+            const selectedGenes = JSON.parse(sessionStorage.getItem("selectedGenes"));
+            let count = 0;
             if (selectedGenes != null)
                 count = selectedGenes.length;
-            var description;
+            let description;
             if (count == 0 || count == 1)
                 description = "Query with " + count + " gene from cart";
             else
@@ -2755,13 +2754,13 @@
                 dataType: "json",
                 contentType: "json",
                 success: function (data) {
-                    var list = data.interactomeList;
+                    const list = data.interactomeList;
                     _.each(list, function (aData) {
                         if (aData.toLowerCase().startsWith("preppi")) {
                             $("#interactomeList").prepend(_.template($("#gene-cart-option-tmpl-preselected").html())({
                                 displayItem: aData
                             }));
-                            var interactome = aData.split("(")[0].trim();
+                            const interactome = aData.split("(")[0].trim();
                             $.ajax({ // query the description
                                 url: "cnkb/query",
                                 data: {
@@ -2797,9 +2796,9 @@
                 }
             }); //ajax   
 
-            var versionDescriptors;
+            let versionDescriptors;
             $('#interactomeList').change(function () {
-                var selectedInteractome = $('#interactomeList option:selected').text().split("(")[0].trim();
+                const selectedInteractome = $('#interactomeList option:selected').text().split("(")[0].trim();
                 $.ajax({
                     url: "cnkb/query",
                     data: {
@@ -2814,10 +2813,10 @@
                     contentType: "json",
                     success: function (data) {
                         versionDescriptors = data.versionDescriptorList;
-                        var description = data.description;
+                        const description = data.description;
                         $('#interactomeDescription').html("");
                         $('#interactomeDescription').html(convertUrl(description));
-                        var list = data.versionDescriptorList;
+                        const list = data.versionDescriptorList;
                         $('#interactomeVersionList').html("");
                         _.each(list, function (aData) {
                             $("#interactomeVersionList").append(_.template($("#gene-cart-option-tmpl").html())({
@@ -2834,7 +2833,7 @@
             }); //end $('#interactomeList').change()
 
             $('#interactomeVersionList').change(function () {
-                var selectedVersion = $('#interactomeVersionList option:selected').text().trim();
+                const selectedVersion = $('#interactomeVersionList option:selected').text().trim();
                 _.each(versionDescriptors, function (aData) {
                     if (aData.version === selectedVersion) {
                         $('#versionDescription').html("");
@@ -2848,8 +2847,8 @@
 
             $("#cnkb-result").click(function (e) {
 
-                var selectedInteractome = $('#interactomeList option:selected').text().split("(")[0].trim();
-                var selectedVersion = $('#interactomeVersionList option:selected').text().trim();
+                const selectedInteractome = $('#interactomeList option:selected').text().split("(")[0].trim();
+                const selectedVersion = $('#interactomeVersionList option:selected').text().trim();
 
                 if (selectedInteractome == null || $.trim(selectedInteractome).length == 0) {
                     e.preventDefault();
@@ -2875,12 +2874,12 @@
         el: $("#main-container"),
         template: _.template($("#cnkb-result-tmpl").html()),
         render: function () {
-            var selectedgenes = JSON.parse(sessionStorage.getItem("selectedGenes"));
-            var selectedInteractome = JSON.parse(sessionStorage.getItem("selectedInteractome"));
-            var selectedVersion = JSON.parse(sessionStorage.getItem("selectedVersion"));
+            const selectedgenes = JSON.parse(sessionStorage.getItem("selectedGenes"));
+            const selectedInteractome = JSON.parse(sessionStorage.getItem("selectedInteractome"));
+            const selectedVersion = JSON.parse(sessionStorage.getItem("selectedVersion"));
 
             if (selectedgenes.length > numOfCartGene) {
-                var len = selectedgenes.length;
+                const len = selectedgenes.length;
                 selectedgenes.slice(numOfCartGene, len - 1);
                 sessionStorage.selectedGenes = JSON.stringify(selectedgenes);
             }
@@ -2900,24 +2899,23 @@
                 contentType: "json",
                 success: function (data) {
                     $("#cnkb_data_progress").hide();
-                    var cnkbElementList = data.cnkbElementList;
-                    var interactionTypes = data.interactionTypeList;
+                    const cnkbElementList = data.cnkbElementList;
+                    const interactionTypes = data.interactionTypeList;
                     _.each(interactionTypes, function (aData) {
-                        var type = aData.toUpperCase();
+                        const type = aData.toUpperCase();
                         $('#cnkb-result-grid thead tr').append('<th>' + type + '</th>');
                     });
 
-                    var thatEl = $("#cnkb-result-grid");
+                    const thatEl = $("#cnkb-result-grid");
                     _.each(cnkbElementList, function (aData) {
-                        var cnkbResultRowView = new CnkbResultRowView({
+                        new CnkbResultRowView({
                             el: $(thatEl).find("tbody"),
                             model: aData
-                        });
-                        cnkbResultRowView.render();
+                        }).render();
 
                     });
 
-                    var oTable1 = $('#cnkb-result-grid').dataTable({
+                    $('#cnkb-result-grid').dataTable({
                         "sDom": "<'fullwidth'ifrtlp>",
                         "sScrollY": "200px",
                         "bPaginate": false
@@ -2930,7 +2928,7 @@
 
             $('#cnkbExport').click(function (e) {
                 e.preventDefault();
-                var filters = "";
+                let filters = "";
                 $('input[type="checkbox"]:checked').each(function () {
                     filters = filters + ($(this).val() + ',');
                 });
@@ -2948,10 +2946,10 @@
 
             }); //end $('#interactomeList').change()
 
-            var getThrottleValue = function () {
+            const getThrottleValue = function () {
 
-                var interactionLimit = $("#cytoscape-node-limit").val();
-                var filters = "";
+                const interactionLimit = $("#cytoscape-node-limit").val();
+                let filters = "";
                 $('input[type="checkbox"]:checked').each(function () {
                     filters = filters + ($(this).val() + ',');
                 });
@@ -3009,13 +3007,10 @@
 
             $('#createnetwork').click(function (event) {
                 event.preventDefault();
-                var throttle = $("#throttle-input").text();
-                var layoutName = $("#cytoscape-layouts").val();
-                var interactionLimit = $("#cytoscape-node-limit").val();
+                const throttle = $("#throttle-input").text();
+                const interactionLimit = $("#cytoscape-node-limit").val();
 
-                var n = $("input:checked").length;
-
-                var filters = "";
+                let filters = "";
                 $('input[type="checkbox"]:checked').each(function () {
                     filters = filters + ($(this).val() + ',');
 
@@ -3044,7 +3039,7 @@
                             showAlertMessage("The network is empty.");
                             return;
                         }
-                        var cnkbDescription = selectedInteractome + " (v" + selectedVersion + ")";
+                        const cnkbDescription = selectedInteractome + " (v" + selectedVersion + ")";
                         drawCNKBCytoscape(data, Encoder.htmlEncode(cnkbDescription));
 
                     } //end success
@@ -3061,15 +3056,15 @@
 
     const CnkbResultRowView = Backbone.View.extend({
         render: function () {
-            var result = this.model;
+            const result = this.model;
 
-            var templateId = "#cnkb-result-row-tmpl";
+            const templateId = "#cnkb-result-row-tmpl";
 
             this.template = _.template($(templateId).html());
             $(this.el).append(this.template(result));
-            var geneName = Encoder.htmlEncode(result.geneName);
+            const geneName = Encoder.htmlEncode(result.geneName);
 
-            var numList = result.interactionNumlist;
+            const numList = result.interactionNumlist;
             _.each(numList, function (aData) {
                 $("#tr_" + geneName).append('<td>' + aData + '</td>');
             });
@@ -3090,7 +3085,7 @@
 
 
     const updateGeneList = function (addedGene) {
-        var geneNames = JSON.parse(localStorage.getItem("genelist"));
+        let geneNames = JSON.parse(localStorage.getItem("genelist"));
         if (geneNames == null)
             geneNames = [];
 
@@ -3124,21 +3119,21 @@
 
     const convertUrl = function (description) {
         if (description.indexOf("http:") > -1) {
-            var word = description.split("http:");
-            var temp = $.trim(word[1]);
+            const word = description.split("http:");
+            let temp = $.trim(word[1]);
             if (temp.match(/.$/))
                 temp = temp.substring(0, temp.length - 1);
             temp = $.trim(temp);
-            var link = "<a target=\"_blank\" href=\"" + temp + "\">" + temp + "</a>";
+            const link = "<a target=\"_blank\" href=\"" + temp + "\">" + temp + "</a>";
             return word[0] + link;
         } else
             return description;
     };
 
     const drawCNKBCytoscape = function (data, description) {
-        var svgHtml = "";
-        var interactions = data.interactions;
-        var x1 = 20 + 90 * (3 - interactions.length),
+        let svgHtml = "";
+        const interactions = data.interactions;
+        let x1 = 20 + 90 * (3 - interactions.length),
             x2 = 53 + 90 * (3 - interactions.length);
         _.each(interactions, function (aData) {
             svgHtml = svgHtml + '<rect x="' + x1 + '" y="15" width="30" height="2" fill="' + aData.color + '" stroke="grey" stroke-width="0"/><text x="' + x2 + '" y="20" fill="grey">' + aData.type + '</text>';
@@ -3158,12 +3153,11 @@
         }
         );
 
-        var container = $('#cytoscape');
-        var layoutName = $("#cytoscape-layouts").val();
+        const layoutName = $("#cytoscape-layouts").val();
 
-        var cy = cytoscape({
+        const cy = cytoscape({
 
-            container: document.getElementById("cytoscape"),
+            container: $('#cytoscape'),
             layout: {
                 name: layoutName,
                 fit: true,
@@ -3232,7 +3226,7 @@
         cy.on('cxttap', 'node', function () {
 
             $.contextMenu('destroy', '#cytoscape');
-            var sym = this.data('id');
+            const sym = this.data('id');
             $.contextMenu({
                 selector: '#cytoscape',
 
@@ -3242,7 +3236,7 @@
                         return;
                     }
 
-                    var linkUrl = "";
+                    let linkUrl = "";
                     switch (key) {
                         case 'linkout':
                             return;
