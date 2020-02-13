@@ -318,7 +318,7 @@ td.next-cell {
     width: 95%;
     height: 90%;
 }
-#cytoscape,#mra-cytoscape {
+#cytoscape {
     width: 93%;
     height: 70%;
     border: 1px solid #dddddd;

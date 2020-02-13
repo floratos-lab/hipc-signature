@@ -1,7 +1,6 @@
 package gov.nih.nci.ctd2.dashboard.importer.internal;
 
 import gov.nih.nci.ctd2.dashboard.model.*;
-import gov.nih.nci.ctd2.dashboard.util.StableURL;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.importer.ObservationDataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -186,10 +185,6 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 			((FileEvidence)evidence).setMimeType(observedEvidenceRole.getAttribute());
 		}
 		observedEvidence.setEvidence(evidence);
-		if(file.getName().endsWith(".mra")) {
-			String stableURL = new StableURL().createURLWithPrefix("mra", file.getName());
-			observedEvidence.setStableURL(stableURL);
-		}
 		return observedEvidence;
 	}
 

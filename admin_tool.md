@@ -115,7 +115,6 @@ broad.cmp.sens.lineage.enrich.data.location=file:${HIPC_DATA_HOME}/submissions/2
 broad.cmp.sens.mutation.enrich.data.location=file:${HIPC_DATA_HOME}/submissions/20130328-broad_cpd_sens_mutation_enrich-navitoclax/20130328-broad_cpd_sens_mutation_enrich-navitoclax.txt
 broad.tier3.navitoclax.story.data.location=file:${HIPC_DATA_HOME}/submissions/20130402-broad_tier3_navitoclax_story/20130402-broad_tier3_navitoclax_story.txt
 columbia.marina.analysis.data.location=file:${HIPC_DATA_HOME}/submissions/20130402-columbia_marina_analysis-T-ALL/20130402-columbia_marina_analysis-T-ALL.txt
-columbia.mra.fet.analysis.data.location=file:${HIPC_DATA_HOME}/submissions/20130403-columbia_mra_fet_analysis-glioma/20130403-columbia_mra_fet_analysis-glioma.txt
 columbia.joint.mr.shrna.diff.analysis.data.location=file:${HIPC_DATA_HOME}/submissions/20130401-columbia_joint_mr_shrna_diff-T-ALL/20130401-columbia_joint_mr_shrna_diff-T-ALL.txt
 columbia.tier4.glioma.story.data.location=file:${HIPC_DATA_HOME}/submissions/20130401-columbia_tier4_glioma_story/20130401-columbia_tier4_glioma_story.txt
 cshl.tier4.fgf19.story.data.location=file:${HIPC_DATA_HOME}/submissions/20130403-cshl_tier4_fgf19_story/20130403-cshl_tier4_fgf19_story.txt

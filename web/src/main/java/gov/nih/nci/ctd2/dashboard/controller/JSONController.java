@@ -90,10 +90,7 @@ public class JSONController {
 
         log.debug("JSONController " + type + " " + id);
         if (typesWithStableURL.contains(type)) {
-            String stableURL = type + "/" + id;
-            if (type.equals("observedevidence"))
-                stableURL = "mra/" + id;
-            entityById = dashboardDao.getEntityByStableURL(type, stableURL);
+            entityById = dashboardDao.getEntityByStableURL(type, type + "/" + id);
         } else {
             entityById = dashboardDao.getEntityById(clazz, Integer.parseInt(id));
         }
