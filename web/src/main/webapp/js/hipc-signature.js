@@ -2987,7 +2987,6 @@
     /* Routers */
     const AppRouter = Backbone.Router.extend({
         routes: {
-            "centers": "listCenters",
             "explore/:type/:roles": "explore",
             "center/:name/:project": "showCenterProject",
             "center/:name": "showCenter",
@@ -3313,10 +3312,6 @@
                     }).render();
                 }
             });
-        },
-
-        listCenters: function () {
-            new CenterListView().render();
         },
 
         showGeneList: function () {
