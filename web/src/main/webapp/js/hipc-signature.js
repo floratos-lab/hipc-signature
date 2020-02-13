@@ -2072,8 +2072,8 @@
         el: $("#main-container"),
         template: _.template($("#mra-view-tmpl").html()),
         render: function () {
-            var result = this.model.toJSON();
-            var mra_data_url = $("#mra-view-tmpl").attr("mra-data-url") + result.evidence.filePath.replace(/\\/g, '/');
+            const result = this.model.toJSON();
+            const mra_data_url = $("#mra-view-tmpl").attr("mra-data-url") + result.evidence.filePath.replace(/\\/g, '/');
             $(this.el).html(this.template(result));
             $.ajax({
                 url: "mra-data/",
@@ -2088,43 +2088,39 @@
                 contentType: "json",
 
                 success: function (data) {
-                    var thatEl = $("#master-regulator-grid");
-                    var thatE2 = $("#mra-barcode-grid");
+                    const thatEl = $("#master-regulator-grid");
+                    const thatE2 = $("#mra-barcode-grid");
                     _.each(data, function (aData) {
-                        var mraViewRowView = new MraViewRowView({
+                        new MraViewRowView({
                             el: $(thatEl).find("tbody"),
                             model: aData
-                        });
-                        mraViewRowView.render();
+                        }).render();
 
-                        var mraBarcodeRowView = new MraBarcodeRowView({
+                        new MraBarcodeRowView({
                             el: $(thatE2).find("tbody"),
                             model: aData
-                        });
-                        mraBarcodeRowView.render();
+                        }).render();
 
                     });
 
-                    var oTable1 = $('#master-regulator-grid').dataTable({
+                    $('#master-regulator-grid').dataTable({
                         "sDom": "<'fullwidth'ifrtlp>",
                         "sScrollY": "200px",
                         "bPaginate": false
                     });
 
-
-                    var oTable2 = $('#mra-barcode-grid').dataTable();
+                    $('#mra-barcode-grid').dataTable();
                 }
             }); //ajax 
 
 
             $(".mra-cytoscape-view").click(function (event) {
                 event.preventDefault();
-                var mraDesc = $(this).attr("data-description");
-                var throttle = $("#throttle-input").text();
-                var layoutName = $("#cytoscape-layouts").val();
-                var nodeLimit = $("#cytoscape-node-limit").val();
+                const mraDesc = $(this).attr("data-description");
+                const layoutName = $("#cytoscape-layouts").val();
+                const nodeLimit = $("#cytoscape-node-limit").val();
 
-                var filters = "";
+                let filters = "";
                 $('input[type="checkbox"]:checked').each(function () {
                     filters = filters + ($(this).val() + ',');
                 });
@@ -2239,8 +2235,8 @@
             }); //end .cytoscape-view
 
             $("#master-regulator-grid").on("change", ":checkbox", function () {
-                var nodeLimit = $("#cytoscape-node-limit").val();
-                var filters = "";
+                const nodeLimit = $("#cytoscape-node-limit").val();
+                let filters = "";
                 $('input[type="checkbox"]:checked').each(function () {
                     filters = filters + ($(this).val() + ',');
                 });
@@ -2271,8 +2267,8 @@
             $("#cytoscape-node-limit").change(function (evt) {
                 //the following block code is same as above, shall make it as function,
                 //but for somehow the function call does not work here for me. 
-                var nodeLimit = $("#cytoscape-node-limit").val();
-                var filters = "";
+                const nodeLimit = $("#cytoscape-node-limit").val();
+                let filters = "";
                 $('input[type="checkbox"]:checked').each(function () {
                     filters = filters + ($(this).val() + ',');
                 });
@@ -2306,11 +2302,9 @@
 
     const MraViewRowView = Backbone.View.extend({
         render: function () {
-            var result = this.model;
+            const result = this.model;
 
-            var templateId = "#mra-view-row-tmpl";
-
-            this.template = _.template($(templateId).html());
+            this.template = _.template($("#mra-view-row-tmpl").html());
             $(this.el).append(this.template(result));
 
 
@@ -2321,11 +2315,9 @@
 
     const MraBarcodeRowView = Backbone.View.extend({
         render: function () {
-            var result = this.model;
+            const result = this.model;
 
-            var templateId = "#mra-barcode-view-row-tmpl";
-
-            this.template = _.template($(templateId).html());
+            this.template = _.template($("#mra-barcode-view-row-tmpl").html());
             $(this.el).append(this.template(result));
 
             if (result.daColor != null)
@@ -2339,12 +2331,12 @@
                 });
 
 
-            var canvasId = "draw-" + result.entrezId;
-            var ctx = document.getElementById(canvasId).getContext("2d");
+            const canvasId = "draw-" + result.entrezId;
+            const ctx = document.getElementById(canvasId).getContext("2d");
 
             _.each(result.mraTargets, function (mraTarget) {
 
-                var colorIndex = 255 - mraTarget.colorIndex;
+                const colorIndex = 255 - mraTarget.colorIndex;
                 if (mraTarget.arrayIndex == 0) {
                     ctx.fillStyle = 'rgb(255,' + colorIndex + ',' + colorIndex + ')';
                     ctx.fillRect(mraTarget.position, 0, 1, 15);
