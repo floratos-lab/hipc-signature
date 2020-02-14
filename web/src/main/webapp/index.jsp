@@ -57,7 +57,7 @@
                             class="caret"></b></a>
                     <ul id="dropdown-menu-browse" class="dropdown">
                         <li><a href="#explore/response_agent/gene_biomarker">Genes</a></li>
-                        <li><a href="#explore/cellsubset/cell_biomarker">Cell Subset</a></li>
+                        <li><a href="#explore/cellsubset/cell_biomarker,tissue">Cell Subset</a></li>
                         <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
                         <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
                     </ul>
@@ -278,7 +278,7 @@
                   <p>
                     Explore cell subsets identified as components of vaccine response signatures
                   </p>
-                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker">Browse &raquo;</a>
+                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker,tissue">Browse &raquo;</a>
               </div>
 
           </div><!-- /.row -->

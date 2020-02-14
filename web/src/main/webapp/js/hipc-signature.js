@@ -2172,7 +2172,7 @@
     /* this does not have any effect for now because the 'select roles' button is hidden. */
     const browseRole = {
         response_agent: ["gene_biomarker"],
-        cellsubset: ['cell_biomarker'],
+        cellsubset: ['cell_biomarker', 'tissue'],
         pathogen: ["pathogen"],
         vaccine: ["vaccine"]
     };
