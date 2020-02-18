@@ -465,7 +465,7 @@
                         <td>{{submission.observationTemplate.submissionDescription}}</td>
                     </tr>
                     <tr>
-                        <th>Date</th>
+                        <th>Publication Date</th>
                         <td>{{submission.submissionDate}}</td>
                     </tr>
                     <tr>
@@ -716,7 +716,7 @@
              <table id="pathogen-observation-grid" class="table table-bordered table-striped observations">
                  <thead>
                  <tr>
-                     <th>Date</th>
+                     <th>Publication Date</th>
                      <th width=500>Observation Summary</th>
                      <th>Center</th>
                  </tr>
@@ -768,7 +768,7 @@
              <table id="cellsubset-observation-grid" class="table table-bordered table-striped observations">
                  <thead>
                  <tr>
-                     <th>Date</th>
+                     <th>Publication Date</th>
                      <th width=500>Observation Summary</th>
                      <th>Center</th>
                  </tr>
@@ -822,7 +822,7 @@
              <table id="vaccine-observation-grid" class="table table-bordered table-striped observations">
                  <thead>
                  <tr>
-                     <th>Date</th>
+                     <th>Publication Date</th>
                      <th width=500>Observation Summary</th>
                      <th>Center</th>
                  </tr>
@@ -891,7 +891,7 @@
              <table id="gene-observation-grid" class="table table-bordered table-striped observations">
                  <thead>
                  <tr>
-                     <th>Date</th>
+                     <th>Publication Date</th>
                      <th width=500>Observation Summary</th>
                      <th>Center</th>
                  </tr>
@@ -959,7 +959,7 @@
             <table id="protein-observation-grid" class="table table-bordered table-striped observations">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Publication Date</th>
                     <th width=500>Observation Summary</th>
                     <th>Center</th>
                 </tr>
@@ -1021,7 +1021,7 @@
             <table id="shrna-observation-grid" class="table table-bordered table-striped observations">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Publication Date</th>
                     <th width=500>Observation Summary</th>
                     <th>Center</th>
                 </tr>
@@ -1083,7 +1083,7 @@
             <table id="sirna-observation-grid" class="table table-bordered table-striped observations">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Publication Date</th>
                     <th width=500>Observation Summary</th>
                     <th>Center</th>
                 </tr>
@@ -1142,7 +1142,7 @@
             <table id="transcript-observation-grid" class="table table-bordered table-striped observations">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Publication Date</th>
                     <th width=500>Observation Summary</th>
                     <th>Center</th>
                 </tr>
@@ -1200,7 +1200,7 @@
             <table id="tissuesample-observation-grid" class="table table-bordered table-striped observations">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Publication Date</th>
                     <th width=500>Observation Summary</th>
                     <th>Center</th>
                 </tr>
@@ -1267,7 +1267,7 @@
             <table id="cellsample-observation-grid" class="table table-bordered table-striped observations">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Publication Date</th>
                     <th width=500>Observation Summary</th>
                     <th>Center</th>
                 </tr>
@@ -1322,7 +1322,7 @@
             <table id="animalmodel-observation-grid" class="table table-bordered table-striped observations">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Publication Date</th>
                     <th width=500>Observation Summary</th>
                     <th>Center</th>
                 </tr>
@@ -1391,7 +1391,7 @@
               <table id="compound-observation-grid" class="table table-bordered table-striped observations">
                   <thead>
                   <tr>
-                      <th>Date</th>
+                      <th>Publication Date</th>
                       <th width=500>Observation Summary</th>
                       <th>Center</th>
                   </tr>
@@ -1640,7 +1640,7 @@
                     <thead>
                     <tr>
                         <th>&nbsp; &nbsp;</th>
-                        <th>Date</th>
+                        <th>Publication Date</th>
                         <th>Description</th>
                         <th>Center</th>
                         <th>Details</th>
@@ -1656,7 +1656,7 @@
                 <table id="searched-observation-grid" class="table table-bordered table-striped observations">
                     <thead>
                     <tr>
-                        <th>Date</th>
+                        <th>Publication Date</th>
                         <th width=500>Observation Summary</th>
                         <th>Center</th>
                     </tr>
