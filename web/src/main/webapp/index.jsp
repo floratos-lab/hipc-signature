@@ -305,7 +305,7 @@
                     <tr>
                         <th>Project</th>
                         <th>Description</th>
-                        <th width="90">Date</th>
+                        <th width="90">Publication Date</th>
                         <th>Details</th>
                     </tr>
                 </thead>
