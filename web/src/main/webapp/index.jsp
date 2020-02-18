@@ -291,7 +291,7 @@
         <div class="container common-container" id="center-submission-container">
             <div class="row">
                 <div class="col-9">
-                    <h2 class="center-title">{{displayName}} <small>studies</small></h2>
+                    <h2 class="center-title">Studies</h2>
                 </div>
                 <div class="col-3">
                     <img src="img/{{displayName}}.png" title="{{displayName}}" alt="{{displayName}}" class="img-polaroid" width="200">
