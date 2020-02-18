@@ -1795,7 +1795,7 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <p>
                 Only {{numOfObservations}} of {{numOfAllObservations}} observations are listed in the table below.
-                Enter the text to filter: <input id=filter_text />
+                Enter text to filter among <b>all</b> observations: <input id=filter_text />
                 <button id=filter_button>Filter</button>
                 <span id=filtered_number></span>
                 <button id=load-filtered style="display: none;">Load the observations</button>
