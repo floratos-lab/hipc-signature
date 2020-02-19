@@ -64,7 +64,7 @@ public class WebServiceUtil {
     @Transactional
     @Cacheable(value = "exploreCache")
     public List<SubjectWithSummaries> exploreSubjects(String keyword) {
-        return dashboardDao.findSubjectWithSummariesByRole(keyword, 1);
+        return dashboardDao.findSubjectWithSummariesByRole(keyword, 0);
     }
 
     @Transactional
