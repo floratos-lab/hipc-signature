@@ -24,15 +24,13 @@
     });
 
     $.extend(true, $.fn.dataTable.defaults, {
-        "oLanguage": { // "search" -> "filter"
-            "sSearch": "Filter Table:"
+        "language": { // "search" -> "filter"
+            "sSearch": "Filter this Table:"
         },
         "search": { // simple searching
             "smart": false
         },
-        // These are for bootstrap-styled datatables
-        "sDom": "<ifrtlp>",
-        "sPaginationType": "bootstrap"
+        "dom": "<ifrtlp>",
     });
 
     // Let datatables know about our date format
@@ -834,6 +832,7 @@
                             ]
                         }
                     }).render();
+                    // TODO change the search label for the related table
                 }
             });
 
@@ -855,9 +854,9 @@
 
                     const oTable = $(thatEl).dataTable({
                         'dom': '<iBfrtlp>',
-                        "sPaginationType": "bootstrap",
-                        "columns": [{
-                            "orderDataType": "dashboard-date"
+                        "columns": [
+                            {
+                                "orderDataType": "dashboard-date"
                             },
                             null,
                             null
@@ -1399,7 +1398,14 @@
 
                             summary += _.template($("#submission-obs-tbl-row-tmpl").html())(thatModel);
                             $(thatEl).html(summary);
-                            const dataTable = $(tableEl).parent().DataTable();
+                            const dataTable = $(tableEl).parent().DataTable(
+                                {
+                                    destroy: true,
+                                    language: {
+                                        "search": "label for this table only:"
+                                    },
+                                }
+                            );
                             dataTable.cells(cellId).invalidate();
                             dataTable.order([
                                 [0, 'desc'],
