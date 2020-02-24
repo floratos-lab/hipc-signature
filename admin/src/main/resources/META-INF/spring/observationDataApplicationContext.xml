@@ -960,16 +960,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipciof_gene_30566602Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipciof_gene_30566602.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipciof_gene_30566602LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipciof_gene_30843873Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipciof_gene_30843873.data.location}" />
             <property name="delegate">
@@ -995,6 +985,16 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipciof_gene_30873150LineMapper" />
+				<property name="linesToSkip" value="7" />
+
+			</bean>
+		</property>
+	</bean>
+	<bean name="hipciof_gene_30566602Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipciof_gene_30566602.data.location}" />
+            <property name="delegate">
+                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+    				<property name="lineMapper" ref="hipciof_gene_30566602LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
