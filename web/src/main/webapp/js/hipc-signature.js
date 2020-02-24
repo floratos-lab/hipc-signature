@@ -832,7 +832,6 @@
                             ]
                         }
                     }).render();
-                    // TODO change the search label for the related table
                 }
             });
 
@@ -1398,14 +1397,7 @@
 
                             summary += _.template($("#submission-obs-tbl-row-tmpl").html())(thatModel);
                             $(thatEl).html(summary);
-                            const dataTable = $(tableEl).parent().DataTable(
-                                {
-                                    destroy: true,
-                                    language: {
-                                        "search": "label for this table only:"
-                                    },
-                                }
-                            );
+                            const dataTable = $(tableEl).parent().DataTable();
                             dataTable.cells(cellId).invalidate();
                             dataTable.order([
                                 [0, 'desc'],
