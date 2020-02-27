@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -135,15 +136,19 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 		return observedSubject;
 	}
 
+	private LabelEvidence labelEvidence = null;
+
 	@Override
 	public ObservedEvidence createObservedLabelEvidence(String evidenceValue, String columnName,
 														String templateName, Observation observation) {
 		ObservedEvidence observedEvidence = dashboardFactory.create(ObservedEvidence.class);
 		observedEvidence.setDisplayName(evidenceValue);
 		observedEvidence.setObservation(observation);
-		Evidence evidence = dashboardFactory.create(LabelEvidence.class);
-		evidence.setDisplayName(evidenceValue);
-		observedEvidence.setEvidence(evidence);
+		if (labelEvidence == null) {
+			labelEvidence = dashboardFactory.create(LabelEvidence.class);
+			dashboardDao.save(labelEvidence);
+		}
+		observedEvidence.setEvidence(labelEvidence);
 		ObservedEvidenceRole observedEvidenceRole = getObservedEvidenceRole(templateName, columnName);
 		if (observedEvidenceRole != null) observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
 		return observedEvidence;
@@ -188,6 +193,7 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 		return observedEvidence;
 	}
 
+	Map<String, UrlEvidence> urls = new HashMap<String, UrlEvidence>();
 
 	@Override
 	public ObservedEvidence createObservedUrlEvidence(String evidenceValue, String columnName,
@@ -197,9 +203,15 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 		observedEvidence.setObservation(observation);
 		ObservedEvidenceRole observedEvidenceRole = getObservedEvidenceRole(templateName, columnName);
 		if (observedEvidenceRole != null) observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
-		Evidence evidence = dashboardFactory.create(UrlEvidence.class);
-        evidence.setDisplayName(String.valueOf(evidenceValue));
-		((UrlEvidence)evidence).setUrl(getEvidenceURL(columnName, evidenceValue));
+		String url = getEvidenceURL(columnName, evidenceValue);
+		UrlEvidence evidence = urls.get(url);
+		if (evidence == null) {
+			evidence = dashboardFactory.create(UrlEvidence.class);
+			evidence.setDisplayName(String.valueOf(evidenceValue));
+			((UrlEvidence)evidence).setUrl(url);
+			urls.put(url, evidence);
+			dashboardDao.save(evidence); // this is much slower than batch saving, but prevents multiple copies
+		}
 		observedEvidence.setEvidence(evidence);
 		return observedEvidence;
 	}

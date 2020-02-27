@@ -18,10 +18,12 @@ import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.impl.ExpandedSummary;
 import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 import gov.nih.nci.ctd2.dashboard.model.Evidence;
+import gov.nih.nci.ctd2.dashboard.model.LabelEvidence;
 import gov.nih.nci.ctd2.dashboard.model.Observation;
 import gov.nih.nci.ctd2.dashboard.model.ObservedEvidence;
 import gov.nih.nci.ctd2.dashboard.model.ObservedSubject;
 import gov.nih.nci.ctd2.dashboard.model.Submission;
+import gov.nih.nci.ctd2.dashboard.model.UrlEvidence;
 import gov.nih.nci.ctd2.dashboard.util.StableURL;
 
 @Component("observationDataWriter")
@@ -67,6 +69,8 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
         }
 
         List<Observation> observations = new ArrayList<Observation>();
+        // TODO all evidences should be saved beforehand so they will not become multple
+        // copies when saved here
         List<Evidence> evidences = new ArrayList<Evidence>();
         List<ObservedSubject> observedSubjects = new ArrayList<ObservedSubject>();
         List<ObservedEvidence> observedEvidences = new ArrayList<ObservedEvidence>();
@@ -79,6 +83,8 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
             observationIndex.put(submissionName, index + 1);
 
             for (DashboardEntity e : observationData.evidence) {
+                if (e instanceof LabelEvidence || e instanceof UrlEvidence)
+                    continue;
                 evidences.add((Evidence) e);
             }
 
