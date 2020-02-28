@@ -1635,7 +1635,7 @@
             </table>
 
             <div id="submission-search-results">
-                <h3>Study</h3>
+                <h3>Study Descriptions Matching any Search Term</h3>
                 <table id="searched-submissions" class="table table-bordered table-striped">
                     <thead>
                     <tr>
