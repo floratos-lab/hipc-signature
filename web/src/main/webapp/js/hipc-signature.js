@@ -1897,6 +1897,11 @@
         if (m_observations.length <= 0) return;
 
         $("#observation-search-results").fadeIn();
+        $("#observation-search-title").popover({
+            placement: 'top',
+            trigger: 'hover',
+            content: 'Matches “subject” terms found in observations.',
+        });
         const thatEl = $("#searched-observation-grid");
 
         $(".subject-observations-loading", thatEl).remove();

@@ -1652,7 +1652,7 @@
             </div>
 
             <div id="observation-search-results">
-                <h3>Observations Matching all Search Terms</h3>
+                <h3><span id=observation-search-title>Observations Matching all Search Terms</span></h3>
                 <table id="searched-observation-grid" class="table table-bordered table-striped observations">
                     <thead>
                     <tr>
