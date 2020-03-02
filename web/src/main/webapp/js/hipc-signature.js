@@ -2017,11 +2017,10 @@
                                         "orderDataType": "dashboard-date"
                                     },
                                     null,
-                                    null,
                                     null
                                 ]
                             }).fnSort([
-                                [4, 'desc'],
+                                [3, 'desc'],
                                 [2, 'desc']
                             ]);
                         }

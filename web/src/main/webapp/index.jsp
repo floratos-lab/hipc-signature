@@ -1643,7 +1643,6 @@
                         <th>&nbsp; &nbsp;</th>
                         <th>Publication Date</th>
                         <th>Description</th>
-                        <th>Center</th>
                         <th>Details</th>
                     </tr>
                     </thead>
@@ -1683,7 +1682,6 @@
             <td><a href="#{{dashboardEntity.stableURL}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
             <td><a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.submissionDate}}</a></td>
             <td>{{dashboardEntity.observationTemplate.description}}</td>
-            <td><a href="#{{dashboardEntity.stableURL}}"><img src="img/{{dashboardEntity.observationTemplate.submissionCenter.displayName}}.png" title="{{dashboardEntity.observationTemplate.submissionCenter.displayName}}" alt="{{dashboardEntity.observationTemplate.submissionCenter.displayName}}" height="50"></a></td>
             <td width=150>
                 <a href="#{{dashboardEntity.stableURL}}" id="search-observation-count-{{dashboardEntity.id}}">{{observationCount}} observations</a>
             </td>
