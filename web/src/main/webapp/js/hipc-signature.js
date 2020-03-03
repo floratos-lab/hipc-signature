@@ -2086,9 +2086,7 @@
                         }
                         const nameLink = "<a href='#" + subject.stableURL + "/" + role + "'>" + subject.displayName + "</a>";
                         const n1obv = sModel.numberOfTier1Observations;
-                        const n1ctr = sModel.numberOfTier1SubmissionCenters;
-                        const n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/1'>" + n1obv + "</a>") +
-                            (n1obv > 1 ? " (" + n1ctr + " center" + (n1ctr > 1 ? "s" : "") + ")" : "");
+                        const n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/1'>" + n1obv + "</a>");
                         table_data.push([reformatted, nameLink, role, n1link]);
                     });
                     $("#explore-table").dataTable({
