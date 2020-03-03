@@ -14,7 +14,8 @@ import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 
 /* 
     A simple tool to test searching functionality outside the web application. 
-    Usage: java -cp admin\target\dashboard-admin.jar gov.nih.nci.ctd2.dashboard.SearchTester brisbane
+    Usage on Windows: java -cp admin\target\dashboard-admin.jar gov.nih.nci.ctd2.dashboard.SearchTester brisbane
+    or Linux: java -cp admin/target/dashboard-admin.jar gov.nih.nci.ctd2.dashboard.SearchTester brisbane
     Note: brisbane is an example term to search for.
 */
 public class SearchTester {
@@ -39,15 +40,11 @@ public class SearchTester {
         ArrayList<DashboardEntityWithCounts> list = dao.search(args[0]);
         log.debug("finished time " + new Date());
         System.out.println("returned size is " + list.size());
-        int c = 0;
-        for (DashboardEntityWithCounts x : list) {
-            c++;
-            if (c > 10)
-                break;
+        list.stream().limit(10).forEach(x -> {
             DashboardEntity dashboardEntity = x.getDashboardEntity();
             System.out.println(dashboardEntity.getId() + "," + dashboardEntity.getDisplayName() + ","
                     + dashboardEntity.getClass());
-        }
+        });
         log.debug("done with testing " + new Date());
     }
 
