@@ -2059,9 +2059,12 @@
             $(this.el).html(this.template(thatModel));
             const data_url = $("#explore-tmpl").attr("data-url");
             const subjectWithSummaryCollection = new SubjectWithSummaryCollection(thatModel);
+            $("#explore-table").hide();
             subjectWithSummaryCollection.fetch({
                 success: function () {
                     $("#explore-items").html("");
+                    $("#loading-spinner").hide();
+                    $("#explore-table").show();
 
                     const table_data = [];
                     _.each(subjectWithSummaryCollection.models, function (subjectWithSummary) {
