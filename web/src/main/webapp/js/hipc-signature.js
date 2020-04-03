@@ -1679,7 +1679,12 @@
                         });
 
                         $(sTable).dataTable({
-                            dom: "<'fullwidth'ifrtlp>",
+                            dom: "<'fullwidth'iBfrtlp>",
+                            'buttons': [{
+                                extend: 'excelHtml5',
+                                text: 'Export as Spreadsheet',
+                                className: "extra-margin",
+                            }],
                         });
 
                     }
