@@ -2348,7 +2348,7 @@
                     dataType: "json",
                     contentType: "json",
                     success: function (data) {
-                        const invalidGenes = "";
+                        let invalidGenes = "";
                         _.each(data, function (aData) {
                             if (invalidGenes.length > 0)
                                 invalidGenes = aData;
