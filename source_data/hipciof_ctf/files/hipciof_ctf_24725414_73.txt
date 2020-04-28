@@ -1,0 +1,8 @@
+CD4-positive, alpha-beta T cell & CD38+
+CD4-positive, alpha-beta T cell & IL-4+
+CD8-positive, alpha-beta T cell & CD39+
+IgD-negative memory B cell & CD27+, CD38+
+IgD-negative memory B cell & CD86+, CD27-
+mature B cell & CD86+, activated
+naive B cell & CD86+
+plasmablast & CD27++, CD38++, CD20-

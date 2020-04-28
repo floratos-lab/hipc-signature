@@ -1,0 +1,4 @@
+CD14-positive monocyte & CCR2+
+CD14-positive monocyte & CCR5+
+CD14-positive monocyte & CD64+
+CD14-positive, CD16-positive monocyte

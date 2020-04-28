@@ -168,6 +168,8 @@ def create_method_name(subject, evidence, role, mime_type):
             method_name = 'createObservedLabelEvidence'
         elif evidence == 'url':
             method_name = 'createObservedUrlEvidence'
+        elif evidence == 'file':
+            method_name = 'createObservedFileEvidence'
         else:
             method_name = ''
             print("WARNING: unknown evidence", evidence)

@@ -62,7 +62,9 @@ public class DataZipper {
                 if (filename.endsWith("-CV-per-template.txt")) {
                     return; // skip the summary file, which is not a submission
                 }
-                String submissionName = filename.substring(0, filename.indexOf("."));
+                int dot = filename.indexOf(".");
+                if(dot<=0) return;
+                String submissionName = filename.substring(0, dot);
                 createZip(submissionName, templateName);
             });
         } catch (IOException e) {

@@ -51,6 +51,10 @@ def read_raw_data():
                                     continue
                                 per_template_file.write(line)
                     else:
+                        if f.startswith('.'):
+                            continue
+                        if os.path.isdir(os.path.join(fullpath,f)):
+                            continue
                         # process submission data"
                         move_data_file(f, fullpath)
                         all_files.append(f)

@@ -1,0 +1,5 @@
+CD4-positive, alpha-beta T cell & pKI-67+
+CD8-positive, alpha-beta T cell & pKI-67+
+natural killer cell & CD20-, NKG2-A/B-activating NK receptor+
+natural killer cell & CD20+
+NKGA2-positive natural killer cell & CD20-
