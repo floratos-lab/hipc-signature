@@ -288,11 +288,11 @@
 
             $.fancybox.open(
                 content, {
-                'autoDimensions': false,
-                'centerOnScroll': true,
-                'transitionIn': 'none',
-                'transitionOut': 'none'
-            }
+                    'autoDimensions': false,
+                    'centerOnScroll': true,
+                    'transitionIn': 'none',
+                    'transitionOut': 'none'
+                }
             );
 
             return this;
@@ -352,16 +352,16 @@
                                 $.fancybox.open(
                                     _.template(
                                         $("#html-story-container-tmpl").html())({
-                                            story: summary,
-                                            centerName: observation.submission.observationTemplate.submissionCenter.displayName
-                                        }), {
-                                    'autoDimensions': false,
-                                    'width': '99%',
-                                    'height': '99%',
-                                    'centerOnScroll': true,
-                                    'transitionIn': 'none',
-                                    'transitionOut': 'none'
-                                }
+                                        story: summary,
+                                        centerName: observation.submission.observationTemplate.submissionCenter.displayName
+                                    }), {
+                                        'autoDimensions': false,
+                                        'width': '99%',
+                                        'height': '99%',
+                                        'centerOnScroll': true,
+                                        'transitionIn': 'none',
+                                        'transitionOut': 'none'
+                                    }
                                 );
                             }
                         });
@@ -551,11 +551,11 @@
                                     _.template($("#cytoscape-tmpl").html())({
                                         description: sifDesc
                                     }), {
-                                    touch: false,
-                                    'autoDimensions': false,
-                                    'transitionIn': 'none',
-                                    'transitionOut': 'none'
-                                }
+                                        touch: false,
+                                        'autoDimensions': false,
+                                        'transitionIn': 'none',
+                                        'transitionOut': 'none'
+                                    }
                                 );
 
                                 // load cytoscape
@@ -671,7 +671,9 @@
             let isHtmlStory = false;
             if (type == "FileEvidence") {
                 result.evidence.filePath = result.evidence.filePath.replace(/\\/g, "/");
-                if (result.evidence.mimeType.toLowerCase().search("image") > -1) {
+                if (result.evidence.mimeType == null) {
+                    templateId = "#observedfileevidence-row-tmpl";
+                } else if (result.evidence.mimeType.toLowerCase().search("image") > -1) {
                     templateId = "#observedimageevidence-row-tmpl";
                 } else if (result.evidence.mimeType.toLowerCase().search("gct") > -1) {
                     templateId = "#observedgctfileevidence-row-tmpl";
@@ -824,8 +826,8 @@
                             tableEl: thatEl,
                             rowView: ObservationRowView,
                             columns: [{
-                                "orderDataType": "dashboard-date"
-                            },
+                                    "orderDataType": "dashboard-date"
+                                },
                                 null,
                                 null,
                                 null
@@ -853,8 +855,7 @@
 
                     const oTable = $(thatEl).dataTable({
                         'dom': '<iBfrtlp>',
-                        "columns": [
-                            {
+                        "columns": [{
                                 "orderDataType": "dashboard-date"
                             },
                             null,
@@ -1465,8 +1466,8 @@
                                 "#count-observations-tmpl";
                             submission.details = _.template(
                                 $(tmplName).html())({
-                                    count: count
-                                });
+                                count: count
+                            });
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             console.log(jqXHR.status);
                             console.log(jqXHR.responseText);
@@ -1482,8 +1483,7 @@
 
                     $(".template-description").tooltip();
                     $(tableElId).dataTable({
-                        "columns": [
-                            {
+                        "columns": [{
                                 "visible": false
                             },
                             null,
@@ -1500,8 +1500,8 @@
                             let last = null;
 
                             api.column(0, {
-                                page: 'current'
-                            })
+                                    page: 'current'
+                                })
                                 .data()
                                 .each(function (group, i) {
                                     if (last != group) {
@@ -1889,8 +1889,8 @@
             const updateEl = $(updateElId);
             const cntContent = _.template(
                 $("#count-observations-tmpl").html())({
-                    count: model.observationCount
-                });
+                count: model.observationCount
+            });
             updateEl.html(cntContent);
 
             return this;
@@ -2010,8 +2010,8 @@
                                     "#count-observations-tmpl";
                                 const cntContent = _.template(
                                     $(tmplName).html())({
-                                        count: submission.observationCount
-                                    });
+                                    count: submission.observationCount
+                                });
                                 $("#search-observation-count-" + submission.dashboardEntity.id).html(cntContent);
                             });
 
@@ -2823,11 +2823,11 @@
                 description: description,
                 svgHtml: svgHtml
             }), {
-            touch: false,
-            'autoDimensions': false,
-            'transitionIn': 'none',
-            'transitionOut': 'none'
-        }
+                touch: false,
+                'autoDimensions': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none'
+            }
         );
 
         const layoutName = $("#cytoscape-layouts").val();
