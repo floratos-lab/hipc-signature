@@ -12,6 +12,7 @@ bin/
 Thumbs.db
 
 web/src/main/webapp/data/submissions/*.zip
+web/src/main/webapp/data/*.txt
 
 application.log
 logs/*

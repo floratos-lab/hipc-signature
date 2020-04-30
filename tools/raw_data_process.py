@@ -54,6 +54,10 @@ def read_raw_data():
                         if f.startswith('.'):
                             continue
                         if os.path.isdir(os.path.join(fullpath,f)):
+                            if f=='files':
+                                evidence_dir = os.path.join(fullpath,f)
+                                for evidencefile in os.listdir( evidence_dir ):
+                                    shutil.copy(os.path.join(evidence_dir, evidencefile),os.path.join('./web/src/main/webapp/data', evidencefile))
                             continue
                         # process submission data"
                         move_data_file(f, fullpath)
