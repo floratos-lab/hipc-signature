@@ -147,5 +147,4 @@ public interface DashboardDao {
     List<Observation> getObservationsFiltered(Integer subjectId, String filterBy);
 
     String[] getAllResponseAgents(Integer submissionId);
-    String[] getSignature(Integer submissionId, String uniqobsid);
 }

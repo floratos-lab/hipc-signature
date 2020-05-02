@@ -445,8 +445,6 @@
                 </div>
             </div>
 
-            <a href="" target=_blank id=download-signature>Download Signature</a></td>
-
             <h3>Study <small>(<a href="#" id="small-show-sub-details">show details</a><a href="#" id="small-hide-sub-details">hide details</a>)</small></h3>
             <div id="obs-submission-details">
                 <table id="obs-submission-details-grid" class="table table-bordered table-striped">

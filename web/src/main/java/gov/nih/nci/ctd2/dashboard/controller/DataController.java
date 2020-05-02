@@ -38,24 +38,4 @@ public class DataController {
             e.printStackTrace();
         }
     }
-
-    @Transactional
-    @RequestMapping(value = "signature", method = { RequestMethod.GET })
-    public void downloadSignatures(@RequestParam("submission") Integer id, @RequestParam("uniqobsid") String uniqobsid,
-            HttpServletResponse response) {
-        response.setContentType("text/plain");
-
-        try {
-            PrintWriter pw = new PrintWriter(response.getOutputStream());
-            String[] signature = dashboardDao.getSignature(id, uniqobsid);
-            for (String s : signature) {
-                pw.println(s);
-            }
-            pw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

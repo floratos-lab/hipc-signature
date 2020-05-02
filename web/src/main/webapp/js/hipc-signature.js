@@ -478,13 +478,6 @@
                     _.each(observedEvidences.models, function (observedEvidence) {
                         observedEvidence = observedEvidence.toJSON();
 
-                        // this is getting as convoluted as it is possible to be. data model and actual requirement went totally different directions, to say the least
-                        const columnName = observedEvidence.observedEvidenceRole.columnName;
-                        if (columnName == 'uniqObsID') {
-                            const uniqobsid = observedEvidence.displayName;
-                            $("#download-signature").attr('href', './data/signature?submission=' + result.submission.id + '&uniqobsid=' + uniqobsid);
-                        }
-
                         new ObservedEvidenceRowView({
                             el: $(thatEl2).find("tbody"),
                             model: observedEvidence
