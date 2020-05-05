@@ -1101,13 +1101,12 @@
         }
     });
 
-    const ShrnaView = Backbone.View.extend({
+    const RnaView = Backbone.View.extend({
         el: $("#main-container"),
-        template: _.template($("#shrna-tmpl").html()),
+        template: _.template($("#rna-tmpl").html()),
         render: function () {
             const thatModel = this.model;
             const result = thatModel.subject.toJSON();
-            result.type = result.class;
             $(this.el).html(this.template($.extend(result, {
                 tier: thatModel.tier ? thatModel.tier : null,
                 role: thatModel.role ? thatModel.role : null
@@ -1120,31 +1119,6 @@
                     role: thatModel.role
                 },
                 el: "#shrna-observation-grid"
-            }).render();
-
-            return this;
-        }
-    });
-
-    const SirnaView = Backbone.View.extend({
-        el: $("#main-container"),
-        template: _.template($("#sirna-tmpl").html()),
-        render: function () {
-            const thatModel = this.model;
-            const result = thatModel.subject.toJSON();
-            result.type = "sirna";
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
-
-            new SubjectObservationsView({
-                model: {
-                    subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
-                },
-                el: "#sirna-observation-grid"
             }).render();
 
             return this;
@@ -2984,6 +2958,23 @@
 
     };
 
+    const subjectRouter = function (SubjectModel, SubjectView) {
+        return function (name, role) {
+            const model = new SubjectModel({
+                id: name
+            });
+            model.fetch({
+                success: function () {
+                    new SubjectView({
+                        model: {
+                            subject: model,
+                            role: role
+                        }
+                    }).render();
+                }
+            });
+        };
+    };
 
     /* Routers */
     const AppRouter = Backbone.Router.extend({
@@ -2994,39 +2985,19 @@
             "submission/:id": "showSubmission",
             "observation/:id": "showObservation",
             "search/:term": "search",
-            "cell-subset/:id": "showCellSubset",
-            "cell-subset/:id/:role": "showCellSubset",
-            "cell-subset/:id/:role/:tier": "showCellSubset",
-            "pathogen/:id": "showPathogen",
-            "pathogen/:id/:role": "showPathogen",
-            "pathogen/:id/:role/:tier": "showPathogen",
-            "vaccine/:id": "showVaccine",
-            "vaccine/:id/:role": "showVaccine",
-            "vaccine/:id/:role/:tier": "showVaccine",
-            "animal-model/:name": "showAnimalModel",
-            "animal-model/:name/:role": "showAnimalModel",
-            "animal-model/:name/:role/:tier": "showAnimalModel",
-            "cell-sample/:name": "showCellSample",
-            "cell-sample/:name/:role": "showCellSample",
-            "cell-sample/:name/:role/:tier": "showCellSample",
-            "compound/:name": "showCompound",
-            "compound/:name/:role": "showCompound",
-            "compound/:name/:role/:tier": "showCompound",
+            "cell-subset/:name(/:role)": subjectRouter(CellSubset, CellSubsetView),
+            "pathogen/:name(/:role)": subjectRouter(Pathogen, PathogenView),
+            "vaccine/:name(/:role)": subjectRouter(Vaccine, VaccineView),
+            "animal-model/:name(/:role)": subjectRouter(AnimalModel, AnimalModelView),
+            "cell-sample/:name(/:role)": subjectRouter(CellSample, CellSampleView),
+            "compound/:name(/:role)": subjectRouter(Compound, CompoundView),
+            "protein/:name(/:role)": subjectRouter(Protein, ProteinView),
+            "tissue/:name(/:role)": subjectRouter(TissueSample, TissueSampleView),
+            "transcript/:name(/:role)": subjectRouter(Transcript, TranscriptView),
+            "rna/:name(/:role)": subjectRouter(ShRna, RnaView),
             "gene/:species/:symbol": "showGene",
             "gene/:species/:symbol/:role": "showGene",
             "gene/:species/:symbol/:role/:tier": "showGene",
-            "protein/:name": "showProtein",
-            "protein/:name/:role": "showProtein",
-            "protein/:name/:role/:tier": "showProtein",
-            "rna/:name": "showShRna",
-            "rna/:name/:role": "showShRna",
-            "rna/:name/:role/:tier": "showShRna",
-            "tissue/:name": "showTissueSample",
-            "tissue/:name/:role": "showTissueSample",
-            "tissue/:name/:role/:tier": "showTissueSample",
-            "transcript/:name": "showTranscript",
-            "transcript/:name/:role": "showTranscript",
-            "transcript/:name/:role/:tier": "showTranscript",
             "genes": "showGeneList",
             "cnkb-query": "showCnkbQuery",
             "cnkb-result": "showCnkbResult",
@@ -3056,190 +3027,6 @@
                     customized: false
                 }
             }).render();
-        },
-
-        showCellSubset: function (id, role, tier) {
-            const cellsubset = new CellSubset({
-                id: id,
-            });
-            cellsubset.fetch({
-                success: function () {
-                    new CellSubsetView({
-                        model: {
-                            subject: cellsubset,
-                            tier: tier,
-                            role: role,
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showPathogen: function (id, role, tier) {
-            const pathogen = new Pathogen({
-                id: id,
-            });
-            pathogen.fetch({
-                success: function () {
-                    new PathogenView({
-                        model: {
-                            subject: pathogen,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showVaccine: function (id, role, tier) {
-            const vaccine = new Vaccine({
-                id: id,
-            });
-            vaccine.fetch({
-                success: function () {
-                    new VaccineView({
-                        model: {
-                            subject: vaccine,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showAnimalModel: function (name, role, tier) {
-            const animalModel = new AnimalModel({
-                id: name
-            });
-            animalModel.fetch({
-                success: function () {
-                    new AnimalModelView({
-                        model: {
-                            subject: animalModel,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showCellSample: function (name, role, tier) {
-            const cellSample = new CellSample({
-                id: name
-            });
-
-            cellSample.fetch({
-                success: function () {
-                    new CellSampleView({
-                        model: {
-                            subject: cellSample,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showCompound: function (name, role, tier) {
-            const compound = new Compound({
-                id: name
-            });
-            compound.fetch({
-                success: function () {
-                    new CompoundView({
-                        model: {
-                            subject: compound,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showProtein: function (name, role, tier) {
-            const protein = new Protein({
-                id: name
-            });
-            protein.fetch({
-                success: function () {
-                    new ProteinView({
-                        model: {
-                            subject: protein,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showShRna: function (name, role, tier) {
-            const shRna = new ShRna({
-                id: name
-            });
-            shRna.fetch({
-                success: function () {
-                    // shRna covers both siRNA and shRNA
-                    let rnaView;
-                    if (shRna.get("type").toLowerCase() == "sirna") {
-                        rnaView = new SirnaView({
-                            model: {
-                                subject: shRna,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    } else {
-                        rnaView = new ShrnaView({
-                            model: {
-                                subject: shRna,
-                                tier: tier,
-                                role: role
-                            }
-                        });
-                    }
-                    rnaView.render();
-                }
-            });
-        },
-
-        showTissueSample: function (name, role, tier) {
-            const tissueSample = new TissueSample({
-                id: name
-            });
-            tissueSample.fetch({
-                success: function () {
-                    new TissueSampleView({
-                        model: {
-                            subject: tissueSample,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
-        },
-
-        showTranscript: function (name, role, tier) {
-            const transcript = new Transcript({
-                id: name
-            });
-            transcript.fetch({
-                success: function () {
-                    new TranscriptView({
-                        model: {
-                            subject: transcript,
-                            tier: tier,
-                            role: role
-                        }
-                    }).render();
-                }
-            });
         },
 
         showGene: function (species, symbol, role, tier) {
