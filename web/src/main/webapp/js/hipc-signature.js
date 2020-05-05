@@ -986,16 +986,11 @@
         render: function () {
             const thatModel = this.model;
             const entity = thatModel.subject.toJSON();
-            $(this.el).html(this.template($.extend(entity, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(entity));
 
             new SubjectObservationsView({
                 model: {
                     subjectId: entity.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
                 el: "#vaccine-observation-grid"
             }).render();
