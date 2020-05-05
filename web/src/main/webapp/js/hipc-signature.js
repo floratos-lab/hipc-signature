@@ -888,10 +888,7 @@
         render: function () {
             const thatModel = this.model;
             const entity = thatModel.subject.toJSON();
-            $(this.el).html(this.template($.extend(entity, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(entity));
 
             const broadEl = $("ul#synonyms");
             _.each(entity.synonyms, function (aSynonym) {
@@ -921,8 +918,6 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: entity.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
                 el: "#pathogen-observation-grid"
             }).render();
@@ -1008,10 +1003,7 @@
             // Find out the UniProt ID
 
             result.type = result.class;
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             const synonymsEl = $("ul.synonyms");
             _.each(result.synonyms, function (aSynonym) {
@@ -1035,8 +1027,6 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
                 el: "#gene-observation-grid"
             }).render();
