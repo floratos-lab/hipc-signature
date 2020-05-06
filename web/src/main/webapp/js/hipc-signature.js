@@ -760,10 +760,7 @@
             });
             result.type = result.class;
 
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             _.each(result.synonyms, function (aSynonym) {
                 if (aSynonym.displayName == result.displayName) return;
@@ -777,10 +774,8 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
-                el: "#compound-observation-grid"
+                el: "#related-observations"
             }).render();
 
             $("a.compound-image").fancybox({
@@ -1053,10 +1048,7 @@
             const thatModel = this.model;
             const result = thatModel.subject.toJSON();
             result.type = result.class;
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             const synonymsEl = $("ul.synonyms");
             _.each(result.synonyms, function (aSynonym) {
@@ -1080,10 +1072,8 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
-                el: "#protein-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;
@@ -1096,18 +1086,13 @@
         render: function () {
             const thatModel = this.model;
             const result = thatModel.subject.toJSON();
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
-                el: "#shrna-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;
@@ -1121,18 +1106,13 @@
             const thatModel = this.model;
             const result = thatModel.subject.toJSON();
             result.type = result.class;
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
-                el: "#transcript-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;
@@ -1146,10 +1126,7 @@
             const thatModel = this.model;
             const result = thatModel.subject.toJSON();
             result.type = result.class;
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             const thatEl = this.el;
             if (result.xrefs.length == 0) {
@@ -1185,10 +1162,8 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
-                el: "#tissuesample-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;
@@ -1203,10 +1178,7 @@
             const thatModel = this.model;
             const result = thatModel.subject.toJSON();
             result.type = result.class;
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             const thatEl = $("ul.synonyms");
             _.each(result.synonyms, function (aSynonym) {
@@ -1230,10 +1202,8 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
-                el: "#animalmodel-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;
@@ -1267,10 +1237,7 @@
             result.cbioPortalId = cbioPortalId;
             result.type = result.class;
 
-            $(this.el).html(this.template($.extend(result, {
-                tier: thatModel.tier ? thatModel.tier : null,
-                role: thatModel.role ? thatModel.role : null
-            })));
+            $(this.el).html(this.template(result));
 
             if (!cbioPortalId) {
                 $("#cbiolink").css("display", "none");
@@ -1298,10 +1265,8 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: result.id,
-                    tier: thatModel.tier,
-                    role: thatModel.role
                 },
-                el: "#cellsample-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;

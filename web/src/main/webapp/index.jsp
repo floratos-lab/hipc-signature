@@ -884,30 +884,7 @@
                 </div>
             </div>
 
-            <h3>Related observations <small>{{ role?"for the role of "+role:"" }}</small></h3>
-
-            <div class="more-observations-message"></div>
-
-            <table id="protein-observation-grid" class="table table-bordered table-striped observations">
-                <thead>
-                <tr>
-                    <th>Publication Date</th>
-                    <th width=500>Observation Summary</th>
-                    <th>Center</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- here will go the rows -->
-                <tr class="subject-observations-loading">
-                    <td colspan="5">
-                        <h3>Loading observations...</h3>
-                        <div class="progress progress-striped active">
-                            <div class="bar" style="width: 100%;"></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -946,30 +923,7 @@
                 </div>
             </div>
 
-            <h3>Related observations <small>{{ role?"for the role of "+role:"" }}</small></h3>
-
-            <div class="more-observations-message"></div>
-
-            <table id="shrna-observation-grid" class="table table-bordered table-striped observations">
-                <thead>
-                <tr>
-                    <th>Publication Date</th>
-                    <th width=500>Observation Summary</th>
-                    <th>Center</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- here will go the rows -->
-                <tr class="subject-observations-loading">
-                    <td colspan="5">
-                        <h3>Loading observations...</h3>
-                        <div class="progress progress-striped active">
-                            <div class="bar" style="width: 100%;"></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -1004,30 +958,7 @@
                 </div>
             </div>
 
-            <h3>Related observations <small>{{ role?"for the role of "+role:"" }}</small></h3>
-
-            <div class="more-observations-message"></div>
-
-            <table id="transcript-observation-grid" class="table table-bordered table-striped observations">
-                <thead>
-                <tr>
-                    <th>Publication Date</th>
-                    <th width=500>Observation Summary</th>
-                    <th>Center</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- here will go the rows -->
-                <tr class="subject-observations-loading">
-                    <td colspan="5">
-                        <h3>Loading observations...</h3>
-                        <div class="progress progress-striped active">
-                            <div class="bar" style="width: 100%;"></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -1062,31 +993,7 @@
                 </div>
             </div>
 
-            <h3>Related observations <small>{{ role?"for the role of "+role:"" }}</small></h3>
-
-            <div class="more-observations-message"></div>
-
-            <table id="tissuesample-observation-grid" class="table table-bordered table-striped observations">
-                <thead>
-                <tr>
-                    <th>Publication Date</th>
-                    <th width=500>Observation Summary</th>
-                    <th>Center</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- here will go the rows -->
-                <tr class="subject-observations-loading">
-                    <td colspan="5">
-                        <h3>Loading observations...</h3>
-                        <div class="progress progress-striped active">
-                            <div class="bar" style="width: 100%;"></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -1129,31 +1036,8 @@
                         <img src="img/cellsample.png" class="img-polaroid" width=175 height=175 alt="Cell sample">
                 </div>
             </div>
-            <h3>Related observations <small>{{ role?"for the role of "+role:"" }}</small></h3>
 
-            <div class="more-observations-message"></div>
-
-            <table id="cellsample-observation-grid" class="table table-bordered table-striped observations">
-                <thead>
-                <tr>
-                    <th>Publication Date</th>
-                    <th width=500>Observation Summary</th>
-                    <th>Center</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- here will go the rows -->
-                <tr class="subject-observations-loading">
-                    <td colspan="5">
-                        <h3>Loading observations...</h3>
-                        <div class="progress progress-striped active">
-                            <div class="bar" style="width: 100%;"></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -1184,31 +1068,8 @@
                     <img src="img/animalmodel.png" class="img-polaroid" width=175 height=175 alt="Animal model">
                 </div>
             </div>
-            <h3>Related observations <small>{{ role?"for the role of "+role:"" }}</small></h3>
 
-            <div class="more-observations-message"></div>
-
-            <table id="animalmodel-observation-grid" class="table table-bordered table-striped observations">
-                <thead>
-                <tr>
-                    <th>Publication Date</th>
-                    <th width=500>Observation Summary</th>
-                    <th>Center</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- here will go the rows -->
-                <tr class="subject-observations-loading">
-                    <td colspan="5">
-                        <h3>Loading observations...</h3>
-                        <div class="progress progress-striped active">
-                            <div class="bar" style="width: 100%;"></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -1253,31 +1114,7 @@
                   </div>
               </div>
 
-              <h3>Related observations <small>{{ role?"for the role of "+decodeURI(role):"" }}</small></h3>
-
-              <div class="more-observations-message"></div>
-
-              <table id="compound-observation-grid" class="table table-bordered table-striped observations">
-                  <thead>
-                  <tr>
-                      <th>Publication Date</th>
-                      <th width=500>Observation Summary</th>
-                      <th>Center</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <!-- here will go the rows -->
-                  <tr class="subject-observations-loading">
-                      <td colspan="5">
-                          <h3>Loading observations...</h3>
-                          <div class="progress progress-striped active">
-                              <div class="bar" style="width: 100%;"></div>
-                          </div>
-                      </td>
-                  </tr>
-                  </tbody>
-              </table>
-
+              <div id=related-observations></div>
           </div>
      </script>
 
