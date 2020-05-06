@@ -685,6 +685,34 @@
         </li>
     </script>
 
+    <script  type="text/template" id="related-observations-tmpl">
+        <h3>Related observations</h3>
+
+        <div class="more-observations-message"></div>
+
+        <table id="related-observation-grid" class="table table-bordered table-striped observations">
+            <thead>
+            <tr>
+                <th>Publication Date</th>
+                <th width=500>Observation Summary</th>
+                <th>Center</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- here will go the rows -->
+            <tr class="subject-observations-loading">
+                <td colspan="5">
+                    <h3>Loading observations...</h3>
+                    <div class="progress progress-striped active">
+                        <div class="bar" style="width: 100%;"></div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </script>
+
     <script type="text/template" id="pathogen-tmpl">
         <div class="container common-container" id="pathogen-container">
             <h2>{{displayName}}</h2>
@@ -708,31 +736,7 @@
                 </div>
             </div>
 
-            <h3>Related observations</h3>
-
-             <div class="more-observations-message"></div>
-
-             <table id="pathogen-observation-grid" class="table table-bordered table-striped observations">
-                 <thead>
-                 <tr>
-                     <th>Publication Date</th>
-                     <th width=500>Observation Summary</th>
-                     <th>Center</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-                 <!-- here will go the rows -->
-                 <tr class="subject-observations-loading">
-                     <td colspan="5">
-                         <h3>Loading observations...</h3>
-                         <div class="progress progress-striped active">
-                             <div class="bar" style="width: 100%;"></div>
-                         </div>
-                     </td>
-                 </tr>
-                 </tbody>
-             </table>
-
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -760,31 +764,7 @@
                 </div>
             </div>
 
-            <h3>Related observations <small>{{ role?"for the role of "+role:"" }}</small></h3>
-
-             <div class="more-observations-message"></div>
-
-             <table id="cellsubset-observation-grid" class="table table-bordered table-striped observations">
-                 <thead>
-                 <tr>
-                     <th>Publication Date</th>
-                     <th width=500>Observation Summary</th>
-                     <th>Center</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-                 <!-- here will go the rows -->
-                 <tr class="subject-observations-loading">
-                     <td colspan="5">
-                         <h3>Loading observations...</h3>
-                         <div class="progress progress-striped active">
-                             <div class="bar" style="width: 100%;"></div>
-                         </div>
-                     </td>
-                 </tr>
-                 </tbody>
-             </table>
-
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -814,31 +794,7 @@
                 </div>
             </div>
 
-            <h3>Related observations</h3>
-
-             <div class="more-observations-message"></div>
-
-             <table id="vaccine-observation-grid" class="table table-bordered table-striped observations">
-                 <thead>
-                 <tr>
-                     <th>Publication Date</th>
-                     <th width=500>Observation Summary</th>
-                     <th>Center</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-                 <!-- here will go the rows -->
-                 <tr class="subject-observations-loading">
-                     <td colspan="5">
-                         <h3>Loading observations...</h3>
-                         <div class="progress progress-striped active">
-                             <div class="bar" style="width: 100%;"></div>
-                         </div>
-                     </td>
-                 </tr>
-                 </tbody>
-             </table>
-
+            <div id=related-observations></div>
         </div>
     </script>
 
@@ -883,31 +839,8 @@
                  </div>
              </div>
 
-             <h3>Related observations</h3>
-
-             <div class="more-observations-message"></div>
-
-             <table id="gene-observation-grid" class="table table-bordered table-striped observations">
-                 <thead>
-                 <tr>
-                     <th>Publication Date</th>
-                     <th width=500>Observation Summary</th>
-                     <th>Center</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-                 <!-- here will go the rows -->
-                 <tr class="subject-observations-loading">
-                     <td colspan="5">
-                         <h3>Loading observations...</h3>
-                         <div class="progress progress-striped active">
-                             <div class="bar" style="width: 100%;"></div>
-                         </div>
-                     </td>
-                 </tr>
-                 </tbody>
-             </table>
-         </div>        
+             <div id=related-observations></div>
+         </div>
     </script>
 
     <script type="text/template" id="protein-tmpl">

@@ -792,7 +792,8 @@
 
     const SubjectObservationsView = Backbone.View.extend({
         render: function () {
-            const thatEl = $(this.el);
+            $(this.el).append(_.template($("#related-observations-tmpl").html())(this.model));
+            const thatEl = $(this.el).find('#related-observation-grid');
             const thatModel = this.model;
             const subjectId = thatModel.subjectId;
             const tier = thatModel.tier; // possibly undefined
@@ -919,7 +920,7 @@
                 model: {
                     subjectId: entity.id,
                 },
-                el: "#pathogen-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;
@@ -968,8 +969,11 @@
                     tier: thatModel.tier,
                     role: thatModel.role
                 },
-                el: "#cellsubset-observation-grid"
+                el: "#related-observations"
             }).render();
+            if (thatModel.role != null) {
+                $('#related-observations h3').append(' <small>for the role of ' + thatModel.role + '</small>');
+            }
 
             return this;
         }
@@ -987,7 +991,7 @@
                 model: {
                     subjectId: entity.id,
                 },
-                el: "#vaccine-observation-grid"
+                el: "#related-observations"
             }).render();
 
             return this;
@@ -1028,7 +1032,7 @@
                 model: {
                     subjectId: result.id,
                 },
-                el: "#gene-observation-grid"
+                el: "#related-observations"
             }).render();
 
             const currentGene = result.displayName;
@@ -2046,7 +2050,7 @@
                         }
                         const nameLink = "<a href='#" + subject.stableURL + "/" + role + "'>" + subject.displayName + "</a>";
                         const n1obv = sModel.numberOfTier1Observations;
-                        const n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "/1'>" + n1obv + "</a>");
+                        const n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "'>" + n1obv + "</a>");
                         table_data.push([reformatted, nameLink, role, n1link]);
                     });
                     $("#explore-table").dataTable({
