@@ -1,5 +1,4 @@
 name	id	definition	comment	broad	exact	related
-whole blood	UBERON_0000178	A fluid that is composed of blood plasma and erythrocytes.				
 blood plasma	UBERON_0001969	The liquid component of blood, in which erythrocytes are suspended.				
 skin of body	UBERON_0002097	The organ covering the body that consists of the demis and epidemis.				
 serum	UBERON_0001997	The portion of blood plasma that excludes clotting factors.				
