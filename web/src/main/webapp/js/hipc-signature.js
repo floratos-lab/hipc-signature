@@ -2123,7 +2123,9 @@
                         }
                     },
                     {
-                        data: 0
+                        data: function (row, type, set, meta) {
+                            return '<a href="' + row[2] + '">' + row[0] + '</a>';
+                        }
                     },
                     {
                         data: function () {
@@ -2131,7 +2133,9 @@
                         }
                     },
                     {
-                        data: 1,
+                        data: function (row, type, set, meta) {
+                            return '<a href="' + row[2] + '">' + row[1] + '</a>';
+                        },
                         "type": "observation-count"
                     }
                 ],

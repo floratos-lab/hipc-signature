@@ -26,7 +26,7 @@ public class GenesController {
     @Autowired
     private DashboardDao dashboardDao;
 
-    private final int COLUMN_NUMBER = 2;
+    private final int COLUMN_NUMBER = 3;
     private int recordsTotal, recordsFiltered;
 
     private void getTotal() {
@@ -61,8 +61,9 @@ public class GenesController {
         log.debug("lenght is " + length);
         String[][] data = new String[length][COLUMN_NUMBER];
         for (int i = 0; i < length; i++) {
-            data[i][0] = "<a>gene symbol " + (i + start) + "</a>";
-            data[i][1] = "<a>number " + (i + start) + "</a>";
+            data[i][0] = "gene symbol " + (i + start);
+            data[i][1] = "number " + (i + start);
+            data[i][2] = "url" + (i + start);
         }
 
         HttpHeaders headers = new HttpHeaders();
