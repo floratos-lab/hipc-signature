@@ -2102,6 +2102,47 @@
         }
     });
 
+    const GeneExploreView = Backbone.View.extend({
+        el: $("#main-container"),
+        template: _.template($("#gene-explore-tmpl").html()),
+
+        render: function () {
+
+            $(this.el).html(this.template({
+                roles_label: 'Genes'
+            }));
+
+            $("#gene-explore-table").dataTable({
+                'dom': '<iBfrtlp>',
+                serverSide: true,
+                ajax: 'gene-data',
+                "deferRender": true,
+                "columns": [
+                    null,
+                    null,
+                    null,
+                    {
+                        "type": "observation-count"
+                    }
+                ],
+                'buttons': [{
+                    extend: 'excelHtml5',
+                    text: 'Export as Spreadsheet',
+                    className: "extra-margin",
+                }],
+            });
+            $("#gene-explore-table").parent().width("100%");
+            $("#gene-explore-table").width("100%");
+
+            const blurb = $("#text-blurb");
+            if (blurb.length > 0) {
+                $("#gene-explore-blurb").append(_.template(blurb.html())());
+            }
+
+            return this;
+        }
+    });
+
     /* this does not have any effect for now because the 'select roles' button is hidden. */
     const browseRole = {
         response_agent: ["gene_biomarker"],
@@ -2937,6 +2978,7 @@
     /* Routers */
     const AppRouter = Backbone.Router.extend({
         routes: {
+            "explore/genes": "genes",
             "explore/:type/:roles": "explore",
             "center/:name/:project": "showCenterProject",
             "center/:name": "showCenter",
@@ -2975,6 +3017,10 @@
                         .replace(new RegExp(">", "g"), "")
                 }
             }).render();
+        },
+
+        genes: function () {
+            new GeneExploreView().render();
         },
 
         explore: function (type, roles) {

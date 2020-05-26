@@ -1487,6 +1487,28 @@
         </div>
     </script>
 
+    <script type="text/template" id="gene-explore-tmpl" data-url="<%=dataURL%>">
+        <div class="container common-container" id="gene-explore-container">
+            <h2>Explore: <i>{{roles_label}}</i></h2>
+
+            <div id="gene-explore-blurb"></div>
+
+            <table class="table table-bordered table-striped observations" id="gene-explore-table">
+                <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Observations</th>
+                </tr>
+                </thead>
+                <tbody id="gene-explore-items" style='white-space: nowrap;'>
+                    <!-- here will go the rows -->
+                </tbody>
+            </table>
+        </div>
+    </script>
+
     <script type="text/template" id="customize-roles-item-tmpl">
         <tr>
             <td>{{displayName}}</td>
