@@ -2117,11 +2117,21 @@
                 serverSide: true,
                 ajax: 'gene-data',
                 "deferRender": true,
-                "columns": [
-                    null,
-                    null,
-                    null,
+                "columns": [{
+                        data: function () {
+                            return 'gene <img src="img/gene.png" style="height:25px" alt="">';
+                        }
+                    },
                     {
+                        data: 0
+                    },
+                    {
+                        data: function () {
+                            return 'gene_biomarker';
+                        }
+                    },
+                    {
+                        data: 1,
                         "type": "observation-count"
                     }
                 ],
