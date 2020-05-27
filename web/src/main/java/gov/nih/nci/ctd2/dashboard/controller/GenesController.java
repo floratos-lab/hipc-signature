@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import flexjson.JSONSerializer;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
-import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
+import gov.nih.nci.ctd2.dashboard.util.GeneData;
 
 @Controller
 @RequestMapping("/gene-data")
@@ -29,18 +29,13 @@ public class GenesController {
     private final int COLUMN_NUMBER = 3;
     private int recordsTotal, recordsFiltered;
 
-    private void getTotal() {
-        recordsTotal = dashboardDao.countEntities(SubjectWithSummaries.class).intValue(); // FIXME not the real number
-                                                                                          // of genes
-        recordsFiltered = recordsTotal;
-    }
-
     /* for parameters detail, see https://datatables.net/manual/server-side */
     @Transactional
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, headers = "Accept=application/json")
     public ResponseEntity<String> getTableData(@RequestParam Map<String, String> params) {
         log.debug("request received in gene-data controller");
-        getTotal();
+        recordsTotal = dashboardDao.getGeneNumber();
+        recordsFiltered = recordsTotal;
         int draw = 0, start = 0, length = 0;
         for (String x : params.keySet()) {
             System.out.println(x + "=" + params.get(x));
@@ -59,11 +54,14 @@ public class GenesController {
         log.debug("draw is " + draw);
         log.debug("start is " + start);
         log.debug("lenght is " + length);
+        GeneData[] g = dashboardDao.getGeneData(start, length);
+        length = g.length; // actual length
         String[][] data = new String[length][COLUMN_NUMBER];
         for (int i = 0; i < length; i++) {
-            data[i][0] = "gene symbol " + (i + start);
-            data[i][1] = "number " + (i + start);
-            data[i][2] = "url" + (i + start);
+            GeneData geneData = g[i];
+            data[i][0] = geneData.symbol;
+            data[i][1] = String.valueOf(geneData.numberOfObservations);
+            data[i][2] = geneData.url;
         }
 
         HttpHeaders headers = new HttpHeaders();

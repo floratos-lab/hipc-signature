@@ -73,6 +73,7 @@ import gov.nih.nci.ctd2.dashboard.model.Transcript;
 import gov.nih.nci.ctd2.dashboard.model.Vaccine;
 import gov.nih.nci.ctd2.dashboard.model.Xref;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
+import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
 
 public class DashboardDaoImpl implements DashboardDao {
@@ -840,5 +841,38 @@ public class DashboardDaoImpl implements DashboardDao {
         List<String> list = query.list();
         session.close();
         return list.toArray(new String[list.size()]);
+    }
+
+    @Override
+    public int getGeneNumber() {
+        Session session = getSession();
+        String sql = "SELECT count(*) FROM subject_with_summaries JOIN gene ON subject_id=gene.id;";
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(sql);
+        int x = query.getSingleResult().intValue();
+        session.close();
+        return x;
+    }
+
+    @Override
+    public GeneData[] getGeneData(int start, int length) {
+        Session session = getSession();
+        String sql = "SELECT displayName, numberofObservations, stableURL FROM subject_with_summaries"
+                + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
+                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + " ORDER BY numberofObservations DESC"
+                + " LIMIT " + length + " OFFSET " + start;
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
+        List<Object[]> list = query.list();
+        session.close();
+        GeneData[] a = new GeneData[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            Object[] obj = list.get(i);
+            String symbol = (String) obj[0];
+            int numberOfObservations = (int) obj[1];
+            String url = (String) obj[2];
+            a[i] = new GeneData(symbol, url, numberOfObservations);
+        }
+        return a;
     }
 }

@@ -31,6 +31,7 @@ import gov.nih.nci.ctd2.dashboard.model.Transcript;
 import gov.nih.nci.ctd2.dashboard.model.Vaccine;
 import gov.nih.nci.ctd2.dashboard.model.Xref;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
+import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
 
 public interface DashboardDao {
@@ -147,4 +148,8 @@ public interface DashboardDao {
     List<Observation> getObservationsFiltered(Integer subjectId, String filterBy);
 
     String[] getAllResponseAgents(Integer submissionId);
+
+    int getGeneNumber();
+
+    GeneData[] getGeneData(int start, int length);
 }
