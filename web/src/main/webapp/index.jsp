@@ -325,7 +325,7 @@
             </td>
             <td><small>{{submissionDate}}</small></td>
             <td width=150>
-                <a href="#{{stableURL}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>
+                <a href="&#35;{{stableURL}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>
                 <div style="font-size:70%">[<a href="<%=dataURL%>submissions/{{displayName}}.zip">Download</a>]</div>
             </td>
         </tr>
@@ -368,7 +368,7 @@
                     </table>
                 </div>
                 <div class="col-2">
-                    <a href="#{{observationTemplate.submissionCenter.stableURL}}">
+                    <a href="&#35;{{observationTemplate.submissionCenter.stableURL}}">
                         <img src="img/{{observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" height=30 alt="{{observationTemplate.submissionCenter.displayName}}" title="{{observationTemplate.submissionCenter.displayName}}">
                     </a>
 
@@ -401,7 +401,7 @@
     </script>
 
     <script type="text/template" id="submission-obs-tbl-row-tmpl">
-        (<a class="button-link" href="#{{stableURL}}">details &raquo;</a>)
+        (<a class="button-link" href="&#35;{{stableURL}}">details &raquo;</a>)
     </script>
 
     <script type="text/template" id="submission-tbl-row-tmpl">
@@ -439,7 +439,7 @@
 
                 </div>
                 <div class="col-2">
-                    <a href="#{{submission.observationTemplate.submissionCenter.stableURL}}"><img src="img/{{submission.observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" width="120" alt="{{submission.observationTemplate.submissionCenter.displayName}}"></a>
+                    <a href="&#35;{{submission.observationTemplate.submissionCenter.stableURL}}"><img src="img/{{submission.observationTemplate.submissionCenter.displayName}}.png" class="img-polaroid" width="120" alt="{{submission.observationTemplate.submissionCenter.displayName}}"></a>
                     <br><br>
                     <img src="img/observation.png" alt="Observation" class="img-polaroid" width=120 height=120><br>
                 </div>
@@ -456,7 +456,7 @@
                         <th>Description</th>
                         <td>
                             {{submission.observationTemplate.description}}
-                            <small>(<a href="#{{submission.stableURL}}">details &raquo;</a>)</small>
+                            <small>(<a href="&#35;{{submission.stableURL}}">details &raquo;</a>)</small>
                         </td>
                     </tr>
                     <tr id="obs-submission-summary">
@@ -497,7 +497,7 @@
 
     <script type="text/template" id="similar-submission-item-tmpl">
         <li class={{toomany}}>
-            <small><a href="#{{stableURL}}">{{observationTemplate.description}}</a></small>
+            <small><a href="&#35;{{stableURL}}">{{observationTemplate.description}}</a></small>
         </li>
     </script>
 
@@ -509,7 +509,7 @@
     </script>
 
     <script type="text/template" id="summary-subject-replacement-tmpl">
-        <a class="summary-replacement" href="#{{stableURL}}">{{displayName}}</a></script>
+        <a class="summary-replacement" href="&#35;{{stableURL}}">{{displayName}}</a></script>
 
     <script type="text/template" id="summary-evidence-replacement-tmpl">
         <strong class="summary-replacement">{{displayName}}</strong></script>
@@ -902,13 +902,13 @@
                         <tr>
                             <th>Target Transcript</th>
                             <td>
-                                <a href="#{{transcript.stableURL}}">{{transcript.refseqId}}</a>
+                                <a href="&#35;{{transcript.stableURL}}">{{transcript.refseqId}}</a>
                             </td>
                         </tr>
                         <tr>
                             <th>Target Gene</th>
                             <td>
-                                <a href="#{{transcript.gene.stableURL}}">{{transcript.gene.displayName}}</a>
+                                <a href="&#35;{{transcript.gene.stableURL}}">{{transcript.gene.displayName}}</a>
                             </td>
                         </tr>
                         <tr>
@@ -937,7 +937,7 @@
                         <tr>
                             <th>Gene</th>
                             <td>
-                                <a href="#{{gene.stableURL}}">{{gene.displayName}}</a>
+                                <a href="&#35;{{gene.stableURL}}">{{gene.displayName}}</a>
                             </td>
                         </tr>
                         <tr>
@@ -1122,7 +1122,7 @@
         <tr>
             <td id="subject-image-{{id}}"></td>
             <td>
-                <a href="#{{subject.stableURL}}">
+                <a href="&#35;{{subject.stableURL}}">
                     {{subject.displayName}}
                 </a>
             </td>
@@ -1136,7 +1136,7 @@
         <tr>
             <td id="subject-image-{{id}}"></td>
             <td id="subject.displayName-{{id}}">
-                <a href="#{{subject.stableURL}}">
+                <a href="&#35;{{subject.stableURL}}">
                     {{subject.displayName}}
                 </a>  &nbsp;
                 <a href="#" class="addGene-{{subject.displayName}} greenColor" title="Add gene to cart" >+</a>			  				 
@@ -1150,7 +1150,7 @@
     <script type="text/template" id="observation-row-tmpl">
         <tr>
             <td>
-                <a href="#{{stableURL}}">
+                <a href="&#35;{{stableURL}}">
                     {{submission.submissionDate}}
                 </a>
             </td>
@@ -1184,72 +1184,72 @@
     </script>
 
     <script type="text/template" id="search-results-gene-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/gene.png" class="img-polaroid search-info" title="Gene" alt="Gene" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-protein-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/protein.png" class="img-polaroid search-info" title="Protein" alt="Protein" height="50" width="50">
         </a>
     </script>
 
 
     <script type="text/template" id="search-results-shrna-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/shrna.png" class="img-polaroid search-info" title="shRNA" alt="shRNA" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-sirna-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/sirna.png" class="img-polaroid search-info" title="siRNA" alt="siRNA" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-compund-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img class="img-polaroid search-info" title="Compound" alt="Compound" width=50 height=50 src="<%=dataURL%>compounds/{{imageFile}}">
         </a>
     </script>
 
     <script type="text/template" id="search-results-animalmodel-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/animalmodel.png" title="Animal model" alt="Animal model" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-cellsample-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/cellsample.png" title="Cell sample" alt="Cell sample" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-tissuesample-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/tissuesample.png" title="Tissue sample" alt="Tissue sample" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-vaccine-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/vaccine.png" title="Vaccine" alt="vaccine" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
     <script type="text/template" id="search-results-cellsubset-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/cellsubset.png" title="Cell Subset" alt="Cell Subset" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
     <script type="text/template" id="search-results-pathogen-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/pathogen.png" title="Pathogen" alt="Pathogen" class="img-polaroid search-info" height="50" width="50">
         </a>
     </script>
 
     <script type="text/template" id="search-results-unknown-image-tmpl">
-        <a href="#{{stableURL}}">
+        <a href="&#35;{{stableURL}}">
             <img src="img/unknown.png" title="{{subjectClass}}" class="img-polaroid search-info" alt="{{subjectClass}}" height="50" width="50">
         </a>
     </script>
@@ -1258,7 +1258,7 @@
         <tr>
             <td id="search-image-{{dashboardEntity.id}}"></td>
             <td>
-                <a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a><br>
+                <a href="&#35;{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a><br>
                 <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
             </td>
             <td>
@@ -1273,7 +1273,7 @@
                 </ul>
             </td>
             <td class="nonewline">
-                <a href="#{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
+                <a href="&#35;{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
             </td>
         </tr>
@@ -1283,7 +1283,7 @@
         <tr>
             <td id="search-image-{{dashboardEntity.id}}"></td>
             <td>
-                <a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a>
+                <a href="&#35;{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a>
                 <a href="#" class="addGene-{{dashboardEntity.displayName}} greenColor" title="Add gene to cart" >+</a>
                 <br>
                 <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
@@ -1300,7 +1300,7 @@
                 </ul>
             </td>
             <td class="nonewline">
-                <a href="#{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
+                <a href="&#35;{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
             </td>
         </tr>
@@ -1378,11 +1378,11 @@
 
     <script type="text/template" id="search-submission-tbl-row-tmpl">
         <tr>
-            <td><a href="#{{dashboardEntity.stableURL}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
-            <td><a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.submissionDate}}</a></td>
+            <td><a href="&#35;{{dashboardEntity.stableURL}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
+            <td><a href="&#35;{{dashboardEntity.stableURL}}">{{dashboardEntity.submissionDate}}</a></td>
             <td>{{dashboardEntity.observationTemplate.description}}</td>
             <td width=150>
-                <a href="#{{dashboardEntity.stableURL}}" id="search-observation-count-{{dashboardEntity.id}}">{{observationCount}} observations</a>
+                <a href="&#35;{{dashboardEntity.stableURL}}" id="search-observation-count-{{dashboardEntity.id}}">{{observationCount}} observations</a>
             </td>
         </tr>
     </script>
@@ -1396,7 +1396,7 @@
     </script>
 
     <script type="text/template" id="transcript-item-tmpl">
-        <li class="synonym"><a href="#{{stableURL}}">{{refseqId}}</a></li>
+        <li class="synonym"><a href="&#35;{{stableURL}}">{{refseqId}}</a></li>
     </script>
 
     <script type="text/template" id="count-story-tmpl">
@@ -1535,7 +1535,7 @@
             <p><a href="#" class="close" data-dismiss="alert">&times;</a></p>
             <p>
                 The table below lists all studies that belong to the project "<b>{{filterProject}}</b>".
-                To view all studies, please click <a href="#{{centerStableURL}}">here</a>.
+                To view all studies, please click <a href="&#35;{{centerStableURL}}">here</a>.
             </p>
         </div>
     </script>
@@ -1799,7 +1799,7 @@
     </script>
 
     <script id="tbl-project-title-tmpl" type="text/template">
-        <tr class="group"><td colspan="5"><a href="#{{centerStableURL}}/{{project}}">Project: {{project}}</a></td></tr>
+        <tr class="group"><td colspan="5"><a href="&#35;{{centerStableURL}}/{{project}}">Project: {{project}}</a></td></tr>
     </script>
 
     <!-- end of templates -->
