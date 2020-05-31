@@ -1,5 +1,5 @@
-B cell & CD3 epsilon-
-CD4-positive, alpha-beta T cell & CD14-, IL2+, NS1
 dendritic cell & CD123+, NK-
-IgD-negative memory B cell & CD3 epsilon-, CD27+, IgM-
+B cell & CD3 epsilon-
 IgM memory B cell & CD3 epsilon-, CD27+
+IgD-negative memory B cell & CD3 epsilon-, CD27+, IgM-
+CD4-positive, alpha-beta T cell & CD14-, IL2+, NS1
