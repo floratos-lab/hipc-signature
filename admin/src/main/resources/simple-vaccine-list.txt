@@ -5200,7 +5200,7 @@ MENINGOCOCCAL POLYSACCHARIDE VACCINE GROUP W-135 0.1 MG/ML	VO_0004887
 meningococcal group A polysaccharide	VO_0004888		
 meningococcal group A polysaccharide 0.1 MG/ML	VO_0004889		
 gH1-Qbeta vaccine	VO_0004890		
-CN54gp140 + GLA	VO_0004891		
+CN54gp140 + GLA	VO_0004891		
 Fluenz	VO_0004893		
 quadrivalent seasonal inactivated influenza vaccine 2014	VO_0004894		
 female biological sex datum	VO_0004895		
