@@ -684,6 +684,18 @@ public class DashboardDaoImpl implements DashboardDao {
             entitiesWithCounts.add(entityWithCounts);
         }
 
+        // search by VO code
+        List<Vaccine> vaccineList = searchVaccineByCode(keyword);
+        for (Vaccine v : vaccineList) {
+            int observationNumber = countObservation(v.getId());
+            if (observationNumber == 0)
+                continue;
+            DashboardEntityWithCounts entity = new DashboardEntityWithCounts();
+            entity.setDashboardEntity(v);
+            entity.setObservationCount(observationNumber);
+            entitiesWithCounts.add(entity);
+        }
+
         // add observations
         for (Integer obId : matchingObservations.keySet()) {
             Set<String> terms = matchingObservations.get(obId);
@@ -698,6 +710,37 @@ public class DashboardDaoImpl implements DashboardDao {
         }
 
         return entitiesWithCounts;
+    }
+
+    private int countObservation(Integer vaccine_db_id) {
+        String sql = "SELECT COUNT(DISTINCT observation_id) FROM observed_subject"
+                + " JOIN vaccine ON subject_id=vaccine.id  WHERE vaccine.id=" + vaccine_db_id;
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(sql);
+        BigInteger count = query.getSingleResult();
+        session.close();
+        return count.intValue();
+    }
+
+    private List<Vaccine> searchVaccineByCode(String queryString) {
+        Pattern VOCodePattern = Pattern.compile("(vo[:_])?(\\d{7})");
+        Matcher matcher = VOCodePattern.matcher(queryString);
+        List<String> codes = new ArrayList<String>();
+        while (matcher.find()) {
+            codes.add("VO_" + matcher.group(2));
+        }
+        if (codes.size() > 0) {
+            Session session = getSession();
+            org.hibernate.query.Query<?> query = session.createQuery("FROM VaccineImpl WHERE vaccineID in (:codes)");
+            query.setParameterList("codes", codes);
+            @SuppressWarnings("unchecked")
+            List<Vaccine> list = (List<Vaccine>) query.list();
+            session.close();
+            return list;
+        } else {
+            return new ArrayList<Vaccine>();
+        }
     }
 
     private List<Integer> findObservationIdsBySubjectId(Long subjectId, int limit) {
