@@ -1833,7 +1833,6 @@
     });
 
     const tabulate_matching_observations = function (m_observations) {
-        $("#observation-search-results").hide();
         if (m_observations.length <= 0) return;
 
         $("#observation-search-results").fadeIn();
@@ -1872,6 +1871,8 @@
             searchResults.fetch({
                 success: function () {
                     $("#loading-row").remove();
+                    $("#submission-search-results").hide();
+                    $("#observation-search-results").hide();
                     if (searchResults.models.length == 0) {
                         (new EmptyResultsView({
                             el: $(thatEl).find("tbody"),
@@ -1929,7 +1930,6 @@
                         ]);
 
                         // OK done with the subjects; let's build the submissions table
-                        $("#submission-search-results").hide();
                         if (submissions.length > 0) {
                             $("#submission-search-results").fadeIn();
 
