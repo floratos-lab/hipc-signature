@@ -401,58 +401,30 @@
 
 
                         const subject = observedSubject.subject;
+                        const imageData = class2imageData[subject.class];
+                        imageData.stableURL = subject.stableURL;
                         const thatEl2 = $("#subject-image-" + observedSubject.id);
-                        let imgTemplate = $("#search-results-unknown-image-tmpl");
+                        const imgTemplate = $("#search-results-image-tmpl");
                         if (subject.class == "Compound") {
-                            let compound = new Subject({
+                            const compound = new Subject({
                                 id: subject.id
                             });
                             compound.fetch({
                                 success: function () {
-                                    compound = compound.toJSON();
-                                    _.each(compound.xrefs, function (xref) {
+                                    _.each(compound.toJSON().xrefs, function (xref) {
                                         if (xref.databaseName == "IMAGE") {
-                                            compound.imageFile = xref.databaseId;
+                                            imageData.image = $("#explore-tmpl").attr("data-url") + "compounds/" + xref.databaseId;
                                         }
                                     });
-
-                                    imgTemplate = $("#search-results-compound-image-tmpl");
-                                    thatEl2.append(_.template(imgTemplate.html())(compound));
+                                    thatEl2.append(_.template(imgTemplate.html())(imageData));
                                 }
                             });
-                        } else if (subject.class == "AnimalModel") {
-                            imgTemplate = $("#search-results-animalmodel-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "CellSample") {
-                            imgTemplate = $("#search-results-cellsample-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "TissueSample") {
-                            imgTemplate = $("#search-results-tissuesample-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Vaccine") {
-                            imgTemplate = $("#search-results-vaccine-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "CellSubset") {
-                            imgTemplate = $("#search-results-cellsubset-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Pathogen") {
-                            imgTemplate = $("#search-results-pathogen-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Gene") {
-                            imgTemplate = $("#search-results-gene-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "ShRna" && subject.type.toLowerCase() == "sirna") {
-                            subject.class = "SiRNA";
-                            imgTemplate = $("#search-results-sirna-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "ShRna") {
-                            imgTemplate = $("#search-results-shrna-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Protein") {
-                            imgTemplate = $("#search-results-protein-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
                         } else {
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
+                            if (subject.type.toLowerCase() == "sirna") {
+                                imageData.image = 'img/sirna.png';
+                                imageData.label = "siRNA";
+                            }
+                            thatEl2.append(_.template(imgTemplate.html())(imageData));
                         }
 
                         if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
@@ -1790,34 +1762,20 @@
             });
 
             const imageEl = $("#search-image-" + result.id);
-            let imgTemplate = $("#search-results-unknown-image-tmpl");
+            const imageData = class2imageData[result.class];
+            imageData.stableURL = result.stableURL;
+            const imgTemplate = $("#search-results-image-tmpl");
             if (result.class == "Compound") {
                 _.each(result.xrefs, function (xref) {
                     if (xref.databaseName == "IMAGE") {
-                        result.imageFile = xref.databaseId;
+                        imageData.image = $("#explore-tmpl").attr("data-url") + "compounds/" + xref.databaseId;
                     }
                 });
-                imgTemplate = $("#search-results-compund-image-tmpl");
-            } else if (result.class == "CellSample") {
-                imgTemplate = $("#search-results-cellsample-image-tmpl");
-            } else if (result.class == "TissueSample") {
-                imgTemplate = $("#search-results-tissuesample-image-tmpl");
-            } else if (result.class == "Vaccine") {
-                imgTemplate = $("#search-results-vaccine-image-tmpl");
-            } else if (result.class == "CellSubset") {
-                imgTemplate = $("#search-results-cellsubset-image-tmpl");
-            } else if (result.class == "Pathogen") {
-                imgTemplate = $("#search-results-pathogen-image-tmpl");
-            } else if (result.class == "Gene") {
-                imgTemplate = $("#search-results-gene-image-tmpl");
             } else if (result.class == "ShRna" && result.type.toLowerCase() == "sirna") {
-                imgTemplate = $("#search-results-sirna-image-tmpl");
-            } else if (result.class == "ShRna") {
-                imgTemplate = $("#search-results-shrna-image-tmpl");
-            } else if (result.class == "Protein") {
-                imgTemplate = $("#search-results-protein-image-tmpl");
+                imageData.image = "img/sirna.png";
+                imageData.label = "siRNA";
             }
-            imageEl.append(_.template(imgTemplate.html())(result));
+            imageEl.append(_.template(imgTemplate.html())(imageData));
 
             // some of the elements will be hidden in the pagination. Use magic-scoping!
             const updateElId = "#subject-observation-count-" + result.id;
