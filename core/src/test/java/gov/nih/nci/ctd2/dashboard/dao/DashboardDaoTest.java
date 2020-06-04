@@ -1,9 +1,11 @@
 package gov.nih.nci.ctd2.dashboard.dao;
 
 import gov.nih.nci.ctd2.dashboard.model.*;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
@@ -13,15 +15,20 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class DashboardDaoTest {
+    private ConfigurableApplicationContext appContext;
     private DashboardDao dashboardDao;
     private DashboardFactory dashboardFactory;
 
     @Before
     public void initiateDao() {
-        ApplicationContext appContext =
-                new ClassPathXmlApplicationContext("classpath*:META-INF/spring/testApplicationContext.xml");
+        appContext = new ClassPathXmlApplicationContext("classpath*:META-INF/spring/testApplicationContext.xml");
         this.dashboardDao = (DashboardDao) appContext.getBean("dashboardDao");
         this.dashboardFactory = (DashboardFactory) appContext.getBean("dashboardFactory");
+    }
+
+    @After
+    public void closeContext() {
+        appContext.close();
     }
 
     @Test
@@ -153,14 +160,10 @@ public class DashboardDaoTest {
 
         // Ok let's create the xrefs
         Xref
-                // For the first compound
-                xref11 = createXref("11"),
-                xref12 = createXref("12"),
-                xref13 = createXref("13"),
+        // For the first compound
+        xref11 = createXref("11"), xref12 = createXref("12"), xref13 = createXref("13"),
                 // For the second compound
-                xref21 = createXref("21"),
-                xref22 = createXref("22"),
-                xref23 = createXref("23"),
+                xref21 = createXref("21"), xref22 = createXref("22"), xref23 = createXref("23"),
                 xref24 = createXref("24");
         xrefEntities.add(xref11);
         xrefEntities.add(xref12);
@@ -294,10 +297,10 @@ public class DashboardDaoTest {
 
         Gene gene1 = dashboardFactory.create(Gene.class);
         gene1.setEntrezGeneId(e1);
-		gene1.setDisplayName(s1);
+        gene1.setDisplayName(s1);
         Gene gene2 = dashboardFactory.create(Gene.class);
         gene2.setEntrezGeneId(e2);
-		gene2.setDisplayName(s2);
+        gene2.setDisplayName(s2);
         dashboardDao.save(gene1);
         dashboardDao.save(gene2);
 
@@ -541,8 +544,8 @@ public class DashboardDaoTest {
     @Test
     public void findObservedRolesByColumnNameTest() {
 
-		ObservationTemplate observationTemplate = dashboardFactory.create(ObservationTemplate.class);
-		observationTemplate.setDisplayName("template_name");
+        ObservationTemplate observationTemplate = dashboardFactory.create(ObservationTemplate.class);
+        observationTemplate.setDisplayName("template_name");
         observationTemplate.setPrincipalInvestigator("PI");
         dashboardDao.save(observationTemplate);
 
@@ -551,27 +554,27 @@ public class DashboardDaoTest {
         dashboardDao.save(evidenceRole);
 
         ObservedEvidenceRole observedEvidenceRole = dashboardFactory.create(ObservedEvidenceRole.class);
-		observedEvidenceRole.setObservationTemplate(observationTemplate);
+        observedEvidenceRole.setObservationTemplate(observationTemplate);
         observedEvidenceRole.setEvidenceRole(evidenceRole);
         String columnName = "role_column1";
         observedEvidenceRole.setColumnName(columnName);
         observedEvidenceRole.setDisplayText("description 1");
         dashboardDao.save(observedEvidenceRole);
 
-		assertTrue(dashboardDao.findObservedEvidenceRole("template_name", columnName) != null);
+        assertTrue(dashboardDao.findObservedEvidenceRole("template_name", columnName) != null);
 
         SubjectRole subjectRole = dashboardFactory.create(SubjectRole.class);
         subjectRole.setDisplayName("SR1");
         dashboardDao.save(subjectRole);
 
         ObservedSubjectRole observedSubjectRole = dashboardFactory.create(ObservedSubjectRole.class);
-		observedSubjectRole.setObservationTemplate(observationTemplate);
+        observedSubjectRole.setObservationTemplate(observationTemplate);
         observedSubjectRole.setSubjectRole(subjectRole);
         observedSubjectRole.setColumnName(columnName);
         observedSubjectRole.setDisplayText("description 1");
         dashboardDao.save(observedSubjectRole);
 
-		assertTrue(dashboardDao.findObservedSubjectRole("template_name", columnName) != null);
+        assertTrue(dashboardDao.findObservedSubjectRole("template_name", columnName) != null);
     }
 
     @Test
@@ -627,7 +630,7 @@ public class DashboardDaoTest {
         observationTemplate.setPrincipalInvestigator("PI");
         dashboardDao.save(observationTemplate);
 
-        //dashboardDao.createIndex(10);
+        // dashboardDao.createIndex(10);
 
         assertTrue(dashboardDao.search("something").isEmpty());
 
@@ -649,7 +652,8 @@ public class DashboardDaoTest {
         // The following are tests for tokenization
         assertFalse(dashboardDao.search("ABT-737").isEmpty());
         assertTrue(dashboardDao.search("ABT").isEmpty());
-        // assertTrue(dashboardDao.search("737").isEmpty()); // in the new version of hibernate-seaech 737 was picked up as a token
+        // assertTrue(dashboardDao.search("737").isEmpty()); // in the new version of
+        // hibernate-seaech 737 was picked up as a token
         assertFalse(dashboardDao.search("ABT*").isEmpty());
     }
 
@@ -664,9 +668,11 @@ public class DashboardDaoTest {
         assertFalse("search b-cell", dashboardDao.search("b-cell").isEmpty());
         assertTrue("search B-cell", dashboardDao.search("B-cell").isEmpty());
         assertFalse("search cell", dashboardDao.search("cell").isEmpty());
-        assertFalse("search diffuse large B-cell lymphoma", dashboardDao.search("diffuse large B-cell lymphoma").isEmpty());
+        assertFalse("search diffuse large B-cell lymphoma",
+                dashboardDao.search("diffuse large B-cell lymphoma").isEmpty());
         assertFalse("search diffuse large", dashboardDao.search("diffuse large").isEmpty());
-        assertTrue("search \"diffuse large B-cell lymphoma\"", dashboardDao.search("\"diffuse large B-cell lymphoma\"").isEmpty());
+        assertTrue("search \"diffuse large B-cell lymphoma\"",
+                dashboardDao.search("\"diffuse large B-cell lymphoma\"").isEmpty());
         assertFalse("search \"diffuse large\"", dashboardDao.search("\"diffuse large\"").isEmpty());
     }
 }
