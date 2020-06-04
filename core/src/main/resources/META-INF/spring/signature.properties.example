@@ -34,3 +34,5 @@ list.max.observations=100
 
 # this is the URL for CNKB query
 cnkb.data.url=http://cagridnode.c2b2.columbia.edu:8080/cknb/InteractionsServlet_new/InteractionsServlet
+
+dashboard.release.version=2020.06.04
