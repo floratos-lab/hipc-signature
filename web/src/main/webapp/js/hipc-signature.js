@@ -432,7 +432,7 @@
 
                         if (subject.class == "Pathogen") {
                             subject.displayName = subject.displayName[0].toLowerCase() + subject.displayName.substr(1);
-                        };
+                        }
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
                             _.template($("#summary-subject-replacement-tmpl").html())(observedSubject.subject)
