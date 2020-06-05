@@ -887,9 +887,13 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public int getGeneNumber() {
+    public int getGeneNumber(String filterBy) {
+        String sql = "SELECT count(*) FROM subject_with_summaries JOIN gene ON subject_id=gene.id";
+        if (filterBy != null && filterBy.trim().length() > 0) {
+            sql += " JOIN dashboard_entity ON subject_id=dashboard_entity.id WHERE displayName LIKE '%" + filterBy
+                    + "%'";
+        }
         Session session = getSession();
-        String sql = "SELECT count(*) FROM subject_with_summaries JOIN gene ON subject_id=gene.id;";
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(sql);
         int x = query.getSingleResult().intValue();
@@ -898,12 +902,18 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public GeneData[] getGeneData(int start, int length, String orderBy, String direction) {
+    public GeneData[] getGeneData(int start, int length, String orderBy, String direction, String filterBy) {
+        if (filterBy == null) {
+            filterBy = "";
+        }
+        if (filterBy.trim().length() > 0) {
+            filterBy = " WHERE displayName LIKE '%" + filterBy + "%'";
+        }
         Session session = getSession();
         String sql = "SELECT displayName, numberofObservations, stableURL FROM subject_with_summaries"
                 + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
-                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + " ORDER BY " + orderBy + " " + direction
-                + " LIMIT " + length + " OFFSET " + start;
+                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + filterBy + " ORDER BY " + orderBy + " "
+                + direction + " LIMIT " + length + " OFFSET " + start;
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
         List<Object[]> list = query.list();

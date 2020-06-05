@@ -37,10 +37,11 @@ public class GenesController {
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, headers = "Accept=application/json")
     public ResponseEntity<String> getTableData(@RequestParam Map<String, String> params) {
         log.debug("request received in gene-data controller");
-        recordsTotal = dashboardDao.getGeneNumber();
+        recordsTotal = dashboardDao.getGeneNumber("");
         recordsFiltered = recordsTotal;
         int draw = 0, start = 0, length = 0, order = 0;
         String newDirection = direction;
+        String filterBy = "";
         for (String x : params.keySet()) {
             System.out.println(x + "=" + params.get(x));
             switch (x) {
@@ -59,6 +60,9 @@ public class GenesController {
                 case "order[0][dir]":
                     newDirection = params.get(x);
                     break;
+                case "search[value]":
+                    filterBy = params.get(x);
+                    break;
             }
         }
         log.debug("draw is " + draw);
@@ -71,7 +75,10 @@ public class GenesController {
             orderBy = "numberofObservations";
             direction = newDirection;
         }
-        GeneData[] g = dashboardDao.getGeneData(start, length, orderBy, direction);
+        if (filterBy.trim().length() > 0) {
+            recordsFiltered = dashboardDao.getGeneNumber(filterBy.trim());
+        }
+        GeneData[] g = dashboardDao.getGeneData(start, length, orderBy, direction, filterBy.trim());
         length = g.length; // actual length
         String[][] data = new String[length][COLUMN_NUMBER];
         for (int i = 0; i < length; i++) {

@@ -149,7 +149,7 @@ public interface DashboardDao {
 
     String[] getAllResponseAgents(Integer submissionId);
 
-    int getGeneNumber();
+    int getGeneNumber(String filterBy);
 
-    GeneData[] getGeneData(int start, int length, String orderBy, String direction);
+    GeneData[] getGeneData(int start, int length, String orderBy, String direction, String filterBy);
 }
