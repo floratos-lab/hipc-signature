@@ -29,6 +29,9 @@ public class GenesController {
     private final int COLUMN_NUMBER = 3;
     private int recordsTotal, recordsFiltered;
 
+    private String orderBy = "numberofObservations";
+    private String direction = "DESC";
+
     /* for parameters detail, see https://datatables.net/manual/server-side */
     @Transactional
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, headers = "Accept=application/json")
@@ -36,7 +39,8 @@ public class GenesController {
         log.debug("request received in gene-data controller");
         recordsTotal = dashboardDao.getGeneNumber();
         recordsFiltered = recordsTotal;
-        int draw = 0, start = 0, length = 0;
+        int draw = 0, start = 0, length = 0, order = 0;
+        String newDirection = direction;
         for (String x : params.keySet()) {
             System.out.println(x + "=" + params.get(x));
             switch (x) {
@@ -49,12 +53,25 @@ public class GenesController {
                 case "length":
                     length = Integer.parseInt(params.get(x));
                     break;
+                case "order[0][column]":
+                    order = Integer.parseInt(params.get(x));
+                    break;
+                case "order[0][dir]":
+                    newDirection = params.get(x);
+                    break;
             }
         }
         log.debug("draw is " + draw);
         log.debug("start is " + start);
         log.debug("lenght is " + length);
-        GeneData[] g = dashboardDao.getGeneData(start, length);
+        if (order == 1) {
+            orderBy = "displayName";
+            direction = newDirection;
+        } else if (order == 3) {
+            orderBy = "numberofObservations";
+            direction = newDirection;
+        }
+        GeneData[] g = dashboardDao.getGeneData(start, length, orderBy, direction);
         length = g.length; // actual length
         String[][] data = new String[length][COLUMN_NUMBER];
         for (int i = 0; i < length; i++) {

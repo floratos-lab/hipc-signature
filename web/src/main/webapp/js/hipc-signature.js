@@ -2083,6 +2083,7 @@
                 serverSide: true,
                 ajax: 'gene-data',
                 "deferRender": true,
+                "order": [[ 3, "desc" ]],
                 "columns": [{
                         data: function () {
                             return 'gene <img src="img/gene.png" style="height:25px" alt="">';

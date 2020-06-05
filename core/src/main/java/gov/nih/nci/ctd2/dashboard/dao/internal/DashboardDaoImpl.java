@@ -898,11 +898,11 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public GeneData[] getGeneData(int start, int length) {
+    public GeneData[] getGeneData(int start, int length, String orderBy, String direction) {
         Session session = getSession();
         String sql = "SELECT displayName, numberofObservations, stableURL FROM subject_with_summaries"
                 + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
-                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + " ORDER BY numberofObservations DESC"
+                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + " ORDER BY " + orderBy + " " + direction
                 + " LIMIT " + length + " OFFSET " + start;
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
