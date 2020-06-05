@@ -1699,7 +1699,7 @@
             <p>
                 The HIPC aims to increase understanding of the underlying molecular causes of distinct cancer types and accelerate development of clinically useful biomarkers and targeted therapies for precision medicine.
                 The Dashboard is one tool that provides access to Network findings.
-                Results are available as bulk datasets, data-related figures, or polished stories, and are formatted to enable navigation and comprehension by most researchers, from computational experts to those with little bioinformatics dexterity.
+                Results are available as bulk datasets, data-related figures, and are formatted to enable navigation and comprehension by most researchers, from computational experts to those with little bioinformatics dexterity.
                 Through the Dashboard, the <b>HIPC</b> gives the research community a method to interrogate experimental observations across the Centers.
                 Before using the Dashboard, read the following to learn how Dashboard content is organized.
             </p>
