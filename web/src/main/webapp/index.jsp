@@ -53,7 +53,7 @@
                     <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b
                             class="caret"></b></a>
                     <ul id="dropdown-menu-browse" class="dropdown">
-                        <li><a href="#explore/response_agent/gene_biomarker">Genes</a></li>
+                        <li><a href="#explore/genes">Genes</a></li>
                         <li><a href="#explore/cellsubset/cell_biomarker,tissue">Cell Subset</a></li>
                         <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
                         <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
@@ -262,7 +262,7 @@
                 <p>
                     Explore genes identified as components of vaccine response signatures
                 </p>
-                <a class="btn btn-success btn-block browse-button" href="#explore/response_agent/gene_biomarker">Browse &raquo;</a>
+                <a class="btn btn-success btn-block browse-button" href="#explore/genes">Browse &raquo;</a>
             </div>
             <div class="col-4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Pathogens</h4>
