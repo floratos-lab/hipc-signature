@@ -108,11 +108,19 @@ public class GenesController {
     @Transactional
     @RequestMapping(value = "all", method = { RequestMethod.GET,
             RequestMethod.POST }, headers = "Accept=application/json")
-    public ResponseEntity<String> getWholeTableData() {
+    public ResponseEntity<String> getWholeTableData(
+            @RequestParam(value = "orderBy", required = false, defaultValue = "3") Integer order,
+            @RequestParam(value = "direction", required = false, defaultValue = "desc") String direction) {
         log.debug("request received for all gene-data");
+        log.debug("orderBy " + orderBy + "; direction " + direction);
+        if (order == 1) {
+            orderBy = "displayName";
+        } else if (order == 3) {
+            orderBy = "numberofObservations";
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        String[][] data = dashboardDao.getAllGeneData();
+        String[][] data = dashboardDao.getAllGeneData(orderBy, direction);
         try {
             return new ResponseEntity<String>(new JSONSerializer().serialize(data), headers, HttpStatus.OK);
         } catch (Exception e) {

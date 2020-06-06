@@ -2114,8 +2114,25 @@
                     text: 'Export as Spreadsheet',
                     className: "extra-margin",
                     customizeData: function (data) {
+                        let orderBy = 3,
+                            direction = 'desc';
+                        const th = $("#gene-explore-table thead tr th");
+                        if ($(th[1]).hasClass("sorting_asc")) {
+                            orderBy = 1;
+                            direction = 'asc';
+                        } else if ($(th[1]).hasClass("sorting_desc")) {
+                            orderBy = 1;
+                            direction = 'desc';
+                        } else if ($(th[3]).hasClass("sorting_asc")) {
+                            orderBy = 3;
+                            direction = 'asc';
+                        }
                         $.ajax({
                             "url": "gene-data/all",
+                            data: {
+                                orderBy: orderBy,
+                                direction: direction
+                            },
                             "async": false,
                             "success": function (res, status, xhr) {
                                 data.body = [];
