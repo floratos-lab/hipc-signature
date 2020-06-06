@@ -1,7 +1,5 @@
 package gov.nih.nci.ctd2.dashboard.controller;
 
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,39 +33,16 @@ public class GenesController {
     /* for parameters detail, see https://datatables.net/manual/server-side */
     @Transactional
     @RequestMapping(method = { RequestMethod.POST, RequestMethod.GET }, headers = "Accept=application/json")
-    public ResponseEntity<String> getTableData(@RequestParam Map<String, String> params) {
+    public ResponseEntity<String> getTableData(
+            @RequestParam(value = "draw", required = false, defaultValue = "0") Integer draw,
+            @RequestParam(value = "start", required = false, defaultValue = "0") Integer start,
+            @RequestParam(value = "length", required = false, defaultValue = "0") Integer length,
+            @RequestParam(value = "order[0][column]", required = false, defaultValue = "3") Integer order,
+            @RequestParam(value = "order[0][dir]", required = false, defaultValue = "DESC") String newDirection,
+            @RequestParam(value = "search[value]", required = false, defaultValue = "") String filterBy) {
         log.debug("request received in gene-data controller");
         recordsTotal = dashboardDao.getGeneNumber("");
         recordsFiltered = recordsTotal;
-        int draw = 0, start = 0, length = 0, order = 0;
-        String newDirection = direction;
-        String filterBy = "";
-        for (String x : params.keySet()) {
-            System.out.println(x + "=" + params.get(x));
-            switch (x) {
-                case "draw":
-                    draw = Integer.parseInt(params.get(x));
-                    break;
-                case "start":
-                    start = Integer.parseInt(params.get(x));
-                    break;
-                case "length":
-                    length = Integer.parseInt(params.get(x));
-                    break;
-                case "order[0][column]":
-                    order = Integer.parseInt(params.get(x));
-                    break;
-                case "order[0][dir]":
-                    newDirection = params.get(x);
-                    break;
-                case "search[value]":
-                    filterBy = params.get(x);
-                    break;
-            }
-        }
-        log.debug("draw is " + draw);
-        log.debug("start is " + start);
-        log.debug("lenght is " + length);
         if (order == 1) {
             orderBy = "displayName";
             direction = newDirection;
