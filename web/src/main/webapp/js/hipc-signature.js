@@ -128,14 +128,8 @@
         initialize: function (attributes) {
             this.url += attributes.subjectId;
             if (attributes.role != undefined) {
+                /* only for CellSubset */
                 this.url += "&role=" + attributes.role;
-            }
-            if (attributes.tier != undefined) {
-                this.url += "&tier=" + attributes.tier;
-            }
-
-            if (attributes.getAll != undefined) {
-                this.url += "&getAll=" + attributes.getAll;
             }
         }
     });
@@ -763,15 +757,12 @@
             const thatEl = $(this.el).find('#related-observation-grid');
             const thatModel = this.model;
             const subjectId = thatModel.subjectId;
-            const tier = thatModel.tier; // possibly undefined
             const role = thatModel.role; // possibly undefined
 
             let countUrl = "observations/countBySubject/?subjectId=" + subjectId;
             if (role != undefined) {
+                /* only needed by CellSubset */
                 countUrl += "&role=" + role;
-            }
-            if (tier != undefined) {
-                countUrl += "&tier=" + tier;
             }
 
             $.ajax(countUrl).done(function (count) {
@@ -780,7 +771,6 @@
                     new MoreObservationView({
                         model: {
                             role: role,
-                            tier: tier,
                             numOfObservations: maxNumberOfEntities,
                             numOfAllObservations: count,
                             subjectId: subjectId,
@@ -800,8 +790,7 @@
 
             const observations = new ObservationsBySubject({
                 subjectId: subjectId,
-                role: role,
-                tier: tier
+                role: role, // undefined unless Cell Subset
             });
             observations.fetch({
                 success: function () {
@@ -901,7 +890,6 @@
             const thatModel = this.model;
             const entity = thatModel.subject.toJSON();
             $(this.el).html(this.template($.extend(entity, {
-                tier: thatModel.tier ? thatModel.tier : null,
                 role: thatModel.role ? thatModel.role : null
             })));
 
@@ -933,7 +921,6 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: entity.id,
-                    tier: thatModel.tier,
                     role: thatModel.role
                 },
                 el: "#related-observations"
@@ -2615,8 +2602,6 @@
             "transcript/:name(/:role)": subjectRouter(Transcript, TranscriptView),
             "rna/:name(/:role)": subjectRouter(ShRna, RnaView),
             "gene/:species/:symbol": "showGene",
-            "gene/:species/:symbol/:role": "showGene",
-            "gene/:species/:symbol/:role/:tier": "showGene",
             "genes": "showGeneList",
             "cnkb-query": "showCnkbQuery",
             "cnkb-result": "showCnkbResult",
@@ -2652,7 +2637,7 @@
             }).render();
         },
 
-        showGene: function (species, symbol, role, tier) {
+        showGene: function (species, symbol) {
             const gmodel = new Gene({
                 species: species,
                 symbol: symbol
@@ -2662,8 +2647,6 @@
                     new GeneView({
                         model: {
                             subject: gmodel,
-                            tier: tier,
-                            role: role
                         }
                     }).render();
                 }

@@ -59,7 +59,8 @@ public class ObservationController {
         }
     }
 
-    private List<Observation> getBySubjectId(Integer subjectId, String role, Integer tier, final int limit) {
+    /* only for CellSubset */
+    private List<Observation> getBySubjectId(Integer subjectId, String role) {
         log.debug("subjectId=" + subjectId);
         Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
         if (subject != null) {
@@ -67,11 +68,9 @@ public class ObservationController {
             for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectBySubject(subject)) {
                 ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
                 String subjectRole = observedSubjectRole.getSubjectRole().getDisplayName();
-                Integer observationTier = observedSubject.getObservation().getSubmission().getObservationTemplate()
-                        .getTier();
-                if ((role.equals("") || role.equals(subjectRole)) && (tier == 0 || tier == observationTier)) {
+                if (role.equals("") || role.equals(subjectRole)) {
                     observations.add(observedSubject.getObservation());
-                    if (limit > 0 && observations.size() >= limit) {
+                    if (observations.size() >= maxNumberOfEntities) {
                         break;
                     }
                 }
@@ -111,23 +110,20 @@ public class ObservationController {
     @RequestMapping(value = "countBySubject", method = { RequestMethod.GET,
             RequestMethod.POST }, headers = "Accept=application/json")
     public ResponseEntity<String> countBySubjectId(@RequestParam("subjectId") Integer subjectId,
-            @RequestParam(value = "role", required = false, defaultValue = "") String role,
-            @RequestParam(value = "tier", required = false, defaultValue = "0") Integer tier) {
+            @RequestParam(value = "role", required = false, defaultValue = "") String role) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
         Long count = 0L;
-        if (tier > 0 || role.trim().length() > 0) { // then we cannot get a quick counting.
+        if (role.trim().length() > 0) { // then we cannot get a quick counting.
             // this is very inefficient, but the only possible way with the current data
-            // model
+            // model. It is only neccesary for CellSubset.
             Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
             Set<Observation> observations = new HashSet<Observation>();
             for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectBySubject(subject)) {
                 ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
                 String subjectRole = observedSubjectRole.getSubjectRole().getDisplayName();
-                Integer observationTier = observedSubject.getObservation().getSubmission().getObservationTemplate()
-                        .getTier();
-                if ((role.equals("") || role.equals(subjectRole)) && (tier == 0 || tier == observationTier)) {
+                if (role.equals("") || role.equals(subjectRole)) {
                     observations.add(observedSubject.getObservation());
                 }
             }
@@ -163,17 +159,13 @@ public class ObservationController {
     @RequestMapping(value = "bySubject", method = { RequestMethod.GET,
             RequestMethod.POST }, headers = "Accept=application/json")
     public ResponseEntity<String> getObservationsBySubjectId(@RequestParam("subjectId") Integer subjectId,
-            @RequestParam(value = "role", required = false, defaultValue = "") String role,
-            @RequestParam(value = "tier", required = false, defaultValue = "0") Integer tier,
-            @RequestParam(value = "getAll", required = false, defaultValue = "false") Boolean getAll) {
+            @RequestParam(value = "role", required = false, defaultValue = "") String role) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
         List<? extends DashboardEntity> entities = null;
-        if (getAll) {
-            entities = getBySubjectId(subjectId, role, tier, 0); // 0 means no limit
-        } else if (tier > 0 || role.trim().length() > 0) {
-            entities = getBySubjectId(subjectId, role, tier, maxNumberOfEntities);
+        if (role.trim().length() > 0) { /* only for Cell Subset */
+            entities = getBySubjectId(subjectId, role);
         } else { // fast query if we can ignore other criteria
             entities = dashboardDao.findObservationsBySubjectId(new Long(subjectId), maxNumberOfEntities);
         }
