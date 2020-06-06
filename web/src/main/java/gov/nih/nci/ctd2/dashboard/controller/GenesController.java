@@ -105,6 +105,23 @@ public class GenesController {
         }
     }
 
+    @Transactional
+    @RequestMapping(value = "all", method = { RequestMethod.GET,
+            RequestMethod.POST }, headers = "Accept=application/json")
+    public ResponseEntity<String> getWholeTableData() {
+        log.debug("request received for all gene-data");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        String[][] data = dashboardDao.getAllGeneData();
+        try {
+            return new ResponseEntity<String>(new JSONSerializer().serialize(data), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>("{\"error\":dataTables server-side error:" + e + "}", headers,
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public class Response {
         public Response(int draw, final String[][] data) {
             this.draw = draw;

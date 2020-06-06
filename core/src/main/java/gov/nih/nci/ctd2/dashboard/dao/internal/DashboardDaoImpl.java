@@ -928,4 +928,23 @@ public class DashboardDaoImpl implements DashboardDao {
         }
         return a;
     }
+
+    @Override
+    public String[][] getAllGeneData() {
+        Session session = getSession();
+        String sql = "SELECT displayName, numberofObservations FROM subject_with_summaries"
+                + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
+                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id";
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
+        List<Object[]> list = query.list();
+        session.close();
+        String[][] a = new String[list.size()][2];
+        for (int i = 0; i < list.size(); i++) {
+            Object[] obj = list.get(i);
+            a[i][0] = obj[0].toString();
+            a[i][1] = obj[1].toString();
+        }
+        return a;
+    }
 }

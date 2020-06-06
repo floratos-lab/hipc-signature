@@ -152,4 +152,6 @@ public interface DashboardDao {
     int getGeneNumber(String filterBy);
 
     GeneData[] getGeneData(int start, int length, String orderBy, String direction, String filterBy);
+
+    String[][] getAllGeneData();
 }

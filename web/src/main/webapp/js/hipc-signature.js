@@ -2083,7 +2083,9 @@
                 serverSide: true,
                 ajax: 'gene-data',
                 "deferRender": true,
-                "order": [[ 3, "desc" ]],
+                "order": [
+                    [3, "desc"]
+                ],
                 "columns": [{
                         data: function () {
                             return 'gene <img src="img/gene.png" style="height:25px" alt="">';
@@ -2111,6 +2113,21 @@
                     extend: 'excelHtml5',
                     text: 'Export as Spreadsheet',
                     className: "extra-margin",
+                    customizeData: function (data) {
+                        $.ajax({
+                            "url": "gene-data/all",
+                            "async": false,
+                            "success": function (res, status, xhr) {
+                                data.body = [];
+                                for (let i = 0; i < res.length; i++) {
+                                    data.body[i] = ['gene', res[i][0], 'gene_biomarker', res[i][1]];
+                                }
+                            },
+                            error: function (event, jqxhr, settings, thrownError) {
+                                console.log('error ' + thrownError + ' at ' + settings.url);
+                            },
+                        });
+                    },
                 }],
             });
             $("#gene-explore-table").parent().width("100%");
