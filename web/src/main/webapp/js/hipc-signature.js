@@ -2116,7 +2116,7 @@
                     customizeData: function (data) {
                         let orderBy = 3,
                             direction = 'desc';
-                        const th = $("#gene-explore-table thead tr th");
+                        const th = $("#gene-explore-table>thead>tr>th");
                         if ($(th[1]).hasClass("sorting_asc")) {
                             orderBy = 1;
                             direction = 'asc';
@@ -2127,11 +2127,13 @@
                             orderBy = 3;
                             direction = 'asc';
                         }
+                        const filterBy = $("#gene-explore-table_filter input[type=search]").val().trim();
                         $.ajax({
                             "url": "gene-data/all",
                             data: {
                                 orderBy: orderBy,
-                                direction: direction
+                                direction: direction,
+                                filterBy: filterBy,
                             },
                             "async": false,
                             "success": function (res, status, xhr) {

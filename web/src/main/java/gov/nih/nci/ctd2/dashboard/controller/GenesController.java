@@ -110,7 +110,8 @@ public class GenesController {
             RequestMethod.POST }, headers = "Accept=application/json")
     public ResponseEntity<String> getWholeTableData(
             @RequestParam(value = "orderBy", required = false, defaultValue = "3") Integer order,
-            @RequestParam(value = "direction", required = false, defaultValue = "desc") String direction) {
+            @RequestParam(value = "direction", required = false, defaultValue = "desc") String direction,
+            @RequestParam(value = "filterBy", required = false, defaultValue = "") String filterBy) {
         log.debug("request received for all gene-data");
         log.debug("orderBy " + orderBy + "; direction " + direction);
         if (order == 1) {
@@ -118,9 +119,12 @@ public class GenesController {
         } else if (order == 3) {
             orderBy = "numberofObservations";
         }
+        if (filterBy == null)
+            filterBy = "";
+        filterBy = filterBy.trim();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        String[][] data = dashboardDao.getAllGeneData(orderBy, direction);
+        String[][] data = dashboardDao.getAllGeneData(orderBy, direction, filterBy);
         try {
             return new ResponseEntity<String>(new JSONSerializer().serialize(data), headers, HttpStatus.OK);
         } catch (Exception e) {
