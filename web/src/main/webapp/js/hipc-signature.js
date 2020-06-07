@@ -780,7 +780,6 @@
                                     "orderDataType": "dashboard-date"
                                 },
                                 null,
-                                null,
                                 null
                             ]
                         }
