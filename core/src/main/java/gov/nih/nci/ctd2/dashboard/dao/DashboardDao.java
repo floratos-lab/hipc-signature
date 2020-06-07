@@ -51,7 +51,11 @@ public interface DashboardDao {
 
     Long countObservationsBySubjectId(Long subjectId);
 
+    Long countObservationsBySubjectId(Long subjectId, String role);
+
     List<Observation> findObservationsBySubjectId(Long subjectId, int limit);
+
+    List<Observation> findObservationsBySubjectId(Long subjectId, String role, int limit);
 
     DashboardFactory getDashboardFactory();
 

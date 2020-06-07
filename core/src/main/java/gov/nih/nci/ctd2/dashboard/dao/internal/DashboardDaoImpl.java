@@ -534,6 +534,21 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
+    public Long countObservationsBySubjectId(Long subjectId, String role) {
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<BigInteger> query = session
+                .createNativeQuery("SELECT COUNT(*) FROM observed_subject JOIN subject ON subject_id=subject.id"
+                        + " JOIN observed_subject_role ON observedSubjectRole_id=observed_subject_role.id"
+                        + " JOIN subject_role ON subjectRole_id=subject_role.id"
+                        + " JOIN dashboard_entity ON subject_role.id=dashboard_entity.id" + " WHERE subject_id="
+                        + subjectId + " AND displayName='" + role + "'");
+        BigInteger count = query.uniqueResult();
+        session.close();
+        return count.longValue();
+    }
+
+    @Override
     public List<Observation> findObservationsBySubjectId(Long subjectId, int limit) {
         Session session = getSession();
         org.hibernate.query.Query<?> query = session.createNativeQuery(
@@ -547,6 +562,26 @@ public class DashboardDaoImpl implements DashboardDao {
             list.add(observation);
         }
         session.close();
+        return list;
+    }
+
+    @Override
+    public List<Observation> findObservationsBySubjectId(Long subjectId, String role, int limit) {
+        Session session = getSession();
+        org.hibernate.query.Query<?> query = session
+                .createNativeQuery("SELECT observation_id FROM observed_subject JOIN subject ON subject_id=subject.id"
+                        + " JOIN observed_subject_role ON observedSubjectRole_id=observed_subject_role.id"
+                        + " JOIN subject_role ON subjectRole_id=subject_role.id"
+                        + " JOIN dashboard_entity ON subject_role.id=dashboard_entity.id" + " WHERE subject_id="
+                        + subjectId + " AND displayName='" + role + "' LIMIT " + limit);
+        List<?> ids = query.list();
+        List<Observation> list = new ArrayList<Observation>();
+        for (Object id : ids) {
+            TypedQuery<Observation> obsvnQuery = session.createQuery("FROM ObservationImpl WHERE id=" + id,
+                    Observation.class);
+            Observation observation = obsvnQuery.getSingleResult();
+            list.add(observation);
+        }
         return list;
     }
 

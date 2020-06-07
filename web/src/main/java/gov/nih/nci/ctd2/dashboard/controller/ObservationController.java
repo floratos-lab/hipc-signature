@@ -64,25 +64,7 @@ public class ObservationController {
         log.debug("subjectId=" + subjectId);
         Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
         if (subject != null) {
-            Set<Observation> observations = new HashSet<Observation>();
-            for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectBySubject(subject)) {
-                ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
-                String subjectRole = observedSubjectRole.getSubjectRole().getDisplayName();
-                if (role.equals("") || role.equals(subjectRole)) {
-                    observations.add(observedSubject.getObservation());
-                    if (observations.size() >= maxNumberOfEntities) {
-                        break;
-                    }
-                }
-            }
-            List<Observation> list = new ArrayList<Observation>(observations);
-            list.sort((Observation o1, Observation o2) -> {
-                Integer tier2 = o2.getSubmission().getObservationTemplate().getTier();
-                Integer tier1 = o1.getSubmission().getObservationTemplate().getTier();
-                return tier2 - tier1;
-            });
-
-            return list;
+            return dashboardDao.findObservationsBySubjectId(new Long(subjectId), role, maxNumberOfEntities);
         } else {
             return new ArrayList<Observation>();
         }
@@ -115,20 +97,9 @@ public class ObservationController {
         headers.add("Content-Type", "application/json; charset=utf-8");
 
         Long count = 0L;
-        if (role.trim().length() > 0) { // then we cannot get a quick counting.
-            // this is very inefficient, but the only possible way with the current data
-            // model. It is only neccesary for CellSubset.
-            Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
-            Set<Observation> observations = new HashSet<Observation>();
-            for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectBySubject(subject)) {
-                ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
-                String subjectRole = observedSubjectRole.getSubjectRole().getDisplayName();
-                if (role.equals("") || role.equals(subjectRole)) {
-                    observations.add(observedSubject.getObservation());
-                }
-            }
-            count = new Long(observations.size());
-        } else { // quick counting
+        if (role.trim().length() > 0) { // only for CellSubset
+            count = dashboardDao.countObservationsBySubjectId(new Long(subjectId), role);
+        } else {
             count = dashboardDao.countObservationsBySubjectId(new Long(subjectId));
         }
 
