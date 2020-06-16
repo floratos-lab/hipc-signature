@@ -349,7 +349,7 @@
 
                     <table id="submission-details-grid" class="table table-bordered table-striped">
                         <tr>
-                            <th>Project</th>
+                            <th>Signature Type</th>
                             <td>{{observationTemplate.project}}</td>
                         </tr>
                         <tr>
@@ -456,7 +456,7 @@
             <div id="obs-submission-details">
                 <table id="obs-submission-details-grid" class="table table-bordered table-striped">
                     <tr>
-                        <th>Project</th>
+                        <th>Signature Type</th>
                         <td>{{submission.observationTemplate.project}}</td>
                     </tr>
                     <tr>
@@ -1741,7 +1741,7 @@
     </script>
 
     <script id="tbl-project-title-tmpl" type="text/template">
-        <tr class="group"><td colspan="5"><a href="#{{centerStableURL}}/{{project}}">Project: {{project}}</a></td></tr>
+        <tr class="group"><td colspan="5"><a href="#{{centerStableURL}}/{{project}}">Signature Type: {{project}}</a></td></tr>
     </script>
 
     <!-- end of templates -->
