@@ -607,6 +607,7 @@
                 $("#obs-submission-summary").hide();
             }
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -878,6 +879,7 @@
                 el: "#related-observations"
             }).render();
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -928,6 +930,7 @@
                 $('#related-observations h3').append(' <small>for the role of ' + thatModel.role + '</small>');
             }
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -947,6 +950,7 @@
                 el: "#related-observations"
             }).render();
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -995,6 +999,7 @@
                 return this;
             }); //end addGene
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -1595,7 +1600,7 @@
 
             });
 
-
+            window.scroll(0, 0);
             return this;
         }
     });
