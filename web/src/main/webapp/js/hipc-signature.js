@@ -1977,14 +1977,13 @@
                         const nameLink = "<a href='#" + subject.stableURL + "/" + role + "'>" + subject.displayName + "</a>";
                         const n1obv = sModel.numberOfTier1Observations;
                         const n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "'>" + n1obv + "</a>");
-                        table_data.push([reformatted, nameLink, role, n1link]);
+                        table_data.push([reformatted, nameLink, n1link]);
                     });
                     $("#explore-table").dataTable({
                         'dom': '<iBfrtlp>',
                         'data': table_data,
                         "deferRender": true,
                         "columns": [
-                            null,
                             null,
                             null,
                             {
@@ -2075,7 +2074,7 @@
                 ajax: 'gene-data',
                 "deferRender": true,
                 "order": [
-                    [3, "desc"]
+                    [2, "desc"]
                 ],
                 "columns": [{
                         data: function () {
@@ -2086,11 +2085,6 @@
                         // https://datatables.net/reference/option/columns.data
                         data: function (row, type, set, meta) {
                             return '<a href="#' + row[2] + '">' + row[0] + '</a>';
-                        }
-                    },
-                    {
-                        data: function () {
-                            return 'gene_biomarker';
                         }
                     },
                     {
@@ -2105,7 +2099,7 @@
                     text: 'Export as Spreadsheet',
                     className: "extra-margin",
                     customizeData: function (data) {
-                        let orderBy = 3,
+                        let orderBy = 2,
                             direction = 'desc';
                         const th = $("#gene-explore-table>thead>tr>th");
                         if ($(th[1]).hasClass("sorting_asc")) {
@@ -2114,8 +2108,8 @@
                         } else if ($(th[1]).hasClass("sorting_desc")) {
                             orderBy = 1;
                             direction = 'desc';
-                        } else if ($(th[3]).hasClass("sorting_asc")) {
-                            orderBy = 3;
+                        } else if ($(th[2]).hasClass("sorting_asc")) {
+                            orderBy = 2;
                             direction = 'asc';
                         }
                         const filterBy = $("#gene-explore-table_filter input[type=search]").val().trim();
@@ -2130,7 +2124,7 @@
                             "success": function (res, status, xhr) {
                                 data.body = [];
                                 for (let i = 0; i < res.length; i++) {
-                                    data.body[i] = ['gene', res[i][0], 'gene_biomarker', res[i][1]];
+                                    data.body[i] = ['gene', res[i][0], res[i][1]];
                                 }
                             },
                             error: function (event, jqxhr, settings, thrownError) {

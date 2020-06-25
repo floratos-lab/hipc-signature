@@ -1372,12 +1372,6 @@
             <h2>Explore: <i>{{roles_label}}</i></h2>
 
             <div id="explore-blurb"></div>
-            <div class="container" style="padding-bottom:5px;">
-            <!--
-            <button type="button" class="btn btn-outline-dark" id="reset-ordering">Reset initial ordering</button>
-            <button type="button" class="btn btn-outline-dark" id="customize-roles">Select Roles</button>
-            -->
-            </div>
 
             <div style="width:50%" id=loading-spinner>
             <div class="d-flex align-items-center">
@@ -1390,7 +1384,6 @@
                 <tr>
                     <th>Class</th>
                     <th>Name</th>
-                    <th>Role</th>
                     <th>Observations</th>
                 </tr>
                 </thead>
@@ -1441,7 +1434,6 @@
                 <tr>
                     <th>Class</th>
                     <th>Name</th>
-                    <th>Role</th>
                     <th>Observations</th>
                 </tr>
                 </thead>

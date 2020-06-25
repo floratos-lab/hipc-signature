@@ -46,7 +46,7 @@ public class GenesController {
         if (order == 1) {
             orderBy = "displayName";
             direction = newDirection;
-        } else if (order == 3) {
+        } else if (order == 2) {
             orderBy = "numberofObservations";
             direction = newDirection;
         }
@@ -91,7 +91,7 @@ public class GenesController {
         log.debug("orderBy " + orderBy + "; direction " + direction);
         if (order == 1) {
             orderBy = "displayName";
-        } else if (order == 3) {
+        } else if (order == 2) {
             orderBy = "numberofObservations";
         }
         if (filterBy == null)
