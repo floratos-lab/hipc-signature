@@ -1942,7 +1942,7 @@
         render: function () {
 
             const thatModel = this.model;
-            thatModel.roles_label = subjectType[thatModel.type];
+            thatModel.roles_label = subjectType[thatModel.roles];
             $(this.el).html(this.template(thatModel));
             const data_url = $("#explore-tmpl").attr("data-url");
             const subjectWithSummaryCollection = new SubjectWithSummaryCollection(thatModel);
@@ -2160,9 +2160,10 @@
     };
 
     const subjectType = {
-        cellsubset: 'Cell Subset',
-        pathogen: "Pathogens",
-        vaccine: "Vaccines"
+        cell_biomarker: "Cell Types",
+        tissue: "Tissues",
+        Pathogen: "Pathogens",
+        Vaccine: "Vaccines"
     };
 
     //customize-roles-item-tmpl

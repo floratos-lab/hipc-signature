@@ -64,9 +64,10 @@
                             class="caret"></b></a>
                     <ul id="dropdown-menu-browse" class="dropdown">
                         <li><a href="#explore/genes">Genes</a></li>
-                        <li><a href="#explore/cellsubset/cell_biomarker,tissue">Cell Subset</a></li>
+                        <li><a href="#explore/cellsubset/cell_biomarker">Cell Types</a></li>
                         <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
                         <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
+                        <li><a href="#explore/cellsubset/tissue">Tissues</a></li>
                     </ul>
                 </li>
                 <li>
@@ -282,11 +283,11 @@
                 <a class="btn btn-info btn-block browse-button" href="#explore/pathogen/Pathogen">Browse &raquo;</a>
             </div>
               <div class="col-4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-                  <h4>Cell Subset</h4>
+                  <h4>Cell Types</h4>
                   <p>
-                    Explore cell subsets identified as components of vaccine response signatures
+                    Explore cell types identified as components of vaccine response signatures
                   </p>
-                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker,tissue">Browse &raquo;</a>
+                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker">Browse &raquo;</a>
               </div>
 
           </div><!-- /.row -->
