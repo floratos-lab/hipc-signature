@@ -1692,14 +1692,6 @@
         }
     });
 
-    const RoleView = Backbone.View.extend({
-        template: _.template($("#role-item-tmpl").html()),
-        render: function () {
-            $(this.el).append(this.template(this.model));
-            return this;
-        }
-    });
-
     const EmptyResultsView = Backbone.View.extend({
         template: _.template($("#search-empty-tmpl").html()),
         render: function () {
@@ -1736,16 +1728,6 @@
                 new SynonymView({
                     model: aSynonym,
                     el: thatEl
-                }).render();
-            });
-
-            const roleEl = $("#roles-" + result.id);
-            _.each(model.roles, function (aRole) {
-                new RoleView({
-                    model: {
-                        role: aRole
-                    },
-                    el: roleEl
                 }).render();
             });
 
@@ -1843,6 +1825,11 @@
                                 return;
                             }
 
+                            if (aResult.dashboardEntity.class == "CellSubset") {
+                                aResult.dashboardEntity.id = aResult.dashboardEntity.id+aResult.role;
+                            } else {
+                                aResult.role = aResult.dashboardEntity.class.toLowerCase();
+                            }
                             new SearchResultsRowView({
                                 model: aResult,
                                 el: $(thatEl).find("tbody")

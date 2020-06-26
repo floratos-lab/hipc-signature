@@ -1210,11 +1210,7 @@
                 </ul>
             </td>
             <td>{{dashboardEntity.class}}</td>
-            <td>
-                <ul id="roles-{{dashboardEntity.id}}">
-                    <!-- here will go the roles -->
-                </ul>
-            </td>
+            <td>{{role}}</td>
             <td class="nonewline">
                 <a href="#{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
@@ -1237,11 +1233,7 @@
                 </ul>
             </td>
             <td>{{dashboardEntity.type}}</td>
-            <td>
-                <ul id="roles-{{dashboardEntity.id}}">
-                    <!-- here will go the roles -->
-                </ul>
-            </td>
+            <td>gene_biomarker</td>
             <td class="nonewline">
                 <a href="#{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
@@ -1332,10 +1324,6 @@
 
     <script type="text/template" id="synonym-item-tmpl">
         <li class="synonym"><small>{{displayName}}</small></li>
-    </script>
-
-    <script type="text/template" id="role-item-tmpl">
-        <li class="synonym"><small>{{role}}</small></li>
     </script>
 
     <script type="text/template" id="transcript-item-tmpl">

@@ -692,8 +692,6 @@ public class DashboardDaoImpl implements DashboardDao {
         ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
         Map<Integer, Set<String>> matchingObservations = new HashMap<Integer, Set<String>>();
         for (DashboardEntity entity : entitiesUnique) {
-            DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
-            entityWithCounts.setDashboardEntity(entity);
             if (entity instanceof Subject) {
                 final int MAXIMUM_OBSERVATION_NUMBER = 100000;
                 List<Integer> observationIds = findObservationIdsBySubjectId(new Long(entity.getId()),
@@ -709,14 +707,39 @@ public class DashboardDaoImpl implements DashboardDao {
                         terms.add(term);
                     }
                 }
-                entityWithCounts.setObservationCount(observationIds.size());
+                if (entity instanceof CellSubset) {
+                    Long subjectId = new Long(entity.getId());
+                    String role1 = "cell_biomarker", role2 = "tissue";
+                    int count1 = countObservationsBySubjectId(subjectId, role1).intValue();
+                    if (count1 > 0) {
+                        DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                        entityWithCounts.setDashboardEntity(entity);
+                        entityWithCounts.setObservationCount(count1);
+                        entityWithCounts.setRole(role1);
+                        entitiesWithCounts.add(entityWithCounts);
+                    }
+                    int count2 = countObservationsBySubjectId(subjectId, role2).intValue();
+                    if (count2 > 0) {
+                        DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                        entityWithCounts.setDashboardEntity(entity);
+                        entityWithCounts.setObservationCount(count2);
+                        entityWithCounts.setRole(role2);
+                        entitiesWithCounts.add(entityWithCounts);
+                    }
+                } else {
+                    DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                    entityWithCounts.setDashboardEntity(entity);
+                    entityWithCounts.setObservationCount(observationIds.size());
+                    entitiesWithCounts.add(entityWithCounts);
+                }
             } else if (entity instanceof Submission) {
+                DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                entityWithCounts.setDashboardEntity(entity);
                 entityWithCounts.setObservationCount(findObservationsBySubmission((Submission) entity).size());
                 entityWithCounts.setMaxTier(((Submission) entity).getObservationTemplate().getTier());
                 entityWithCounts.setCenterCount(1);
+                entitiesWithCounts.add(entityWithCounts);
             }
-
-            entitiesWithCounts.add(entityWithCounts);
         }
 
         // search by VO code

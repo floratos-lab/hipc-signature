@@ -3,8 +3,6 @@ package gov.nih.nci.ctd2.dashboard.util;
 import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 public class DashboardEntityWithCounts implements Serializable {
     private static final long serialVersionUID = -1315522615138058767L;
@@ -12,7 +10,7 @@ public class DashboardEntityWithCounts implements Serializable {
     private int observationCount = 0;
     private int centerCount = 0;
     private int maxTier = 0;
-    private Set<String> roles = new HashSet<String>();
+    private String role = "";
 
     public DashboardEntity getDashboardEntity() {
         return dashboardEntity;
@@ -46,11 +44,11 @@ public class DashboardEntityWithCounts implements Serializable {
         this.maxTier = maxTier;
     }
 
-    public Set<String> getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
