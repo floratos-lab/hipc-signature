@@ -1201,7 +1201,7 @@
         <tr>
             <td id="search-image-{{dashboardEntity.id}}"></td>
             <td>
-                <a href="#{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a><br>
+                <a href="#{{dashboardEntity.stableURL}}/{{role}}">{{dashboardEntity.displayName}}</a><br>
                 <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
             </td>
             <td>
@@ -1212,7 +1212,7 @@
             <td>{{dashboardEntity.class}}</td>
             <td>{{role}}</td>
             <td class="nonewline">
-                <a href="#{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
+                <a href="#{{dashboardEntity.stableURL}}/{{role}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
             </td>
         </tr>
