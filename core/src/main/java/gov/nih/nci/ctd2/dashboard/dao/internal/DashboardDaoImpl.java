@@ -551,6 +551,7 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Observation> findObservationsBySubjectId(Long subjectId, int limit) {
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         org.hibernate.query.Query<?> query = session.createNativeQuery(
                 "SELECT observation_id FROM observed_subject S WHERE subject_id=" + subjectId + " LIMIT " + limit);
         List<?> ids = query.list();
@@ -568,6 +569,7 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Observation> findObservationsBySubjectId(Long subjectId, String role, int limit) {
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         org.hibernate.query.Query<?> query = session
                 .createNativeQuery("SELECT observation_id FROM observed_subject JOIN subject ON subject_id=subject.id"
                         + " JOIN observed_subject_role ON observedSubjectRole_id=observed_subject_role.id"
@@ -582,6 +584,7 @@ public class DashboardDaoImpl implements DashboardDao {
             Observation observation = obsvnQuery.getSingleResult();
             list.add(observation);
         }
+        session.close();
         return list;
     }
 
@@ -755,17 +758,18 @@ public class DashboardDaoImpl implements DashboardDao {
         }
 
         // add observations
+        Session session = getSession();
+        session.setDefaultReadOnly(true);
         for (Integer obId : matchingObservations.keySet()) {
             Set<String> terms = matchingObservations.get(obId);
             if (total <= 1 || terms.size() < total)
                 continue;
             DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
-            Session session = getSession();
             Observation ob = session.get(Observation.class, obId);
-            session.close();
             oneObservationResult.setDashboardEntity(ob);
             entitiesWithCounts.add(oneObservationResult);
         }
+        session.close();
 
         return entitiesWithCounts;
     }
@@ -790,6 +794,7 @@ public class DashboardDaoImpl implements DashboardDao {
         }
         if (codes.size() > 0) {
             Session session = getSession();
+            session.setDefaultReadOnly(true);
             org.hibernate.query.Query<?> query = session.createQuery("FROM VaccineImpl WHERE vaccineID in (:codes)");
             query.setParameterList("codes", codes);
             @SuppressWarnings("unchecked")
@@ -842,6 +847,7 @@ public class DashboardDaoImpl implements DashboardDao {
     private <E> List<E> queryWithClass(String queryString, String parameterName, Object valueObject) {
         assert queryString.contains(":" + parameterName);
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         org.hibernate.query.Query<?> query = session.createQuery(queryString);
         query.setParameter(parameterName, valueObject);
         @SuppressWarnings("unchecked")
@@ -856,6 +862,7 @@ public class DashboardDaoImpl implements DashboardDao {
         assert queryString.contains(":" + parameterName1);
         assert queryString.contains(":" + parameterName2);
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         org.hibernate.query.Query<?> query = session.createQuery(queryString);
         query.setParameter(parameterName1, valueObject1).setParameter(parameterName2, valueObject2);
         @SuppressWarnings("unchecked")
@@ -915,6 +922,7 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Observation> getObservationsFiltered(Integer subjectId, String filterBy) {
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Integer> query = session.createNativeQuery(
                 "SELECT expanded_summary.observation_id FROM expanded_summary JOIN observed_subject ON expanded_summary.observation_id=observed_subject.observation_id WHERE subject_id="
