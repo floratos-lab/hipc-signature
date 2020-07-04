@@ -328,7 +328,7 @@ public class CNKB {
                 String interactionId = rs.getString("interaction_id");
                 Short evidenceId = 0;
                 if (rs.getString("evidence_id") != null && !rs.getString("evidence_id").trim().equals("null")) {
-                    evidenceId = new Short(rs.getString("evidence_id"));
+                    evidenceId = Short.valueOf(rs.getString("evidence_id"));
                 }
 
                 if (previousInteractionId == null || !previousInteractionId.equals(interactionId)) {
@@ -352,13 +352,13 @@ public class CNKB {
                             interactionType, evidenceId);
                     float confidenceValue = 1.0f;
                     try {
-                        confidenceValue = new Float(rs.getDouble("confidence_value"));
+                        confidenceValue = (float)rs.getDouble("confidence_value");
                     } catch (NumberFormatException nfe) {
                         logger.info("there is no confidence value for this row. Default it to 1.");
                     }
                     short confidenceType = 0;
                     try {
-                        confidenceType = new Short(rs.getString("confidence_type").trim());
+                        confidenceType = Short.valueOf(rs.getString("confidence_type").trim());
                     } catch (NumberFormatException nfe) {
                         logger.info("there is no confidence value for this row. Default it to 0.");
                     }
@@ -370,7 +370,7 @@ public class CNKB {
                         String[] types = otherConfidenceTypes.split(";");
 
                         for (int i = 0; i < values.length; i++)
-                            interactionDetail.addConfidence(new Float(values[i]), new Short(types[i]));
+                            interactionDetail.addConfidence(Float.valueOf(values[i]), Short.valueOf(types[i]));
 
                     }
                 } else {

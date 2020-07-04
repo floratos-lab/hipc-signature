@@ -60,7 +60,7 @@ public class ObservationController {
         log.debug("subjectId=" + subjectId);
         Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
         if (subject != null) {
-            return dashboardDao.findObservationsBySubjectId(new Long(subjectId), role, maxNumberOfEntities);
+            return dashboardDao.findObservationsBySubjectId(Long.valueOf(subjectId), role, maxNumberOfEntities);
         } else {
             return new ArrayList<Observation>();
         }
@@ -94,9 +94,9 @@ public class ObservationController {
 
         Long count = 0L;
         if (role.trim().length() > 0) { // only for CellSubset
-            count = dashboardDao.countObservationsBySubjectId(new Long(subjectId), role);
+            count = dashboardDao.countObservationsBySubjectId(Long.valueOf(subjectId), role);
         } else {
-            count = dashboardDao.countObservationsBySubjectId(new Long(subjectId));
+            count = dashboardDao.countObservationsBySubjectId(Long.valueOf(subjectId));
         }
 
         return new ResponseEntity<String>(count.toString(), headers, HttpStatus.OK);
@@ -134,7 +134,7 @@ public class ObservationController {
         if (role.trim().length() > 0) { /* only for Cell Subset */
             entities = getBySubjectId(subjectId, role);
         } else { // fast query if we can ignore other criteria
-            entities = dashboardDao.findObservationsBySubjectId(new Long(subjectId), maxNumberOfEntities);
+            entities = dashboardDao.findObservationsBySubjectId(Long.valueOf(subjectId), maxNumberOfEntities);
         }
 
         JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)

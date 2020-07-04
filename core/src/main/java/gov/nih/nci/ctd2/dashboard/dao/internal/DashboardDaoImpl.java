@@ -697,7 +697,7 @@ public class DashboardDaoImpl implements DashboardDao {
         for (DashboardEntity entity : entitiesUnique) {
             if (entity instanceof Subject) {
                 final int MAXIMUM_OBSERVATION_NUMBER = 100000;
-                List<Integer> observationIds = findObservationIdsBySubjectId(new Long(entity.getId()),
+                List<Integer> observationIds = findObservationIdsBySubjectId(Long.valueOf(entity.getId()),
                         MAXIMUM_OBSERVATION_NUMBER);
                 for (Integer observationId : observationIds) {
                     String term = getMatchedTerm(allTerms, entity.getDisplayName());
@@ -711,7 +711,7 @@ public class DashboardDaoImpl implements DashboardDao {
                     }
                 }
                 if (entity instanceof CellSubset) {
-                    Long subjectId = new Long(entity.getId());
+                    Long subjectId = Long.valueOf(entity.getId());
                     String role1 = "cell_biomarker", role2 = "tissue";
                     int count1 = countObservationsBySubjectId(subjectId, role1).intValue();
                     if (count1 > 0) {
