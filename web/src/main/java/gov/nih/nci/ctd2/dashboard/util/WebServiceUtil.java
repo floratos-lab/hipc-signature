@@ -25,8 +25,6 @@ public class WebServiceUtil {
             } else {
                 entities = dashboardDao.findEntities(Submission.class);
             }
-        } else if(type.equals("center")) {
-            entities = dashboardDao.findEntities(SubmissionCenter.class);
         } else if(type.equals("observedsubject") && filterBy != null) {
             Subject subject = dashboardDao.getEntityById(Subject.class, filterBy);
             if(subject != null) {

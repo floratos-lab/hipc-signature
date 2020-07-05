@@ -86,10 +86,6 @@
     const SubmissionCenter = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/center"
     });
-    const SubmissionCenters = Backbone.Collection.extend({
-        url: CORE_API_URL + "list/center/?filterBy=",
-        model: SubmissionCenter
-    });
 
     const Submission = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/submission"
