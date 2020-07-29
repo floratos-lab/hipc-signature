@@ -1,2 +1,1 @@
-dendritic cell & CD11c+
-plasmacytoid dendritic cell
+B cell & CD3 epsilon-

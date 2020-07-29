@@ -1,2 +1,2 @@
-naive thymus-derived CD4-positive, alpha-beta T cell
-CD4-positive, alpha-beta memory T cell & resting
+monocyte
+dendritic cell & activated

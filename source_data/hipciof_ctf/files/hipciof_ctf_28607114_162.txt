@@ -1,1 +1,1 @@
-CD8-positive, alpha-beta T cell & single-function, VZV-specific
+CD8-positive, alpha-beta T cell & CD69+, VZV-specific, CD57+
