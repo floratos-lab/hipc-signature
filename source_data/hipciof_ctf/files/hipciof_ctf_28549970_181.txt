@@ -1,2 +1,2 @@
-B-1a B cell & CD5+
-B cell
+CD14-positive, CD16-positive monocyte & HLA-DR++
+CD14-positive monocyte & CD64+

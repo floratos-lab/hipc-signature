@@ -150,7 +150,7 @@ class DataConfig:
 def create_method_name(subject, evidence, role, mime_type):
     ''' create the name of the method used to import data by DAO '''
 
-    if subject is not '':
+    if subject is not None and subject != '':
         if subject == 'cell_subset':
             method_name = 'findCellSubsetByName'
         elif subject == 'pathogen':

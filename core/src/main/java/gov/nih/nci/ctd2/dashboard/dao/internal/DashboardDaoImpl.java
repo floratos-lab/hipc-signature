@@ -534,10 +534,48 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
+    public Long countObservationsBySubjectId(Long subjectId, String role) {
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<BigInteger> query = session
+                .createNativeQuery("SELECT COUNT(*) FROM observed_subject JOIN subject ON subject_id=subject.id"
+                        + " JOIN observed_subject_role ON observedSubjectRole_id=observed_subject_role.id"
+                        + " JOIN subject_role ON subjectRole_id=subject_role.id"
+                        + " JOIN dashboard_entity ON subject_role.id=dashboard_entity.id" + " WHERE subject_id="
+                        + subjectId + " AND displayName='" + role + "'");
+        BigInteger count = query.uniqueResult();
+        session.close();
+        return count.longValue();
+    }
+
+    @Override
     public List<Observation> findObservationsBySubjectId(Long subjectId, int limit) {
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         org.hibernate.query.Query<?> query = session.createNativeQuery(
                 "SELECT observation_id FROM observed_subject S WHERE subject_id=" + subjectId + " LIMIT " + limit);
+        List<?> ids = query.list();
+        List<Observation> list = new ArrayList<Observation>();
+        for (Object id : ids) {
+            TypedQuery<Observation> obsvnQuery = session.createQuery("FROM ObservationImpl WHERE id=" + id,
+                    Observation.class);
+            Observation observation = obsvnQuery.getSingleResult();
+            list.add(observation);
+        }
+        session.close();
+        return list;
+    }
+
+    @Override
+    public List<Observation> findObservationsBySubjectId(Long subjectId, String role, int limit) {
+        Session session = getSession();
+        session.setDefaultReadOnly(true);
+        org.hibernate.query.Query<?> query = session
+                .createNativeQuery("SELECT observation_id FROM observed_subject JOIN subject ON subject_id=subject.id"
+                        + " JOIN observed_subject_role ON observedSubjectRole_id=observed_subject_role.id"
+                        + " JOIN subject_role ON subjectRole_id=subject_role.id"
+                        + " JOIN dashboard_entity ON subject_role.id=dashboard_entity.id" + " WHERE subject_id="
+                        + subjectId + " AND displayName='" + role + "' LIMIT " + limit);
         List<?> ids = query.list();
         List<Observation> list = new ArrayList<Observation>();
         for (Object id : ids) {
@@ -657,11 +695,9 @@ public class DashboardDaoImpl implements DashboardDao {
         ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
         Map<Integer, Set<String>> matchingObservations = new HashMap<Integer, Set<String>>();
         for (DashboardEntity entity : entitiesUnique) {
-            DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
-            entityWithCounts.setDashboardEntity(entity);
             if (entity instanceof Subject) {
                 final int MAXIMUM_OBSERVATION_NUMBER = 100000;
-                List<Integer> observationIds = findObservationIdsBySubjectId(new Long(entity.getId()),
+                List<Integer> observationIds = findObservationIdsBySubjectId(Long.valueOf(entity.getId()),
                         MAXIMUM_OBSERVATION_NUMBER);
                 for (Integer observationId : observationIds) {
                     String term = getMatchedTerm(allTerms, entity.getDisplayName());
@@ -674,30 +710,100 @@ public class DashboardDaoImpl implements DashboardDao {
                         terms.add(term);
                     }
                 }
-                entityWithCounts.setObservationCount(observationIds.size());
+                if (entity instanceof CellSubset) {
+                    Long subjectId = Long.valueOf(entity.getId());
+                    String role1 = "cell_biomarker", role2 = "tissue";
+                    int count1 = countObservationsBySubjectId(subjectId, role1).intValue();
+                    if (count1 > 0) {
+                        DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                        entityWithCounts.setDashboardEntity(entity);
+                        entityWithCounts.setObservationCount(count1);
+                        entityWithCounts.setRole(role1);
+                        entitiesWithCounts.add(entityWithCounts);
+                    }
+                    int count2 = countObservationsBySubjectId(subjectId, role2).intValue();
+                    if (count2 > 0) {
+                        DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                        entityWithCounts.setDashboardEntity(entity);
+                        entityWithCounts.setObservationCount(count2);
+                        entityWithCounts.setRole(role2);
+                        entitiesWithCounts.add(entityWithCounts);
+                    }
+                } else {
+                    DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                    entityWithCounts.setDashboardEntity(entity);
+                    entityWithCounts.setObservationCount(observationIds.size());
+                    entitiesWithCounts.add(entityWithCounts);
+                }
             } else if (entity instanceof Submission) {
+                DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
+                entityWithCounts.setDashboardEntity(entity);
                 entityWithCounts.setObservationCount(findObservationsBySubmission((Submission) entity).size());
                 entityWithCounts.setMaxTier(((Submission) entity).getObservationTemplate().getTier());
                 entityWithCounts.setCenterCount(1);
+                entitiesWithCounts.add(entityWithCounts);
             }
+        }
 
-            entitiesWithCounts.add(entityWithCounts);
+        // search by VO code
+        List<Vaccine> vaccineList = searchVaccineByCode(keyword);
+        for (Vaccine v : vaccineList) {
+            int observationNumber = countObservation(v.getId());
+            if (observationNumber == 0)
+                continue;
+            DashboardEntityWithCounts entity = new DashboardEntityWithCounts();
+            entity.setDashboardEntity(v);
+            entity.setObservationCount(observationNumber);
+            entitiesWithCounts.add(entity);
         }
 
         // add observations
+        Session session = getSession();
+        session.setDefaultReadOnly(true);
         for (Integer obId : matchingObservations.keySet()) {
             Set<String> terms = matchingObservations.get(obId);
             if (total <= 1 || terms.size() < total)
                 continue;
             DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
-            Session session = getSession();
             Observation ob = session.get(Observation.class, obId);
-            session.close();
             oneObservationResult.setDashboardEntity(ob);
             entitiesWithCounts.add(oneObservationResult);
         }
+        session.close();
 
         return entitiesWithCounts;
+    }
+
+    private int countObservation(Integer vaccine_db_id) {
+        String sql = "SELECT COUNT(DISTINCT observation_id) FROM observed_subject"
+                + " JOIN vaccine ON subject_id=vaccine.id  WHERE vaccine.id=" + vaccine_db_id;
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(sql);
+        BigInteger count = query.getSingleResult();
+        session.close();
+        return count.intValue();
+    }
+
+    private List<Vaccine> searchVaccineByCode(String queryString) {
+        Pattern VOCodePattern = Pattern.compile("(vo[:_])?(\\d{7})");
+        Matcher matcher = VOCodePattern.matcher(queryString);
+        List<String> codes = new ArrayList<String>();
+        while (matcher.find()) {
+            codes.add("VO_" + matcher.group(2));
+        }
+        if (codes.size() > 0) {
+            Session session = getSession();
+            session.setDefaultReadOnly(true);
+            org.hibernate.query.Query<?> query = session.createQuery("FROM VaccineImpl WHERE vaccineID in (:codes)");
+            query.setParameterList("codes", codes);
+            @SuppressWarnings("unchecked")
+            List<Vaccine> list = (List<Vaccine>) query.list();
+            session.close();
+            return list;
+        } else {
+            return new ArrayList<Vaccine>();
+        }
     }
 
     private List<Integer> findObservationIdsBySubjectId(Long subjectId, int limit) {
@@ -741,6 +847,7 @@ public class DashboardDaoImpl implements DashboardDao {
     private <E> List<E> queryWithClass(String queryString, String parameterName, Object valueObject) {
         assert queryString.contains(":" + parameterName);
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         org.hibernate.query.Query<?> query = session.createQuery(queryString);
         query.setParameter(parameterName, valueObject);
         @SuppressWarnings("unchecked")
@@ -755,6 +862,7 @@ public class DashboardDaoImpl implements DashboardDao {
         assert queryString.contains(":" + parameterName1);
         assert queryString.contains(":" + parameterName2);
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         org.hibernate.query.Query<?> query = session.createQuery(queryString);
         query.setParameter(parameterName1, valueObject1).setParameter(parameterName2, valueObject2);
         @SuppressWarnings("unchecked")
@@ -814,6 +922,7 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Observation> getObservationsFiltered(Integer subjectId, String filterBy) {
         Session session = getSession();
+        session.setDefaultReadOnly(true);
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Integer> query = session.createNativeQuery(
                 "SELECT expanded_summary.observation_id FROM expanded_summary JOIN observed_subject ON expanded_summary.observation_id=observed_subject.observation_id WHERE subject_id="
@@ -844,9 +953,13 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public int getGeneNumber() {
+    public int getGeneNumber(String filterBy) {
+        String sql = "SELECT count(*) FROM subject_with_summaries JOIN gene ON subject_id=gene.id";
+        if (filterBy != null && filterBy.trim().length() > 0) {
+            sql += " JOIN dashboard_entity ON subject_id=dashboard_entity.id WHERE displayName LIKE '%" + filterBy
+                    + "%'";
+        }
         Session session = getSession();
-        String sql = "SELECT count(*) FROM subject_with_summaries JOIN gene ON subject_id=gene.id;";
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<BigInteger> query = session.createNativeQuery(sql);
         int x = query.getSingleResult().intValue();
@@ -855,12 +968,18 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public GeneData[] getGeneData(int start, int length) {
+    public GeneData[] getGeneData(int start, int length, String orderBy, String direction, String filterBy) {
+        if (filterBy == null) {
+            filterBy = "";
+        }
+        if (filterBy.trim().length() > 0) {
+            filterBy = " WHERE displayName LIKE '%" + filterBy + "%'";
+        }
         Session session = getSession();
         String sql = "SELECT displayName, numberofObservations, stableURL FROM subject_with_summaries"
                 + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
-                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + " ORDER BY numberofObservations DESC"
-                + " LIMIT " + length + " OFFSET " + start;
+                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + filterBy + " ORDER BY " + orderBy + " "
+                + direction + " LIMIT " + length + " OFFSET " + start;
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
         List<Object[]> list = query.list();
@@ -872,6 +991,32 @@ public class DashboardDaoImpl implements DashboardDao {
             int numberOfObservations = (int) obj[1];
             String url = (String) obj[2];
             a[i] = new GeneData(symbol, url, numberOfObservations);
+        }
+        return a;
+    }
+
+    @Override
+    public String[][] getAllGeneData(String orderBy, String direction, String filterBy) {
+        if (filterBy == null) {
+            filterBy = "";
+        }
+        if (filterBy.trim().length() > 0) {
+            filterBy = " WHERE displayName LIKE '%" + filterBy + "%'";
+        }
+        Session session = getSession();
+        String sql = "SELECT displayName, numberofObservations FROM subject_with_summaries"
+                + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
+                + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + filterBy + " ORDER BY " + orderBy + " "
+                + direction;
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
+        List<Object[]> list = query.list();
+        session.close();
+        String[][] a = new String[list.size()][2];
+        for (int i = 0; i < list.size(); i++) {
+            Object[] obj = list.get(i);
+            a[i][0] = obj[0].toString();
+            a[i][1] = obj[1].toString();
         }
         return a;
     }

@@ -1,8 +1,6 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
 <%@page import="org.springframework.web.context.WebApplicationContext"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%
     WebApplicationContext context = WebApplicationContextUtils
             .getWebApplicationContext(application);
@@ -10,10 +8,19 @@
     Integer maxNumOfObservations = (Integer) context.getBean("maxNumberOfEntities");
     String dashboardReleaseVersion = (String) context.getBean("dashboardReleaseVersion");
 %>
-<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169441884-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169441884-1');
+</script>
+
     <!-- X-UA-Compatible meta tag to disable IE compatibility view must always be first -->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -56,10 +63,11 @@
                     <a id="navlink-browse" class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Browse <b
                             class="caret"></b></a>
                     <ul id="dropdown-menu-browse" class="dropdown">
-                        <li><a href="#explore/response_agent/gene_biomarker">Genes</a></li>
-                        <li><a href="#explore/cellsubset/cell_biomarker,tissue">Cell Subset</a></li>
+                        <li><a href="#explore/genes">Genes</a></li>
+                        <li><a href="#explore/cellsubset/cell_biomarker">Cell Types</a></li>
                         <li><a href="#explore/pathogen/Pathogen">Pathogens</a></li>
                         <li><a href="#explore/vaccine/Vaccine">Vaccines</a></li>
+                        <li><a href="#explore/cellsubset/tissue">Tissues</a></li>
                     </ul>
                 </li>
                 <li>
@@ -265,7 +273,7 @@
                 <p>
                     Explore genes identified as components of vaccine response signatures
                 </p>
-                <a class="btn btn-success btn-block browse-button" href="#explore/response_agent/gene_biomarker">Browse &raquo;</a>
+                <a class="btn btn-success btn-block browse-button" href="#explore/genes">Browse &raquo;</a>
             </div>
             <div class="col-4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
               <h4>Pathogens</h4>
@@ -275,11 +283,11 @@
                 <a class="btn btn-info btn-block browse-button" href="#explore/pathogen/Pathogen">Browse &raquo;</a>
             </div>
               <div class="col-4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-                  <h4>Cell Subset</h4>
+                  <h4>Cell Types</h4>
                   <p>
-                    Explore cell subsets identified as components of vaccine response signatures
+                    Explore cell types identified as components of vaccine response signatures
                   </p>
-                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker,tissue">Browse &raquo;</a>
+                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker">Browse &raquo;</a>
               </div>
 
           </div><!-- /.row -->
@@ -342,7 +350,7 @@
 
                     <table id="submission-details-grid" class="table table-bordered table-striped">
                         <tr>
-                            <th>Project</th>
+                            <th>Signature Type</th>
                             <td>{{observationTemplate.project}}</td>
                         </tr>
                         <tr>
@@ -449,7 +457,7 @@
             <div id="obs-submission-details">
                 <table id="obs-submission-details-grid" class="table table-bordered table-striped">
                     <tr>
-                        <th>Project</th>
+                        <th>Signature Type</th>
                         <td>{{submission.observationTemplate.project}}</td>
                     </tr>
                     <tr>
@@ -1183,74 +1191,9 @@
         </div>
     </script>
 
-    <script type="text/template" id="search-results-gene-image-tmpl">
+    <script type="text/template" id="search-results-image-tmpl">
         <a href="&#35;{{stableURL}}">
-            <img src="img/gene.png" class="img-polaroid search-info" title="Gene" alt="Gene" height="50" width="50">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-protein-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/protein.png" class="img-polaroid search-info" title="Protein" alt="Protein" height="50" width="50">
-        </a>
-    </script>
-
-
-    <script type="text/template" id="search-results-shrna-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/shrna.png" class="img-polaroid search-info" title="shRNA" alt="shRNA" height="50" width="50">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-sirna-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/sirna.png" class="img-polaroid search-info" title="siRNA" alt="siRNA" height="50" width="50">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-compund-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img class="img-polaroid search-info" title="Compound" alt="Compound" width=50 height=50 src="<%=dataURL%>compounds/{{imageFile}}">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-animalmodel-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/animalmodel.png" title="Animal model" alt="Animal model" class="img-polaroid search-info" height="50" width="50">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-cellsample-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/cellsample.png" title="Cell sample" alt="Cell sample" class="img-polaroid search-info" height="50" width="50">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-tissuesample-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/tissuesample.png" title="Tissue sample" alt="Tissue sample" class="img-polaroid search-info" height="50" width="50">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-vaccine-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/vaccine.png" title="Vaccine" alt="vaccine" class="img-polaroid search-info" height="50" width="50">
-        </a>
-    </script>
-    <script type="text/template" id="search-results-cellsubset-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/cellsubset.png" title="Cell Subset" alt="Cell Subset" class="img-polaroid search-info" height="50" width="50">
-        </a>
-    </script>
-    <script type="text/template" id="search-results-pathogen-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/pathogen.png" title="Pathogen" alt="Pathogen" class="img-polaroid search-info" height="50" width="50">
-        </a>
-    </script>
-
-    <script type="text/template" id="search-results-unknown-image-tmpl">
-        <a href="&#35;{{stableURL}}">
-            <img src="img/unknown.png" title="{{subjectClass}}" class="img-polaroid search-info" alt="{{subjectClass}}" height="50" width="50">
+            <img src="{{image}}" class="img-polaroid search-info" title="{{label}}" alt="{{label}}" height="50" width="50">
         </a>
     </script>
 
@@ -1258,7 +1201,7 @@
         <tr>
             <td id="search-image-{{dashboardEntity.id}}"></td>
             <td>
-                <a href="&#35;{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a><br>
+                <a href="&#35;{{dashboardEntity.stableURL}}/{{role}}">{{dashboardEntity.displayName}}</a><br>
                 <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
             </td>
             <td>
@@ -1267,13 +1210,9 @@
                 </ul>
             </td>
             <td>{{dashboardEntity.class}}</td>
-            <td>
-                <ul id="roles-{{dashboardEntity.id}}">
-                    <!-- here will go the roles -->
-                </ul>
-            </td>
+            <td>{{role}}</td>
             <td class="nonewline">
-                <a href="&#35;{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
+                <a href="&#35;{{dashboardEntity.stableURL}}/{{role}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
             </td>
         </tr>
@@ -1294,11 +1233,7 @@
                 </ul>
             </td>
             <td>{{dashboardEntity.type}}</td>
-            <td>
-                <ul id="roles-{{dashboardEntity.id}}">
-                    <!-- here will go the roles -->
-                </ul>
-            </td>
+            <td>gene_biomarker</td>
             <td class="nonewline">
                 <a href="&#35;{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
@@ -1391,10 +1326,6 @@
         <li class="synonym"><small>{{displayName}}</small></li>
     </script>
 
-    <script type="text/template" id="role-item-tmpl">
-        <li class="synonym"><small>{{role}}</small></li>
-    </script>
-
     <script type="text/template" id="transcript-item-tmpl">
         <li class="synonym"><a href="&#35;{{stableURL}}">{{refseqId}}</a></li>
     </script>
@@ -1429,12 +1360,6 @@
             <h2>Explore: <i>{{roles_label}}</i></h2>
 
             <div id="explore-blurb"></div>
-            <div class="container" style="padding-bottom:5px;">
-            <!--
-            <button type="button" class="btn btn-outline-dark" id="reset-ordering">Reset initial ordering</button>
-            <button type="button" class="btn btn-outline-dark" id="customize-roles">Select Roles</button>
-            -->
-            </div>
 
             <div style="width:50%" id=loading-spinner>
             <div class="d-flex align-items-center">
@@ -1447,7 +1372,6 @@
                 <tr>
                     <th>Class</th>
                     <th>Name</th>
-                    <th>Role</th>
                     <th>Observations</th>
                 </tr>
                 </thead>
@@ -1498,7 +1422,6 @@
                 <tr>
                     <th>Class</th>
                     <th>Name</th>
-                    <th>Role</th>
                     <th>Observations</th>
                 </tr>
                 </thead>
@@ -1767,7 +1690,7 @@
             <p>
                 The HIPC aims to increase understanding of the underlying molecular causes of distinct cancer types and accelerate development of clinically useful biomarkers and targeted therapies for precision medicine.
                 The Dashboard is one tool that provides access to Network findings.
-                Results are available as bulk datasets, data-related figures, or polished stories, and are formatted to enable navigation and comprehension by most researchers, from computational experts to those with little bioinformatics dexterity.
+                Results are available as bulk datasets, data-related figures, and are formatted to enable navigation and comprehension by most researchers, from computational experts to those with little bioinformatics dexterity.
                 Through the Dashboard, the <b>HIPC</b> gives the research community a method to interrogate experimental observations across the Centers.
                 Before using the Dashboard, read the following to learn how Dashboard content is organized.
             </p>
@@ -1799,7 +1722,7 @@
     </script>
 
     <script id="tbl-project-title-tmpl" type="text/template">
-        <tr class="group"><td colspan="5"><a href="&#35;{{centerStableURL}}/{{project}}">Project: {{project}}</a></td></tr>
+        <tr class="group"><td colspan="5"><a href="&#35;{{centerStableURL}}/{{project}}">Signature Type: {{project}}</a></td></tr>
     </script>
 
     <!-- end of templates -->
@@ -1818,6 +1741,8 @@
     <script src="js/encoder.js"></script>
     <script src="js/jquery.contextMenu.min.js"></script>
     <script src="js/jquery.ui.position.min.js"></script>
+    <script src="js/hipc-subject-images.js"></script>
+    <script src="js/cnkb.js"></script>
     <script src="js/hipc-signature.js"></script>
 
 </body>

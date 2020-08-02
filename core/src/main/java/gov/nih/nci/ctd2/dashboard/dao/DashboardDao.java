@@ -51,7 +51,11 @@ public interface DashboardDao {
 
     Long countObservationsBySubjectId(Long subjectId);
 
+    Long countObservationsBySubjectId(Long subjectId, String role);
+
     List<Observation> findObservationsBySubjectId(Long subjectId, int limit);
+
+    List<Observation> findObservationsBySubjectId(Long subjectId, String role, int limit);
 
     DashboardFactory getDashboardFactory();
 
@@ -149,7 +153,9 @@ public interface DashboardDao {
 
     String[] getAllResponseAgents(Integer submissionId);
 
-    int getGeneNumber();
+    int getGeneNumber(String filterBy);
 
-    GeneData[] getGeneData(int start, int length);
+    GeneData[] getGeneData(int start, int length, String orderBy, String direction, String filterBy);
+
+    String[][] getAllGeneData(String orderBy, String direction, String filterBy);
 }

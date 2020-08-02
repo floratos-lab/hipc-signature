@@ -1,1 +1,2 @@
-T cell & IFNG+
+effector memory CD4-positive, alpha-beta T cell & TNF-a, IL-2+
+effector memory CD4-positive, alpha-beta T cell & IFNG-, TNF-a+, IL-2+

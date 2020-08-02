@@ -1,2 +1,2 @@
 monocyte
-neutrophil
+dendritic cell

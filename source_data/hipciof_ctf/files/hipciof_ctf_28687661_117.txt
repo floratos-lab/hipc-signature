@@ -1,8 +1,4 @@
-B cell & CD3 epsilon+, CD4+, CD28+
-CD4-positive, alpha-beta T cell & pKI-67+
-CD8-positive, alpha-beta T cell & CD28+
-CD8-positive, alpha-beta T cell & pKI-67+
-IgD-negative memory B cell & CD3 epsilon-, CD27+, IgM-
-natural killer cell & CD20-
+CD14-positive monocyte & CD14+
 natural killer cell & CD20-, NKG2-A/B-activating NK receptor+
-NKGA2-positive natural killer cell & CD20-
+CD4-positive, alpha-beta T cell & pKI-67+
+CD8-positive, alpha-beta T cell & pKI-67+

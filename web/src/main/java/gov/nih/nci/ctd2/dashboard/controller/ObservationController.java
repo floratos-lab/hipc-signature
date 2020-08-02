@@ -2,9 +2,7 @@ package gov.nih.nci.ctd2.dashboard.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,8 +21,6 @@ import flexjson.JSONSerializer;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 import gov.nih.nci.ctd2.dashboard.model.Observation;
-import gov.nih.nci.ctd2.dashboard.model.ObservedSubject;
-import gov.nih.nci.ctd2.dashboard.model.ObservedSubjectRole;
 import gov.nih.nci.ctd2.dashboard.model.Subject;
 import gov.nih.nci.ctd2.dashboard.model.Submission;
 import gov.nih.nci.ctd2.dashboard.util.DateTransformer;
@@ -59,31 +55,12 @@ public class ObservationController {
         }
     }
 
-    private List<Observation> getBySubjectId(Integer subjectId, String role, Integer tier, final int limit) {
+    /* only for CellSubset */
+    private List<Observation> getBySubjectId(Integer subjectId, String role) {
         log.debug("subjectId=" + subjectId);
         Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
         if (subject != null) {
-            Set<Observation> observations = new HashSet<Observation>();
-            for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectBySubject(subject)) {
-                ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
-                String subjectRole = observedSubjectRole.getSubjectRole().getDisplayName();
-                Integer observationTier = observedSubject.getObservation().getSubmission().getObservationTemplate()
-                        .getTier();
-                if ((role.equals("") || role.equals(subjectRole)) && (tier == 0 || tier == observationTier)) {
-                    observations.add(observedSubject.getObservation());
-                    if (limit > 0 && observations.size() >= limit) {
-                        break;
-                    }
-                }
-            }
-            List<Observation> list = new ArrayList<Observation>(observations);
-            list.sort((Observation o1, Observation o2) -> {
-                Integer tier2 = o2.getSubmission().getObservationTemplate().getTier();
-                Integer tier1 = o1.getSubmission().getObservationTemplate().getTier();
-                return tier2 - tier1;
-            });
-
-            return list;
+            return dashboardDao.findObservationsBySubjectId(Long.valueOf(subjectId), role, maxNumberOfEntities);
         } else {
             return new ArrayList<Observation>();
         }
@@ -111,29 +88,15 @@ public class ObservationController {
     @RequestMapping(value = "countBySubject", method = { RequestMethod.GET,
             RequestMethod.POST }, headers = "Accept=application/json")
     public ResponseEntity<String> countBySubjectId(@RequestParam("subjectId") Integer subjectId,
-            @RequestParam(value = "role", required = false, defaultValue = "") String role,
-            @RequestParam(value = "tier", required = false, defaultValue = "0") Integer tier) {
+            @RequestParam(value = "role", required = false, defaultValue = "") String role) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
         Long count = 0L;
-        if (tier > 0 || role.trim().length() > 0) { // then we cannot get a quick counting.
-            // this is very inefficient, but the only possible way with the current data
-            // model
-            Subject subject = dashboardDao.getEntityById(Subject.class, subjectId);
-            Set<Observation> observations = new HashSet<Observation>();
-            for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectBySubject(subject)) {
-                ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
-                String subjectRole = observedSubjectRole.getSubjectRole().getDisplayName();
-                Integer observationTier = observedSubject.getObservation().getSubmission().getObservationTemplate()
-                        .getTier();
-                if ((role.equals("") || role.equals(subjectRole)) && (tier == 0 || tier == observationTier)) {
-                    observations.add(observedSubject.getObservation());
-                }
-            }
-            count = new Long(observations.size());
-        } else { // quick counting
-            count = dashboardDao.countObservationsBySubjectId(new Long(subjectId));
+        if (role.trim().length() > 0) { // only for CellSubset
+            count = dashboardDao.countObservationsBySubjectId(Long.valueOf(subjectId), role);
+        } else {
+            count = dashboardDao.countObservationsBySubjectId(Long.valueOf(subjectId));
         }
 
         return new ResponseEntity<String>(count.toString(), headers, HttpStatus.OK);
@@ -163,19 +126,15 @@ public class ObservationController {
     @RequestMapping(value = "bySubject", method = { RequestMethod.GET,
             RequestMethod.POST }, headers = "Accept=application/json")
     public ResponseEntity<String> getObservationsBySubjectId(@RequestParam("subjectId") Integer subjectId,
-            @RequestParam(value = "role", required = false, defaultValue = "") String role,
-            @RequestParam(value = "tier", required = false, defaultValue = "0") Integer tier,
-            @RequestParam(value = "getAll", required = false, defaultValue = "false") Boolean getAll) {
+            @RequestParam(value = "role", required = false, defaultValue = "") String role) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
         List<? extends DashboardEntity> entities = null;
-        if (getAll) {
-            entities = getBySubjectId(subjectId, role, tier, 0); // 0 means no limit
-        } else if (tier > 0 || role.trim().length() > 0) {
-            entities = getBySubjectId(subjectId, role, tier, maxNumberOfEntities);
+        if (role.trim().length() > 0) { /* only for Cell Subset */
+            entities = getBySubjectId(subjectId, role);
         } else { // fast query if we can ignore other criteria
-            entities = dashboardDao.findObservationsBySubjectId(new Long(subjectId), maxNumberOfEntities);
+            entities = dashboardDao.findObservationsBySubjectId(Long.valueOf(subjectId), maxNumberOfEntities);
         }
 
         JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)

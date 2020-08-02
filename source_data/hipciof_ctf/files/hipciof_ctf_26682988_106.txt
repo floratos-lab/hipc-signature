@@ -1,1 +1,1 @@
-CD14-low, CD16-positive monocyte & CD16++
+CD14-positive, CD16-negative classical monocyte

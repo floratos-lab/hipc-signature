@@ -1,4 +1,4 @@
-CD14-positive, CD16-positive monocyte
-monocyte
 myeloid dendritic cell
 plasmacytoid dendritic cell
+monocyte
+CD14-positive, CD16-positive monocyte

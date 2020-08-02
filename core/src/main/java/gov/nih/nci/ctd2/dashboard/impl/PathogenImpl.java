@@ -20,12 +20,12 @@ public class PathogenImpl extends SubjectImpl implements Pathogen {
 	private static final long serialVersionUID = -4774943578771816570L;
 
 	private String taxonomyId;
-    private String rank;
+	private String rank;
 	private Set<Synonym> exactSynonyms = new LinkedHashSet<Synonym>();
 	private Set<Synonym> relatedSynonyms = new LinkedHashSet<Synonym>();
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
 	@JoinTable(name = "pathogen_exact_synonym_map")
 	@Override
 	public Set<Synonym> getExactSynonyms() {
@@ -38,7 +38,7 @@ public class PathogenImpl extends SubjectImpl implements Pathogen {
 	}
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = SynonymImpl.class, cascade = CascadeType.ALL)
 	@JoinTable(name = "pathogen_related_synonym_map")
 	@Override
 	public Set<Synonym> getRelatedSynonyms() {
@@ -61,6 +61,7 @@ public class PathogenImpl extends SubjectImpl implements Pathogen {
 	}
 
 	@Override
+	@Column(name = "pathogen_rank")
 	public String getRank() {
 		return rank;
 	}

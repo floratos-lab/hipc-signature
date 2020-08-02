@@ -1,7 +1,4 @@
 (function ($) {
-    // This is strictly coupled to the homepage design!
-    const numOfCartGene = 25;
-
     // These seperators are for replacing items within the observation summary
     const leftSep = "<";
     const rightSep = ">";
@@ -89,10 +86,6 @@
     const SubmissionCenter = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/center"
     });
-    const SubmissionCenters = Backbone.Collection.extend({
-        url: CORE_API_URL + "list/center/?filterBy=",
-        model: SubmissionCenter
-    });
 
     const Submission = Backbone.Model.extend({
         urlRoot: CORE_API_URL + "get/submission"
@@ -131,14 +124,8 @@
         initialize: function (attributes) {
             this.url += attributes.subjectId;
             if (attributes.role != undefined) {
+                /* only for CellSubset */
                 this.url += "&role=" + attributes.role;
-            }
-            if (attributes.tier != undefined) {
-                this.url += "&tier=" + attributes.tier;
-            }
-
-            if (attributes.getAll != undefined) {
-                this.url += "&getAll=" + attributes.getAll;
             }
         }
     });
@@ -401,63 +388,38 @@
 
 
                         const subject = observedSubject.subject;
+                        const imageData = class2imageData[subject.class];
+                        imageData.stableURL = subject.stableURL;
                         const thatEl2 = $("#subject-image-" + observedSubject.id);
-                        let imgTemplate = $("#search-results-unknown-image-tmpl");
+                        const imgTemplate = $("#search-results-image-tmpl");
                         if (subject.class == "Compound") {
-                            let compound = new Subject({
+                            const compound = new Subject({
                                 id: subject.id
                             });
                             compound.fetch({
                                 success: function () {
-                                    compound = compound.toJSON();
-                                    _.each(compound.xrefs, function (xref) {
+                                    _.each(compound.toJSON().xrefs, function (xref) {
                                         if (xref.databaseName == "IMAGE") {
-                                            compound.imageFile = xref.databaseId;
+                                            imageData.image = $("#explore-tmpl").attr("data-url") + "compounds/" + xref.databaseId;
                                         }
                                     });
-
-                                    imgTemplate = $("#search-results-compound-image-tmpl");
-                                    thatEl2.append(_.template(imgTemplate.html())(compound));
+                                    thatEl2.append(_.template(imgTemplate.html())(imageData));
                                 }
                             });
-                        } else if (subject.class == "AnimalModel") {
-                            imgTemplate = $("#search-results-animalmodel-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "CellSample") {
-                            imgTemplate = $("#search-results-cellsample-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "TissueSample") {
-                            imgTemplate = $("#search-results-tissuesample-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Vaccine") {
-                            imgTemplate = $("#search-results-vaccine-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "CellSubset") {
-                            imgTemplate = $("#search-results-cellsubset-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Pathogen") {
-                            imgTemplate = $("#search-results-pathogen-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Gene") {
-                            imgTemplate = $("#search-results-gene-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "ShRna" && subject.type.toLowerCase() == "sirna") {
-                            subject.class = "SiRNA";
-                            imgTemplate = $("#search-results-sirna-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "ShRna") {
-                            imgTemplate = $("#search-results-shrna-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
-                        } else if (subject.class == "Protein") {
-                            imgTemplate = $("#search-results-protein-image-tmpl");
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
                         } else {
-                            thatEl2.append(_.template(imgTemplate.html())(subject));
+                            if (subject.type.toLowerCase() == "sirna") {
+                                imageData.image = 'img/sirna.png';
+                                imageData.label = "siRNA";
+                            }
+                            thatEl2.append(_.template(imgTemplate.html())(imageData));
                         }
 
                         if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
                             return;
 
+                        if (subject.class == "Pathogen") {
+                            subject.displayName = subject.displayName[0].toLowerCase() + subject.displayName.substr(1);
+                        }
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
                             _.template($("#summary-subject-replacement-tmpl").html())(observedSubject.subject)
@@ -641,6 +603,7 @@
                 $("#obs-submission-summary").hide();
             }
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -791,15 +754,12 @@
             const thatEl = $(this.el).find('#related-observation-grid');
             const thatModel = this.model;
             const subjectId = thatModel.subjectId;
-            const tier = thatModel.tier; // possibly undefined
             const role = thatModel.role; // possibly undefined
 
             let countUrl = "observations/countBySubject/?subjectId=" + subjectId;
             if (role != undefined) {
+                /* only needed by CellSubset */
                 countUrl += "&role=" + role;
-            }
-            if (tier != undefined) {
-                countUrl += "&tier=" + tier;
             }
 
             $.ajax(countUrl).done(function (count) {
@@ -808,7 +768,6 @@
                     new MoreObservationView({
                         model: {
                             role: role,
-                            tier: tier,
                             numOfObservations: maxNumberOfEntities,
                             numOfAllObservations: count,
                             subjectId: subjectId,
@@ -817,7 +776,6 @@
                             columns: [{
                                     "orderDataType": "dashboard-date"
                                 },
-                                null,
                                 null,
                                 null
                             ]
@@ -828,8 +786,7 @@
 
             const observations = new ObservationsBySubject({
                 subjectId: subjectId,
-                role: role,
-                tier: tier
+                role: role, // undefined unless Cell Subset
             });
             observations.fetch({
                 success: function () {
@@ -918,6 +875,7 @@
                 el: "#related-observations"
             }).render();
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -929,7 +887,6 @@
             const thatModel = this.model;
             const entity = thatModel.subject.toJSON();
             $(this.el).html(this.template($.extend(entity, {
-                tier: thatModel.tier ? thatModel.tier : null,
                 role: thatModel.role ? thatModel.role : null
             })));
 
@@ -961,7 +918,6 @@
             new SubjectObservationsView({
                 model: {
                     subjectId: entity.id,
-                    tier: thatModel.tier,
                     role: thatModel.role
                 },
                 el: "#related-observations"
@@ -970,6 +926,7 @@
                 $('#related-observations h3').append(' <small>for the role of ' + thatModel.role + '</small>');
             }
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -989,6 +946,7 @@
                 el: "#related-observations"
             }).render();
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -1037,6 +995,7 @@
                 return this;
             }); //end addGene
 
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -1297,6 +1256,10 @@
                         if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
                             return;
 
+                        const subject = observedSubject.subject;
+                        if (subject.class == "Pathogen") {
+                            subject.displayName = subject.displayName[0].toLowerCase() + subject.displayName.substr(1);
+                        }
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
                             _.template($("#summary-subject-replacement-tmpl").html())(observedSubject.subject)
@@ -1493,6 +1456,10 @@
                         if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
                             return;
 
+                        const subject = observedSubject.subject;
+                        if (subject.class == "Pathogen") {
+                            subject.displayName = subject.displayName[0].toLowerCase() + subject.displayName.substr(1);
+                        }
                         summary = summary.replace(
                             new RegExp(leftSep + observedSubject.observedSubjectRole.columnName + rightSep, "g"),
                             _.template($("#summary-subject-replacement-tmpl").html())(observedSubject.subject)
@@ -1629,7 +1596,7 @@
 
             });
 
-
+            window.scroll(0, 0);
             return this;
         }
     });
@@ -1721,14 +1688,6 @@
         }
     });
 
-    const RoleView = Backbone.View.extend({
-        template: _.template($("#role-item-tmpl").html()),
-        render: function () {
-            $(this.el).append(this.template(this.model));
-            return this;
-        }
-    });
-
     const EmptyResultsView = Backbone.View.extend({
         template: _.template($("#search-empty-tmpl").html()),
         render: function () {
@@ -1768,45 +1727,21 @@
                 }).render();
             });
 
-            const roleEl = $("#roles-" + result.id);
-            _.each(model.roles, function (aRole) {
-                new RoleView({
-                    model: {
-                        role: aRole
-                    },
-                    el: roleEl
-                }).render();
-            });
-
             const imageEl = $("#search-image-" + result.id);
-            let imgTemplate = $("#search-results-unknown-image-tmpl");
+            const imageData = class2imageData[result.class];
+            imageData.stableURL = result.stableURL;
+            const imgTemplate = $("#search-results-image-tmpl");
             if (result.class == "Compound") {
                 _.each(result.xrefs, function (xref) {
                     if (xref.databaseName == "IMAGE") {
-                        result.imageFile = xref.databaseId;
+                        imageData.image = $("#explore-tmpl").attr("data-url") + "compounds/" + xref.databaseId;
                     }
                 });
-                imgTemplate = $("#search-results-compund-image-tmpl");
-            } else if (result.class == "CellSample") {
-                imgTemplate = $("#search-results-cellsample-image-tmpl");
-            } else if (result.class == "TissueSample") {
-                imgTemplate = $("#search-results-tissuesample-image-tmpl");
-            } else if (result.class == "Vaccine") {
-                imgTemplate = $("#search-results-vaccine-image-tmpl");
-            } else if (result.class == "CellSubset") {
-                imgTemplate = $("#search-results-cellsubset-image-tmpl");
-            } else if (result.class == "Pathogen") {
-                imgTemplate = $("#search-results-pathogen-image-tmpl");
-            } else if (result.class == "Gene") {
-                imgTemplate = $("#search-results-gene-image-tmpl");
             } else if (result.class == "ShRna" && result.type.toLowerCase() == "sirna") {
-                imgTemplate = $("#search-results-sirna-image-tmpl");
-            } else if (result.class == "ShRna") {
-                imgTemplate = $("#search-results-shrna-image-tmpl");
-            } else if (result.class == "Protein") {
-                imgTemplate = $("#search-results-protein-image-tmpl");
+                imageData.image = "img/sirna.png";
+                imageData.label = "siRNA";
             }
-            imageEl.append(_.template(imgTemplate.html())(result));
+            imageEl.append(_.template(imgTemplate.html())(imageData));
 
             // some of the elements will be hidden in the pagination. Use magic-scoping!
             const updateElId = "#subject-observation-count-" + result.id;
@@ -1822,7 +1757,6 @@
     });
 
     const tabulate_matching_observations = function (m_observations) {
-        $("#observation-search-results").hide();
         if (m_observations.length <= 0) return;
 
         $("#observation-search-results").fadeIn();
@@ -1861,6 +1795,8 @@
             searchResults.fetch({
                 success: function () {
                     $("#loading-row").remove();
+                    $("#submission-search-results").hide();
+                    $("#observation-search-results").hide();
                     if (searchResults.models.length == 0) {
                         (new EmptyResultsView({
                             el: $(thatEl).find("tbody"),
@@ -1885,6 +1821,11 @@
                                 return;
                             }
 
+                            if (aResult.dashboardEntity.class == "CellSubset") {
+                                aResult.dashboardEntity.id = aResult.dashboardEntity.id+aResult.role;
+                            } else {
+                                aResult.role = aResult.dashboardEntity.class.toLowerCase();
+                            }
                             new SearchResultsRowView({
                                 model: aResult,
                                 el: $(thatEl).find("tbody")
@@ -1918,7 +1859,6 @@
                         ]);
 
                         // OK done with the subjects; let's build the submissions table
-                        $("#submission-search-results").hide();
                         if (submissions.length > 0) {
                             $("#submission-search-results").fadeIn();
 
@@ -1975,7 +1915,7 @@
         "Protein": "protein",
         "CellSubset": "cell subset",
         "Pathogen": "pathogen",
-        "Vaccine": "caccine",
+        "Vaccine": "vaccine",
     };
 
     const ExploreView = Backbone.View.extend({
@@ -1985,7 +1925,7 @@
         render: function () {
 
             const thatModel = this.model;
-            thatModel.roles_label = subjectType[thatModel.type];
+            thatModel.roles_label = subjectType[thatModel.roles];
             $(this.el).html(this.template(thatModel));
             const data_url = $("#explore-tmpl").attr("data-url");
             const subjectWithSummaryCollection = new SubjectWithSummaryCollection(thatModel);
@@ -2020,14 +1960,13 @@
                         const nameLink = "<a href='#" + subject.stableURL + "/" + role + "'>" + subject.displayName + "</a>";
                         const n1obv = sModel.numberOfTier1Observations;
                         const n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "'>" + n1obv + "</a>");
-                        table_data.push([reformatted, nameLink, role, n1link]);
+                        table_data.push([reformatted, nameLink, n1link]);
                     });
                     $("#explore-table").dataTable({
                         'dom': '<iBfrtlp>',
                         'data': table_data,
                         "deferRender": true,
                         "columns": [
-                            null,
                             null,
                             null,
                             {
@@ -2117,6 +2056,9 @@
                 serverSide: true,
                 ajax: 'gene-data',
                 "deferRender": true,
+                "order": [
+                    [2, "desc"]
+                ],
                 "columns": [{
                         data: function () {
                             return 'gene <img src="img/gene.png" style="height:25px" alt="">';
@@ -2126,11 +2068,6 @@
                         // https://datatables.net/reference/option/columns.data
                         data: function (row, type, set, meta) {
                             return '<a href="#' + row[2] + '">' + row[0] + '</a>';
-                        }
-                    },
-                    {
-                        data: function () {
-                            return 'gene_biomarker';
                         }
                     },
                     {
@@ -2144,6 +2081,40 @@
                     extend: 'excelHtml5',
                     text: 'Export as Spreadsheet',
                     className: "extra-margin",
+                    customizeData: function (data) {
+                        let orderBy = 2,
+                            direction = 'desc';
+                        const th = $("#gene-explore-table>thead>tr>th");
+                        if ($(th[1]).hasClass("sorting_asc")) {
+                            orderBy = 1;
+                            direction = 'asc';
+                        } else if ($(th[1]).hasClass("sorting_desc")) {
+                            orderBy = 1;
+                            direction = 'desc';
+                        } else if ($(th[2]).hasClass("sorting_asc")) {
+                            orderBy = 2;
+                            direction = 'asc';
+                        }
+                        const filterBy = $("#gene-explore-table_filter input[type=search]").val().trim();
+                        $.ajax({
+                            "url": "gene-data/all",
+                            data: {
+                                orderBy: orderBy,
+                                direction: direction,
+                                filterBy: filterBy,
+                            },
+                            "async": false,
+                            "success": function (res, status, xhr) {
+                                data.body = [];
+                                for (let i = 0; i < res.length; i++) {
+                                    data.body[i] = ['gene', res[i][0], res[i][1]];
+                                }
+                            },
+                            error: function (event, jqxhr, settings, thrownError) {
+                                console.log('error ' + thrownError + ' at ' + settings.url);
+                            },
+                        });
+                    },
                 }],
             });
             $("#gene-explore-table").parent().width("100%");
@@ -2160,17 +2131,16 @@
 
     /* this does not have any effect for now because the 'select roles' button is hidden. */
     const browseRole = {
-        response_agent: ["gene_biomarker"],
         cellsubset: ['cell_biomarker', 'tissue'],
         pathogen: ["pathogen"],
         vaccine: ["vaccine"]
     };
 
     const subjectType = {
-        response_agent: "Genes",
-        cellsubset: 'Cell Subset',
-        pathogen: "Pathogens",
-        vaccine: "Vaccines"
+        cell_biomarker: "Cell Types",
+        tissue: "Tissues",
+        Pathogen: "Pathogens",
+        Vaccine: "Vaccines"
     };
 
     //customize-roles-item-tmpl
@@ -2197,9 +2167,9 @@
             let geneList = JSON.parse(localStorage.getItem("genelist"));
             if (geneList == null)
                 geneList = [];
-            else if (geneList.length > numOfCartGene) {
+            else if (geneList.length > $hipc.numOfCartGene) {
                 const len = geneList.length;
-                geneList.slice(numOfCartGene, len - 1);
+                geneList.slice($hipc.numOfCartGene, len - 1);
                 localStorage.genelist = JSON.stringify(geneList);
             }
 
@@ -2236,7 +2206,7 @@
                 });
 
                 if (selectedGenes == null || selectedGenes.length == 0) {
-                    showAlertMessage("You haven't select any gene!");
+                    $hipc.showAlertMessage("You haven't select any gene!");
                     return;
                 }
 
@@ -2277,7 +2247,7 @@
                 $('#geneFileInput').on('change', function (e) {
                     const file = e.target.files[0];
                     if (file.size > 1000) {
-                        showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
+                        $hipc.showAlertMessage("Gene Cart can only contains " + $hipc.numOfCartGene + " genes.");
                         return;
                     }
                     const reader = new FileReader();
@@ -2292,7 +2262,7 @@
                     });
                 });
             } else {
-                showAlertMessage("Load Genes from file is not supported.");
+                $hipc.showAlertMessage("Load Genes from file is not supported.");
             }
 
             $("#cnkb-query").click(function (e) {
@@ -2316,8 +2286,8 @@
                 if (geneNames == null)
                     geneNames = [];
                 const num = genes.length + geneNames.length;
-                if (num > numOfCartGene) {
-                    showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
+                if (num > $hipc.numOfCartGene) {
+                    $hipc.showAlertMessage("Gene Cart can only contains " + $hipc.numOfCartGene + " genes.");
                     return;
                 }
 
@@ -2510,11 +2480,11 @@
 
                 if (selectedInteractome == null || $.trim(selectedInteractome).length == 0) {
                     e.preventDefault();
-                    showAlertMessage("Please select an interactome name");
+                    $hipc.showAlertMessage("Please select an interactome name");
 
                 } else if (selectedVersion == null || $.trim(selectedVersion).length == 0) {
                     e.preventDefault();
-                    showAlertMessage("Please select an interactome version.");
+                    $hipc.showAlertMessage("Please select an interactome version.");
                 } else {
                     sessionStorage.selectedInteractome = JSON.stringify(selectedInteractome);
                     sessionStorage.selectedVersion = JSON.stringify(selectedVersion);
@@ -2525,211 +2495,6 @@
             return this;
         }
 
-
-    });
-
-    const CnkbResultView = Backbone.View.extend({
-        el: $("#main-container"),
-        template: _.template($("#cnkb-result-tmpl").html()),
-        render: function () {
-            const selectedgenes = JSON.parse(sessionStorage.getItem("selectedGenes"));
-            const selectedInteractome = JSON.parse(sessionStorage.getItem("selectedInteractome"));
-            const selectedVersion = JSON.parse(sessionStorage.getItem("selectedVersion"));
-
-            if (selectedgenes.length > numOfCartGene) {
-                const len = selectedgenes.length;
-                selectedgenes.slice(numOfCartGene, len - 1);
-                sessionStorage.selectedGenes = JSON.stringify(selectedgenes);
-            }
-
-            $(this.el).html(this.template({}));
-            $.ajax({
-                url: "cnkb/query",
-                data: {
-                    dataType: "interaction-result",
-                    interactome: selectedInteractome,
-                    version: selectedVersion,
-                    selectedGenes: JSON.stringify(selectedgenes),
-                    interactionLimit: 0,
-                    throttle: ""
-                },
-                dataType: "json",
-                contentType: "json",
-                success: function (data) {
-                    $("#cnkb_data_progress").hide();
-                    const cnkbElementList = data.cnkbElementList;
-                    const interactionTypes = data.interactionTypeList;
-                    _.each(interactionTypes, function (aData) {
-                        const type = aData.toUpperCase();
-                        $('#cnkb-result-grid thead tr').append('<th>' + type + '</th>');
-                    });
-
-                    const thatEl = $("#cnkb-result-grid");
-                    _.each(cnkbElementList, function (aData) {
-                        new CnkbResultRowView({
-                            el: $(thatEl).find("tbody"),
-                            model: aData
-                        }).render();
-
-                    });
-
-                    $('#cnkb-result-grid').dataTable({
-                        "sDom": "<'fullwidth'ifrtlp>",
-                        "sScrollY": "200px",
-                        "bPaginate": false
-
-                    });
-
-                }
-
-            }); //ajax  
-
-            $('#cnkbExport').click(function (e) {
-                e.preventDefault();
-                let filters = "";
-                $('input[type="checkbox"]:checked').each(function () {
-                    filters = filters + ($(this).val() + ',');
-                });
-                if (filters.length == 0 || $.trim(filters) === 'on,') {
-                    showAlertMessage("Please select at least one row to export to a SIF file.");
-                    return;
-                }
-
-                $("#interactome").val(selectedInteractome);
-                $("#version").val(selectedVersion);
-                $("#selectedGenes").val(filters);
-                $("#interactionLimit").val("0");
-                $("#throttle").val("");
-                $('#cnkbExport-form').submit();
-
-            }); //end $('#interactomeList').change()
-
-            const getThrottleValue = function () {
-
-                const interactionLimit = $("#cytoscape-node-limit").val();
-                let filters = "";
-                $('input[type="checkbox"]:checked').each(function () {
-                    filters = filters + ($(this).val() + ',');
-                });
-
-                $.ajax({
-                    url: "cnkb/query",
-                    data: {
-                        dataType: "interaction-throttle",
-                        interactome: selectedInteractome,
-                        version: selectedVersion,
-                        selectedGenes: filters,
-                        interactionLimit: interactionLimit,
-                        throttle: ""
-                    },
-                    dataType: "json",
-                    contentType: "json",
-                    success: function (data) {
-                        if (data != null && data.threshold != -1) {
-                            if (data.threshold == 0)
-                                $("#throttle-input").text("0.0");
-                            else
-                                $("#throttle-input").text(data.threshold);
-                        } else
-                            $("#throttle-input").text("e.g. 0.01");
-                        $("#throttle-input").css('color', 'grey');
-                    }
-                });
-
-            };
-
-            $("#cnkb-result-grid").on("change", ":checkbox", function () {
-                getThrottleValue();
-            }); //end cnkb-checked
-
-            $("#cytoscape-node-limit").change(function (evt) {
-                getThrottleValue();
-            });
-
-
-            $('#checkbox_selectall').click(function (event) { //on click
-                if (this.checked) { // check select status
-                    $('.cnkb_checkbox').each(function () { //loop through each checkbox
-                        this.checked = true; //select all checkboxes with class "checkbox1"              
-                    });
-                    getThrottleValue();
-                } else {
-                    $('.cnkb_checkbox').each(function () { //loop through each checkbox
-                        this.checked = false; //deselect all checkboxes with class "checkbox1"                      
-                    });
-                    $("#throttle-input").text("e.g. 0.01");
-                    $("#throttle-input").css('color', 'grey');
-                }
-            });
-
-
-            $('#createnetwork').click(function (event) {
-                event.preventDefault();
-                const throttle = $("#throttle-input").text();
-                const interactionLimit = $("#cytoscape-node-limit").val();
-
-                let filters = "";
-                $('input[type="checkbox"]:checked').each(function () {
-                    filters = filters + ($(this).val() + ',');
-
-                });
-
-
-                if (filters.length == 0 || $.trim(filters) === 'on,') {
-                    showAlertMessage("Please select at least one row to create a network.");
-                    return;
-                }
-                $('#createnw_progress_indicator').show();
-                $.ajax({
-                    url: "cnkb/network",
-                    data: {
-                        interactome: selectedInteractome,
-                        version: selectedVersion,
-                        selectedGenes: filters,
-                        interactionLimit: interactionLimit,
-                        throttle: throttle
-                    },
-                    dataType: "json",
-                    contentType: "json",
-                    success: function (data) {
-                        $('#createnw_progress_indicator').hide();
-                        if (data == null) {
-                            showAlertMessage("The network is empty.");
-                            return;
-                        }
-                        const cnkbDescription = selectedInteractome + " (v" + selectedVersion + ")";
-                        drawCNKBCytoscape(data, Encoder.htmlEncode(cnkbDescription));
-
-                    } //end success
-                }); //end ajax
-
-
-            }); //end createnetwork
-
-            return this;
-        }
-
-    });
-
-
-    const CnkbResultRowView = Backbone.View.extend({
-        render: function () {
-            const result = this.model;
-
-            const templateId = "#cnkb-result-row-tmpl";
-
-            this.template = _.template($(templateId).html());
-            $(this.el).append(this.template(result));
-            const geneName = Encoder.htmlEncode(result.geneName);
-
-            const numList = result.interactionNumlist;
-            _.each(numList, function (aData) {
-                $("#tr_" + geneName).append('<td>' + aData + '</td>');
-            });
-
-
-            return this;
-        }
     });
 
     const GeneCartHelpView = Backbone.View.extend({
@@ -2741,32 +2506,24 @@
         }
     });
 
-
     const updateGeneList = function (addedGene) {
         let geneNames = JSON.parse(localStorage.getItem("genelist"));
         if (geneNames == null)
             geneNames = [];
 
-        if (geneNames.length >= numOfCartGene) {
-            showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
+        if (geneNames.length >= $hipc.numOfCartGene) {
+            $hipc.showAlertMessage("Gene Cart can only contains " + $hipc.numOfCartGene + " genes.");
             return;
         }
 
         if (geneNames.indexOf(addedGene) > -1) {
-            showAlertMessage(addedGene + " is already in the Gene Cart.");
+            $hipc.showAlertMessage(addedGene + " is already in the Gene Cart.");
         } else {
             //Not in the array
             geneNames.push(addedGene);
             localStorage.genelist = JSON.stringify(geneNames);
-            showAlertMessage(addedGene + " added to the Gene Cart.");
+            $hipc.showAlertMessage(addedGene + " added to the Gene Cart.");
         }
-    };
-
-
-    const showAlertMessage = function (message) {
-        $("#alertMessage").text(message);
-        $("#alertMessage").css('color', '#5a5a5a');
-        $("#alert-message-modal").modal('show');
     };
 
     const showInvalidMessage = function (message) {
@@ -2786,190 +2543,6 @@
             return word[0] + link;
         } else
             return description;
-    };
-
-    const drawCNKBCytoscape = function (data, description) {
-        let svgHtml = "";
-        const interactions = data.interactions;
-        let x1 = 20 + 90 * (3 - interactions.length),
-            x2 = 53 + 90 * (3 - interactions.length);
-        _.each(interactions, function (aData) {
-            svgHtml = svgHtml + '<rect x="' + x1 + '" y="15" width="30" height="2" fill="' + aData.color + '" stroke="grey" stroke-width="0"/><text x="' + x2 + '" y="20" fill="grey">' + aData.type + '</text>';
-            x1 = x1 + aData.type.length * 11;
-            x2 = x2 + aData.type.length * 11;
-        });
-
-        $.fancybox.open(
-            _.template($("#cnkb-cytoscape-tmpl").html())({
-                description: description,
-                svgHtml: svgHtml
-            }), {
-                touch: false,
-                'autoDimensions': false,
-                'transitionIn': 'none',
-                'transitionOut': 'none'
-            }
-        );
-
-        const layoutName = $("#cytoscape-layouts").val();
-
-        const cy = cytoscape({
-
-            container: $('#cytoscape'),
-            layout: {
-                name: layoutName,
-                fit: true,
-                liveUpdate: false,
-                maxSimulationTime: 4000, // max length in ms to run the layout
-                stop: function () {
-                    $("#cnkb_cytoscape_progress").remove();
-                    this.stop();
-
-                } // callback on layoutstop 
-
-            },
-            elements: data,
-            style: cytoscape.stylesheet()
-                .selector("node")
-                .css({
-                    "content": "data(id)",
-                    "border-width": 2,
-                    "labelValign": "middle",
-                    "font-size": 10,
-                    "width": "25px",
-                    "height": "25px",
-                    "background-color": "data(color)",
-                    "border-color": "#555"
-                })
-                .selector("edge")
-                .css({
-                    "width": "mapData(weight, 0, 100, 1, 3)",
-                    "target-arrow-shape": "circle",
-                    "source-arrow-shape": "circle",
-                    "line-color": "data(color)"
-                })
-                .selector(":selected")
-                .css({
-                    "background-color": "#000",
-                    "line-color": "#000",
-                    "source-arrow-color": "#000",
-                    "target-arrow-color": "#000"
-                })
-                .selector(".ui-cytoscape-edgehandles-source")
-                .css({
-                    "border-color": "#5CC2ED",
-                    "border-width": 2
-                })
-                .selector(".ui-cytoscape-edgehandles-target, node.ui-cytoscape-edgehandles-preview")
-                .css({
-                    "background-color": "#5CC2ED"
-                })
-                .selector("edge.ui-cytoscape-edgehandles-preview")
-                .css({
-                    "line-color": "#5CC2ED"
-                })
-                .selector("node.ui-cytoscape-edgehandles-preview, node.intermediate")
-                .css({
-                    "shape": "rectangle",
-                    "width": 15,
-                    "height": 15
-                }),
-
-            ready: function () {
-                window.cy = this; // for debugging
-
-            }
-        });
-
-        cy.on('cxttap', 'node', function () {
-
-            $.contextMenu('destroy', '#cytoscape');
-            const sym = this.data('id');
-            $.contextMenu({
-                selector: '#cytoscape',
-
-                callback: function (key, options) {
-                    if (!key || 0 === key.length) {
-                        $.contextMenu('destroy', '#cytoscape');
-                        return;
-                    }
-
-                    let linkUrl = "";
-                    switch (key) {
-                        case 'linkout':
-                            return;
-                        case 'gene':
-                            linkUrl = "http://www.ncbi.nlm.nih.gov/gene?cmd=Search&term=" + sym;
-                            break;
-                        case 'protein':
-                            linkUrl = "http://www.ncbi.nlm.nih.gov/protein?cmd=Search&term=" + sym + "&doptcmdl=GenPept";
-                            break;
-                        case 'pubmed':
-                            linkUrl = "http://www.ncbi.nlm.nih.gov/pubmed?cmd=Search&term=" + sym + "&doptcmdl=Abstract";
-                            break;
-                        case 'nucleotide':
-                            linkUrl = "http://www.ncbi.nlm.nih.gov/nucleotide?cmd=Search&term=" + sym + "&doptcmdl=GenBank";
-                            break;
-                        case 'alldatabases':
-                            linkUrl = "http://www.ncbi.nlm.nih.gov/gquery/?term=" + sym;
-                            break;
-                        case 'structure':
-                            linkUrl = "http://www.ncbi.nlm.nih.gov/structure?cmd=Search&term=" + sym + "&doptcmdl=Brief";
-                            break;
-                        case 'omim':
-                            linkUrl = "http://www.ncbi.nlm.nih.gov/omim?cmd=Search&term=" + sym + "&doptcmdl=Synopsis";
-                            break;
-                        case 'genecards':
-                            linkUrl = "http://www.genecards.org/cgi-bin/carddisp.pl?gene=" + sym + "&alias=yes";
-                            break;
-                        case 'dashboard':
-                            linkUrl = CORE_API_URL + "#search/" + sym;
-
-                    }
-                    window.open(linkUrl);
-                    $.contextMenu('destroy', '#cytoscape');
-                },
-                items: {
-                    "linkout": {
-                        "name": 'LinkOut'
-                    },
-                    "sep1": "---------",
-                    "entrez": {
-                        "name": "Entrez",
-                        "items": {
-                            "gene": {
-                                "name": "Gene"
-                            },
-                            "protein": {
-                                "name": "Protein"
-                            },
-                            "pubmed": {
-                                "name": "PubMed"
-                            },
-                            "nucleotide": {
-                                "name": "Nucleotide"
-                            },
-                            "alldatabases": {
-                                "name": "All Databases"
-                            },
-                            "structure": {
-                                "name": "Structure"
-                            },
-                            "omim": {
-                                "name": "OMIM"
-                            }
-                        }
-                    },
-                    "genecards": {
-                        "name": "GeneCards"
-                    },
-                    "dashboard": {
-                        "name": "Dashboard"
-                    }
-                }
-            });
-        });
-
     };
 
     const subjectRouter = function (SubjectModel, SubjectView) {
@@ -3011,8 +2584,6 @@
             "transcript/:name(/:role)": subjectRouter(Transcript, TranscriptView),
             "rna/:name(/:role)": subjectRouter(ShRna, RnaView),
             "gene/:species/:symbol": "showGene",
-            "gene/:species/:symbol/:role": "showGene",
-            "gene/:species/:symbol/:role/:tier": "showGene",
             "genes": "showGeneList",
             "cnkb-query": "showCnkbQuery",
             "cnkb-result": "showCnkbResult",
@@ -3048,7 +2619,7 @@
             }).render();
         },
 
-        showGene: function (species, symbol, role, tier) {
+        showGene: function (species, symbol) {
             const gmodel = new Gene({
                 species: species,
                 symbol: symbol
@@ -3058,8 +2629,6 @@
                     new GeneView({
                         model: {
                             subject: gmodel,
-                            tier: tier,
-                            role: role
                         }
                     }).render();
                 }
