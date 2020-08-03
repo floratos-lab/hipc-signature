@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk
+FROM openjdk:11.0.8-jre
 LABEL maintainer="Zhou Ji <zhou.ji@yahoo.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -28,6 +28,6 @@ COPY hipc-signatures-index/ /index-base/hipc-signatures-index
 
 ENV INDEX_BASE=/index-base
 
-EXPOSE 8080
+EXPOSE 80
 
 ENTRYPOINT ["/run.sh"]
