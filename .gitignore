@@ -23,3 +23,7 @@ hipc_signature*.sql
 hipc_signature.sql.backup
 *.tmp
 *.pyc
+
+docker/hipc-signatures-index
+docker/*.war
+docker/*.sql
