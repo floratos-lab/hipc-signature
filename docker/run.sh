@@ -20,4 +20,4 @@ mysql -uroot -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSW
 mysqladmin -uroot shutdown
 
 systemctl start mysql >> /startup_log.txt 2>&1
-java -jar /app.war >> /startup_log.txt 2>&1
+java -jar /app.war --server.port=80 >> /startup_log.txt 2>&1
