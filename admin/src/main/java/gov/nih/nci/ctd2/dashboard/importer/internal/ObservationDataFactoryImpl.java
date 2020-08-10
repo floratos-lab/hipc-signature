@@ -21,32 +21,32 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 	private static final Log log = LogFactory.getLog(ObservationDataFactoryImpl.class);
 
 	private static final String DASHBOARD_SUBMISSION_URL = "/#/submission/";
-    //private static final Pattern LINKBACK_URL_EVIDENCE_REGEX = Pattern.compile("tier._evidence");
-    // submission_name:col_name_1=col_val_1&col_name_2=col_val_2
-    private static final Pattern LINKBACK_URL_REGEX = Pattern.compile("([\\w\\-]+):([\\w\\-&=]+)");
+	//private static final Pattern LINKBACK_URL_EVIDENCE_REGEX = Pattern.compile("tier._evidence");
+	// submission_name:col_name_1=col_val_1&col_name_2=col_val_2
+	private static final Pattern LINKBACK_URL_REGEX = Pattern.compile("([\\w\\-]+):([\\w\\-&=]+)");
 
-    private class LinkbackURL {
-        public String submissionName;
-        public HashMap<String,String> columnValuePairs = new HashMap<String,String>();
-    }
+	private class LinkbackURL {
+		public String submissionName;
+		public HashMap<String, String> columnValuePairs = new HashMap<String, String>();
+	}
 
-    @Autowired
-    private DashboardFactory dashboardFactory;
+	@Autowired
+	private DashboardFactory dashboardFactory;
 
-    @Autowired
+	@Autowired
 	private DashboardDao dashboardDao;
 
 	// cache for fast lookup and prevention of duplicate role records
-    private HashMap<String, Subject> subjectCache = new HashMap<String, Subject>();
-    private HashMap<String, ObservedSubjectRole> observedSubjectRoleCache = new HashMap<String, ObservedSubjectRole>();
-    private HashMap<String, ObservedEvidenceRole> observedEvidenceRoleCache = new HashMap<String, ObservedEvidenceRole>();
+	private HashMap<String, Subject> subjectCache = new HashMap<String, Subject>();
+	private HashMap<String, ObservedSubjectRole> observedSubjectRoleCache = new HashMap<String, ObservedSubjectRole>();
+	private HashMap<String, ObservedEvidenceRole> observedEvidenceRoleCache = new HashMap<String, ObservedEvidenceRole>();
 
 	@Override
 	public Submission createSubmission(String submissionName, Date submissionDate, String observationTemplateName) {
 		Submission submission = dashboardFactory.create(Submission.class);
-        submission.setDisplayName(submissionName);
+		submission.setDisplayName(submissionName);
 		submission.setSubmissionDate(submissionDate);
-		ObservationTemplate observationTemplate  = dashboardDao.findObservationTemplateByName(observationTemplateName);
+		ObservationTemplate observationTemplate = dashboardDao.findObservationTemplateByName(observationTemplateName);
 		if (observationTemplate != null) {
 			submission.setObservationTemplate(observationTemplate);
 		}
@@ -56,7 +56,7 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 	private List<Subject> filterEntities(List<Subject> dashboardEntities, Class<? extends Subject> filterClass) {
 		List<Subject> filteredList = new ArrayList<Subject>();
 		for (Subject dashboardEntity : dashboardEntities) {
-			if(filterClass.isInstance(dashboardEntity)) {
+			if (filterClass.isInstance(dashboardEntity)) {
 				filteredList.add(dashboardEntity);
 			}
 		}
@@ -66,7 +66,7 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 	@SuppressWarnings("unchecked")
 	@Override
 	public ObservedSubject createObservedSubject(String subjectValue, String columnName, String templateName,
-												 Observation observation, String daoFindQueryName) throws Exception {
+			Observation observation, String daoFindQueryName) throws Exception {
 		ObservedSubject observedSubject = dashboardFactory.create(ObservedSubject.class);
 		observedSubject.setDisplayName(subjectValue);
 		observedSubject.setObservation(observation);
@@ -75,43 +75,46 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 			List<Subject> dashboardEntities = null;
 			if (daoFindQueryName.equals("findSubjectsBySynonym")) {
 				Method method = dashboardDao.getClass().getMethod(daoFindQueryName, String.class, Boolean.TYPE);
-				dashboardEntities = (List<Subject>)method.invoke(dashboardDao, subjectValue, true);
-			}
-			else if (daoFindQueryName.startsWith("findSubjectsByXref")) {
+				dashboardEntities = (List<Subject>) method.invoke(dashboardDao, subjectValue, true);
+			} else if (daoFindQueryName.startsWith("findSubjectsByXref")) {
 				String[] parts = daoFindQueryName.split(ObservationDataFieldSetMapper.XREF_DELIMITER);
 				Method method = dashboardDao.getClass().getMethod(parts[0], String.class, String.class);
-				dashboardEntities = (List<Subject>)method.invoke(dashboardDao, parts[1], subjectValue);
-			}
-			else {
+				dashboardEntities = (List<Subject>) method.invoke(dashboardDao, parts[1], subjectValue);
+			} else {
 				Method method = dashboardDao.getClass().getMethod(daoFindQueryName, String.class);
 				if (daoFindQueryName.equals("findGenesBySymbol")) {
 					method = dashboardDao.getClass().getMethod("findHumanGenesBySymbol", String.class);
 				}
-				dashboardEntities = (List<Subject>)method.invoke(dashboardDao, subjectValue);
+				dashboardEntities = (List<Subject>) method.invoke(dashboardDao, subjectValue);
 				// if we've searched for gene by symbol and come up empty, try by synonym
 				if (dashboardEntities.isEmpty() && daoFindQueryName.equals("findGenesBySymbol")) {
 					method = dashboardDao.getClass().getMethod("findSubjectsBySynonym", String.class, Boolean.TYPE);
-					dashboardEntities = filterEntities((List<Subject>) method.invoke(dashboardDao, subjectValue, true), Gene.class);
+					dashboardEntities = filterEntities((List<Subject>) method.invoke(dashboardDao, subjectValue, true),
+							Gene.class);
 				}
 				// if we've searched for gene by synonym and come up empty, try entrez id
 				if (dashboardEntities.isEmpty() && daoFindQueryName.equals("findGenesBySymbol")) {
 					method = dashboardDao.getClass().getMethod("findGenesByEntrezId", String.class);
-					dashboardEntities = filterEntities((List<Subject>)method.invoke(dashboardDao, subjectValue), Gene.class);
+					dashboardEntities = filterEntities((List<Subject>) method.invoke(dashboardDao, subjectValue),
+							Gene.class);
 				}
 				// if we've searched for tissue sample by name and come up empty, try by synonym
 				if (dashboardEntities.isEmpty() && daoFindQueryName.equals("findTissueSampleByName")) {
 					method = dashboardDao.getClass().getMethod("findSubjectsBySynonym", String.class, Boolean.TYPE);
-					dashboardEntities = filterEntities((List<Subject>)method.invoke(dashboardDao, subjectValue, true), TissueSample.class);
+					dashboardEntities = filterEntities((List<Subject>) method.invoke(dashboardDao, subjectValue, true),
+							TissueSample.class);
 				}
 				// if we've searched for drug/compound by name and come up empty, try by synonym
 				if (dashboardEntities.isEmpty() && daoFindQueryName.equals("findCompoundsByName")) {
 					method = dashboardDao.getClass().getMethod("findSubjectsBySynonym", String.class, Boolean.TYPE);
-					dashboardEntities = filterEntities((List<Subject>)method.invoke(dashboardDao, subjectValue, true), Compound.class);
+					dashboardEntities = filterEntities((List<Subject>) method.invoke(dashboardDao, subjectValue, true),
+							Compound.class);
 				}
 				// if we've searched for drug/compound by name and come up empty, try by synonym
 				if (dashboardEntities.isEmpty() && daoFindQueryName.equals("findCellLineByName")) {
 					method = dashboardDao.getClass().getMethod("findSubjectsBySynonym", String.class, Boolean.TYPE);
-					dashboardEntities = filterEntities((List<Subject>)method.invoke(dashboardDao, subjectValue, true), CellSample.class);
+					dashboardEntities = filterEntities((List<Subject>) method.invoke(dashboardDao, subjectValue, true),
+							CellSample.class);
 				}
 			}
 			if (dashboardEntities.size() > 0) {
@@ -123,7 +126,7 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 				}
 				if (subject == null) { // if not the perfect match
 					// in case of human gene symbol, try synonyms
-					if(daoFindQueryName.equals("findGenesBySymbol")) { 
+					if (daoFindQueryName.equals("findGenesBySymbol")) {
 						for (Subject returnedSubject : dashboardEntities) {
 							if (!(returnedSubject instanceof Gene))
 								continue; // this should not happen
@@ -137,7 +140,8 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 									break;
 								}
 							}
-							if (subject!=null) break;
+							if (subject != null)
+								break;
 						}
 					} else { // do 'flexible' matching only when it is NOT for gene
 						subject = dashboardEntities.iterator().next();
@@ -146,8 +150,9 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 				subjectCache.put(subjectValue, subject);
 			}
 		}
-		if (subject != null) observedSubject.setSubject(subject);
-		String observedSubjectRoleCacheKey = templateName+columnName;
+		if (subject != null)
+			observedSubject.setSubject(subject);
+		String observedSubjectRoleCacheKey = templateName + columnName;
 		ObservedSubjectRole observedSubjectRole = observedSubjectRoleCache.get(observedSubjectRoleCacheKey);
 		if (observedSubjectRole == null) {
 			observedSubjectRole = dashboardDao.findObservedSubjectRole(templateName, columnName);
@@ -155,7 +160,8 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 				observedSubjectRoleCache.put(observedSubjectRoleCacheKey, observedSubjectRole);
 			}
 		}
-		if (observedSubjectRole != null) observedSubject.setObservedSubjectRole(observedSubjectRole);
+		if (observedSubjectRole != null)
+			observedSubject.setObservedSubjectRole(observedSubjectRole);
 		log.debug("ObservedSubject created");
 		return observedSubject;
 	}
@@ -163,8 +169,8 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 	private LabelEvidence labelEvidence = null;
 
 	@Override
-	public ObservedEvidence createObservedLabelEvidence(String evidenceValue, String columnName,
-														String templateName, Observation observation) {
+	public ObservedEvidence createObservedLabelEvidence(String evidenceValue, String columnName, String templateName,
+			Observation observation) {
 		ObservedEvidence observedEvidence = dashboardFactory.create(ObservedEvidence.class);
 		observedEvidence.setDisplayName(evidenceValue);
 		observedEvidence.setObservation(observation);
@@ -174,44 +180,47 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 		}
 		observedEvidence.setEvidence(labelEvidence);
 		ObservedEvidenceRole observedEvidenceRole = getObservedEvidenceRole(templateName, columnName);
-		if (observedEvidenceRole != null) observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
+		if (observedEvidenceRole != null)
+			observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
 		return observedEvidence;
 	}
 
 	@Override
-	public ObservedEvidence createObservedNumericEvidence(Number evidenceValue, String columnName,
-														  String templateName, Observation observation) {
+	public ObservedEvidence createObservedNumericEvidence(Number evidenceValue, String columnName, String templateName,
+			Observation observation) {
 		ObservedEvidence observedEvidence = dashboardFactory.create(ObservedEvidence.class);
 		observedEvidence.setDisplayName(String.valueOf(evidenceValue));
 		observedEvidence.setObservation(observation);
 		ObservedEvidenceRole observedEvidenceRole = getObservedEvidenceRole(templateName, columnName);
-		if (observedEvidenceRole != null) observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
+		if (observedEvidenceRole != null)
+			observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
 		Evidence evidence = dashboardFactory.create(DataNumericValue.class);
-        evidence.setDisplayName(String.valueOf(evidenceValue));
-		((DataNumericValue)evidence).setNumericValue(evidenceValue);
+		evidence.setDisplayName(String.valueOf(evidenceValue));
+		((DataNumericValue) evidence).setNumericValue(evidenceValue);
 		if (observedEvidenceRole != null && observedEvidenceRole.getAttribute().length() > 0) {
-			((DataNumericValue)evidence).setUnit(observedEvidenceRole.getAttribute());
+			((DataNumericValue) evidence).setUnit(observedEvidenceRole.getAttribute());
 		}
 		observedEvidence.setEvidence(evidence);
 		return observedEvidence;
 	}
 
 	@Override
-	public ObservedEvidence createObservedFileEvidence(String evidenceValue, String columnName,
-													   String templateName, Observation observation) {
+	public ObservedEvidence createObservedFileEvidence(String evidenceValue, String columnName, String templateName,
+			Observation observation) {
 		ObservedEvidence observedEvidence = dashboardFactory.create(ObservedEvidence.class);
 		observedEvidence.setDisplayName(evidenceValue);
 		observedEvidence.setObservation(observation);
 		ObservedEvidenceRole observedEvidenceRole = getObservedEvidenceRole(templateName, columnName);
-		if (observedEvidenceRole != null) observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
+		if (observedEvidenceRole != null)
+			observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
 		Evidence evidence = dashboardFactory.create(FileEvidence.class);
-        evidence.setDisplayName(String.valueOf(evidenceValue));
+		evidence.setDisplayName(String.valueOf(evidenceValue));
 		File file = new File(evidenceValue);
 
-		((FileEvidence)evidence).setFileName(file.getName());
-		((FileEvidence)evidence).setFilePath(file.getPath());
+		((FileEvidence) evidence).setFileName(file.getName());
+		((FileEvidence) evidence).setFilePath(file.getPath());
 		if (observedEvidenceRole != null && observedEvidenceRole.getAttribute().length() > 0) {
-			((FileEvidence)evidence).setMimeType(observedEvidenceRole.getAttribute());
+			((FileEvidence) evidence).setMimeType(observedEvidenceRole.getAttribute());
 		}
 		observedEvidence.setEvidence(evidence);
 		return observedEvidence;
@@ -220,19 +229,20 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 	Map<String, UrlEvidence> urls = new HashMap<String, UrlEvidence>();
 
 	@Override
-	public ObservedEvidence createObservedUrlEvidence(String evidenceValue, String columnName,
-													  String templateName, Observation observation) {
+	public ObservedEvidence createObservedUrlEvidence(String evidenceValue, String columnName, String templateName,
+			Observation observation) {
 		ObservedEvidence observedEvidence = dashboardFactory.create(ObservedEvidence.class);
 		observedEvidence.setDisplayName(evidenceValue);
 		observedEvidence.setObservation(observation);
 		ObservedEvidenceRole observedEvidenceRole = getObservedEvidenceRole(templateName, columnName);
-		if (observedEvidenceRole != null) observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
+		if (observedEvidenceRole != null)
+			observedEvidence.setObservedEvidenceRole(observedEvidenceRole);
 		String url = getEvidenceURL(columnName, evidenceValue);
 		UrlEvidence evidence = urls.get(url);
 		if (evidence == null) {
 			evidence = dashboardFactory.create(UrlEvidence.class);
 			evidence.setDisplayName(String.valueOf(evidenceValue));
-			((UrlEvidence)evidence).setUrl(url);
+			((UrlEvidence) evidence).setUrl(url);
 			urls.put(url, evidence);
 			dashboardDao.save(evidence); // this is much slower than batch saving, but prevents multiple copies
 		}
@@ -241,7 +251,7 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 	}
 
 	private ObservedEvidenceRole getObservedEvidenceRole(String templateName, String columnName) {
-		String observedEvidenceRoleCacheKey = templateName+columnName;
+		String observedEvidenceRoleCacheKey = templateName + columnName;
 		ObservedEvidenceRole observedEvidenceRole = observedEvidenceRoleCache.get(observedEvidenceRoleCacheKey);
 		if (observedEvidenceRole == null) {
 			observedEvidenceRole = dashboardDao.findObservedEvidenceRole(templateName, columnName);
@@ -252,85 +262,82 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 		return observedEvidenceRole;
 	}
 
-    private String getEvidenceURL(String columnName, String evidenceValue) {
+	private String getEvidenceURL(String columnName, String evidenceValue) {
 
-        String evidenceURL = null;
-        
-        //Matcher linkbackURLEvidenceMatcher = LINKBACK_URL_EVIDENCE_REGEX.matcher(columnName);
-        // is this a linkback
-        //if (linkbackURLEvidenceMatcher.find()) {
-        Matcher linkbackURLMatcher = LINKBACK_URL_REGEX.matcher(evidenceValue);
-	    // is this a linkback to an observation
-        if (linkbackToObservation(linkbackURLMatcher)) {
-            LinkbackURL linkbackURL = getLinkbackURL(linkbackURLMatcher);
-            Submission submission = dashboardDao.findSubmissionByName(linkbackURL.submissionName);
-            evidenceURL = getLinkbackURL(linkbackURL.columnValuePairs,
-                                         getObservations(submission));
-        }
-	    // is this a linkback to submission
-    	else if (linkbackToSubmission(evidenceValue)) {
-	    	Submission submission = dashboardDao.findSubmissionByName(evidenceValue);
-	        evidenceURL = DASHBOARD_SUBMISSION_URL + submission.getId();
-	    }
-        //}
-        
-        return (evidenceURL == null) ? evidenceValue : evidenceURL;
-    }
+		String evidenceURL = null;
 
-    private LinkbackURL getLinkbackURL(Matcher linkbackURLMatcher) {
+		//Matcher linkbackURLEvidenceMatcher = LINKBACK_URL_EVIDENCE_REGEX.matcher(columnName);
+		// is this a linkback
+		//if (linkbackURLEvidenceMatcher.find()) {
+		Matcher linkbackURLMatcher = LINKBACK_URL_REGEX.matcher(evidenceValue);
+		// is this a linkback to an observation
+		if (linkbackToObservation(linkbackURLMatcher)) {
+			LinkbackURL linkbackURL = getLinkbackURL(linkbackURLMatcher);
+			Submission submission = dashboardDao.findSubmissionByName(linkbackURL.submissionName);
+			evidenceURL = getLinkbackURL(linkbackURL.columnValuePairs, getObservations(submission));
+		}
+		// is this a linkback to submission
+		else if (linkbackToSubmission(evidenceValue)) {
+			Submission submission = dashboardDao.findSubmissionByName(evidenceValue);
+			evidenceURL = DASHBOARD_SUBMISSION_URL + submission.getId();
+		}
+		//}
 
-        LinkbackURL linkbackURL = new LinkbackURL();
-        linkbackURL.submissionName = linkbackURLMatcher.group(1);
+		return (evidenceURL == null) ? evidenceValue : evidenceURL;
+	}
 
-        // each linkback component is of the form &column_name=column_value, e.g. compound=navitoclax
-        String[] linkbackComponents = linkbackURLMatcher.group(2).contains("&") ?
-            linkbackURLMatcher.group(2).split("&") : new String[]{linkbackURLMatcher.group(2)};
+	private LinkbackURL getLinkbackURL(Matcher linkbackURLMatcher) {
 
-        for (String linkbackComponent : linkbackComponents) {
-            String[] columnValuePair = linkbackComponent.split("=");
-            if (columnValuePair.length == 2) {
-                linkbackURL.columnValuePairs.put(columnValuePair[0], columnValuePair[1]);
-            }
-        }
+		LinkbackURL linkbackURL = new LinkbackURL();
+		linkbackURL.submissionName = linkbackURLMatcher.group(1);
 
-        return linkbackURL;
-    }
+		// each linkback component is of the form &column_name=column_value, e.g. compound=navitoclax
+		String[] linkbackComponents = linkbackURLMatcher.group(2).contains("&") ? linkbackURLMatcher.group(2).split("&")
+				: new String[] { linkbackURLMatcher.group(2) };
 
-    private boolean linkbackToObservation(Matcher linkbackURLMatcher)
-    {
+		for (String linkbackComponent : linkbackComponents) {
+			String[] columnValuePair = linkbackComponent.split("=");
+			if (columnValuePair.length == 2) {
+				linkbackURL.columnValuePairs.put(columnValuePair[0], columnValuePair[1]);
+			}
+		}
+
+		return linkbackURL;
+	}
+
+	private boolean linkbackToObservation(Matcher linkbackURLMatcher) {
 		return (linkbackURLMatcher.find() && linkbackURLMatcher.groupCount() == 2);
-    }
+	}
 
-    private boolean linkbackToSubmission(String evidenceValue)
-    {
-    	Submission submission = dashboardDao.findSubmissionByName(evidenceValue);
-    	return (submission != null);
-    }
+	private boolean linkbackToSubmission(String evidenceValue) {
+		Submission submission = dashboardDao.findSubmissionByName(evidenceValue);
+		return (submission != null);
+	}
 
-    private List<Observation> getObservations(Submission submission) {
-        return (submission != null) ?
-            dashboardDao.findObservationsBySubmission(submission) : new ArrayList<Observation>();
-    }
+	private List<Observation> getObservations(Submission submission) {
+		return (submission != null) ? dashboardDao.findObservationsBySubmission(submission)
+				: new ArrayList<Observation>();
+	}
 
-    private String getLinkbackURL(HashMap<String,String> columnValuePairs, List<Observation> observations) {
+	private String getLinkbackURL(HashMap<String, String> columnValuePairs, List<Observation> observations) {
 
-        String url = null;
-        for (Observation observation : observations) {
-            int match = 0;
-            for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectByObservation(observation)) {
-                //Subject subject = observedSubject.getSubject();
-                ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
-                if (columnValuePairs.containsKey(observedSubjectRole.getColumnName()) &&
-                    columnValuePairs.get(observedSubjectRole.getColumnName()).equals(observedSubject.getDisplayName())) {
-                    match += 1;
-                }
-            }
-            if (match == columnValuePairs.size()) {
-                url = "/#" + observation.getStableURL();
-                break;
-            }
-        }
+		String url = null;
+		for (Observation observation : observations) {
+			int match = 0;
+			for (ObservedSubject observedSubject : dashboardDao.findObservedSubjectByObservation(observation)) {
+				//Subject subject = observedSubject.getSubject();
+				ObservedSubjectRole observedSubjectRole = observedSubject.getObservedSubjectRole();
+				if (columnValuePairs.containsKey(observedSubjectRole.getColumnName()) && columnValuePairs
+						.get(observedSubjectRole.getColumnName()).equals(observedSubject.getDisplayName())) {
+					match += 1;
+				}
+			}
+			if (match == columnValuePairs.size()) {
+				url = "/#" + observation.getStableURL();
+				break;
+			}
+		}
 
-        return url;
-    }
+		return url;
+	}
 }
