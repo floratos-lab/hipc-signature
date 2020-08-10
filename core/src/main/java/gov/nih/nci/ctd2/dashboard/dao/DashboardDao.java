@@ -67,6 +67,8 @@ public interface DashboardDao {
 
     List<Gene> findGenesBySymbol(String symbol);
 
+    List<Gene> findHumanGenesBySymbol(String symbol);
+
     List<Protein> findProteinsByUniprotId(String uniprotId);
 
     List<Transcript> findTranscriptsByRefseqId(String refseqId);

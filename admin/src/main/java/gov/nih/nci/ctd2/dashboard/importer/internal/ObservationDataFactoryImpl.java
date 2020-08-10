@@ -84,6 +84,9 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 			}
 			else {
 				Method method = dashboardDao.getClass().getMethod(daoFindQueryName, String.class);
+				if (daoFindQueryName.equals("findGenesBySymbol")) {
+					method = dashboardDao.getClass().getMethod("findHumanGenesBySymbol", String.class);
+				}
 				dashboardEntities = (List<Subject>)method.invoke(dashboardDao, subjectValue);
 				// if we've searched for gene by symbol and come up empty, try by synonym
 				if (dashboardEntities.isEmpty() && daoFindQueryName.equals("findGenesBySymbol")) {
@@ -118,7 +121,28 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 						break;
 					}
 				}
-				subject = (subject == null) ? dashboardEntities.iterator().next() : subject;
+				if (subject == null) { // if not the perfect match
+					// in case of human gene symbol, try synonyms
+					if(daoFindQueryName.equals("findGenesBySymbol")) { 
+						for (Subject returnedSubject : dashboardEntities) {
+							if (!(returnedSubject instanceof Gene))
+								continue; // this should not happen
+							Gene gene = (Gene) returnedSubject;
+							if (!gene.getOrganism().getDisplayName().equals("Homo sapiens"))
+								continue; // this should not happen
+							// only match synonym if it is homo sapiens
+							for (Synonym synonym : gene.getSynonyms()) {
+								if (synonym.getDisplayName().equals(subjectValue)) {
+									subject = gene;
+									break;
+								}
+							}
+							if (subject!=null) break;
+						}
+					} else { // do 'flexible' matching only when it is NOT for gene
+						subject = dashboardEntities.iterator().next();
+					}
+				}
 				subjectCache.put(subjectValue, subject);
 			}
 		}

@@ -286,6 +286,11 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
+    public List<Gene> findHumanGenesBySymbol(String symbol) {
+        return queryWithClass("from GeneImpl where displayName = :symbol AND organism.displayName='Homo sapiens'", "symbol", symbol);
+    }
+
+    @Override
     public List<Protein> findProteinsByUniprotId(String uniprotId) {
         return queryWithClass("from ProteinImpl where uniprotId = :uniprotId", "uniprotId", uniprotId);
     }
