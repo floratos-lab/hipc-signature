@@ -14,7 +14,7 @@ public class VaccineImpl extends SubjectImpl implements Vaccine {
     private static final long serialVersionUID = 4160496817948202967L;
 
     private String vaccineID;
-    private String productName;
+    private String vaccineProperName;
     private String tradeName;
 
     @Override
@@ -26,12 +26,12 @@ public class VaccineImpl extends SubjectImpl implements Vaccine {
         this.vaccineID = vaccineID;
 	}
 	@Override
-	public String getProductName() {
-		return productName;
+	public String getVaccineProperName() {
+		return vaccineProperName;
 	}
 	@Override
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setVaccineProperName(String vaccineProperName) {
+		this.vaccineProperName = vaccineProperName;
 	}
 	@Override
 	public String getTradeName() {

@@ -36,7 +36,7 @@
   </bean>
 
   <bean name="vaccineDataLineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" >
-	<property name="names" value="name,vaccine_id,product_name,trade_name"/>
+	<property name="names" value="name,vaccine_id,vaccine_proper_name,trade_name"/>
 	<property name="delimiter" value="&#9;"/>
   </bean>
 </beans>

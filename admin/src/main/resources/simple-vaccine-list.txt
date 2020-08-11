@@ -1,4 +1,4 @@
-name	vaccine_id	product_name	trade_name
+name	vaccine_id	vaccine_proper_name	trade_name
 entity	BFO_0000001		
 continuant	BFO_0000002		
 occurrent	BFO_0000003		
@@ -672,19 +672,19 @@ bladder organ	UBERON_0018707
 milliliter	UO_0000098		
 part of pathogen organism in vaccine	VO_0000000		
 vaccine	VO_0000001		
-ACAM2000	VO_0000003		ACAM2000
-ActHIB	VO_0000004		ActHIB
-Adacel	VO_0000005		Adacel
-Afluria	VO_0000006		AFLURIA
-Attenuvax	VO_0000007	Measles Virus Vaccine, Live	Attenuvax
+ACAM2000	VO_0000003	Smallpox (Vaccinia) Vaccine, Live	ACAM2000
+ActHIB	VO_0000004	Haemophilus b Conjugate Vaccine (Tetanus Toxoid Conjugate)	ActHIB
+Adacel	VO_0000005	Tetanus Toxoid, Reduced Diphtheria Toxoid and Acellular Pertussis Vaccine, Adsorbed	Adacel
+Afluria	VO_0000006	Influenza Virus Vaccine	AFLURIA
+Attenuvax	VO_0000007		Attenuvax
 vaccine-induced lymphocyte activation	VO_0000008		
 vaccine-induced B cell antigen processing and presentation	VO_0000009		
 vaccine-induced B cell cytokine production	VO_0000010		
 B cell epitope in vaccine	VO_0000011		
 vaccine-induced B cell mediated immunity	VO_0000012		
 Bacillus anthracis vaccine	VO_0000013		
-Biothrax	VO_0000014		Biothrax
-Boostrix	VO_0000015		Boostrix
+Biothrax	VO_0000014	Anthrax Vaccine Adsorbed	Biothrax
+Boostrix	VO_0000015	Tetanus Toxoid, Reduced Diphtheria Toxoid and Acellular Pertussis Vaccine, Adsorbed	Boostrix
 killed vaccine	VO_0000017		
 Brucella abortus DNA vaccine pcDNA-SOD	VO_0000018		
 pVAX DNA vaccine plasmid	VO_0000019		
@@ -695,13 +695,13 @@ pVAX1 DNA vaccine plasmid	VO_0000024
 Brucella vaccine	VO_0000025		
 pCMV4 DNA vaccine plasmid	VO_0000026		
 pAp031 DNA vaccine plasmid	VO_0000027		
-Comvax	VO_0000028	Haemophilus b Conjugate Vaccine (Meningococcal Protein Conjugate) & Hepatitis B Vaccine (Recombinant)	Comvax
-Daptacel	VO_0000029		DAPTACEL
-DECAVAC	VO_0000030	Tetanus & Diphtheria Toxoids Adsorbed for Adult Use	DECAVAC
+Comvax	VO_0000028		Comvax
+Daptacel	VO_0000029	Diphtheria and Tetanus Toxoids and Acellular Pertussis Vaccine Adsorbed	DAPTACEL
+DECAVAC	VO_0000030		DECAVAC
 DNA vaccine	VO_0000032		
-Diphtheria and Tetanus Toxoids Adsorbed USP by Sanofi Pasteur Inc	VO_0000033	Diphtheria & Tetanus Toxoids Adsorbed	
-OBSOLETE - Diphtheria and Tetanus Toxoids Adsorbed by Sanofi Pasteur Ltd	VO_0000034	Diphtheria & Tetanus Toxoids Adsorbed	
-Dryvax	VO_0000035	Smallpox Vaccine, Dried, Calf Lymph Type	Dryvax
+Diphtheria and Tetanus Toxoids Adsorbed USP by Sanofi Pasteur Inc	VO_0000033		
+OBSOLETE - Diphtheria and Tetanus Toxoids Adsorbed by Sanofi Pasteur Ltd	VO_0000034		
+Dryvax	VO_0000035		Dryvax
 ETEC vaccine ACAM2010	VO_0000036		
 adenovirus vaccine	VO_0000037		
 vaccine persistence assay	VO_0000038		
@@ -709,81 +709,81 @@ pBacPAK9 DNA vaccine plasmid	VO_0000039
 pBC12/CMV DNA vaccine plasmid	VO_0000040		
 Escherichia coli vaccine	VO_0000041		
 pBHT DNA vaccine plasmid	VO_0000042		
-FluLaval	VO_0000043	Influenza Virus Vaccine, Trivalent, Types A and B	FluLaval
-FluMist	VO_0000044		FluMist
-Fluarix	VO_0000045		Fluarix
-Fluvirin	VO_0000046	Influenza Virus Vaccine, Trivalent, Types A and B	Fluvirin
-Fluzone	VO_0000047	Influenza Virus Vaccine, Trivalent, Types A and B	Fluzone
+FluLaval	VO_0000043	Influenza Virus Vaccine	FluLaval
+FluMist	VO_0000044	Influenza Vaccine Live, Intranasal	FluMist
+Fluarix	VO_0000045	Influenza Virus Vaccine	Fluarix
+Fluvirin	VO_0000046	Influenza Virus Vaccine	Fluvirin
+Fluzone	VO_0000047	Influenza Virus Vaccine	Fluzone
 virmugen	VO_0000048		
-Gardasil	VO_0000049		Gardasil
+Gardasil	VO_0000049	Human Papillomavirus Quadrivalent (Types 6, 11, 16, 18) Vaccine, Recombinant	Gardasil
 HIV based lentivirus vaccine vector	VO_0000050		
 Balb/c mouse	VO_0000051		
-Havrix	VO_0000052		HAVRIX
+Havrix	VO_0000052	Hepatitis A Vaccine, Inactivated	HAVRIX
 Neisseria meningitidis vaccine	VO_0000053		
-IPOL	VO_0000054		IPOL
+IPOL	VO_0000054	Poliovirus Vaccine Inactivated (Monkey Kidney Cell)	IPOL
 vaccine related journal article	VO_0000055		
-Imovax Rabies (USA)	VO_0000063		IMOVAX
-Infanrix	VO_0000064		INFANRIX
-Influenza Virus Vaccine H5N1 (Sanofi Pasteur Inc)	VO_0000065	Influenza Virus Vaccine, H5N1 (for National Stockpile)	
-JE-Vax	VO_0000066		JE-Vax
+Imovax Rabies (USA)	VO_0000063	Rabies Vaccine	IMOVAX
+Infanrix	VO_0000064	Diphtheria and Tetanus Toxoids and Acellular Pertussis Vaccine Adsorbed	INFANRIX
+Influenza Virus Vaccine H5N1 (Sanofi Pasteur Inc)	VO_0000065		
+JE-Vax	VO_0000066	Japanese Encephalitis Virus Vaccine Inactivated	JE-Vax
 Kinrix	VO_0000067	Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed and Inactivated Poliovirus Vaccine	KINRIX
 Listeria monocytogenes vaccine vector	VO_0000068		
-M-M-R II	VO_0000069		M-M-R II
-M-M-Vax	VO_0000070	Measles and Mumps Virus Vaccine, Live	M-M-Vax
-Menactra	VO_0000071	Meningococcal Polysaccharide (Serogroups A, C, Y and W-135) Diphtheria Toxoid Conjugate Vaccine	Menactra
-Menomune A C Y W135	VO_0000072		Menomune-A/C/Y/W-135
-Meruvax II	VO_0000073	Rubella Virus Vaccine Live	Meruvax II
-Mumpsvax	VO_0000074	Mumps Virus Vaccine Live	Mumpsvax
+M-M-R II	VO_0000069	Measles, Mumps, and Rubella Virus Vaccine, Live	M-M-R II
+M-M-Vax	VO_0000070		M-M-Vax
+Menactra	VO_0000071	Meningococcal (Groups A, C, Y and W-135) Polysaccharide Diphtheria Toxoid Conjugate Vaccine	Menactra
+Menomune A C Y W135	VO_0000072	Meningococcal Polysaccharide Vaccine, Groups A, C, Y, W-135 Combined	Menomune-A/C/Y/W-135
+Meruvax II	VO_0000073		Meruvax II
+Mumpsvax	VO_0000074		Mumpsvax
 pBI/tTA DNA vaccine plasmid	VO_0000075		
 pBISIA DNA vaccine plasmid	VO_0000076		
 Mycobacterium tuberculosis vaccine	VO_0000077		
-Mycobax	VO_0000078	BCG Vaccine	Mycobax
-Fluzone High-dose	VO_0000079	Influenza Virus Vaccine, Trivalent, Types A and B	
+Mycobax	VO_0000078		Mycobax
+Fluzone High-dose	VO_0000079	Influenza Virus Vaccine	
 pBK-SFV DNA vaccine plasmid	VO_0000080		
-Influenza A (H1N1) 2009 Monovalent Vaccine (Novartis)	VO_0000081		
-Pediarix	VO_0000082		Pediarix
-PedvaxHIB	VO_0000083		Liquid PedvaxHIB
-Pentacel	VO_0000084		Pentacel
-Plague Vaccine by Greer Laboratories Inc	VO_0000085	Plague Vaccine	
+Influenza A (H1N1) 2009 Monovalent Vaccine (Novartis)	VO_0000081	Influenza A (H1N1) 2009 Monovalent Vaccine	
+Pediarix	VO_0000082	Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed, Hepatitis B (Recombinant) and Inactivated Poliovirus Vaccine Combined	Pediarix
+PedvaxHIB	VO_0000083	Haemophilus B Conjugate Vaccine (Meningococcal Protein Conjugate)	Liquid PedvaxHIB
+Pentacel	VO_0000084	Diphtheria and Tetanus Toxoids and Acellular Pertussis Adsorbed, Inactivated Poliovirus and Haemophilus b Conjugate (Tetanus Toxoid Conjugate) Vaccine	Pentacel
+Plague Vaccine by Greer Laboratories Inc	VO_0000085		
 pBudCE4.1 DNA vaccine plasmid	VO_0000086		
 Plasmodium falciparum vaccine	VO_0000087		
 Pneumovax 23	VO_0000088	Pneumococcal Vaccine, Polyvalent	Pneumovax 23
-Poliovax	VO_0000089	Poliovirus Vaccine Inactivated (Human Diploid Cell)	Poliovax
+Poliovax	VO_0000089		Poliovax
 Prevnar	VO_0000090	Pneumococcal 7-valent Conjugate Vaccine (Diphtheria CRM197 Protein)	Prevnar
-ProQuad	VO_0000091		PROQUAD
-Fluzone Intradermal Quadrivalent	VO_0000092		Fluzone Intradermal
+ProQuad	VO_0000091	Measles, Mumps, Rubella and Varicella Virus Vaccine Live	PROQUAD
+Fluzone Intradermal Quadrivalent	VO_0000092	Influenza Virus Vaccine	Fluzone Intradermal
 mineral salt vaccine adjuvant	VO_0000093		
-RabAvert	VO_0000094		RabAvert
-Rabies Vaccine Adsorbed by BioPort Corp	VO_0000095	Rabies Vaccine Adsorbed	
-Adenovirus Type 4 and Type 7 Vaccine, Live, Oral	VO_0000096		
-RotaTeq	VO_0000097		RotaTeq
+RabAvert	VO_0000094	Rabies Vaccine	RabAvert
+Rabies Vaccine Adsorbed by BioPort Corp	VO_0000095		
+Adenovirus Type 4 and Type 7 Vaccine, Live, Oral	VO_0000096	Adenovirus Type 4 and Type 7 Vaccine, Live, Oral	
+RotaTeq	VO_0000097	Rotavirus Vaccine, Live, Oral, Pentavalent	RotaTeq
 SIV based lentivirus vaccine vector	VO_0000098		
 Pcaggs DNA vaccine plasmid	VO_0000099		
 vaccine-induced T-helper 1 type immune response	VO_0000100		
 vaccine-induced T-helper 2 type immune response	VO_0000101		
-TENIVAC	VO_0000102		TENIVAC
-TICE BCG	VO_0000103		TICE BCG
-TYPHIM VI	VO_0000104		Typhim Vi
+TENIVAC	VO_0000102	Tetanus and Diphtheria Toxoids Adsorbed For Adult Use	TENIVAC
+TICE BCG	VO_0000103	BCG Live	TICE BCG
+TYPHIM VI	VO_0000104	Typhoid Vi Polysaccharide Vaccine	Typhim Vi
 T cell epitope in vaccine	VO_0000105		
 vaccine-induced T cell mediated immunity	VO_0000106		
 T cell vaccine antigen processing and presentation	VO_0000107		
 Brucella abortus vaccine	VO_0000108		
-Tetanus Toxoid Adsorbed by Aventis Pasteur Inc	VO_0000109	Tetanus Toxoid Adsorbed	
+Tetanus Toxoid Adsorbed by Aventis Pasteur Inc	VO_0000109		
 E. coli O157:H7 intimin vaccine	VO_0000110		
-Tetanus and Diphtheria Toxoids Adsorbed by MA Biologic Lab	VO_0000111	Tetanus & Diphtheria Toxoids Adsorbed for Adult Use	
-Tripedia	VO_0000112	Diphtheria & Tetanus Toxoids & Acellular Pertussis Vaccine Adsorbed	Tripedia
-Twinrix	VO_0000113		Twinrix
+Tetanus and Diphtheria Toxoids Adsorbed by MA Biologic Lab	VO_0000111		
+Tripedia	VO_0000112		Tripedia
+Twinrix	VO_0000113	Hepatitis A Inactivated & Hepatitis B (Recombinant) Vaccine	Twinrix
 pCAGGST7 DNA vaccine plasmid	VO_0000114		
 vaccine-induced T cell activation	VO_0000115		
 pCBINT DNA vaccine plasmid	VO_0000116		
 pCdm7 DNA vaccine plasmid	VO_0000117		
 microbial derivative vaccine adjuvant	VO_0000118		
-Varivax	VO_0000119		
-Vivotif (USA)	VO_0000120		Vivotif
-YF-Vax	VO_0000121		YF-Vax
+Varivax	VO_0000119	Varivax	
+Vivotif (USA)	VO_0000120	Typhoid Vaccine Live Oral Ty21a	Vivotif
+YF-Vax	VO_0000121	Yellow Fever Vaccine	YF-Vax
 Yellow fever 17D vaccine vector	VO_0000122		
 Yellow fever virus vaccine	VO_0000123		
-Zostavax	VO_0000124		Zostavax
+Zostavax	VO_0000124	Zoster Vaccine, Live	Zostavax
 licensed turkey vaccine	VO_0000125		
 live attenuated vaccine organism	VO_0000126		
 aluminum hydroxide vaccine adjuvant	VO_0000127		
@@ -817,7 +817,7 @@ viral gene	VO_0000156
 HIV gene	VO_0000157		
 pcDNA3.1 DNA vaccine plasmid	VO_0000158		
 preparation of live attenuated vaccine by serial passages in vitro	VO_0000159		
-Influenza A (H1N1) 2009 Monovalent Vaccine (Sanofi Pasteur)	VO_0000160		
+Influenza A (H1N1) 2009 Monovalent Vaccine (Sanofi Pasteur)	VO_0000160	Influenza A (H1N1) 2009 Monovalent Vaccine	
 Escherichia coli gene	VO_0000161		
 vaccine organism avirulent	VO_0000162		
 vaccine-induced gene up-regulation controlling intracellular bacterial replication	VO_0000163		
@@ -994,8 +994,8 @@ intraperitoneal route	VO_0000344
 B. melitensis WR201	VO_0000345		
 pWRG7077 DNA vaccine plasmid	VO_0000346		
 Brucella abortus bacA mutant	VO_0000347		
-Influenza A (H1N1) 2009 Monovalent Vaccine (CSL Limited)	VO_0000348		
-Influenza A (H1N1) 2009 Monovalent Vaccine ( MedImmune LLC)	VO_0000349		
+Influenza A (H1N1) 2009 Monovalent Vaccine (CSL Limited)	VO_0000348	Influenza A (H1N1) 2009 Monovalent Vaccine	
+Influenza A (H1N1) 2009 Monovalent Vaccine ( MedImmune LLC)	VO_0000349	Influenza A (H1N1) 2009 Monovalent Vaccine	
 Arepanrix	VO_0000350		
 Adjumer	VO_0000351		
 Megan Egg	VO_0000352		
@@ -1063,7 +1063,7 @@ Panvax	VO_0000414
 vaccine additive role	VO_0000415		
 intravenous route	VO_0000416		
 protozoan vaccine	VO_0000417		
-Menactra injection 0.5mL vial	VO_0000418	Meningococcal Polysaccharide (Serogroups A, C, Y and W-135) Diphtheria Toxoid Conjugate Vaccine  injection 0.5mL vial	Menactra
+Menactra injection 0.5mL vial	VO_0000418		Menactra
 Varicella-zoster virus live vaccine	VO_0000419		
 pathogen organism component in vaccine	VO_0000420		
 Brucella abortus pcDNA-BLS	VO_0000421		
@@ -1559,9 +1559,9 @@ inactivated E. coli vaccine	VO_0000974
 uropathogenic E. coli vaccine	VO_0000975		
 extraintestinal pathogenic E. coli vaccine	VO_0000976		
 enterohemorrhagic E. coli vaccine	VO_0000977		
-Flublok	VO_0000978		Flublok
+Flublok	VO_0000978	Influenza Vaccine	Flublok
 Bovilis IBR Marker	VO_0000979		
-Flucelvax	VO_0000980		FLUCELVAX
+Flucelvax	VO_0000980	Influenza Vaccine	FLUCELVAX
 Porcilis Pesti	VO_0000981		
 FluMist Quadrivalent	VO_0000982		
 Fluarix Quadrivalent	VO_0000983		
@@ -1693,7 +1693,7 @@ Saccharomyces cerevisiae vaccine vector	VO_0001122
 RECOMBITEK Canine Parvo	VO_0001123		
 VEE vaccine vector	VO_0001124		
 Eimeria maxima vaccine	VO_0001125		
-Agriflu	VO_0001126		Agriflu
+Agriflu	VO_0001126	Influenza Virus Vaccine	Agriflu
 live attenuated Brucella vaccine	VO_0001127		
 ALVAC vaccine vector	VO_0001128		
 non-replicating adenovirus accine vector	VO_0001129		
@@ -1804,9 +1804,9 @@ RC529 vaccine adjuvant	VO_0001239
 aluminum potassium sulfate adjuvant	VO_0001240		
 Alhydrogel	VO_0001241		
 cholera toxin B subunit	VO_0001242		
-Prevnar 13	VO_0001244		Prevnar 13
+Prevnar 13	VO_0001244	Pneumococcal 13-valent Conjugate Vaccine (Diphtheria CRM197 Protein)	Prevnar 13
 Synflorix	VO_0001245		
-Menveo	VO_0001246		Menveo
+Menveo	VO_0001246	Meningococcal (Groups A, C, Y, and W-135) Oligosaccharide Diphtheria CRM197 Conjugate Vaccine	Menveo
 AREPANRIX H1N1	VO_0001247		
 Intanza	VO_0001248		
 RC529-AF vaccine adjuvant	VO_0001249		
@@ -3421,37 +3421,37 @@ Murid herpesvirus 1  vaccine	VO_0003062
 RB51 induced protection against B.abortus	VO_0003063		
 RB51 induced protection against B.canis	VO_0003064		
 RB51 induced protection against B.Melitensis	VO_0003065		
-Bexsero	VO_0003066		BEXSERO
+Bexsero	VO_0003066	Meningococcal Group B Vaccine	BEXSERO
 Flublok Quadrivalent	VO_0003067		Flublok Quadrivalent
 RB51 induced host immune response	VO_0003068		
 Flucelvax Quadrivalent	VO_0003070		Flucelvax Quadrivalent
-FluLaval Quadrivalent	VO_0003071		FluLaval
-FluLaval Tetra	VO_0003072	Quadrivalent Influenza Vaccine (Split Virion, Inactivated)	FluLaval Tetra
-Fluzone Quadrivalent	VO_0003073		Fluzone Quadrivalent
-Fluzone Quadrivalent - Southern Hemisphere Formulation	VO_0003074	Influenza Virus Vaccine	Fluzone Quadrivalent Southern Hemisphere
-Gardasil 9	VO_0003075		Gardasil 9
+FluLaval Quadrivalent	VO_0003071	Influenza Virus Vaccine	FluLaval
+FluLaval Tetra	VO_0003072		FluLaval Tetra
+Fluzone Quadrivalent	VO_0003073	Influenza Virus Vaccine	Fluzone Quadrivalent
+Fluzone Quadrivalent - Southern Hemisphere Formulation	VO_0003074		Fluzone Quadrivalent Southern Hemisphere
+Gardasil 9	VO_0003075	Human Papillomavirus 9-valent Vaccine, Recombinant	Gardasil 9
 RB51 induced protection against B. ovis	VO_0003077		
 Nimenrix	VO_0003080		
-Trumenba	VO_0003081		TRUMENBA
+Trumenba	VO_0003081	Meningococcal Group B Vaccine	TRUMENBA
 Vaxchora	VO_0003082		
-Influenza A (H5N1) Virus Monovalent Vaccine, Adjuvanted by GSK	VO_0003083	Influenza A (H5N1) Virus Monovalent Vaccine, Adjuvanted	
-Influenza A (H1N1) 2009 Monovalent Vaccine (GlaxoSmithKline)	VO_0003084	Influenza A (H1N1) 2009 Monovalent Vaccine	
+Influenza A (H5N1) Virus Monovalent Vaccine, Adjuvanted by GSK	VO_0003083		
+Influenza A (H1N1) 2009 Monovalent Vaccine (GlaxoSmithKline)	VO_0003084		
 Adacel-Polio	VO_0003085		Adacel-Polio
 RB51 induced immune protection	VO_0003086		
 RB51 induced immune response without protection	VO_0003087		
 Boostrix-Polio	VO_0003088		Boostrix-Polio
 Tri-Immunol	VO_0003090		
 Fluogen	VO_0003091		
-Orimune vaccine	VO_0003092		
+Orimune vaccine	VO_0003092	Oral Poliovirus Vaccine	
 P. falciparum RTS,S/AS01	VO_0003093		Mosquirix
 Pnu-Imune vaccine	VO_0003094		
 Revaxis	VO_0003095		
-Ditanrix	VO_0003096		
+Ditanrix	VO_0003096	TD Absorbed and DT Absorbed Vaccine	
 Rotashield vaccine	VO_0003097		
 Moraten vaccine	VO_0003098		
 Tevax vaccine	VO_0003100		
 Hexavax	VO_0003102		
-Rabipur vaccine	VO_0003103		
+Rabipur vaccine	VO_0003103	Rabies Virus Vaccine	
 Rabiesvax vaccine	VO_0003104		
 Lymerix	VO_0003105		
 diphtheria, tetanus and whole cell pertussis vaccine	VO_0003106		
@@ -3640,7 +3640,7 @@ pneumococcal capsular polysaccharide type 11A vaccine 0.05 MG/ML	VO_0003313
 pneumococcal capsular polysaccharide type 10A vaccine 0.05 MG/ML	VO_0003314		
 Infanrix Tetra	VO_0003315		
 Menitorix	VO_0003316		
-Shingrix	VO_0003317		SHINGRIX
+Shingrix	VO_0003317	Zoster Vaccine Recombinant, Adjuvanted	SHINGRIX
 pneumococcal capsular polysaccharide type 15B vaccine 0.05 MG/ML	VO_0003319		
 pneumococcal capsular polysaccharide type 17F vaccine 0.05 MG/ML	VO_0003320		
 pneumococcal capsular polysaccharide type 18C vaccine 0.05 MG/ML	VO_0003321		
@@ -3675,7 +3675,7 @@ meningococcal group B vaccine 0.1 MG/ML	VO_0003349
 meningococcal group B vaccine Prefilled Syringe	VO_0003350		
 meningococcal group B vaccine Injectable Product	VO_0003351		
 Bordetella pertussis filamentous hemagglutinin vaccine, inactivated 0.01 MG/ML	VO_0003352		
-Vivotif	VO_0003353		Vivotif
+Vivotif	VO_0003353	Typhoid Vaccine Live Oral Ty21a	Vivotif
 Typhoid Vaccine Live Ty21a Delayed Release Oral Capsule [Vivotif]	VO_0003354		
 Typhoid Vaccine Live Ty21a 2000000000 UNT Delayed Release Oral Capsule [Vivotif]	VO_0003356		
 Vivotif Oral Product	VO_0003357		
@@ -5376,11 +5376,11 @@ Avaxim - Pediatric	VO_0010707		Avaxim - Pediatric
 BCG Vaccine (Freeze-Dried) (by Sanofi Pasteur)	VO_0010708		BCG Vaccine (Freeze-Dried)
 DT Polio Adsorbed	VO_0010709		DT Polio Adsorbed
 Dukoral	VO_0010710		Dukoral
-Engerix-B	VO_0010711		ENGERIX-B
+Engerix-B	VO_0010711	Hepatitis B Vaccine (Recombinant)	ENGERIX-B
 Eolarix	VO_0010712		Eolarix
 Epaxal	VO_0010713		Epaxal
 FSME - IMMUN	VO_0010714		FSME - IMMUN
-Hiberix	VO_0010715		HIBERIX
+Hiberix	VO_0010715	Haemophilus b Conjugate Vaccine (Tetanus Toxoid Conjugate)	HIBERIX
 Imovax Polio	VO_0010716		Imovax Polio
 Imovax Rabies (Canada)	VO_0010717		Imovax Rabies
 Inactivated Poliomyelitis Vaccine - IPV	VO_0010718		Inactived Poliomyelitis Vaccine - IPV
@@ -5402,13 +5402,13 @@ Prevnar (Canada)	VO_0010733		Prevnar
 Priorix	VO_0010734		Priorix
 Priorix-Tetra	VO_0010735		Priorix-Tetra
 Quadracel	VO_0010736		Quadracel
-Recombivax HB	VO_0010737		RECOMBIVAX HB
-Rotarix	VO_0010738		Rotarix
+Recombivax HB	VO_0010737	Hepatitis B Vaccine (Recombinant)	RECOMBIVAX HB
+Rotarix	VO_0010738	Rotavirus Vaccine, Live, Oral	Rotarix
 Td Adsorbed	VO_0010739		Td Adsorbed
 Tripacel	VO_0010742		Tripacel
 Twinrix Junior	VO_0010743		Twinrix Junior
 Typherix	VO_0010744		Typherix
-Vaqta	VO_0010745		Vaqta
+Vaqta	VO_0010745	Hepatitis A Vaccine, Inactivated	Vaqta
 Varilrix	VO_0010746		Varilrix
 Varivax III	VO_0010747		Varivax III
 ViVaxim	VO_0010748		ViVaxim
@@ -6211,8 +6211,8 @@ Bovine herpesvirus 1 DNA vaccine tgD-VP22	VO_0011554
 Rabies vaccine rVac-N	VO_0011555		
 Vivotif L	VO_0011556		
 Bovine herpesvirus 1 DNA vaccine pRSV-gC	VO_0011557		
-Ixiaro	VO_0011558		IXIARO
-Cervarix	VO_0011559		Cervarix
+Ixiaro	VO_0011558	Japanese Encephalitis Vaccine, Inactivated, Adsorbed	IXIARO
+Cervarix	VO_0011559	Human Papillomavirus Bivalent (Types 16 and 18) Vaccine, Recombinant	Cervarix
 Andes virus vaccine using adenovirus viral vector expressing ANDV NP	VO_0011561		
 H. influenzae Omp26 protein vaccine	VO_0011562		
 N. caninum NcMIC1 Protein Subunit Vaccine	VO_0011563		

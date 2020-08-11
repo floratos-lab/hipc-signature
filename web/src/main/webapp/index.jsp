@@ -784,7 +784,7 @@
                 <div class="col-9">
                     <table id="gene-details-grid" class="table table-bordered table-striped">
                         <tr><th>Vaccine ID</th><td>{{vaccineID}}</td></tr>
-                        <tr><th>Product Name</th><td>{{productName}}</td></tr>
+                        <tr><th>Vaccine Proper Name</th><td>{{vaccineProperName}}</td></tr>
                         <tr><th>Trade Name</th><td>{{tradeName}}</td></tr>
                         <tr><th>References</th>
                             <td>
