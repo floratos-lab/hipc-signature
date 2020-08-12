@@ -1,0 +1,3 @@
+naive B cell
+IgD-negative memory B cell
+transitional stage B cell

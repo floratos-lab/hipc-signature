@@ -1,3 +1,0 @@
-IFNG
-IRF7
-STAT1

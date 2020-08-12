@@ -60,7 +60,7 @@ public class ObservationDataFieldSetMapper implements FieldSetMapper<Observation
 	public ObservationData mapFieldSet(FieldSet fieldSet) throws BindException {
 
 		String templateName = fieldSet.readString(TEMPLATE_NAME);
-		Date submissionDate = fieldSet.readDate(SUBMISSION_DATE, "yyyy.MM.dd");
+		Date submissionDate = fieldSet.readDate(SUBMISSION_DATE, "yyyy.MM");
 		String submissionName = fieldSet.readString(SUBMISSION_NAME);
 
 		// create submission - if cache key changes, update getSubmissionCacheKey() defined above

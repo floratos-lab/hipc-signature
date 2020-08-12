@@ -1,0 +1,5 @@
+CD4-positive, alpha-beta T cell & CXCR4+
+CD8-positive, alpha-beta T cell & CD69+
+CD8-positive, CD25-positive, alpha-beta regulatory T cell
+CD8-positive, alpha-beta T cell & CCR3+
+CD8-positive, alpha-beta T cell & CXCR4+

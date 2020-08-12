@@ -1,4 +1,0 @@
-plasmacytoid dendritic cell
-B cell & CD3 epsilon-
-IgM memory B cell & CD3 epsilon-, CD27+
-CD4-positive, alpha-beta T cell & CD14-, IL2+, ENV
