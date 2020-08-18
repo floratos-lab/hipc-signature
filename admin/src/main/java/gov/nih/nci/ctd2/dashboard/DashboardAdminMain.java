@@ -37,7 +37,8 @@ public class DashboardAdminMain {
         "classpath*:META-INF/spring/taxonomyDataApplicationContext.xml", // This is for taxonomy data importer beans
         "classpath*:META-INF/spring/vaccineDataApplicationContext.xml", // This is for vaccine data importer beans
         "classpath*:META-INF/spring/cellSubsetDataApplicationContext.xml", // This is for cell subset data importer beans
-        "classpath*:META-INF/spring/pathogenDataApplicationContext.xml" // This is for pathogen data importer beans
+        "classpath*:META-INF/spring/pathogenDataApplicationContext.xml", // This is for pathogen data importer beans
+        "classpath*:META-INF/spring/xrefApplicationContext.xml" // this is for xref importer beans
     );
 
     @Transactional

@@ -959,6 +959,13 @@
             const result = thatModel.subject.toJSON();
             // Find out the UniProt ID
 
+            result.genecard = false;
+            _.each(result.xrefs, function (xref) {
+                if (xref.databaseName == "GeneCards") {
+                    result.genecard = xref.databaseId;
+                }
+            });
+
             result.type = result.class;
             $(this.el).html(this.template(result));
 

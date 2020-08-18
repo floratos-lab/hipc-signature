@@ -166,6 +166,20 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
+    public void batchMerge(Collection<? extends Subject> subjects) {
+        if (subjects == null || subjects.isEmpty())
+            return;
+
+        Session session = getSessionFactory().openSession();
+        session.beginTransaction();
+        for (Subject subject : subjects) {
+            session.merge(subject);
+        }
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
     public void update(DashboardEntity entity) {
         Session session = getSession();
         session.update(entity);
