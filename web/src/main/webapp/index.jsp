@@ -832,6 +832,7 @@
                              <th>Organism</th>
                              <td>{{organism.displayName}}</td>
                          </tr>
+                         <tr><th>Immune Regulation</th><td><a href="https://immuneregulation.mssm.edu/metadata-all.html?s={{displayName}}" target="_blank">link</a></td></tr>
                          <tr>
                              <th>References</th>
                              <td>
