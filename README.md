@@ -7,7 +7,7 @@ This project starts with rebranding the codebase of CTD^2 Dashboard project. It 
 
 # Install
 The code is structured as a _Maven_ project. 
-We suggest you work in an environment with `JDK 1.8.x`, `Tomcat 8.5.x`, `MySQL 5.7.x` and `Maven 3.x.x` properly installed.
+We suggest you work in an environment with Java 11, `MySQL 5.7.x` and `Maven 3.x.x` properly installed.
 You will need two databases: one for the production, by default **hipc_signature**, and one for the testing, again by default **hipc_test**.
 
 Before running any _mvn_ jobs, make sure you do the basic configuration.
@@ -134,10 +134,10 @@ or better, especially if you do not want to deal with a new Tomcat installation,
 
 and point your browser to [http://localhost:8080/hipc-signature/#](http://localhost:8080/hipc-signature).
 
-### Notes about design
-Here are a few quick comments from Arman about this prototype:
+## Background data
 
- * This is just the first iteration, so please feel free to comment and hopefully the design will converge accordingly
- * I decided to color code main categories (blue/red/orange/green) and I think it turns out quite well since it will allow any cross-link (e.g. from drug-view to target-view) to pop-up to the eye
- * I have not optimized things on the mobile side, so although I believe it will work fine on an iPad; it might lack some of the eye-candies on a mobile phone due to size limitations.
- * I have altered the main "tiles-design" pattern a little bit in order to be able to put an emphasis on "Stories" -- so this is why it is being shown by default. This is something between what Chris initially suggested and what Daniela wanted to see.
+When we release a version of data, the background data of genes should be updated first from ftp://ftp.ncbi.nih.gov/gene/DATA/GENE_INFO/Mammalia/
+
+Two files are used:
+* Homo_sapiens.gene_info.gz
+* Mus_musculus.gene_info.gz
