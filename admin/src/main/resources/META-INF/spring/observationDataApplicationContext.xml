@@ -100,6 +100,16 @@
 			</bean>
 		</property>
 	</bean>
+	<bean name="hipc_ctf_cor_28854372Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_ctf_cor_28854372.data.location}" />
+            <property name="delegate">
+                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+    				<property name="lineMapper" ref="hipc_ctf_cor_28854372LineMapper" />
+				<property name="linesToSkip" value="7" />
+
+			</bean>
+		</property>
+	</bean>
 	<bean name="hipc_gene_dir_26742691Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_gene_dir_26742691.data.location}" />
             <property name="delegate">

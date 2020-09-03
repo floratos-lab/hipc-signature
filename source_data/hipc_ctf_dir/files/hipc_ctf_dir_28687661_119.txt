@@ -1,4 +1,4 @@
 plasmacytoid dendritic cell
-natural killer cell & CD107a+, K562
-natural killer cell & IFNG+, K562
-natural killer cell & TNF-a+, K562
+natural killer cell & CD107a+, K562 cells
+natural killer cell & IFNG+, K562 cells
+natural killer cell & TNF-a+, K562 cells
