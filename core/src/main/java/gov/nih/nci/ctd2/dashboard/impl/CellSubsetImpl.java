@@ -35,7 +35,7 @@ public class CellSubsetImpl extends SubjectImpl implements CellSubset {
 		this.cellOntologyId = cellOntologyId;
 	}
 
-	@Column(length = 1024)
+	@Column(length = 2048)
 	@Override
 	public String getDefinition() {
 		return definition;
