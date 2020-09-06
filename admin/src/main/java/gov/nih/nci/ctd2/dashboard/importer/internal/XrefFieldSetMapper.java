@@ -41,9 +41,13 @@ public class XrefFieldSetMapper implements FieldSetMapper<XrefData> {
 		xref.setDatabaseId(databaseId);
 		
 		List<? extends Subject> subjects = findSubject(subjectClass, subjectName);
+		/* There are a large number of gene symbols in xref data that are not in the gene data,
+		so the follow checking is removed. */
+		/*
 		if (subjects == null || subjects.size() == 0){
 			log.warn("Subject not found: "+subjectName+" ("+subjectClass+")");
 		}
+		*/
 		return new XrefData(xref, subjects);
 	}
 	
