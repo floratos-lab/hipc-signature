@@ -120,19 +120,17 @@ For example:
 
 will list all available options to you.  For more information about running the admin tool, please visit the [Signatures Admin Tool](https://github.com/geworkbench-group/hipc-signature/blob/master/admin_tool.md) page.
 
-## Web: HIPC Signature UI/Web API
+## Web: HIPC Signature UI
 ### Deploy
-This module will create a single _war_ file for the Web API/UI.
-You can simply deploy this application, with the following generic command:
+The web application is now built as a spring boot application. To run it, use the follow command:
 
-	cp -f web/target/web.war $TOMCAT_HOME/webapps/hipc-signature.war
+	java -jar web/target/hipc-signature-spring-boot.war
 
-or better, especially if you do not want to deal with a new Tomcat installation, you can take advantage of the _mvn tomcat_ plugin:
+and point your browser to [http://localhost:8080](http://localhost:8080).
 
-	cd web/
-	mvn tomcat:run-war
+You can also launch it by `mvn -f web/pom.xml spring-boot:run` during development and testing.
 
-and point your browser to [http://localhost:8080/hipc-signature/#](http://localhost:8080/hipc-signature).
+In case we need to deploy to a tomcat with a regular war file, we should roll back the change mainly of commit 73fe78e.
 
 ## Background data
 
