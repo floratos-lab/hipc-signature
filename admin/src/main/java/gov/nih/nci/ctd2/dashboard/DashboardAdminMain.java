@@ -178,7 +178,8 @@ public class DashboardAdminMain {
             JobLauncher jobLauncher = (JobLauncher)appContext.getBean("jobLauncher");
             JobParametersBuilder builder = new JobParametersBuilder();
             JobExecution jobExecution = jobLauncher.run(job, builder.toJobParameters());
-            log.info("launchJob: exit code: " + jobExecution.getExitStatus().getExitCode());
+            String exitCode = jobExecution.getExitStatus().getExitCode();
+            log.info("launchJob: exit code: " + exitCode);
 
             if( "observationDataImporterJob".equals(jobName) ) {
                 @SuppressWarnings("unchecked")
@@ -187,6 +188,10 @@ public class DashboardAdminMain {
                 subjectNotFound.stream().forEach(snf->log.info(snf));
             }
 
+            if( !"COMPLETED".equals(exitCode)) {
+                System.err.println(jobExecution.getExitStatus());
+                System.exit(-1);
+            }
         }
         catch (Exception e) {
             System.err.println(e.getMessage());
