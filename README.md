@@ -130,7 +130,7 @@ and point your browser to [http://localhost:8080](http://localhost:8080).
 
 You can also launch it by `mvn -f web/pom.xml spring-boot:run` during development and testing.
 
-In case we need to deploy to a tomcat with a regular war file, we should roll back the change mainly of commit 73fe78efaae123e58526d9840014ceee0a31ef76.
+In case we need to deploy to a tomcat with a regular war file, we should roll back the change mainly of commit [73fe78e](https://github.com/floratos-lab/hipc-signature/commit/73fe78efaae123e58526d9840014ceee0a31ef76).
 
 ## Background data
 
