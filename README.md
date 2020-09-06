@@ -136,8 +136,14 @@ and point your browser to [http://localhost:8080/hipc-signature/#](http://localh
 
 ## Background data
 
+### Gene
+
 When we release a version of data, the background data of genes should be updated first from ftp://ftp.ncbi.nih.gov/gene/DATA/GENE_INFO/Mammalia/
 
 Two files are used:
 * Homo_sapiens.gene_info.gz
 * Mus_musculus.gene_info.gz
+
+### Cell Subset
+
+Data source: https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl.owl
