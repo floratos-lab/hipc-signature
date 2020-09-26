@@ -1368,7 +1368,6 @@
                         }).render();
                     });
 
-                    $(".template-description").tooltip();
                     $(tableElId).dataTable({
                         "columns": [{
                                 "visible": false
