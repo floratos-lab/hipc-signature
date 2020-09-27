@@ -285,8 +285,12 @@ public class DashboardDaoImpl implements DashboardDao {
 
     @Override
     public List<ObservationTemplate> findObservationTemplateBySubmissionCenter(SubmissionCenter submissionCenter) {
-        return queryWithClass("from ObservationTemplateImpl where submissionCenter = :center", "center",
+        long time1 = System.currentTimeMillis();
+        List<ObservationTemplate> x = queryWithClass("from ObservationTemplateImpl where submissionCenter = :center", "center",
                 submissionCenter);
+        long time2 = System.currentTimeMillis();
+        log.debug(" time to get template list "+(time2-time1)+" milliseconds");
+        return x;
     }
 
     @Override
@@ -515,7 +519,11 @@ public class DashboardDaoImpl implements DashboardDao {
 
     @Override
     public List<Submission> findSubmissionByObservationTemplate(ObservationTemplate observationTemplate) {
-        return queryWithClass("from SubmissionImpl where observationTemplate = :ot", "ot", observationTemplate);
+        long time1 = System.currentTimeMillis();
+        List<Submission> x =  queryWithClass("from SubmissionImpl where observationTemplate = :ot", "ot", observationTemplate);
+        long time2 = System.currentTimeMillis();
+        log.debug(" time to get " + x.size() + " submissions of one template "+(time2-time1));
+        return x;
     }
 
     @Override
@@ -532,6 +540,7 @@ public class DashboardDaoImpl implements DashboardDao {
         for (ObservationTemplate o : findObservationTemplateBySubmissionCenter(submissionCenter)) {
             list.addAll(findSubmissionByObservationTemplate(o));
         }
+        log.debug("totally "+list.size()+" submissions for all template of " +submissionCenter.getDisplayName());
 
         return list;
     }
