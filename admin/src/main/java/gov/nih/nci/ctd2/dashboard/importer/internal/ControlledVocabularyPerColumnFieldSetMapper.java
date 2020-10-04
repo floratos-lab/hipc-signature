@@ -12,11 +12,14 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.HashMap;
 
 @Component("controlledVocabularyPerColumnMapper")
 public class ControlledVocabularyPerColumnFieldSetMapper implements FieldSetMapper<ControlledVocabulary> {
+	private static final Log log = LogFactory.getLog(ControlledVocabularyPerColumnFieldSetMapper.class);
 
 	private static final String TEMPLATE_NAME = "template_name";
 	private static final String COLUMN_NAME = "column_name";
@@ -41,7 +44,10 @@ public class ControlledVocabularyPerColumnFieldSetMapper implements FieldSetMapp
 	public ControlledVocabulary mapFieldSet(FieldSet fieldSet) throws BindException {
 		String templateName = fieldSet.readString(TEMPLATE_NAME);
 		ObservationTemplate observationTemplate = observationTemplateNameMap.get(templateName);
-		if (observationTemplate == null) return new ControlledVocabulary(null, null, null);
+		if (observationTemplate == null) {
+			log.error("template not found for name "+templateName);
+			return new ControlledVocabulary(null, null, null);
+		}
 
 		if (subjectRoleCache == null) subjectRoleCache = new HashMap<String, SubjectRole>();
 		if (evidenceRoleCache == null) evidenceRoleCache = new HashMap<String, EvidenceRole>();

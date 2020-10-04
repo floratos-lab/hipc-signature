@@ -1240,9 +1240,7 @@
         template: _.template($("#observation-row-tmpl").html()),
         render: function () {
             const tableEl = this.el;
-            const description = this.model.submission.observationTemplate.description;
-            const link_postion = description.indexOf("PMID:") + 5;
-            this.model.pmid = description.substring(link_postion);
+            this.model.pmid = this.model.submission.observationTemplate.PMID;
             $(tableEl).append(this.template(this.model));
             let summary = this.model.submission.observationTemplate.observationSummary;
 

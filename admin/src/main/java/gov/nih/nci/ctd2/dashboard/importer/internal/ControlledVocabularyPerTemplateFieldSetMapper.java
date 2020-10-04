@@ -26,6 +26,7 @@ public class ControlledVocabularyPerTemplateFieldSetMapper implements FieldSetMa
 	private static final String SUBMISSION_STORY_RANK = "submission_story_rank";
 	private static final String PRINCIPAL_INVESTIGATOR = "principal_investigator";
 	private static final String SUBMISSION_CENTER = "submission_center";
+	private static final String PMID = "pmid";
 
 	@Autowired
 	private DashboardDao dashboardDao;
@@ -52,6 +53,7 @@ public class ControlledVocabularyPerTemplateFieldSetMapper implements FieldSetMa
 		observationTemplate.setIsSubmissionStory(fieldSet.readBoolean(SUBMISSION_STORY, "TRUE"));
 		observationTemplate.setSubmissionStoryRank(fieldSet.readInt(SUBMISSION_STORY_RANK));
 		observationTemplate.setPrincipalInvestigator(fieldSet.readString(PRINCIPAL_INVESTIGATOR));
+		observationTemplate.setPMID(fieldSet.readInt(PMID));
 
 		String submissionCenterName = fieldSet.readString(SUBMISSION_CENTER);
 		SubmissionCenter submissionCenter = submissionCenterCache.get(submissionCenterName);

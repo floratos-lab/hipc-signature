@@ -485,6 +485,9 @@ public class DashboardDaoImpl implements DashboardDao {
         List<ObservationTemplate> list = queryWithClass("from ObservationTemplateImpl where displayName = :tname",
                 "tname", templateName);
         assert list.size() <= 1;
+        if(list.size() > 1) {
+            log.error("duplicate template name " + templateName);
+        }
         return (list.size() == 1) ? list.iterator().next() : null;
     }
 

@@ -30,13 +30,17 @@ public class ControlledVocabularyPerColumnWriter implements ItemWriter<Controlle
     @Qualifier("batchSize")
     private Integer batchSize;
 
-	private ArrayList<DashboardEntity> entities;
-	private HashSet<DashboardEntity> entityCache;
-
+    private ArrayList<DashboardEntity> entities;
+    private HashSet<DashboardEntity> entityCache;
+    
+    /* FIXME This code is not really correct.
+    It is meant to be called multiple times, but works correctly only when it is called once.
+    So it depends on a large spring batch commit interval to cover all ControlledVocabulary. */
     public void write(List<? extends ControlledVocabulary> items) throws Exception {
 
+        log.debug("number of ControlledVocabulary items to be processed: " + items.size());
 		if (entityCache == null) entityCache = new HashSet<DashboardEntity>();
-		if (entities == null) entities = new ArrayList<DashboardEntity>();
+        if (entities == null) entities = new ArrayList<DashboardEntity>();
 
 		for (ControlledVocabulary controlledVocabulary : items) {
 			String observedRoleName = "";
@@ -46,7 +50,7 @@ public class ControlledVocabularyPerColumnWriter implements ItemWriter<Controlle
 			else if (controlledVocabulary.observedRole instanceof ObservedEvidenceRole) {
 				observedRoleName = ((ObservedEvidenceRole)controlledVocabulary.observedRole).getColumnName();
 			}
-			log.info("Storing Observed Role: " + observedRoleName);
+			log.trace("Storing Observed Role: " + observedRoleName);
 
             if(!entityCache.contains(controlledVocabulary.role)) {
                 entityCache.add(controlledVocabulary.role);

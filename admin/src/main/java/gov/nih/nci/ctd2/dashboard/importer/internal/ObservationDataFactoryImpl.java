@@ -49,6 +49,8 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 		ObservationTemplate observationTemplate = dashboardDao.findObservationTemplateByName(observationTemplateName);
 		if (observationTemplate != null) {
 			submission.setObservationTemplate(observationTemplate);
+		} else {
+			log.error("template " + observationTemplateName + " cannot be retrieved from the database.");
 		}
 		return submission;
 	}

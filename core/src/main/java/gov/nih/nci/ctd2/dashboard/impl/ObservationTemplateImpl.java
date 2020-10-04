@@ -34,6 +34,7 @@ public class ObservationTemplateImpl extends DashboardEntityImpl implements Obse
 	private Integer submissionStoryRank = 0;
     private SubmissionCenter submissionCenter;
     private String principalInvestigator;
+    private Integer pmid = 0;
 
     @Field(name=FIELD_DESCRIPTION, index = Index.YES)
     @Column(length = 1024)
@@ -124,5 +125,13 @@ public class ObservationTemplateImpl extends DashboardEntityImpl implements Obse
 
     public void setPrincipalInvestigator(String principalInvestigator) {
         this.principalInvestigator = principalInvestigator;
+    }
+
+    public Integer getPMID() {
+        return pmid;
+    }
+
+    public void setPMID(Integer pmid) {
+        this.pmid = pmid;
     }
 }
