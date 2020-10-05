@@ -1457,17 +1457,6 @@
         </div>
     </script>
 
-
-    <script type="text/template" id="more-projects-tmpl">
-        <div class="alert alert-warning">
-            <p><a href="#" class="close" data-dismiss="alert">&times;</a></p>
-            <p>
-                The table below lists all studies that belong to the project "<b>{{filterProject}}</b>".
-                To view all studies, please click <a href="&#35;{{centerStableURL}}">here</a>.
-            </p>
-        </div>
-    </script>
-
     <script type="text/template" id="ncithesaurus-tmpl">
         <li>
             <a href="http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI_Thesaurus&code={{nciId}}" target="_blank">

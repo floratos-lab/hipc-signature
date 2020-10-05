@@ -1330,7 +1330,7 @@
         el: $("#main-container"),
         tableEl: '#center-submission-grid',
         template: _.template($("#center-tmpl").html()),
-        render: function (filterProject) {
+        render: function () {
             const centerModel = this.model.toJSON();
             $(this.el).html(this.template(centerModel));
 
@@ -1377,32 +1377,12 @@
                             null
                         ],
                     });
-
-                    if (filterProject != null) {
-                        $(tableElId).DataTable().search(filterProject).draw();
-                        const mpModel = {
-                            filterProject: filterProject,
-                            centerStableURL: centerModel.stableURL
-                        };
-                        new MoreProjectsView({
-                            model: mpModel
-                        }).render();
-                    }
                 }
             });
 
             return this;
         }
 
-    });
-
-    const MoreProjectsView = Backbone.View.extend({
-        template: _.template($("#more-projects-tmpl").html()),
-        el: "#more-project-container",
-
-        render: function () {
-            $(this.el).append(this.template(this.model));
-        }
     });
 
     const SubmissionRowView = Backbone.View.extend({
