@@ -307,13 +307,11 @@
                 </div>
             </div>
 
-            <div id="more-project-container"></div>
-
             <table id="center-submission-grid" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Project</th>
                         <th>Description</th>
+                        <th>PMID</th>
                         <th width="90">Publication Date</th>
                         <th>Details</th>
                     </tr>
@@ -327,10 +325,10 @@
 
     <script type="text/template" id="center-submission-tbl-row-tmpl">
         <tr>
-            <td>{{observationTemplate.project}}</td>
             <td>
                 {{(observationTemplate.submissionDescription != "") ? observationTemplate.submissionDescription : observationTemplate.description}}
             </td>
+            <td>{{observationTemplate.PMID}}</td>
             <td><small>{{submissionDate}}</small></td>
             <td width=150>
                 <a href="&#35;{{stableURL}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>

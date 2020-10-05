@@ -1367,9 +1367,8 @@
                     });
 
                     $(tableElId).dataTable({
-                        "columns": [{
-                                "visible": false
-                            },
+                        "columns": [
+                            null,
                             null,
                             {
                                 "orderDataType": "dashboard-date"
