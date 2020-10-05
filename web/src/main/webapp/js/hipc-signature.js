@@ -1376,32 +1376,6 @@
                             },
                             null
                         ],
-                        "drawCallback": function (settings) {
-                            const api = this.api();
-                            const rows = api.rows({
-                                page: 'current'
-                            }).nodes();
-                            let last = null;
-
-                            api.column(0, {
-                                    page: 'current'
-                                })
-                                .data()
-                                .each(function (group, i) {
-                                    if (last != group) {
-                                        $(rows)
-                                            .eq(i)
-                                            .before(
-                                                _.template($("#tbl-project-title-tmpl").html())({
-                                                    project: group,
-                                                    centerStableURL: centerModel.stableURL
-                                                })
-                                            );
-
-                                        last = group;
-                                    }
-                                });
-                        }
                     });
 
                     if (filterProject != null) {

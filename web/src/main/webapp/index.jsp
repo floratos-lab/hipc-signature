@@ -1726,10 +1726,6 @@
         </div>
     </script>
 
-    <script id="tbl-project-title-tmpl" type="text/template">
-        <tr class="group"><td colspan="5"><a href="&#35;{{centerStableURL}}/{{project}}">Signature Type: {{project}}</a></td></tr>
-    </script>
-
     <!-- end of templates -->
 
     <script src="js/datatables.min.js"></script>
