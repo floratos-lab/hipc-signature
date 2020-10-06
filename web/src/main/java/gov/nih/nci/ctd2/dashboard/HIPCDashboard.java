@@ -6,9 +6,9 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @ImportResource({ "META-INF/spring/applicationContext.xml", "context.xml" })
-public class DemoApplication {
+public class HIPCDashboard {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(HIPCDashboard.class, args);
     }
 }
