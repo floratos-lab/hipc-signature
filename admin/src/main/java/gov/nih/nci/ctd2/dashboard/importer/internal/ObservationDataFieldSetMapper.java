@@ -1,6 +1,7 @@
 package gov.nih.nci.ctd2.dashboard.importer.internal;
 
 import gov.nih.nci.ctd2.dashboard.model.*;
+import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.importer.ObservationDataFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
@@ -14,6 +15,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 
@@ -33,7 +36,9 @@ public class ObservationDataFieldSetMapper implements FieldSetMapper<Observation
 	private static final String TEMPLATE_NAME = "template_name";
 
 	public static final String XREF_DELIMITER = "-";
-	public static final SimpleDateFormat TEMPLATE_DATE_FORMAT = new SimpleDateFormat("yyyy.MM.dd");
+
+	@Autowired
+    private DashboardDao dashboardDao;
 
 	@Autowired
 	private ObservationDataFactory observationDataFactory;
@@ -48,14 +53,7 @@ public class ObservationDataFieldSetMapper implements FieldSetMapper<Observation
 	@Qualifier("observationTemplateMap")
 	private	HashMap<String, String> observationTemplateMap;
 
-	private HashMap<String, Submission> submissionCache = new HashMap<String, Submission>();
-
-	/* Used by ObservationDataWriter */
-	public static String getSubmissionCacheKey(Submission submission) {
-		return submission.getDisplayName() + 
-			ObservationDataFieldSetMapper.TEMPLATE_DATE_FORMAT.format(submission.getSubmissionDate()) +
-			submission.getObservationTemplate().getDisplayName();
-	}
+	private Map<String, Submission> submissionCache = new ConcurrentHashMap<String, Submission>();
 
 	@Override
 	public ObservationData mapFieldSet(FieldSet fieldSet) throws BindException {
@@ -64,13 +62,13 @@ public class ObservationDataFieldSetMapper implements FieldSetMapper<Observation
 		Date submissionDate = fieldSet.readDate(SUBMISSION_DATE, "yyyy.MM");
 		String submissionName = fieldSet.readString(SUBMISSION_NAME);
 
-		// create submission - if cache key changes, update getSubmissionCacheKey() defined above
-		String submissionCacheKey = submissionName + TEMPLATE_DATE_FORMAT.format(submissionDate) + templateName;
+		String submissionCacheKey = submissionName + new SimpleDateFormat("yyyy.MM.dd").format(submissionDate) + templateName;
 		Submission submission = submissionCache.get(submissionCacheKey);
 		if (submission == null) {
 			submission = observationDataFactory.createSubmission(submissionName,
 																 submissionDate,
 																 templateName);
+			dashboardDao.save(submission);
 			submissionCache.put(submissionCacheKey, submission);
 		}
 		// create observation

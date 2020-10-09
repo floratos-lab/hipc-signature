@@ -1,6 +1,7 @@
 package gov.nih.nci.ctd2.dashboard.importer.internal;
 
 import gov.nih.nci.ctd2.dashboard.model.*;
+import gov.nih.nci.ctd2.dashboard.util.StableURL;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.importer.ObservationDataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class ObservationDataFactoryImpl implements ObservationDataFactory {
 		Submission submission = dashboardFactory.create(Submission.class);
 		submission.setDisplayName(submissionName);
 		submission.setSubmissionDate(submissionDate);
+		submission.setStableURL(new StableURL().createURLWithPrefix("submission", submissionName));
 		ObservationTemplate observationTemplate = dashboardDao.findObservationTemplateByName(observationTemplateName);
 		if (observationTemplate != null) {
 			submission.setObservationTemplate(observationTemplate);

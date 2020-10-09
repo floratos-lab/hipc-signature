@@ -55,17 +55,13 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
         final Submission submission = items.get(0).observation.getSubmission();
         final String submissionName = submission.getDisplayName();
         StableURL stableURL = new StableURL();
-        synchronized (submission) {
-            log.debug("[" + ++counter + "]SUBMISSION " + submissionName + ": " + items.size() + " observation(s)");
-            final String submissionCacheKey = submissionName
-                    + new SimpleDateFormat("yyyy.MM.dd").format(submission.getSubmissionDate())
-                    + submission.getObservationTemplate().getDisplayName();
-            if (!submissionCache.contains(submissionCacheKey)) {
-                submission.setStableURL(stableURL.createURLWithPrefix("submission", submissionName));
-                dashboardDao.save(submission);
-                submissionCache.add(submissionCacheKey);
-                observationIndex.put(submissionName, 0);
-            }
+        log.debug("[" + ++counter + "]SUBMISSION " + submissionName + ": " + items.size() + " observation(s)");
+        final String submissionCacheKey = submissionName
+                + new SimpleDateFormat("yyyy.MM.dd").format(submission.getSubmissionDate())
+                + submission.getObservationTemplate().getDisplayName();
+        if (!submissionCache.contains(submissionCacheKey)) {
+            submissionCache.add(submissionCacheKey);
+            observationIndex.put(submissionName, 0);
         }
 
         List<Observation> observations = new ArrayList<Observation>();
