@@ -27,7 +27,7 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.default_catalog">hipc_signature</prop>
+                <prop key="hibernate.default_catalog">hipc</prop>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.connection.charSet">${hibernate.connection.charSet}</prop>
                 <prop key="hibernate.search.default.indexBase">${search.indexDir}</prop>
