@@ -1,3 +1,4 @@
+""" this util is used from raw_data_process.py to create observationDataApplicationContext.xml and observationDataSharedApplicationContext.xml"""
 import os
 import shutil
 
@@ -69,23 +70,18 @@ class DataConfig:
 							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 							http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">''')
 
-        f.write('\n\t<batch:job id="observationDataImporterJob">')
+        f.write('\n\t<batch:job id="observationDataImporterJob">\n\t<batch:split id="split1" task-executor="taskExecutor">')
         size = len(self.ids)
         for i in range(size):
             id = self.ids[i][0]
-            if i == size-1:
-                nextAttr = ''
-            else:
-                nextId = self.ids[i+1][0]
-                nextAttr = 'next="'+nextId+'Step"'
             f.write(
-                '\n\t\t<batch:step id="'+id+'Step" parent="observationDataStep" '+nextAttr+'>')
+                '\n\t\t<batch:flow><batch:step id="'+id+'Step" parent="observationDataStep">')
             f.write('\n\t\t\t<batch:tasklet>')
             f.write('\n\t\t\t\t<batch:chunk reader="'+id +
                     'Reader" processor="observationDataProcessor" writer="observationDataWriter"/>')
             f.write('\n\t\t\t</batch:tasklet>')
-            f.write('\n\t\t</batch:step>')
-        f.write('\n\t</batch:job>\n')
+            f.write('\n\t\t</batch:step></batch:flow>')
+        f.write('\n\t</batch:split>\n\t</batch:job>\n\n\t<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>\n')
 
         f.write('''
     <bean id="observationDataStep" class="org.springframework.batch.core.step.item.SimpleStepFactoryBean" abstract="true">
