@@ -19,8 +19,10 @@ public interface ObservationTemplate extends DashboardEntity {
     public void setSubmissionStoryRank(Integer submissionStoryRank);
     public SubmissionCenter getSubmissionCenter();
     public void setSubmissionCenter(SubmissionCenter submissionCenter);
-    public void setPrincipalInvestigator(String principalInvestigator);
     public String getPrincipalInvestigator();
+    public void setPrincipalInvestigator(String principalInvestigator);
     public Integer getPMID();
     public void setPMID(Integer pmid);
+    public String getSubmissionType();
+    public void setSubmissionType(String submissionType);
 }

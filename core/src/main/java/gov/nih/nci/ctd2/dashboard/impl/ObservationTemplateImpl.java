@@ -35,6 +35,7 @@ public class ObservationTemplateImpl extends DashboardEntityImpl implements Obse
     private SubmissionCenter submissionCenter;
     private String principalInvestigator;
     private Integer pmid = 0;
+    private String submissionType;
 
     @Field(name=FIELD_DESCRIPTION, index = Index.YES)
     @Column(length = 1024)
@@ -83,6 +84,7 @@ public class ObservationTemplateImpl extends DashboardEntityImpl implements Obse
         this.submissionDescription = submissionDescription;
     }
     
+    /* TODO this field should be removed. */
     @Field(name=FIELD_PROJECT, index = Index.YES)
     @Column(length = 1024)
     public String getProject() {
@@ -133,5 +135,16 @@ public class ObservationTemplateImpl extends DashboardEntityImpl implements Obse
 
     public void setPMID(Integer pmid) {
         this.pmid = pmid;
+    }
+
+    @Override
+    @Column(length=64, nullable=false)
+    public String getSubmissionType() {
+        return submissionType;
+    }
+
+    @Override
+    public void setSubmissionType(String submissionType) {
+        this.submissionType = submissionType;
     }
 }
