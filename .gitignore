@@ -1,6 +1,7 @@
 core/**/signature.properties
 target/
 bin/
+data_backup/
 .DS_Store
 .svn
 .hg
