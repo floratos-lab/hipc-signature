@@ -1731,7 +1731,7 @@
     <script src="js/jquery.ui.position.min.js"></script>
     <script src="js/hipc-subject-images.js"></script>
     <script src="js/cnkb.js"></script>
-    <script src="js/hipc-signature.js"></script>
+    <script src="js/hipc.js"></script>
 
 </body>
 
