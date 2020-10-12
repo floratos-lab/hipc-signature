@@ -101,12 +101,13 @@
         urlRoot: CORE_API_URL + "get/submission"
     });
 
+    // TODO this should be renamed to 'submissions per PMID'
     const CenterSubmissions = Backbone.Collection.extend({
-        url: CORE_API_URL + "list/submission/?filterBy=",
+        url: CORE_API_URL + "list/submission/",
         model: Submission,
 
         initialize: function (attributes) {
-            this.url += attributes.centerId;
+            this.url += attributes.pmid;
         }
     });
 
@@ -255,6 +256,14 @@
         }
     });
 
+    const PMID = Backbone.Model.extend({
+    });
+
+    const PMIDs = Backbone.Collection.extend({
+        url: CORE_API_URL + "list/pmids",
+        model: PMID,
+    });
+
     /* Views */
     const HomeView = Backbone.View.extend({
         el: $("#main-container"),
@@ -292,6 +301,56 @@
                 }
             );
 
+            return this;
+        }
+    });
+
+    const PMIDListRowView = Backbone.View.extend({
+        template: _.template($("#centers-tbl-row-tmpl").html()),
+        render: function () {
+            $(this.el).append(this.template(this.model));
+            $('.clickable-popover').popover({
+                placement: "bottom",
+                trigger: 'hover',
+            }).click(function () {
+                $(this).popover('hide');
+            });
+            return this;
+        }
+
+    });
+
+    const PMIDListView = Backbone.View.extend({
+        el: $("#main-container"),
+        template: _.template($("#pmids-tmpl").html()),
+        render: function () {
+            $(this.el).html(this.template({}));
+
+            const centers = new PMIDs();
+            const thatEl = this.el;
+            centers.fetch({
+                success: function () {
+                    _.each(centers.models, function (pmids) {
+                        const aCenter = pmids.toJSON()
+                        new PMIDListRowView({
+                            el: $(thatEl).find("#centers-tbody"),
+                            model: aCenter
+                        }).render();
+                    });
+
+                    $("#centers-list-table").dataTable({
+                        "iDisplayLength": 25,
+                        columnDefs: [{
+                            targets: 3,
+                            orderDataType: "submission-count",
+                            type: "numeric"
+                        },
+                        ],
+                    }).fnSort([
+                        [2, 'desc']
+                    ]);
+                }
+            });
             return this;
         }
     });
@@ -1336,18 +1395,18 @@
         }
     });
 
-    const CenterView = Backbone.View.extend({
+    const PerPMIDView = Backbone.View.extend({
         el: $("#main-container"),
         tableEl: '#center-submission-grid',
-        template: _.template($("#center-tmpl").html()),
+        template: _.template($("#per-pmid-tmpl").html()),
         render: function () {
-            const centerModel = this.model.toJSON();
+            const centerModel = this.model;
             $(this.el).html(this.template(centerModel));
 
             const thatEl = this.el;
             const tableElId = this.tableEl;
             const centerSubmissions = new CenterSubmissions({
-                centerId: centerModel.id
+                pmid: centerModel.pmid,
             });
             centerSubmissions.fetch({
                 success: function () {
@@ -2521,13 +2580,19 @@
         };
     };
 
+    const viewOnlyRouter = function (View) {
+        return function () {
+            new View().render();
+        };
+    };
+
     /* Routers */
     const AppRouter = Backbone.Router.extend({
         routes: {
             "explore/genes": "genes",
             "explore/:type/:roles": "explore",
-            "center/:name/:project": "showCenterProject",
-            "center/:name": "showCenter",
+            "pmids": viewOnlyRouter(PMIDListView),
+            "pmid/:pmid": "showStudiesPerPMID",
             "submission/:id": "showSubmission",
             "observation/:id": "showObservation",
             "search/:term": "search",
@@ -2593,33 +2658,10 @@
             });
         },
 
-        showCenter: function (name) {
-            const center = new SubmissionCenter({
-                id: name
-            });
-            center.fetch({
-                success: function () {
-                    new CenterView({
-                        model: center
-                    }).render(null);
-                }
-            });
-        },
-
-        showCenterProject: function (name, project) {
-            const center = new SubmissionCenter({
-                id: name
-            });
-            center.fetch({
-                success: function () {
-                    project = decodeURI(project)
-                        .replace(new RegExp("<", "g"), "")
-                        .replace(new RegExp(">", "g"), "");
-                    new CenterView({
-                        model: center
-                    }).render(project);
-                }
-            });
+        showStudiesPerPMID: function (pmid) {
+            new PerPMIDView({
+                model: {pmid: pmid},
+            }).render();
         },
 
         showSubmission: function (id) {

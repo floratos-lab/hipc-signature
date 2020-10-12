@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -75,6 +76,7 @@ import gov.nih.nci.ctd2.dashboard.model.Xref;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
+import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 
 public class DashboardDaoImpl implements DashboardDao {
     private static Log log = LogFactory.getLog(DashboardDaoImpl.class);
@@ -1041,5 +1043,43 @@ public class DashboardDaoImpl implements DashboardDao {
             a[i][1] = obj[1].toString();
         }
         return a;
+    }
+
+    @Override
+    public List<PMIDResult> getPMIDs() {
+        Session session = getSession();
+        String countQuerySQL = "SELECT PMID, count(observation.id) FROM observation_template"
+            +" JOIN submission ON observation_template.id=submission.observationTemplate_id"
+            +" JOIN observation ON submission.id=observation.submission_id GROUP BY PMID";
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> countQuery = session.createNativeQuery(countQuerySQL);
+        List<Object[]> countList = countQuery.list();
+        Map<Integer, BigInteger> countMap = new HashMap<Integer, BigInteger>();
+        for (int i = 0; i < countList.size(); i++) {
+            Object[] obj = countList.get(i);
+            Integer pmid = (Integer)obj[0];
+            BigInteger count = (BigInteger)obj[1];
+            countMap.put(pmid, count);
+        }
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(
+            "SELECT DISTINCT PMID, description, submissionDate FROM observation_template JOIN submission on observation_template.id=submission.observationTemplate_id");
+        List<Object[]> objList = query.list();
+        List<PMIDResult> list = new ArrayList<PMIDResult>();
+        for (int i = 0; i < objList.size(); i++) {
+            Object[] obj = objList.get(i);
+            Integer pmid = (Integer)obj[0];
+            String description = (String)obj[1];
+            Date date = (Date)obj[2];
+            Integer count = countMap.get(pmid).intValue();
+            list.add(new PMIDResult(pmid, description, date, count));
+        }
+        session.close();
+        return list;
+    }
+
+    @Override
+    public List<Submission> getSubmissionsPerPMID(Integer pmid) {
+        return queryWithClass("from SubmissionImpl where observationTemplate.PMID = :pmid", "pmid", pmid);
     }
 }

@@ -47,7 +47,7 @@
 
             <ul id="main-nav">
                 <li><a id="navlink-dashboard" class="navlink" href="#">HIPC DASHBOARD</a></li>
-                <li><a id="navlink-centers" class="navlink" href="#center/hipc">Studies</a></li>
+                <li><a id="navlink-centers" class="navlink" href="#pmids">Studies</a></li>
                 <li>
                     <a class="dropdown-toggle navlink" href="#" data-toggle="dropdown">Resources <b
                             class="caret"></b></a>
@@ -296,14 +296,42 @@
 
     </script>
 
-    <script type="text/template" id="center-tmpl">
+    <script type="text/template" id="centers-tbl-row-tmpl">
+        <tr>
+            <td>{{description}}</td>
+            <td><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{pmid}}" target=_blank>{{pmid}}</a></td>
+            <td><a href="#pmid/{{pmid}}">{{publicationDate}}</a></td>
+            <td><a href="#pmid/{{pmid}}">{{observationNumber}}</a></td>
+        </tr>
+    </script>
+
+    <script type="text/template" id="pmids-tmpl">
+        <div class="container common-container" id="centers-container">
+            <h2>All PMIDs</h2>
+            <table class="table table-bordered table-striped table-compact" id="centers-list-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>PMID</th>
+                        <th>Publication Date</th>
+                        <th>Number of Observations</th>
+                    </tr>
+                </thead>
+                <tbody id="centers-tbody">
+                <!-- here will come the centers... -->
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/template" id="per-pmid-tmpl">
         <div class="container common-container" id="center-submission-container">
             <div class="row">
                 <div class="col-9">
-                    <h2 class="center-title">Studies</h2>
+                    <h2 class="center-title">Studies for PMID {{pmid}}</h2>
                 </div>
                 <div class="col-3">
-                    <img src="img/{{displayName}}.png" title="{{displayName}}" alt="{{displayName}}" class="img-polaroid" width="200">
+                    <img src="img/HIPC-II Signatures Project.png" title="HIPC-II Signatures Project" alt="HIPC-II Signatures Project" class="img-polaroid" width="200">
                 </div>
             </div>
 
@@ -311,7 +339,7 @@
                 <thead>
                     <tr>
                         <th>Description</th>
-                        <th>PMID</th>
+                        <th>Submission Type</th>
                         <th width="90">Publication Date</th>
                         <th>Details</th>
                     </tr>
@@ -328,7 +356,7 @@
             <td>
                 {{(observationTemplate.submissionDescription != "") ? observationTemplate.submissionDescription : observationTemplate.description}}
             </td>
-            <td>{{observationTemplate.PMID}}</td>
+            <td>{{observationTemplate.submissionType}}</td>
             <td><small>{{submissionDate}}</small></td>
             <td width=150>
                 <a href="&#35;{{stableURL}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>

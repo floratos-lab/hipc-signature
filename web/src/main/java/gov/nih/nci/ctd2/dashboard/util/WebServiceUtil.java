@@ -16,16 +16,7 @@ public class WebServiceUtil {
     @Cacheable(value = "entityCache")
     public List<? extends DashboardEntity> getDashboardEntities(String type, Integer filterBy) {
         List<? extends DashboardEntity> entities = new ArrayList<DashboardEntity>();
-        if(type.equalsIgnoreCase("submission")) {
-            if(filterBy != null) {
-                SubmissionCenter submissionCenter = dashboardDao.getEntityById(SubmissionCenter.class, filterBy);
-                if(submissionCenter != null) {
-                    entities = dashboardDao.findSubmissionBySubmissionCenter(submissionCenter);
-                }
-            } else {
-                entities = dashboardDao.findEntities(Submission.class);
-            }
-        } else if(type.equals("observedsubject") && filterBy != null) {
+        if(type.equals("observedsubject") && filterBy != null) {
             Subject subject = dashboardDao.getEntityById(Subject.class, filterBy);
             if(subject != null) {
                 entities = dashboardDao.findObservedSubjectBySubject(subject);

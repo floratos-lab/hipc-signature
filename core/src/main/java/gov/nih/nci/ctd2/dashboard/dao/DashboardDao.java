@@ -33,6 +33,7 @@ import gov.nih.nci.ctd2.dashboard.model.Xref;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
+import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 
 public interface DashboardDao {
     void save(DashboardEntity entity);
@@ -162,4 +163,8 @@ public interface DashboardDao {
     GeneData[] getGeneData(int start, int length, String orderBy, String direction, String filterBy);
 
     String[][] getAllGeneData(String orderBy, String direction, String filterBy);
+
+    List<PMIDResult> getPMIDs();
+
+    List<Submission> getSubmissionsPerPMID(Integer pmid);
 }
