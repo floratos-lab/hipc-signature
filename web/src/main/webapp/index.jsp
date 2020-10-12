@@ -296,18 +296,18 @@
 
     </script>
 
-    <script type="text/template" id="centers-tbl-row-tmpl">
+    <script type="text/template" id="pmid-tbl-row-tmpl">
         <tr>
             <td>{{description}}</td>
             <td><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{pmid}}" target=_blank>{{pmid}}</a></td>
-            <td><a href="#pmid/{{pmid}}">{{publicationDate}}</a></td>
+            <td>{{publicationDate}}</td>
             <td><a href="#pmid/{{pmid}}">{{observationNumber}}</a></td>
         </tr>
     </script>
 
     <script type="text/template" id="pmids-tmpl">
         <div class="container common-container" id="centers-container">
-            <h2>All PMIDs</h2>
+            <h2>Studies</h2>
             <table class="table table-bordered table-striped table-compact" id="centers-list-table">
                 <thead>
                     <tr>
@@ -328,7 +328,7 @@
         <div class="container common-container" id="center-submission-container">
             <div class="row">
                 <div class="col-9">
-                    <h2 class="center-title">Studies for PMID {{pmid}}</h2>
+                    <h2 class="center-title">Signatures for PMID {{pmid}}</h2>
                 </div>
                 <div class="col-3">
                     <img src="img/HIPC-II Signatures Project.png" title="HIPC-II Signatures Project" alt="HIPC-II Signatures Project" class="img-polaroid" width="200">

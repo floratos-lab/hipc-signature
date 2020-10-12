@@ -305,7 +305,7 @@
     });
 
     const PMIDListRowView = Backbone.View.extend({
-        template: _.template($("#centers-tbl-row-tmpl").html()),
+        template: _.template($("#pmid-tbl-row-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
             $('.clickable-popover').popover({
