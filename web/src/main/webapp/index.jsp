@@ -335,7 +335,7 @@
                 </div>
             </div>
 
-            <table id="center-submission-grid" class="table table-bordered table-striped">
+            <table id="submissions-per-pmid-grid" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Description</th>
@@ -351,7 +351,7 @@
         </div>
     </script>
 
-    <script type="text/template" id="center-submission-tbl-row-tmpl">
+    <script type="text/template" id="submissions-per-pmid-tbl-row-tmpl">
         <tr>
             <td>
                 {{(observationTemplate.submissionDescription != "") ? observationTemplate.submissionDescription : observationTemplate.description}}

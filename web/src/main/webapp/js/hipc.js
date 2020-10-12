@@ -101,8 +101,7 @@
         urlRoot: CORE_API_URL + "get/submission"
     });
 
-    // TODO this should be renamed to 'submissions per PMID'
-    const CenterSubmissions = Backbone.Collection.extend({
+    const SubmissionsPerPMID = Backbone.Collection.extend({
         url: CORE_API_URL + "list/submission/",
         model: Submission,
 
@@ -741,8 +740,8 @@
         }
     });
 
-    const CenterSubmissionRowView = Backbone.View.extend({
-        template: _.template($("#center-submission-tbl-row-tmpl").html()),
+    const SubmissionsPerPMIDRowView = Backbone.View.extend({
+        template: _.template($("#submissions-per-pmid-tbl-row-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
             return this;
@@ -1397,20 +1396,20 @@
 
     const PerPMIDView = Backbone.View.extend({
         el: $("#main-container"),
-        tableEl: '#center-submission-grid',
+        tableEl: '#submissions-per-pmid-grid',
         template: _.template($("#per-pmid-tmpl").html()),
         render: function () {
-            const centerModel = this.model;
-            $(this.el).html(this.template(centerModel));
+            const model = this.model;
+            $(this.el).html(this.template(model));
 
             const thatEl = this.el;
             const tableElId = this.tableEl;
-            const centerSubmissions = new CenterSubmissions({
-                pmid: centerModel.pmid,
+            const submissionsPerPMID = new SubmissionsPerPMID({
+                pmid: model.pmid,
             });
-            centerSubmissions.fetch({
+            submissionsPerPMID.fetch({
                 success: function () {
-                    _.each(centerSubmissions.toJSON(), function (submission) {
+                    _.each(submissionsPerPMID.toJSON(), function (submission) {
 
                         $.ajax("observations/countBySubmission/?submissionId=" + submission.id, {
                             "async": false
@@ -1429,7 +1428,7 @@
                             console.log(errorThrown);
                         });
 
-                        new CenterSubmissionRowView({
+                        new SubmissionsPerPMIDRowView({
                             el: $(thatEl).find("tbody"),
                             model: submission
                         }).render();
