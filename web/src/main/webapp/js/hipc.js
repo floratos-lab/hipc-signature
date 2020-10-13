@@ -41,13 +41,22 @@
                 }
             );
         },
-        /* this sorting order is special and only for the date column of the center page */
         "text-date-order": function (settings, col) {
             return this.api().column(col, {
                 order: 'index'
             }).nodes().map(
                 function (td, i) {
-                    return new Date($('small', td).html().replace(",", " 1,")).getTime();
+                    return new Date($(td).html().replace(",", " 1,")).getTime();
+                }
+            );
+        },
+        'submission-count': function (settings, col) {
+            return this.api().column(col, {
+                order: 'index'
+            }).nodes().map(
+                function (td, i) {
+                    const t = $('a', td).text().trim();
+                    return parseInt(t.split(' ')[0]);
                 }
             );
         },
@@ -340,6 +349,9 @@
                     $("#centers-list-table").dataTable({
                         "iDisplayLength": 25,
                         columnDefs: [{
+                            targets: 2,
+                            orderDataType: "text-date-order",
+                        }, {
                             targets: 3,
                             orderDataType: "submission-count",
                             type: "numeric"
@@ -1441,7 +1453,10 @@
                             {
                                 "orderDataType": "text-date-order"
                             },
-                            null
+                            {
+                                orderDataType: "submission-count",
+                                type: "numeric",
+                            }
                         ],
                     }).fnSort([
                         [2, 'desc']
