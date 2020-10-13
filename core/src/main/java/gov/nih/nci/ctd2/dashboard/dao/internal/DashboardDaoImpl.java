@@ -1048,22 +1048,11 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<PMIDResult> getPMIDs() {
         Session session = getSession();
-        String countQuerySQL = "SELECT PMID, count(observation.id) FROM observation_template"
-            +" JOIN submission ON observation_template.id=submission.observationTemplate_id"
-            +" JOIN observation ON submission.id=observation.submission_id GROUP BY PMID";
-        @SuppressWarnings("unchecked")
-        org.hibernate.query.Query<Object[]> countQuery = session.createNativeQuery(countQuerySQL);
-        List<Object[]> countList = countQuery.list();
-        Map<Integer, BigInteger> countMap = new HashMap<Integer, BigInteger>();
-        for (int i = 0; i < countList.size(); i++) {
-            Object[] obj = countList.get(i);
-            Integer pmid = (Integer)obj[0];
-            BigInteger count = (BigInteger)obj[1];
-            countMap.put(pmid, count);
-        }
         @SuppressWarnings("unchecked")
         org.hibernate.query.Query<Object[]> query = session.createNativeQuery(
-            "SELECT DISTINCT PMID, description, submissionDate FROM observation_template JOIN submission on observation_template.id=submission.observationTemplate_id");
+            "SELECT PMID, description, submissionDate, COUNT(*) FROM observation_template"
+            + " JOIN submission on observation_template.id=submission.observationTemplate_id"
+            + " GROUP BY PMID, description, submissionDate");
         List<Object[]> objList = query.list();
         List<PMIDResult> list = new ArrayList<PMIDResult>();
         for (int i = 0; i < objList.size(); i++) {
@@ -1071,8 +1060,8 @@ public class DashboardDaoImpl implements DashboardDao {
             Integer pmid = (Integer)obj[0];
             String description = (String)obj[1];
             Date date = (Date)obj[2];
-            Integer count = countMap.get(pmid).intValue();
-            list.add(new PMIDResult(pmid, description, date, count));
+            BigInteger count = (BigInteger)obj[3];
+            list.add(new PMIDResult(pmid, description, date, count.intValue()));
         }
         session.close();
         return list;

@@ -301,7 +301,7 @@
             <td>{{description}}</td>
             <td><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{pmid}}" target=_blank>{{pmid}}</a></td>
             <td>{{publicationDate}}</td>
-            <td><a href="#pmid/{{pmid}}">{{observationNumber}}</a></td>
+            <td><a href="#pmid/{{pmid}}">{{submissionNumber}}</a></td>
         </tr>
     </script>
 
@@ -314,7 +314,7 @@
                         <th>Description</th>
                         <th>PMID</th>
                         <th>Publication Date</th>
-                        <th>Number of Observations</th>
+                        <th>Number of Signatures</th>
                     </tr>
                 </thead>
                 <tbody id="centers-tbody">
