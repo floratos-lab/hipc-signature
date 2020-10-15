@@ -529,9 +529,8 @@
                         $("#observation-summary").html(summary);
                     });
 
-                    const tableLength = (observedEvidences.models.length > 25 ? 10 : 25);
                     const oTable = $('#observed-evidences-grid').dataTable({
-                        "iDisplayLength": tableLength
+                        "iDisplayLength": 50,
                     });
                     $(oTable).parent().width("100%");
 
