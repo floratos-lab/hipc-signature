@@ -386,7 +386,7 @@
                         </tr>
                         <tr>
                             <th>Source Data</th>
-                            <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download Study</a></td>
+                            <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download signature submission</a></td>
                         </tr>
                     </table>
                 </div>
@@ -492,7 +492,7 @@
                     </tr>
                     <tr>
                         <th>Source Data</th>
-                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.zip" target=_blank>Download Study</a>
+                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.zip" target=_blank>Download signature submission</a>
                     </tr>
 
 
