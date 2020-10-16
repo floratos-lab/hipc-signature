@@ -369,10 +369,7 @@
         <div class="container common-container" id="submission-container">
             <div class="row">
                 <div class="col-10">
-                    <h2>
-                        Study
-                    </h2>
-
+                    <h2>Signature</h2>
 
                     <table id="submission-details-grid" class="table table-bordered table-striped">
                         <tr>
@@ -383,21 +380,13 @@
                             <th>Description</th>
                             <td>{{observationTemplate.description}}</td>
                         </tr>
-                        <tr id="similar-submission-info">
-                            <th>Similar Studies</th>
-                            <td>
-                                <ul class="similar-submission-list"></ul>
-                                [<a id='see-all-switch'></a>]
-                            </td>
-                        </tr>
                         <tr>
                             <th width="175">Publication Date</th>
                             <td>{{submissionDate}}</td>
                         </tr>
                         <tr>
                             <th>Source Data</th>
-                            <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download Study</a> |
-                                <a href="./data/responseagents?submission={{id}}" target=_blank id=download-responseagents>Download all response agents</a></td>
+                            <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download Study</a></td>
                         </tr>
                     </table>
                 </div>
@@ -536,7 +525,7 @@
     </script>
 
     <script type="text/template" id="submission-description-tmpl">
-        <h3>Study summary</h3>
+        <h3>Signature publication</h3>
         <blockquote>
             <p>{{observationTemplate.submissionDescription}}</p>
         </blockquote>
