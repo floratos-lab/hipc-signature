@@ -101,7 +101,13 @@ def read_column_info(filename, dir):
     column_info = []
     i = 0
     with open(os.path.join(dir, filename), encoding='utf-8') as datafile:
-        line = datafile.readline()
+        try:
+            line = datafile.readline()
+        except UnicodeDecodeError as e:
+            print('filename=', filename, '; directory=', dir)
+            print(e)
+            import sys
+            sys.exit(1)
         while line:
             fields = line.strip('\n').split('\t')
             if i < 7:
