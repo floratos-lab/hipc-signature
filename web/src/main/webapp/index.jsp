@@ -360,7 +360,7 @@
             <td><small>{{submissionDate}}</small></td>
             <td width=150>
                 <a href="&#35;{{stableURL}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>
-                <div style="font-size:70%">[<a href="<%=dataURL%>submissions/{{displayName}}.zip">Download</a>]</div>
+                <div style="font-size:70%">[<a href="<%=dataURL%>submissions/{{displayName}}.txt">Download</a>]</div>
             </td>
         </tr>
     </script>
@@ -386,7 +386,7 @@
                         </tr>
                         <tr>
                             <th>Source Data</th>
-                            <td><a href="<%=dataURL%>submissions/{{displayName}}.zip" target=_blank>Download signature submission</a></td>
+                            <td><a href="<%=dataURL%>submissions/{{displayName}}.txt" target=_blank>Download signature submission</a></td>
                         </tr>
                     </table>
                 </div>
@@ -492,7 +492,7 @@
                     </tr>
                     <tr>
                         <th>Source Data</th>
-                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.zip" target=_blank>Download signature submission</a>
+                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.txt" target=_blank>Download signature submission</a>
                     </tr>
 
 

@@ -134,6 +134,13 @@ def move_data_file(filename, dir):
         os.mkdir(target_path)
     shutil.copy(os.path.join(dir, filename),
                 os.path.join(target_path, filename))
+    # also copy to hosted location
+    target_path = os.path.join(
+        './web/src/main/webapp/data', "submissions")
+    if not os.path.exists(target_path):
+        os.mkdir(target_path)
+    shutil.copy(os.path.join(dir, filename),
+                os.path.join(target_path, filename))
 
 
 def update_configs(all_files):
