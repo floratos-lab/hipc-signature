@@ -406,7 +406,7 @@
 
             </div>
 
-            <h3>Observations within this study</h3>
+            <h3>Observations for this signature</h3>
 
             <div class="more-observations-message"></div>
 
