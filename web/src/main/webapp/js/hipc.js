@@ -1,5 +1,5 @@
-import { $hipc, CnkbResultView } from './cnkb.js'
-import {class2imageData} from './hipc-subject-images.js'
+import { numOfCartGene, showAlertMessage, CnkbResultView } from './cnkb.js'
+import { class2imageData } from './hipc-subject-images.js'
 
 (function ($) {
     // These seperators are for replacing items within the observation summary
@@ -305,11 +305,11 @@ import {class2imageData} from './hipc-subject-images.js'
 
             $.fancybox.open(
                 content, {
-                    'autoDimensions': false,
-                    'centerOnScroll': true,
-                    'transitionIn': 'none',
-                    'transitionOut': 'none'
-                }
+                'autoDimensions': false,
+                'centerOnScroll': true,
+                'transitionIn': 'none',
+                'transitionOut': 'none'
+            }
             );
 
             return this;
@@ -422,16 +422,16 @@ import {class2imageData} from './hipc-subject-images.js'
                                 $.fancybox.open(
                                     _.template(
                                         $("#html-story-container-tmpl").html())({
-                                        story: summary,
-                                        centerName: observation.submission.observationTemplate.submissionCenter.displayName
-                                    }), {
-                                        'autoDimensions': false,
-                                        'width': '99%',
-                                        'height': '99%',
-                                        'centerOnScroll': true,
-                                        'transitionIn': 'none',
-                                        'transitionOut': 'none'
-                                    }
+                                            story: summary,
+                                            centerName: observation.submission.observationTemplate.submissionCenter.displayName
+                                        }), {
+                                    'autoDimensions': false,
+                                    'width': '99%',
+                                    'height': '99%',
+                                    'centerOnScroll': true,
+                                    'transitionIn': 'none',
+                                    'transitionOut': 'none'
+                                }
                                 );
                             }
                         });
@@ -585,11 +585,11 @@ import {class2imageData} from './hipc-subject-images.js'
                                     _.template($("#cytoscape-tmpl").html())({
                                         description: sifDesc
                                     }), {
-                                        touch: false,
-                                        'autoDimensions': false,
-                                        'transitionIn': 'none',
-                                        'transitionOut': 'none'
-                                    }
+                                    touch: false,
+                                    'autoDimensions': false,
+                                    'transitionIn': 'none',
+                                    'transitionOut': 'none'
+                                }
                                 );
 
                                 // load cytoscape
@@ -853,8 +853,8 @@ import {class2imageData} from './hipc-subject-images.js'
                             tableEl: thatEl,
                             rowView: ObservationRowView,
                             columns: [{
-                                    "orderDataType": "dashboard-date"
-                                },
+                                "orderDataType": "dashboard-date"
+                            },
                                 null,
                                 null
                             ]
@@ -881,8 +881,8 @@ import {class2imageData} from './hipc-subject-images.js'
                     const oTable = $(thatEl).dataTable({
                         'dom': '<iBfrtlp>',
                         "columns": [{
-                                "orderDataType": "dashboard-date"
-                            },
+                            "orderDataType": "dashboard-date"
+                        },
                             null,
                             null
                         ],
@@ -1433,8 +1433,8 @@ import {class2imageData} from './hipc-subject-images.js'
                                 "#count-observations-tmpl";
                             submission.details = _.template(
                                 $(tmplName).html())({
-                                count: count
-                            });
+                                    count: count
+                                });
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             console.log(jqXHR.status);
                             console.log(jqXHR.responseText);
@@ -1751,8 +1751,8 @@ import {class2imageData} from './hipc-subject-images.js'
             const updateEl = $(updateElId);
             const cntContent = _.template(
                 $("#count-observations-tmpl").html())({
-                count: model.observationCount
-            });
+                    count: model.observationCount
+                });
             updateEl.html(cntContent);
 
             return this;
@@ -1825,7 +1825,7 @@ import {class2imageData} from './hipc-subject-images.js'
                             }
 
                             if (aResult.dashboardEntity.class == "CellSubset") {
-                                aResult.dashboardEntity.id = aResult.dashboardEntity.id+aResult.role;
+                                aResult.dashboardEntity.id = aResult.dashboardEntity.id + aResult.role;
                             } else {
                                 aResult.role = aResult.dashboardEntity.class.toLowerCase();
                             }
@@ -1878,8 +1878,8 @@ import {class2imageData} from './hipc-subject-images.js'
                                     "#count-observations-tmpl";
                                 const cntContent = _.template(
                                     $(tmplName).html())({
-                                    count: submission.observationCount
-                                });
+                                        count: submission.observationCount
+                                    });
                                 $("#search-observation-count-" + submission.dashboardEntity.id).html(cntContent);
                             });
 
@@ -2063,22 +2063,22 @@ import {class2imageData} from './hipc-subject-images.js'
                     [2, "desc"]
                 ],
                 "columns": [{
-                        data: function () {
-                            return 'gene <img src="img/gene.png" style="height:25px" alt="">';
-                        }
-                    },
-                    {
-                        // https://datatables.net/reference/option/columns.data
-                        data: function (row, type, set, meta) {
-                            return '<a href="#' + row[2] + '">' + row[0] + '</a>';
-                        }
-                    },
-                    {
-                        data: function (row, type, set, meta) {
-                            return '<a href="#' + row[2] + '">' + row[1] + '</a>';
-                        },
-                        "type": "observation-count"
+                    data: function () {
+                        return 'gene <img src="img/gene.png" style="height:25px" alt="">';
                     }
+                },
+                {
+                    // https://datatables.net/reference/option/columns.data
+                    data: function (row, type, set, meta) {
+                        return '<a href="#' + row[2] + '">' + row[0] + '</a>';
+                    }
+                },
+                {
+                    data: function (row, type, set, meta) {
+                        return '<a href="#' + row[2] + '">' + row[1] + '</a>';
+                    },
+                    "type": "observation-count"
+                }
                 ],
                 'buttons': [{
                     extend: 'excelHtml5',
@@ -2170,9 +2170,9 @@ import {class2imageData} from './hipc-subject-images.js'
             let geneList = JSON.parse(localStorage.getItem("genelist"));
             if (geneList == null)
                 geneList = [];
-            else if (geneList.length > $hipc.numOfCartGene) {
+            else if (geneList.length > numOfCartGene) {
                 const len = geneList.length;
-                geneList.slice($hipc.numOfCartGene, len - 1);
+                geneList.slice(numOfCartGene, len - 1);
                 localStorage.genelist = JSON.stringify(geneList);
             }
 
@@ -2209,7 +2209,7 @@ import {class2imageData} from './hipc-subject-images.js'
                 });
 
                 if (selectedGenes == null || selectedGenes.length == 0) {
-                    $hipc.showAlertMessage("You haven't select any gene!");
+                    showAlertMessage("You haven't select any gene!");
                     return;
                 }
 
@@ -2250,7 +2250,7 @@ import {class2imageData} from './hipc-subject-images.js'
                 $('#geneFileInput').on('change', function (e) {
                     const file = e.target.files[0];
                     if (file.size > 1000) {
-                        $hipc.showAlertMessage("Gene Cart can only contains " + $hipc.numOfCartGene + " genes.");
+                        showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
                         return;
                     }
                     const reader = new FileReader();
@@ -2265,7 +2265,7 @@ import {class2imageData} from './hipc-subject-images.js'
                     });
                 });
             } else {
-                $hipc.showAlertMessage("Load Genes from file is not supported.");
+                showAlertMessage("Load Genes from file is not supported.");
             }
 
             $("#cnkb-query").click(function (e) {
@@ -2289,8 +2289,8 @@ import {class2imageData} from './hipc-subject-images.js'
                 if (geneNames == null)
                     geneNames = [];
                 const num = genes.length + geneNames.length;
-                if (num > $hipc.numOfCartGene) {
-                    $hipc.showAlertMessage("Gene Cart can only contains " + $hipc.numOfCartGene + " genes.");
+                if (num > numOfCartGene) {
+                    showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
                     return;
                 }
 
@@ -2483,11 +2483,11 @@ import {class2imageData} from './hipc-subject-images.js'
 
                 if (selectedInteractome == null || $.trim(selectedInteractome).length == 0) {
                     e.preventDefault();
-                    $hipc.showAlertMessage("Please select an interactome name");
+                    showAlertMessage("Please select an interactome name");
 
                 } else if (selectedVersion == null || $.trim(selectedVersion).length == 0) {
                     e.preventDefault();
-                    $hipc.showAlertMessage("Please select an interactome version.");
+                    showAlertMessage("Please select an interactome version.");
                 } else {
                     sessionStorage.selectedInteractome = JSON.stringify(selectedInteractome);
                     sessionStorage.selectedVersion = JSON.stringify(selectedVersion);
@@ -2514,18 +2514,18 @@ import {class2imageData} from './hipc-subject-images.js'
         if (geneNames == null)
             geneNames = [];
 
-        if (geneNames.length >= $hipc.numOfCartGene) {
-            $hipc.showAlertMessage("Gene Cart can only contains " + $hipc.numOfCartGene + " genes.");
+        if (geneNames.length >= numOfCartGene) {
+            showAlertMessage("Gene Cart can only contains " + numOfCartGene + " genes.");
             return;
         }
 
         if (geneNames.indexOf(addedGene) > -1) {
-            $hipc.showAlertMessage(addedGene + " is already in the Gene Cart.");
+            showAlertMessage(addedGene + " is already in the Gene Cart.");
         } else {
             //Not in the array
             geneNames.push(addedGene);
             localStorage.genelist = JSON.stringify(geneNames);
-            $hipc.showAlertMessage(addedGene + " added to the Gene Cart.");
+            showAlertMessage(addedGene + " added to the Gene Cart.");
         }
     };
 
@@ -2646,7 +2646,7 @@ import {class2imageData} from './hipc-subject-images.js'
 
         showStudiesPerPMID: function (pmid) {
             new PerPMIDView({
-                model: {pmid: pmid},
+                model: { pmid: pmid },
             }).render();
         },
 
