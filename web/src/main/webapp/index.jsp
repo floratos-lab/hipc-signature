@@ -1747,9 +1747,7 @@
     <script src="js/encoder.js"></script>
     <script src="js/jquery.contextMenu.min.js"></script>
     <script src="js/jquery.ui.position.min.js"></script>
-    <script src="js/hipc-subject-images.js"></script>
-    <script src="js/cnkb.js"></script>
-    <script src="js/hipc.js"></script>
+    <script type="module" src="js/hipc.js"></script>
 
 </body>
 

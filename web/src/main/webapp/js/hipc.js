@@ -1,3 +1,6 @@
+import { $hipc, CnkbResultView } from './cnkb.js'
+import {class2imageData} from './hipc-subject-images.js'
+
 (function ($) {
     // These seperators are for replacing items within the observation summary
     const leftSep = "<";

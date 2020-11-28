@@ -1,4 +1,4 @@
-const class2imageData = {
+export const class2imageData = {
     AnimalModel: {
         image: 'img/animalmodel.png',
         label: 'Animal model'

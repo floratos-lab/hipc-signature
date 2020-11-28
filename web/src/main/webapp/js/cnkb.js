@@ -1,4 +1,4 @@
-const $hipc = {
+export const $hipc = {
     numOfCartGene: 25,
     showAlertMessage: function (message) {
         $("#alertMessage").text(message);
@@ -7,7 +7,7 @@ const $hipc = {
     },
 };
 
-const CnkbResultView = (function () {
+export const CnkbResultView = (function () {
     const CnkbResultRowView = Backbone.View.extend({
         render: function () {
             const result = this.model;
