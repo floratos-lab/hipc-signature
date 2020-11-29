@@ -7,7 +7,6 @@
             .getWebApplicationContext(application);
     String dataURL = (String) context.getBean("dataURL");
     Integer maxNumOfObservations = (Integer) context.getBean("maxNumberOfEntities");
-    String dashboardReleaseVersion = (String) context.getBean("dashboardReleaseVersion");
 %>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
@@ -161,10 +160,8 @@
     <div id="main-container"></div>
 
     <div class="container">
-        <!-- FOOTER -->
         <footer>
-            <p><small>HIPC DASHBOARD Release
-                    <%=dashboardReleaseVersion%></small></p>
+            <p><small>HIPC DASHBOARD Release <span id=release-version></span></small></p>
             <p>
                 <small>
                     <p>
