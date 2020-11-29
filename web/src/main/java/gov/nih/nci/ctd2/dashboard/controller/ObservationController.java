@@ -38,14 +38,6 @@ public class ObservationController {
     @Qualifier("maxNumberOfEntities")
     private Integer maxNumberOfEntities = 100;
 
-    public Integer getMaxNumberOfEntities() {
-        return maxNumberOfEntities;
-    }
-
-    public void setMaxNumberOfEntities(Integer maxNumberOfEntities) {
-        this.maxNumberOfEntities = maxNumberOfEntities;
-    }
-
     private List<Observation> getBySubmissionId(Integer submissionId) {
         Submission submission = dashboardDao.getEntityById(Submission.class, submissionId);
         if (submission != null) {
@@ -112,8 +104,8 @@ public class ObservationController {
         headers.add("Content-Type", "application/json; charset=utf-8");
 
         List<? extends DashboardEntity> entities = getBySubmissionId(submissionId);
-        if (!getAll && entities.size() > getMaxNumberOfEntities()) {
-            entities = entities.subList(0, getMaxNumberOfEntities());
+        if (!getAll && entities.size() > maxNumberOfEntities) {
+            entities = entities.subList(0, maxNumberOfEntities);
         }
 
         JSONSerializer jsonSerializer = new JSONSerializer().transform(new ImplTransformer(), Class.class)
