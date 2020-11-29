@@ -293,13 +293,6 @@ import { class2imageData } from './hipc-subject-images.js'
                 (new HelpNavigateView()).render();
             });
 
-            $.ajax({
-                url: '/release-version',
-                success: function (data) {
-                    $("#release-version").text(data);
-                }
-            })
-
             return this;
         }
     });
@@ -2739,6 +2732,12 @@ import { class2imageData } from './hipc-subject-images.js'
             e.preventDefault();
             (new HelpNavigateView()).render();
         });
+        $.ajax({
+            url: '/release-version',
+            success: function (data) {
+                $("#release-version").text(data);
+            }
+        })
     });
 
 })(window.jQuery);
