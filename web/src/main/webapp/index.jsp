@@ -1133,9 +1133,6 @@
                   </div>
                   <div class="col-3">
                       <h4>Compound</h4>
-                      <a href="<%=dataURL%>compounds/{{imageFile}}" target="_blank" class="compound-image" title="Compound: {{displayName}}">
-                        <img class="img-polaroid" width=200 src="<%=dataURL%>compounds/{{imageFile}}" alt="Compound: {{displayName}}">
-                      </a>
                   </div>
               </div>
 
