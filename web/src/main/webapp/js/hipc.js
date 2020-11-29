@@ -703,22 +703,7 @@ import { class2imageData } from './hipc-subject-images.js'
             let isHtmlStory = false;
             if (type == "FileEvidence") {
                 result.evidence.filePath = result.evidence.filePath.replace(/\\/g, "/");
-                if (result.evidence.mimeType == null) {
-                    templateId = "#observedfileevidence-row-tmpl";
-                } else if (result.evidence.mimeType.toLowerCase().search("image") > -1) {
-                    templateId = "#observedimageevidence-row-tmpl";
-                } else if (result.evidence.mimeType.toLowerCase().search("gct") > -1) {
-                    templateId = "#observedgctfileevidence-row-tmpl";
-                } else if (result.evidence.mimeType.toLowerCase().search("pdf") > -1) {
-                    templateId = "#observedpdffileevidence-row-tmpl";
-                } else if (result.evidence.mimeType.toLowerCase().search("sif") > -1) {
-                    templateId = "#observedsiffileevidence-row-tmpl";
-                } else if (result.evidence.mimeType.toLowerCase().search("html") > -1) {
-                    templateId = "#observedhtmlfileevidence-row-tmpl";
-                    isHtmlStory = true;
-                } else {
-                    templateId = "#observedfileevidence-row-tmpl";
-                }
+                templateId = "#observedfileevidence-row-tmpl";
             } else if (type == "UrlEvidence") {
                 templateId = "#observedurlevidence-row-tmpl";
             } else if (type == "LabelEvidence") {
