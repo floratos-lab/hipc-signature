@@ -6,7 +6,6 @@
     WebApplicationContext context = WebApplicationContextUtils
             .getWebApplicationContext(application);
     String dataURL = (String) context.getBean("dataURL");
-    Integer maxNumOfObservations = (Integer) context.getBean("maxNumberOfEntities");
 %>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
@@ -1480,10 +1479,6 @@
 
     <script type="text/template" id="annotation-tmpl">
         <li><small>{{displayName}} ({{source}})</small></li>
-    </script>
-
-    <script type="text/template" id="maxNumberOfEntites">
-        <%=maxNumOfObservations%>
     </script>
 
     <script type="text/template" id="genelist-view-tmpl">

@@ -58,6 +58,13 @@ public class ObservationController {
         }
     }
 
+    @RequestMapping(value = "limit", method = { RequestMethod.GET })
+    public ResponseEntity<String> getLimit() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain; charset=utf-8");
+        return new ResponseEntity<String>(String.valueOf(maxNumberOfEntities), headers, HttpStatus.OK);
+    }
+
     @Transactional
     @RequestMapping(value = "countBySubmission", method = { RequestMethod.GET,
             RequestMethod.POST }, headers = "Accept=application/json")

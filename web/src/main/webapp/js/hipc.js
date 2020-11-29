@@ -15,9 +15,6 @@ import { class2imageData } from './hipc-subject-images.js'
         interpolate: /\{\{(.+?)\}\}/g
     };
 
-    // Get these options from the page
-    const maxNumberOfEntities = $("#maxNumberOfEntites").html() * 1;
-
     // Datatables fix
     $.extend($.fn.dataTableExt.oStdClasses, {
         "sWrapper": "dataTables_wrapper form-inline"
@@ -842,25 +839,26 @@ import { class2imageData } from './hipc-subject-images.js'
             }
 
             $.ajax(countUrl).done(function (count) {
-
-                if (count > maxNumberOfEntities) {
-                    new MoreObservationView({
-                        model: {
-                            role: role,
-                            numOfObservations: maxNumberOfEntities,
-                            numOfAllObservations: count,
-                            subjectId: subjectId,
-                            tableEl: thatEl,
-                            rowView: ObservationRowView,
-                            columns: [{
-                                "orderDataType": "dashboard-date"
-                            },
-                                null,
-                                null
-                            ]
-                        }
-                    }).render();
-                }
+                $.ajax('/observations/limit').done(function (limit) {
+                    if (count > limit) {
+                        new MoreObservationView({
+                            model: {
+                                role: role,
+                                numOfObservations: limit,
+                                numOfAllObservations: count,
+                                subjectId: subjectId,
+                                tableEl: thatEl,
+                                rowView: ObservationRowView,
+                                columns: [{
+                                    "orderDataType": "dashboard-date"
+                                },
+                                    null,
+                                    null
+                                ]
+                            }
+                        }).render();
+                    }
+                });
             });
 
             const observations = new ObservationsBySubject({
@@ -1584,19 +1582,20 @@ import { class2imageData } from './hipc-subject-images.js'
                     }
                 });
 
-                if (count > maxNumberOfEntities) {
-                    new MoreObservationView({
-                        model: {
-                            numOfObservations: maxNumberOfEntities,
-                            numOfAllObservations: count,
-                            submissionId: submissionId,
-                            tableEl: sTable,
-                            rowView: SubmissionRowView,
-                            columns: [null]
-                        }
-                    }).render();
-                }
-
+                $.ajax('/observations/limit').done(function (limit) {
+                    if (count > limit) {
+                        new MoreObservationView({
+                            model: {
+                                numOfObservations: limit,
+                                numOfAllObservations: count,
+                                submissionId: submissionId,
+                                tableEl: sTable,
+                                rowView: SubmissionRowView,
+                                columns: [null]
+                            }
+                        }).render();
+                    }
+                });
             });
 
             window.scroll(0, 0);
