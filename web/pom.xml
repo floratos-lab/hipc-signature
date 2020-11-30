@@ -81,7 +81,7 @@
 
     </dependencies>
     <build>
-        <finalName>hipc-signature</finalName>
+        <finalName>hipc-dashboard</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
