@@ -472,27 +472,12 @@ import { class2imageData } from './hipc-subject-images.js'
                         imageData.stableURL = subject.stableURL;
                         const thatEl2 = $("#subject-image-" + observedSubject.id);
                         const imgTemplate = $("#search-results-image-tmpl");
-                        if (subject.class == "Compound") {
-                            const compound = new Subject({
-                                id: subject.id
-                            });
-                            compound.fetch({
-                                success: function () {
-                                    _.each(compound.toJSON().xrefs, function (xref) {
-                                        if (xref.databaseName == "IMAGE") {
-                                            imageData.image = $("#explore-tmpl").attr("data-url") + "compounds/" + xref.databaseId;
-                                        }
-                                    });
-                                    thatEl2.append(_.template(imgTemplate.html())(imageData));
-                                }
-                            });
-                        } else {
-                            if (subject.type.toLowerCase() == "sirna") {
-                                imageData.image = 'img/sirna.png';
-                                imageData.label = "siRNA";
-                            }
-                            thatEl2.append(_.template(imgTemplate.html())(imageData));
+                        
+                        if (subject.type.toLowerCase() == "sirna") {
+                            imageData.image = 'img/sirna.png';
+                            imageData.label = "siRNA";
                         }
+                        thatEl2.append(_.template(imgTemplate.html())(imageData));
 
                         if (observedSubject.observedSubjectRole == null || observedSubject.subject == null)
                             return;
@@ -1718,13 +1703,7 @@ import { class2imageData } from './hipc-subject-images.js'
             const imageData = class2imageData[result.class];
             imageData.stableURL = result.stableURL;
             const imgTemplate = $("#search-results-image-tmpl");
-            if (result.class == "Compound") {
-                _.each(result.xrefs, function (xref) {
-                    if (xref.databaseName == "IMAGE") {
-                        imageData.image = $("#explore-tmpl").attr("data-url") + "compounds/" + xref.databaseId;
-                    }
-                });
-            } else if (result.class == "ShRna" && result.type.toLowerCase() == "sirna") {
+            if (result.class == "ShRna" && result.type.toLowerCase() == "sirna") {
                 imageData.image = "img/sirna.png";
                 imageData.label = "siRNA";
             }
@@ -1914,7 +1893,6 @@ import { class2imageData } from './hipc-subject-images.js'
             const thatModel = this.model;
             thatModel.roles_label = subjectType[thatModel.roles];
             $(this.el).html(this.template(thatModel));
-            const data_url = $("#explore-tmpl").attr("data-url");
             const subjectWithSummaryCollection = new SubjectWithSummaryCollection(thatModel);
             $("#explore-table").hide();
             subjectWithSummaryCollection.fetch({
@@ -1935,15 +1913,7 @@ import { class2imageData } from './hipc-subject-images.js'
                             });
                         }
                         const role = sModel.role;
-                        let reformatted = reformattedClassName[subject.class];
-                        if (subject.class == 'Compound') {
-                            reformatted += " <span style='display:inline-block;width:100px'><a href='" + data_url + "compounds/" +
-                                subject.imageFile + "' target='_blank' class='compound-image' title='Compound: " +
-                                subject.displayName + "'><img class='img-polaroid' style='height:25px' src='" + data_url + "compounds/" +
-                                subject.imageFile + "' alt='Compound: " + subject.displayName + "'></a></span>";
-                        } else {
-                            reformatted += " <img src='img/" + subject.class.toLowerCase() + ".png' style='height:25px' alt=''>";
-                        }
+                        const reformatted = reformattedClassName[subject.class] + " <img src='img/" + subject.class.toLowerCase() + ".png' style='height:25px' alt=''>";
                         const nameLink = "<a href='#" + subject.stableURL + "/" + role + "'>" + subject.displayName + "</a>";
                         const n1obv = sModel.numberOfTier1Observations;
                         const n1link = (n1obv == 0 ? "" : "<a href='#" + subject.stableURL + "/" + role + "'>" + n1obv + "</a>");

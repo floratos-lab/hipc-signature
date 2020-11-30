@@ -1268,7 +1268,7 @@
         </div>
     </script>
 
-    <script type="text/template" id="explore-tmpl" data-url="<%=dataURL%>">
+    <script type="text/template" id="explore-tmpl">
         <div class="container common-container" id="explore-container">
             <!-- this had to be changed because we need the label to be different from the roles for the actual query as in CTD2 dashboard -->
             <h2>Explore: <i>{{roles_label}}</i></h2>
@@ -1325,7 +1325,7 @@
         </div>
     </script>
 
-    <script type="text/template" id="gene-explore-tmpl" data-url="<%=dataURL%>">
+    <script type="text/template" id="gene-explore-tmpl">
         <div class="container common-container" id="gene-explore-container">
             <h2>Explore: <i>{{roles_label}}</i></h2>
 
