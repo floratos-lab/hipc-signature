@@ -2,11 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@page import="org.springframework.web.context.WebApplicationContext"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
-<%
-    WebApplicationContext context = WebApplicationContextUtils
-            .getWebApplicationContext(application);
-    String dataURL = (String) context.getBean("dataURL");
-%>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
@@ -357,7 +352,7 @@
             <td><small>{{submissionDate}}</small></td>
             <td width=150>
                 <a href="&#35;{{stableURL}}" class="obs-count" id="observation-count-{{id}}">{{details}}</a>
-                <div style="font-size:70%">[<a href="<%=dataURL%>submissions/{{displayName}}.txt">Download</a>]</div>
+                <div style="font-size:70%">[<a href="./data/submissions/{{displayName}}.txt">Download</a>]</div>
             </td>
         </tr>
     </script>
@@ -383,7 +378,7 @@
                         </tr>
                         <tr>
                             <th>Source Data</th>
-                            <td><a href="<%=dataURL%>submissions/{{displayName}}.txt" target=_blank>Download signature submission</a></td>
+                            <td><a href="./data/submissions/{{displayName}}.txt" target=_blank>Download signature submission</a></td>
                         </tr>
                     </table>
                 </div>
@@ -489,7 +484,7 @@
                     </tr>
                     <tr>
                         <th>Source Data</th>
-                        <td><a href="<%=dataURL%>submissions/{{submission.displayName}}.txt" target=_blank>Download signature submission</a>
+                        <td><a href="./data/submissions/{{submission.displayName}}.txt" target=_blank>Download signature submission</a>
                     </tr>
 
 
@@ -551,7 +546,7 @@
             <td>{{observedEvidenceRole.evidenceRole.displayName}}</td>
             <td>{{observedEvidenceRole.displayText}}</td>
             <td>(
-                <a href="<%=dataURL%>{{evidence.filePath}}" target="_blank" title="Download file ({{evidence.mimeType}})" class="desc-tooltip" title="Download File">
+                <a href="./data/{{evidence.filePath}}" target="_blank" title="Download file ({{evidence.mimeType}})" class="desc-tooltip" title="Download File">
                     download file
                 </a>
             )</td>
