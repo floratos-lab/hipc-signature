@@ -24,10 +24,6 @@ search.max.number.results=50
 # when proxying files through dashboard, these hosts will be allowed to serve resource
 allowed.hosts=https://www.example.com,https://localhost
 
-# this is the URL of where the downloadable data files are located
-#web.data.url=https://www.example.com/data/
-web.data.url=./data/
-
 # this is to cap the number obs/results we want to show on a subject/submission page
 # If you make this too high and the client will suffer a lot to load details for each observation
 list.max.observations=100
@@ -35,4 +31,4 @@ list.max.observations=100
 # this is the URL for CNKB query
 cnkb.data.url=http://cagridnode.c2b2.columbia.edu:8080/cknb/InteractionsServlet_new/InteractionsServlet
 
-dashboard.release.version=2020.06.04
+dashboard.release.version=2020.11.29
