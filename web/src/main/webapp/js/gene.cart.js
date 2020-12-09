@@ -540,7 +540,7 @@ export const CnkbResultView = Backbone.View.extend({
                         return;
                     }
                     const cnkbDescription = selectedInteractome + " (v" + selectedVersion + ")";
-                    drawCNKBCytoscape(data, Encoder.htmlEncode(cnkbDescription));
+                    drawCNKBCytoscape(data, cnkbDescription);
 
                 } //end success
             }); //end ajax
