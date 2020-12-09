@@ -6,7 +6,12 @@ export function showAlertMessage(message) {
     $("#alert-message-modal").modal('show');
 }
 
-//Gene List View
+function showInvalidMessage(message) {
+    $("#alertMessage").text(message);
+    $("#alertMessage").css('color', 'red');
+    $("#alert-message-modal").modal('show');
+}
+
 export const GeneListView = Backbone.View.extend({
     el: $("#main-container"),
     template: _.template($("#genelist-view-tmpl").html()),
@@ -22,10 +27,9 @@ export const GeneListView = Backbone.View.extend({
         }
 
         $(this.el).html(this.template({}));
-        $.each(geneList, function (aData) {
-            const value = Encoder.htmlEncode(this.toString());
+        $.each(geneList, function () {
             $("#geneNames").append(_.template($("#gene-cart-option-tmpl").html())({
-                displayItem: value
+                displayItem: this, // individual gene symbol
             }));
         });
 
@@ -34,17 +38,12 @@ export const GeneListView = Backbone.View.extend({
 
             $("#gene-symbols").val("");
             $("#addgene-modal").modal('show');
-
         });
 
         $("#add-gene-symbols").click(function () {
-            const inputGenes = $("#gene-symbols").val();
-            const genes = Encoder.htmlEncode(inputGenes).split(/[\s,]+/);
-
+            const genes = $("#gene-symbols").val().split(/[\s,]+/);
             processInputGenes(genes);
-
         });
-
 
         $("#deleteGene").click(function (e) {
             e.preventDefault();
@@ -58,7 +57,6 @@ export const GeneListView = Backbone.View.extend({
                 return;
             }
 
-
             $.each(selectedGenes, function () {
 
                 const gene = $.trim(this.toString()).toUpperCase();
@@ -69,10 +67,7 @@ export const GeneListView = Backbone.View.extend({
             localStorage.genelist = JSON.stringify(geneList);
             sessionStorage.selectedGenes = JSON.stringify(geneList);
             $("#geneNames option:selected").remove();
-
-
         });
-
 
         $("#clearList").click(function (e) {
             e.preventDefault();
@@ -81,14 +76,11 @@ export const GeneListView = Backbone.View.extend({
             sessionStorage.removeItem("selectedGenes");
 
             geneList = [];
-
-
         });
 
         $("#loadGenes").click(function (e) {
             e.preventDefault();
             $('#geneFileInput').click();
-
         });
 
         if (window.FileReader) {
@@ -113,8 +105,7 @@ export const GeneListView = Backbone.View.extend({
             showAlertMessage("Load Genes from file is not supported.");
         }
 
-        $("#cnkb-query").click(function (e) {
-
+        $("#cnkb-query").click(function () {
             const selectedGenes = [];
             $('#geneNames :selected').each(function (i, selected) {
                 selectedGenes[i] = $(selected).text();
@@ -126,7 +117,6 @@ export const GeneListView = Backbone.View.extend({
             } else {
                 sessionStorage.selectedGenes = JSON.stringify(selectedGenes);
             }
-
         });
 
         const processInputGenes = function (genes) {
@@ -165,20 +155,17 @@ export const GeneListView = Backbone.View.extend({
                     }
 
                     addGenes(genes);
-
                 }
-            }); //ajax   
+            }); //end of cnkb/validation ajax
         };
 
-
         const addGenes = function (genes) {
-            const alreadyHave = [];
             const newGenes = [];
             $.each(genes, function () {
-                const eachGene = Encoder.htmlEncode($.trim(this.toString())).toUpperCase();
-                if (geneList.indexOf(eachGene) > -1)
-                    alreadyHave.push(eachGene);
-                else if (newGenes.indexOf(eachGene.toUpperCase()) == -1 && eachGene != "") {
+                // _genes_ is an array of gene symbols; _this_ is individual gene symbol
+                const eachGene = this.toUpperCase();
+                if (geneList.indexOf(eachGene) < 0 &&
+                    newGenes.indexOf(eachGene) < 0 && eachGene != "") {
                     newGenes.push(eachGene);
                     geneList.push(eachGene);
                 }
@@ -192,7 +179,6 @@ export const GeneListView = Backbone.View.extend({
                         displayItem: value
                     }));
                 });
-
             }
         };
 

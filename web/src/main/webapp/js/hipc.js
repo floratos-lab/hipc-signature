@@ -2135,12 +2135,6 @@ import { class2imageData } from './hipc-subject-images.js'
         }
     };
 
-    const showInvalidMessage = function (message) {
-        $("#alertMessage").text(message);
-        $("#alertMessage").css('color', 'red');
-        $("#alert-message-modal").modal('show');
-    };
-
     const subjectRouter = function (SubjectModel, SubjectView) {
         return function (name, role) {
             const model = new SubjectModel({
