@@ -358,11 +358,10 @@ const CnkbResultRowView = Backbone.View.extend({
 
         this.template = _.template($(templateId).html());
         $(this.el).append(this.template(result));
-        const geneName = Encoder.htmlEncode(result.geneName);
 
         const numList = result.interactionNumlist;
         _.each(numList, function (aData) {
-            $("#tr_" + geneName).append('<td>' + aData + '</td>');
+            $("#tr_" + result.geneName).append('<td>' + aData + '</td>');
         });
 
 
