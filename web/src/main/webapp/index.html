@@ -1369,6 +1369,7 @@
     <script type="text/template" id="genelist-view-tmpl">
         <div class="container common-container" id="genelist-container" > 
             <div class=row>
+                <div class="col-1"></div>
                 <div class="col-10" align="center">
                     <h4>  Gene List</h4>
 
@@ -1393,10 +1394,7 @@
                     </br>
                     <a href="#cnkb-query" id="cnkb-query">Find Gene Interactions in  Networks (CNKB)</a>
                  </div>
-
-                 <div class="col-1">
-                    <a href="javascript:history.back()">Back</a>
-                 </div>
+                 <div class="col-1"></div>
             </div>
         </div>
 
@@ -1420,7 +1418,8 @@
     <script type="text/template" id="cnkb-query-tmpl">
         <div class="container common-container" id="cnkbquery-container" > 
             <div class=row>
-                    <div class="col-10">
+                <div class="col-1"></div>
+                <div class="col-10">
                        <h3>Cellular Network Knowledge Base</h3>
 
                        <medium>Select Interactome:</medium>
@@ -1445,18 +1444,16 @@
                      </br>
 		             </br>
                      <a href="#cnkb-result" id="cnkb-result">Submit</a>
-                 </div>
-
-                 <div class="col-1">
-                    <a href="javascript:history.back()">Back</a>
-                 </div>
-             </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
         </div>
-      </script>
+    </script>
 
     <script type="text/template" id="cnkb-result-tmpl">
         <div class="container common-container" id="cnkbresult-container" > 
                <div class="row">
+                  <div class="col-1"></div>
                   <div class="col-10">
                      <h2>Cellular Network Knowledge Base</h2>
                      <a href="#" id="cnkbExport"  target="_blank" title="Export all selected interaction to a SIF file."> Export </a>
@@ -1479,9 +1476,7 @@
                          </tbody>
                       </table>  
                    </div>
-                   <div class="col-1">
-                      <a href="javascript:history.back()">Back</a>
-                   </div>
+                   <div class="col-1"></div>
                 </div>
                 <br/>
 
@@ -1499,7 +1494,7 @@
                            <option value="300">300</option>
                            <option value="400">400</option>
                      </select>
-				  
+
                      <b>Layout:</b>	
                      <select id="cytoscape-layouts">
                            <option value="cola" selected="selected">Cola</option>
@@ -1547,7 +1542,8 @@
     <script type="text/template" id="gene-cart-help-tmpl">
         <div class="container common-container" id="cnkbhelp-container" >
             <div class=row>
-               <div class="col-10">
+                <div class="col-1"></div>
+                <div class="col-10">
                     <h3>Gene Cart Help</h3>
                     <p>The Gene Cart allows users to build a list of genes and query the Cellular Networks Knowledge Base (CNKB) for molecular interactions involving these genes.  The CNKB is a repository of molecular interactions networks. It contains computationally-derived networks obtained by applying state of the art Systems and Structure Biology algorithms from the laboratories of Drs. Andrea Califano and Barry Honig at Columbia University. A detailed <a target="_blank" href="http://wiki.c2b2.columbia.edu/workbench/index.php/Cellular_Networks_KnowledgeBase">description of the CNKB</a> is available which also describes how the CNKB can be accessed from within the software platform <a target="_blank" href="http://www.geworkbench.org">geWorkbench</a>.</p>
                     <p>In the Observations for a particular HIPC study, those entries that are genes will have a green "+" sign to right of the gene symbol. Clicking this "+" sign will add the gene to the Gene Cart. The Gene Cart is limited to 25 genes.</p>
@@ -1556,9 +1552,7 @@
                     <p>Several layout options are available for Cytoscape and can be selected using the "Layout" pulldown.</p>
                     <p>In Cytoscape.js, several common interaction types have been assigned specific colors used for the lines representing them, and these will be shown on the legend of the graph.  The genes used in the CNKB query (hub genes) will be highlighted in yellow.</p>
                 </div>
-                <div class="col-1">
-                   <a href="javascript:history.back()">Back</a>
-                </div>
+                <div class="col-1"></div>
             </div>
          </div>
      </script>
