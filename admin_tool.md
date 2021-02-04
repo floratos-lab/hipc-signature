@@ -9,7 +9,7 @@
 
 # Introduction
 
-This page describes how to properly build and use the HIPC Signature admin tool.
+This page describes how to properly build and use the HIPC Dashboard admin tool.
 
 # Environment Variables
 
