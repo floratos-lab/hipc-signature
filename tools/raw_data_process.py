@@ -6,7 +6,7 @@ import os
 import shutil
 from data_config import DataConfig
 
-SOURCE_DATA_LOCATION = "./source_data"
+SOURCE_DATA_LOCATION = os.path.expanduser("~/git/hipc-dashboard-pipeline/submissions")
 TARGET_DATA_LOCATION = os.path.expanduser("~/data_collection/hipc_data")
 HIPC_APPLICATION_LOCATION = "."
 
@@ -15,6 +15,18 @@ def read_raw_data():
     print("source data location", SOURCE_DATA_LOCATION)
     print("target data location", TARGET_DATA_LOCATION)
     print("HIPC application location", HIPC_APPLICATION_LOCATION)
+
+    # remove old submission data files
+    submission_directory = os.path.join(TARGET_DATA_LOCATION, "submissions")
+    for filename in os.listdir(submission_directory):
+        file_path = os.path.join(submission_directory, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
 
     # there are multiple subdirectories under the source data location
     # there is no data file directly under the the source data location
@@ -33,6 +45,11 @@ def read_raw_data():
             id2template_name = {}
             column_infos = {}
             for x in os.listdir(SOURCE_DATA_LOCATION):
+
+                # skip the useless content
+                if x=='.Rhistory': continue
+                if x.endswith('_csv'): continue
+
                 fullpath = os.path.join(SOURCE_DATA_LOCATION, x)
                 # print(fullpath)
                 # print(os.path.isdir(fullpath))
