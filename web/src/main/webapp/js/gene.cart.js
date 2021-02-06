@@ -227,42 +227,15 @@ export const CnkbQueryView = Backbone.View.extend({
             success: function (data) {
                 const list = data.interactomeList;
                 _.each(list, function (aData) {
+                    const option = '<option value="' + aData + '">' + aData + '</option>';
                     if (aData.toLowerCase().startsWith("preppi")) {
-                        $("#interactomeList").prepend(_.template($("#gene-cart-option-tmpl-preselected").html())({
-                            displayItem: aData
-                        }));
-                        const interactome = aData.split("(")[0].trim();
-                        $.ajax({ // query the description
-                            url: "cnkb/query",
-                            data: {
-                                dataType: "interactome-version",
-                                interactome: interactome,
-                                version: "",
-                                selectedGenes: "",
-                                interactionLimit: 0,
-                                throttle: ""
-                            },
-                            dataType: "json",
-                            contentType: "json",
-                            success: function (data) {
-                                $('#interactomeDescription').html("");
-                                $('#interactomeDescription').html(convertUrl(data.description));
-                                $('#interactomeVersionList').html("");
-                                _.each(data.versionDescriptorList, function (aData) {
-                                    $("#interactomeVersionList").append(_.template($("#gene-cart-option-tmpl").html())({
-                                        displayItem: aData.version
-                                    }));
-                                });
-                                $('#interactomeVersionList').disabled = false;
-                                $('#selectVersion').css('color', '#5a5a5a');
-                                $('#versionDescription').html("");
-                            }
-                        }); //ajax
-                    } else
-                        $("#interactomeList").append(_.template($("#gene-cart-option-tmpl").html())({
-                            displayItem: aData
-                        }));
+                        $("#interactomeList").prepend(option);
+                    } else {
+                        $("#interactomeList").append(option);
+                    }
                 });
+                $('#interactomeList option:contains("Preppi")').prop('selected', true);
+                $('#interactomeList').change();
                 $('#interactomeVersionList').disabled = true;
             }
         }); //ajax   
@@ -284,9 +257,9 @@ export const CnkbQueryView = Backbone.View.extend({
                 contentType: "json",
                 success: function (data) {
                     versionDescriptors = data.versionDescriptorList;
-                    const description = data.description;
-                    $('#interactomeDescription').html("");
-                    $('#interactomeDescription').html(convertUrl(description));
+                    const URL_pattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&/=]*[a-zA-Z0-9/])?/g;
+                    // convert URL to an actual link
+                    $('#interactomeDescription').html(data.description.replaceAll(URL_pattern, "<a href='$&' target='_blank'>$&</a>"));
                     const list = data.versionDescriptorList;
                     $('#interactomeVersionList').html("");
                     _.each(list, function (aData) {
@@ -720,16 +693,3 @@ const drawCNKBCytoscape = function (data, description) {
     });
 
 };
-
-function convertUrl(description) {
-    if (description.indexOf("http:") > -1) {
-        const word = description.split("http:");
-        let temp = $.trim(word[1]);
-        if (temp.match(/.$/))
-            temp = temp.substring(0, temp.length - 1);
-        temp = $.trim(temp);
-        const link = "<a target=\"_blank\" href=\"" + temp + "\">" + temp + "</a>";
-        return word[0] + link;
-    } else
-        return description;
-}
