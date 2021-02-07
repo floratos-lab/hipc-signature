@@ -1,4 +1,5 @@
 name	id	definition	comment	broad	exact	related
+blood serum	UBERON_0001977	The portion of blood plasma that excludes clotting factors.				
 continuant	BFO_0000002	An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts.				
 occurrent	BFO_0000003	An entity that has temporal parts and that happens, unfolds or develops through time.				
 independent continuant	BFO_0000004	A continuant that is a bearer of quality and realizable entity entities, in which other entities inhere and which itself cannot inhere in anything.				
