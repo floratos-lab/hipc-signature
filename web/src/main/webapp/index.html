@@ -1557,36 +1557,26 @@
         <div class="help-navigate-text-container">
             <h3>Navigating and Understanding Dashboard Content</h3>
             <p>
-                The HIPC aims to increase understanding of the underlying molecular causes of distinct cancer types and accelerate development of clinically useful biomarkers and targeted therapies for precision medicine.
-                The Dashboard is one tool that provides access to Network findings.
-                Results are available as bulk datasets, data-related figures, and are formatted to enable navigation and comprehension by most researchers, from computational experts to those with little bioinformatics dexterity.
-                Through the Dashboard, the <b>HIPC</b> gives the research community a method to interrogate experimental observations across the Centers.
+                The HIPC Dashboard aims to provide easy access to curated immune signatures and extensive metadata describing them.
+                .
                 Before using the Dashboard, read the following to learn how Dashboard content is organized.
             </p>
 
             <ul>
-                <li><i>Center</i>: One of the academic research teams that make up the HIPC.</li>
+                <li><i>Study</i>: A published paper containing one or more human immune signatures.</li>
 
-                <li><i>Study</i>: A Dashboard entry that represents a dataset associated with positive experimental results, a set of data-related figures, or a polished story.</li>
-
-                <li><i>Subject</i>: The focus of an experiment or result in a Dashboard <b>study</b> (<i>e.g.</i>, genes, proteins, small molecules, cell lines, animal models).</li>
+                <li><i>Subject</i>: The focus of an experiment or result in a Dashboard <b>study</b> (<i>e.g.</i>, genes, cell types, vaccines, pathogens, tissues), represented using a controlled vocabulary.</li>
                 <ul>
-                    <li>Class</i>: A set of objects representing the same molecular or biological category (DNA, RNA, protein, small molecule, tissue, animal model) and sharing a set of required and optional attributes.</li>
-                    <li><i>Role</i>: The <b>Center</b>-designated function of a gene, protein, or compound based on their interpretation of observations within a particular experimental or computational context. Assigning <b>role</b>s from a restricted list of terms (biomarkers, diseases, master regulators, interactors, oncogenes, perturbagens, candidate drugs, or targets) helps organize subjects in Dashboard for browsing and searching.
-                </ul>
+                   <li>Class</i>: A set of objects representing the same molecular or biological category (gene, cell subset, vaccine, pathogen).</li>
+                   <li>Response component</i>: The aspect of the gene signature that varies with experimental condition, e.g. gene expression, cell types frequency).</li>
 
                 <li><i>Evidence</i>: Selected positive or validated results from a scientific experiment (<i>e.g.</i>, numeric values, text labels, data figures).</li>
                 <ul>
                     <li><i>Type</i>:  Category of evidence provided in support of the results. Examples include the following: literature, measured, link, reference, background, observed, computed, written, resources, species.
                 </ul>
 
-                <li><i>Observation</i>: A <b>Center</b>-determined conclusion that is submitted as a connection between <b>subjects</b> and <b>evidence</b>; the "fundamental unit" of the Dashboard.</li>
+                <li><i>Observation</i>: A literature-supported conclusion connecting <b>subjects</b> and <b>evidence</b>; the "fundamental unit" of the Dashboard.</li>
             </ul>
-
-            <h3>Dashboard Organization</h3>
-            <p>
-                During the submission process, <b>subjects</b> from HIPC studies are ordered by relevance based on the number of <b>observations</b> associated with a <b>study</b>, the <b>Tiers</b> of these <b>observations</b>, and the number of different <b>Centers</b> providing <b>observations</b> about that particular <b>subject</b>.
-            </p>
         </div>
     </script>
 
