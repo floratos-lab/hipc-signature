@@ -539,6 +539,7 @@ const drawCNKBCytoscape = function (data, description) {
     const cy = cytoscape({
 
         container: $('#cytoscape'),
+        wheelSensitivity: 0.4,
         layout: {
             name: layoutName,
             fit: true,

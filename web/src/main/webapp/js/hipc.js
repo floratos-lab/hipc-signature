@@ -578,6 +578,7 @@ import { class2imageData } from './hipc-subject-images.js'
                                 cytoscape({
                                     container: $('#cytoscape-sif'),
 
+                                    wheelSensitivity: 0.4,
                                     layout: {
                                         name: 'cola',
                                         liveUpdate: false,
