@@ -246,30 +246,43 @@
 
         <div class="container ctd2-boxes">
           <div class="row browse-menu">
-            <div class="col-4 target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-              <h4>Genes</h4>
-                <p>
-                    Explore genes identified as components of vaccine response signatures
-                </p>
-                <a class="btn btn-success btn-block browse-button" href="#explore/genes">Browse &raquo;</a>
-            </div>
-            <div class="col-4 drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-              <h4>Pathogens</h4>
-                <p>
-                    Explore pathogens targeted in vaccination response studies
-                </p>
-                <a class="btn btn-info btn-block browse-button" href="#explore/pathogen/Pathogen">Browse &raquo;</a>
-            </div>
-              <div class="col-4 context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
-                  <h4>Cell Types</h4>
+            <div class="col drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+                <h4>Genes</h4>
                   <p>
-                    Explore cell types identified as components of vaccine response signatures
+                    Explore genes identified as components of vaccine response signatures
                   </p>
-                  <a class="btn btn-warning btn-block browse-button" href="#explore/cellsubset/cell_biomarker">Browse &raquo;</a>
+                  <a class="btn btn-info btn-block browse-button" href="#explore/genes" style="position:absolute;bottom:0;width:100%">Browse &raquo;</a>
               </div>
+            <div class="col target" data-order="1" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+              <h4>Cell Types</h4>
+                <p>
+                    Explore cell types identified as components of vaccine response signatures
+                </p>
+                <a class="btn btn-success btn-block browse-button" href="#explore/cellsubset/cell_biomarker" style="position:absolute;bottom:0;width:100%">Browse &raquo;</a>
+            </div>
+            <div class="col drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+              <h4>Vaccines</h4>
+                <p>
+                    Explore vaccines used to generate immune response signatures
+                </p>
+                <a class="btn btn-info btn-block browse-button" href="#explore/vaccine/Vaccine" style="position:absolute;bottom:0;width:100%">Browse &raquo;</a>
+            </div>
+            <div class="col context" data-order="3" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+                  <h4>Pathogens</h4>
+                  <p>
+                    Explore pathogens targeted in vaccination response studies
+                  </p>
+                  <a class="btn btn-success btn-block browse-button" href="#explore/pathogen/Pathogen" style="position:absolute;bottom:0;width:100%">Browse &raquo;</a>
+            </div>
+            <div class="col drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
+                <h4>Tissues</h4>
+                  <p>
+                    Explore tissues in which immune responses were measured
+                  </p>
+                  <a class="btn btn-info btn-block browse-button" href="#explore/cellsubset/tissue" style="position:absolute;bottom:0;width:100%">Browse &raquo;</a>
+            </div>
 
           </div><!-- /.row -->
-          <p>For more types, please use the browse menu above.</p>
         </div><!-- /.container -->
 
     </script>
