@@ -32,7 +32,7 @@ From here on you can follow the module-specific notes below.
 ## Core: Data structures and DAO methods
 This module tries to capture the main database schema outlined below:
 
-![Dashboard DB schema](./dashboard_schema.png)
+![Dashboard DB schema](./hipc_dashboard_data_model_simpler.png)
 
 We are taking advantage of _factory pattern_ and also separating class definitions (interfaces) and their actual implementations (`*Impl`s) for convenience.
 We basically try to convey the following basic ideas in our implementation:
