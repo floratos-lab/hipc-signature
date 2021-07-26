@@ -10,6 +10,8 @@ data_backup/
 .classpath
 .project
 Thumbs.db
+node_modules
+web/src/main/webapp/dist
 
 web/src/main/webapp/data/submissions/*.txt
 web/src/main/webapp/data/*.txt
