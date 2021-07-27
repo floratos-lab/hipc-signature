@@ -534,12 +534,6 @@ import { class2imageData } from './hipc-subject-images.js'
                     $("a.evidence-images").fancybox({
                         titlePosition: 'inside'
                     });
-                    $("div.expandable").expander({
-                        slicePoint: 50,
-                        expandText: '[...]',
-                        expandPrefix: ' ',
-                        userCollapseText: '[^]'
-                    });
 
                     $(".numeric-value").each(function (idx) {
                         const vals = $(this).html().split("e"); // capture scientific notation
