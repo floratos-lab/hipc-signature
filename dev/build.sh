@@ -1,5 +1,6 @@
 #!/bin/sh -x
-npx webpack
+
+cd web/src/main/webapp && npx webpack && cd -
 
 # -DskipTests compiles the tests, but skips running them
 # -Dmaven.test.skip=true skips compiling the tests and does not run them
