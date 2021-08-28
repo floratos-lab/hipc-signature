@@ -898,8 +898,9 @@ public class DashboardDaoImpl implements DashboardDao {
 
     @Override
     public List<Vaccine> findVaccineByName(String name) {
+        /* in the new input data, vaccine code is entered with : instead of _ */
         log.debug("vaccine name=" + name);
-        return queryWithClass("from VaccineImpl where vaccineID = :name", "name", name);
+        return queryWithClass("from VaccineImpl where vaccineID = :name", "name", name.replace(":", "_"));
     }
 
     @Override
