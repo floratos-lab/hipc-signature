@@ -32,12 +32,15 @@ import { class2imageData } from './hipc-subject-images.js'
 
     // Let datatables know about our date format
     $.extend($.fn.dataTable.ext.order, {
+        /* date is a string made from this Java format: new SimpleDateFormat("MMM, 20yy"); 
+        Firefox cannot parse it correctly, so it is changed to "MMM 1, 20yy" for sorting purpose. */
         "dashboard-date": function (settings, col) {
             return this.api().column(col, {
                 order: 'index'
             }).nodes().map(
                 function (td, i) {
-                    return (new Date($('a', td).html())).getTime();
+                    const date_string = $('a', td).html().replace(", 20", " 1, 20");
+                    return (new Date(date_string)).getTime();
                 }
             );
         },
