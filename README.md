@@ -145,3 +145,7 @@ Two files are used:
 ### Cell Subset
 
 Data source: https://raw.githubusercontent.com/obophenotype/cell-ontology/master/cl.owl
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
