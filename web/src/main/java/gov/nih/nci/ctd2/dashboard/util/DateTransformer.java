@@ -12,7 +12,7 @@ public class DateTransformer extends AbstractTransformer {
     public void transform(Object object) {
         assert object instanceof Date;
         Date date = (Date) object;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM, 20yy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
         getContext().writeQuoted(dateFormat.format(date));
     }
 }
