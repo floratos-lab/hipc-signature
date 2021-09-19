@@ -46,7 +46,7 @@ import { class2imageData } from './hipc-subject-images.js'
                 order: 'index'
             }).nodes().map(
                 function (td, i) {
-                    return new Date($(td).html().replace(",", " 1,")).getTime();
+                    return new Date($(td).html()).getTime();
                 }
             );
         },
