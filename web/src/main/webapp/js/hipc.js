@@ -1016,6 +1016,13 @@ import { class2imageData } from './hipc-subject-images.js'
             result.type = result.class;
             $(this.el).html(this.template(result));
 
+            const compareName = function(a, b) {
+                const name_a = a.displayName;
+                const name_b = b.displayName;
+                return name_a == name_b ? 0 : name_a > name_b ? 1 : -1;
+            };
+            result.synonyms.sort(compareName);
+            result.otherDesignations.sort(compareName);
             const synonymsEl = $("ul.synonyms");
             _.each(result.synonyms, function (aSynonym) {
                 if (aSynonym.displayName == result.displayName) return;
