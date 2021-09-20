@@ -1,5 +1,7 @@
 package gov.nih.nci.ctd2.dashboard.model;
 
+import java.util.Set;
+
 public interface Gene extends SubjectWithOrganism {
     String getEntrezGeneId();
 
@@ -20,4 +22,7 @@ public interface Gene extends SubjectWithOrganism {
     String getMapLocation();
 
     void setMapLocation(String ml);
+
+    Set<Synonym> getOtherDesignations();
+    void setOtherDesignations(Set<Synonym> synonyms);
 }

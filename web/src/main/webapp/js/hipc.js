@@ -1025,6 +1025,13 @@ import { class2imageData } from './hipc-subject-images.js'
                     el: synonymsEl
                 }).render();
             });
+            const otherDesignationsEl = $("ul.other-designations");
+            _.each(result.otherDesignations, function (aSynonym) {
+                new SynonymView({
+                    model: aSynonym,
+                    el: otherDesignationsEl
+                }).render();
+            });
 
             const thatEl = $("ul.refs");
             $.getJSON("findProteinFromGene/" + result.id, function (proteins) {

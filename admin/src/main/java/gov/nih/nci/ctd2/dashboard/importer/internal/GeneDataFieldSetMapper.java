@@ -55,7 +55,7 @@ public class GeneDataFieldSetMapper implements FieldSetMapper<Gene> {
 		for (String synonymName : fieldSet.readString(13).split("\\|")) {
 			synonym = dashboardFactory.create(Synonym.class);
 			synonym.setDisplayName(synonymName);
-			gene.getSynonyms().add(synonym);
+			gene.getOtherDesignations().add(synonym);
 		}
 		// hgnc parsing
 		for (String dbXrefs : fieldSet.readString(5).split("\\|")) {
