@@ -458,6 +458,11 @@ import { class2imageData } from './hipc-subject-images.js'
             const thatEl = $("#observed-subjects-grid");
             observedSubjects.fetch({
                 success: function () {
+                    observedSubjects.models.sort((a, b)=>{
+                        const class_a = a.toJSON().subject.class;
+                        const class_b = b.toJSON().subject.class;
+                        return class_a == class_b ? 0 : class_a > class_b ? 1 : -1;
+                    });
                     _.each(observedSubjects.models, function (observedSubject) {
                         observedSubject = observedSubject.toJSON();
 
