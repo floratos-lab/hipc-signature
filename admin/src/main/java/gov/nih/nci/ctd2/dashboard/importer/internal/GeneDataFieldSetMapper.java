@@ -47,10 +47,13 @@ public class GeneDataFieldSetMapper implements FieldSetMapper<Gene> {
 		xref.setDatabaseId(entrezGeneId);
 		xref.setDatabaseName(NCBI_GENE_DATABASE);
 		gene.getXrefs().add(xref);
-		for (String synonymName : fieldSet.readString(4).split("\\|")) {
-			synonym = dashboardFactory.create(Synonym.class);
-			synonym.setDisplayName(synonymName);
-			gene.getSynonyms().add(synonym);
+		String synonyms = fieldSet.readString(4);
+		if (!synonyms.equals("-")) {
+			for (String synonymName : synonyms.split("\\|")) {
+				synonym = dashboardFactory.create(Synonym.class);
+				synonym.setDisplayName(synonymName);
+				gene.getSynonyms().add(synonym);
+			}
 		}
 		for (String synonymName : fieldSet.readString(13).split("\\|")) {
 			synonym = dashboardFactory.create(Synonym.class);
