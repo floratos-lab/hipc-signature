@@ -668,7 +668,8 @@
                         <tr><th>Exact Synonyms</th><td><ul id="exactSynonyms"></ul></td></tr>
                         <tr><th>Related Synonyms</th><td><ul id="relatedSynonyms"></ul></td></tr>
                         <tr><th>References</th>
-                            <td>Cell Ontology: <a href="http://purl.obolibrary.org/obo/{{cellOntologyId}}" target="_blank">{{cellOntologyId}}</a>
+                            <td>Cell Ontology: <a href="http://purl.obolibrary.org/obo/{{cellOntologyId}}" target="_blank">{{cellOntologyId}}</a><br/>
+                                EMBL-EBI OLS: <a href="https://www.ebi.ac.uk/ols/ontologies/{{cellOntologyId.substring(0,cellOntologyId.indexOf('_'))}}/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F{{cellOntologyId}}" target="_blank">{{cellOntologyId}}</a><br/>
                         </tr>
                     </table>
                 </div>
@@ -695,7 +696,7 @@
                         <tr><th>References</th>
                             <td>
                             Vaccine Ontology by vaccine ID: <a href="http://purl.obolibrary.org/obo/{{vaccineID}}" target="_blank">{{vaccineID}}</a><br/>
-                            EBI-EMBL Ontology Lookup Service: <a href="https://www.ebi.ac.uk/ols/ontologies/vo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F{{vaccineID}}" target="_blank">{{vaccineID}}</a><br/>
+                            EMBL-EBI OLS: <a href="https://www.ebi.ac.uk/ols/ontologies/vo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2F{{vaccineID}}" target="_blank">{{vaccineID}}</a><br/>
                             Violinet Vaxquery by display name: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{displayName}}" target="_blank">{{displayName}}</a><br/>
                             Violinet Vaxquery by vaccine ID: <a href="http://www.violinet.org/vaxquery/vaxquery_results.php?searchEngine=vaxquery&keywords={{vaccineID}}" target="_blank">{{vaccineID}}</a>
                             </td>
@@ -729,7 +730,7 @@
                          <tr><th>Gene Type</th><td>{{geneType.displayName}}</td></tr>
                          <tr><th>Map Location</th><td>{{mapLocation}}</td></tr>
                          <tr>
-                             <th>Synonyms/Related terms<div style="font-size:10px; font-style:italic">(from Entrez)</div></th>
+                             <th>Synonyms<div style="font-size:10px; font-style:italic">(from Entrez)</div></th>
                              <td>
                                  <ul class="synonyms"></ul>
                              </td>
