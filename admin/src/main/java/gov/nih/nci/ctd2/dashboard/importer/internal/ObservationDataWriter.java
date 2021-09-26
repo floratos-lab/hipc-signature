@@ -126,11 +126,14 @@ public class ObservationDataWriter implements ItemWriter<ObservationData> {
                 } else if (s instanceof ObservedEvidence) {
                     ObservedEvidence observedEvidence = (ObservedEvidence) s;
                     placeholder = observedEvidence.getObservedEvidenceRole().getColumnName();
-                    actualName = observedEvidence.getEvidence().getDisplayName();
+                    actualName = observedEvidence.getDisplayName();
                 }
 
-                if (actualName != null)
+                if (actualName != null) {
                     summary = summary.replace("<" + placeholder + ">", actualName);
+                } else {
+                    log.warn("no actual name for " + placeholder + " in observation " + observation.getId());
+                }
             }
             ExpandedSummary es = new ExpandedSummary(observation.getId(), summary);
             expandedSummaries.add(es);
