@@ -22,9 +22,11 @@ logs/*
 web/**/webContext.xml
 
 hipc.sql
+hipc_background.sql
 hipc*.zip
 hipc_signature*.sql
 hipc_signature.sql.backup
+*index_files.zip
 *.tmp
 *.pyc
 
