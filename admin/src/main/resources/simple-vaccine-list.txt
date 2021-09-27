@@ -3,6 +3,7 @@ entity	BFO_0000001
 continuant	BFO_0000002		
 occurrent	BFO_0000003		
 independent continuant	BFO_0000004		
+spatial region	BFO_0000006		
 temporal region	BFO_0000008		
 process	BFO_0000015		
 disposition	BFO_0000016		
@@ -16,6 +17,7 @@ function	BFO_0000034
 one-dimensional temporal region	BFO_0000038		
 material entity	BFO_0000040		
 immaterial entity	BFO_0000141		
+process profile	BFO_0000144		
 phenol	CHEBI_15882		
 urea	CHEBI_16199		
 lipopolysaccharide	CHEBI_16412		
@@ -589,9 +591,11 @@ study design independent variable	OBI_0000750
 study design dependent variable	OBI_0000751		
 material maintenance objective	OBI_0000806		
 material maintenance	OBI_0000838		
+categorical measurement datum	OBI_0000938		
 device	OBI_0000968		
 dose specification	OBI_0000969		
 dose	OBI_0000984		
+categorical value specification	OBI_0001930		
 value specification	OBI_0001933		
 organism	OBI_0100026		
 data transformation objective	OBI_0200166		
@@ -5257,7 +5261,7 @@ human age 7 to 10 years at vaccination	VO_0004941
 human age 19 to 26 years at vaccination	VO_0004942		
 human age 27 to 59 years at vaccination	VO_0004943		
 human age within one month at vaccination	VO_0004944		
-Pfizer–BioNTech COVID-19 vaccine	VO_0004987		Comirnaty
+Comirnaty	VO_0004987		
 SARS-CoV-2 protein	VO_0004988		
 S protein of SARS-CoV-2	VO_0004989		
 E protein of SARS-CoV-2	VO_0004990		
@@ -5348,22 +5352,22 @@ pRSC DNA vaccine plasmid	VO_0005076
 pcDNA3.1(Zeo)+ DNA vaccine plasmid	VO_0005077		
 pVF DNA vaccine plasmid	VO_0005078		
 AV-COVID-19	VO_0005079		
-BECOV2	VO_0005081		
-CIGB-66	VO_0005082		
+BECOV2A	VO_0005081		
+Abdala	VO_0005082		
 CIGB-669	VO_0005083		
-COVID-19 inactivated virus vaccine by Shenzhen Kangtai Biological Products	VO_0005084		
-COVID-19 protein subunit vaccine by Sanofi and GSK	VO_0005085		
+KCONVAC	VO_0005084		
+VAT00002	VO_0005085		
 DelNS1-2019-nCoV-RBD-OPT1	VO_0005087		
 EpiVacCorona	VO_0005088		
 GLS-5310	VO_0005089		
 IIBR-100	VO_0005090		
 LV-SMENP-DC	VO_0005091		
 Nanocovax	VO_0005092		
-QazCovid-in	VO_0005093		
+QazVac	VO_0005093		
 RBD-HBsAg VLP	VO_0005094		
 Recombinant SARS-CoV-2 vaccine (Sf9 cell)	VO_0005095		
 S-268019	VO_0005096		
-Soberana	VO_0005097		
+Soberana 02	VO_0005097		
 V591	VO_0005098		
 VLA2001	VO_0005099		
 SARS N protein DNA vaccine	VO_0005100		
@@ -5408,7 +5412,7 @@ CRT-N SARS vaccine	VO_0005138
 rSARS-CoV-ΔE vaccine	VO_0005139		
 MVvac2-MERS-solS vaccine	VO_0005140		
 CoronaVac	VO_0005141		
-RBD-CuMVTT	VO_0005142		
+ZF2001	VO_0005142		
 LNP-nCoVsaRNA	VO_0005143		
 Ad5-nCoV	VO_0005144		
 MERS GLS-5300 vaccine	VO_0005145		
@@ -5422,17 +5426,17 @@ MVA-MERS-S vaccine	VO_0005152
 AdCOVID	VO_0005153		
 SARS-CoV pCI-N DNA vaccine	VO_0005154		
 NVX-CoV2373	VO_0005155		
-COVAC1	VO_0005156		
+CoV2 SAM	VO_0005156		
 Moderna COVID-19 vaccine	VO_0005157		
 Oxford–AstraZeneca COVID-19 vaccine	VO_0005158		Covishield
 Ad26.COV2.S	VO_0005159		
-COVID-19 inactivated virus vaccine by Wuhan Institute of Biological Products	VO_0005160		
+WIBP-CorV	VO_0005160		
 ARCoV	VO_0005161		
 ZyCoV-D	VO_0005162		
 ARCT-021	VO_0005164		
 AG0301-COVID19	VO_0005165		
 BBIBP-CorV	VO_0005166		
-COVID-19 inactivated virus vaccine by Chinese Academy of Medical Sciences	VO_0005167		
+Chinese Academy of Medical Sciences COVID-19 vaccine	VO_0005167		Covidful
 CVnCoV	VO_0005168		
 GRAd-COV2	VO_0005169		
 GX-19	VO_0005170		
@@ -5450,23 +5454,129 @@ chimpanzee adenovirus Oxford1 vaccine vector	VO_0005181
 chimpanzee adenovirus Oxford2 vaccine vector	VO_0005182		
 CORVax12	VO_0005183		
 COVID-19 aAPC vaccine	VO_0005184		
-COVID-19 RNA vaccine by Shulan Hospital	VO_0005185		
+mRNA-1283	VO_0005185		
 Covigenix VAX-001	VO_0005186		
 COVI-VAC	VO_0005187		
-ERUCOV-VAC	VO_0005188		
+TURKOVAC	VO_0005188		
 hAd5-COVID-19	VO_0005189		
 IMP CoVac-1	VO_0005190		
 MVA-SARS-2-S	VO_0005191		
 MVC-COV1901	VO_0005192		
-Recombinant spike protein with Advax™ adjuvant	VO_0005193		
-TMV-083	VO_0005194		
+SpikoGen	VO_0005193		
+COVAC	VO_0005194		
 V590	VO_0005195		
 VXA-CoV2-1	VO_0005196		
-authorized COVID-19 vaccine	VO_0005197		http://www.violinet.org/cov19vaxkb/authorizedcov19vax.php
-COVID-19 mRNA vaccine	VO_0005198		
+GBP510	VO_0005197		
+COVID-19 RNA vaccine	VO_0005198		
 COVID-19 recombinant viral vector vaccine	VO_0005199		
 COVID-19 recombinant adenoviral vector vaccine	VO_0005200		
-killed inactivated COVID-19 vaccine	VO_0005201		
+COVID-19 inactivated vaccine	VO_0005201		
+COVID-19 subunit vaccine	VO_0005202		
+COVID-19 DNA vaccine	VO_0005203		
+COVID-19 live, attenuated vaccine	VO_0005204		
+COVID-19 virus-like particle vaccine	VO_0005205		
+Matrix-M vaccine adjuvant	VO_0005206		
+Advax vaccine adjuvant	VO_0005207		
+Razi Cov Pars	VO_0005226		
+BBV154	VO_0005227		
+ChAdV68-S	VO_0005228		
+COVIran Barakat	VO_0005229		
+COVID-eVax	VO_0005230		
+COVIGEN	VO_0005231		
+EuCorVac-19	VO_0005232		
+mRNA-1273.351	VO_0005233		
+NBP2001	VO_0005234		
+NDV-HXP-S	VO_0005235		
+PTX-COVID19-B	VO_0005236		
+SpFN	VO_0005237		
+VBI-2902a	VO_0005238		
+FAKHRAVAC	VO_0005239		
+MV-014-212	VO_0005240		
+MRT5500	VO_0005241		
+CoviVac	VO_0005243		
+FINLAY-FR-1	VO_0005244		
+DS-5670a	VO_0005245		
+COVIVAC	VO_0005246		
+V-01	VO_0005247		
+COVID-19 subunit vaccine by National Vaccine and Serum Institute of China	VO_0005248		
+EXG-5003	VO_0005249		
+KD-414	VO_0005250		
+COVID-19 VLP vaccine by the Scientific and Technological Research Council of Turkey	VO_0005251		
+ReCOV	VO_0005252		
+Koçak-19 Inaktif Adjuvanlı COVID-19 Vaccine	VO_0005253		
+SC-Ad6-1	VO_0005254		
+ABNCoV2	VO_0005255		
+HDT-301	VO_0005256		
+COVID-19 inactivated vaccine by the Scientific and Technological Research Council of Turkey	VO_0005257		
+MF59-adjuvanted SARS-CoV-2 Sclamp vaccine	VO_0005258		
+COVID-19 rNDV vector vaccine by Laboratorio Avi-Mex	VO_0005259		
+COVID-19 mRNA vaccine by Shanghai East Hospital and Stemirna Therapeutics	VO_0005260		
+CoVepiT	VO_0005261		
+MVA-SARS-2-ST	VO_0005262		
+CoV2-OGEN1	VO_0005263		
+authorized COVID-19 vaccine	VO_0005264		
+authorized COVID-19 RNA vaccine	VO_0005265		
+authorized inactivated COVID-19 vaccine	VO_0005266		
+authorized COVID-19 recombinant viral vector vaccine	VO_0005267		
+authorized COVID-19 recombinant adenoviral vector vaccine	VO_0005268		
+authorized COVID-19 subunit vaccine	VO_0005269		
+1V270	VO_0005270		
+2B182C	VO_0005271		
+TLR7 receptor role	VO_0005272		
+QazCoVac-P	VO_0005273		
+Th1 immunity stimulatory role	VO_0005274		
+Th2 immunity stimulatory role	VO_0005275		
+LNP-nCOV saRNA-02	VO_0005276		
+mRNA-1273.211	VO_0005277		
+(H115D)VHL35 Peptide cancer vaccine	VO_0005278		
+2E151	VO_0005281		
+UM-1098	VO_0005282		
+TQL-1055	VO_0005283		
+NanoVax/NE01	VO_0005284		
+MiT4	VO_0005285		
+Mannadjuvant	VO_0005286		
+LiT4	VO_0005287		
+INI-4001	VO_0005288		
+INI-2004	VO_0005289		
+INI-2002	VO_0005290		
+Fos47	VO_0005291		
+EmT4	VO_0005292		
+Em	VO_0005293		
+DDO (Defective viral genome-Derived Oligonucleotide)	VO_0005294		
+CaPNP (CaPtivant)(TM)	VO_0005295		
+BECC470b	VO_0005296		
+BECC438s	VO_0005297		
+BECC438b	VO_0005298		
+AlT4	VO_0005299		
+AlT3	VO_0005300		
+Alhydroxiquim-II	VO_0005301		
+Adjuplex+GLA	VO_0005302		
+2F52	VO_0005303		
+TLR4 receptor role	VO_0005304		
+TLR3 receptor role	VO_0005305		
+TLR8 receptor role	VO_0005306		
+TLR2 receptor role	VO_0005307		
+immune response profile	VO_0005308		
+Th1-biased immune profile	VO_0005309		
+Th2-biased immune profile	VO_0005310		
+Th1/Th2 mixed immune profile	VO_0005311		
+Th17 immune profile	VO_0005313		
+Th1/Th17 mixed immune profile	VO_0005314		
+SCB-2020S	VO_0005315		
+AmitisGen	VO_0005316		
+Baiya SARS-CoV-2 Vax 1	VO_0005317		
+CVXGA1	VO_0005318		
+AZD2816	VO_0005319		
+202-CoV	VO_0005320		
+COVID-19 subunit vaccine by HIPRA	VO_0005321		
+AG0302-COVID19	VO_0005322		
+authorized COVID-19 DNA vaccine	VO_0005323		
+Advax-CpG	VO_0005324		
+VSA-2	VO_0005325		
+VSA-1	VO_0005326		
+rOv-ASP-1	VO_0005327		
+dmLT	VO_0005329		
+CPDI-01	VO_0005330		
 country	VO_0010632		
 USA	VO_0010633		
 Rubella virus vaccine	VO_0010637		
