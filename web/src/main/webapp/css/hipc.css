@@ -743,3 +743,14 @@ ul.items {margin-left:0;}
 .row { margin-bottom:18px;}
 
 .tooltip-inner {text-align: left;}
+
+
+.wordcloud-selector {
+    background-color: #a4dcf6;
+    border-color:#6c757d
+}
+
+.wordcloud-selector:disabled {
+    background-color: #91cdff;
+    border-color:#96a2ad
+}
