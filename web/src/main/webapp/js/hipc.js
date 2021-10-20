@@ -1,5 +1,6 @@
 import { numOfCartGene, showAlertMessage, GeneListView, GeneCartHelpView, CnkbQueryView, CnkbResultView } from './gene.cart.js'
 import { class2imageData } from './hipc-subject-images.js'
+import create_wordcloud from './wordcloud.js'
 
 (function ($) {
     // These seperators are for replacing items within the observation summary
@@ -280,6 +281,53 @@ import { class2imageData } from './hipc-subject-images.js'
             // Load the template
             $(this.el).html(this.template({}));
 
+            $("#wordcloud-container").show();
+            function select_wordcloud(choice, button) {
+                $("#vis").hide();
+                $("#vis-genes").hide();
+                $("#vis-compounds").hide();
+                $("#vis-disease").hide();
+                $("#vis-cell").hide();
+                $(choice).show();
+                $("#wordcloud-all").prop('disabled', false);
+                $("#wordcloud-genes").prop('disabled', false);
+                $("#wordcloud-compounds").prop('disabled', false);
+                $("#wordcloud-disease").prop('disabled', false);
+                $("#wordcloud-cell").prop('disabled', false);
+                $(button).prop('disabled', true)
+            }
+            select_wordcloud("#vis", "#wordcloud-all");
+            $("#wordcloud-button").click(function (e) {
+                e.preventDefault();
+                $("#wordcloud-container").toggle();
+                $("#wordcloud-toggle-word").text(function (index, content) {
+                    if (content == "Show") {
+                        $("#toggle-word").text("Show");
+                        return "Hide";
+                    } else return "Show";
+                });
+            });
+            $("#wordcloud-genes").click(function (e) {
+                e.preventDefault();
+                select_wordcloud("#vis-genes", this);
+            });
+            $("#wordcloud-compounds").click(function (e) {
+                e.preventDefault();
+                select_wordcloud("#vis-compounds", this);
+            });
+            $("#wordcloud-disease").click(function (e) {
+                e.preventDefault();
+                select_wordcloud("#vis-disease", this);
+            });
+            $("#wordcloud-cell").click(function (e) {
+                e.preventDefault();
+                select_wordcloud("#vis-cell", this);
+            });
+            $("#wordcloud-all").click(function (e) {
+                e.preventDefault();
+                select_wordcloud("#vis", this);
+            });
+
             $("#omni-search-form").submit(function () {
                 window.location.hash = "search/" + $("#omni-search").val();
                 return false;
@@ -288,6 +336,32 @@ import { class2imageData } from './hipc-subject-images.js'
             $("#homepage-help-navigate").click(function (e) {
                 e.preventDefault();
                 (new HelpNavigateView()).render();
+            });
+
+            $.ajax("wordcloud").done(function (result) {
+                create_wordcloud('#vis', result);
+            }).fail(function (err) {
+                console.log(err);
+            });
+            $.ajax("wordcloud/target,biomarker").done(function (result) {
+                create_wordcloud('#vis-genes', result);
+            }).fail(function (err) {
+                console.log(err);
+            });
+            $.ajax("wordcloud/perturbagen,candidate drug").done(function (result) {
+                create_wordcloud('#vis-compounds', result);
+            }).fail(function (err) {
+                console.log(err);
+            });
+            $.ajax("wordcloud/disease").done(function (result) {
+                create_wordcloud('#vis-disease', result);
+            }).fail(function (err) {
+                console.log(err);
+            });
+            $.ajax("wordcloud/cell line").done(function (result) {
+                create_wordcloud('#vis-cell', result);
+            }).fail(function (err) {
+                console.log(err);
             });
 
             return this;

@@ -244,6 +244,26 @@
 
         <div class="dark-separator"></div>
 
+        <div style="text-align:center;display:block;padding:10px">
+            <button type="button" class="btn btn-secondary" id=wordcloud-button><span id=wordcloud-toggle-word>Hide</span> Word Cloud</button>
+        </div>
+        <div class=container id='wordcloud-container'>
+            <div style="text-align:center;display:block;padding:10px">
+                <button type="button" class="btn btn-light" id=wordcloud-all style='background:rgb(253, 255, 201);border-color:#6c757d'>All</button>
+                <button type="button" class="btn btn-light" id=wordcloud-genes style='background:rgb(253, 255, 201);border-color:#6c757d'>Genes and Proteins</button>
+                <button type="button" class="btn btn-light" id=wordcloud-compounds style='background:rgb(253, 255, 201);border-color:#6c757d'>Compounds and Perturbagens</button>
+                <button type="button" class="btn btn-light" id=wordcloud-disease style='background:rgb(253, 255, 201);border-color:#6c757d'>Disease context</button>
+                <button type="button" class="btn btn-light" id=wordcloud-cell style='background:rgb(253, 255, 201);border-color:#6c757d'>Cell lines</button>
+            </div>
+            <div style="margin:auto;width:960px;">
+                <div id="vis"></div>
+                <div id="vis-genes"></div>
+                <div id="vis-compounds"></div>
+                <div id="vis-disease"></div>
+                <div id="vis-cell"></div>    
+            </div>
+        </div>
+
         <div class="container ctd2-boxes">
           <div class="row browse-menu">
             <div class="col drug" data-order="2" style="display:table-cell;float:none;position:relative;padding-bottom:25px">
@@ -1610,6 +1630,10 @@
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-cola@2.4.0/cytoscape-cola.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.js" integrity="sha512-kvg/Lknti7OoAw0GqMBP8B+7cGHvp4M9O9V6nAYG91FZVDMW3Xkkq5qrdMhrXiawahqU7IZ5CNsY/wWy1PpGTQ==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.css" integrity="sha512-SWjZLElR5l3FxoO9Bt9Dy3plCWlBi1Mc9/OlojDPwryZxO0ydpZgvXMLhV6jdEyULGNWjKgZWiX/AMzIvZ4JuA==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"
+        integrity="sha512-oJp0DdQuQQrRsKVly+Ww6fAN1GwJN7d1bi8UubpEbzDUh84WrJ2CFPBnT4LqBCcfqTcHR5OGXFFhaPe3g1/bzQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js" integrity="sha512-HjKxWye8lJGPu5q1u/ZYkHlJrJdm6KGr89E6tOrXeKm1mItb1xusPU8QPcKVhP8F9LjpZT7vsu1Fa+dQywP4eg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="dist/main.js"></script>
 
 </body>

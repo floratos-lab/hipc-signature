@@ -76,6 +76,7 @@ import gov.nih.nci.ctd2.dashboard.model.Xref;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
+import gov.nih.nci.ctd2.dashboard.util.WordCloudEntry;
 import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 
 public class DashboardDaoImpl implements DashboardDao {
@@ -1071,5 +1072,159 @@ public class DashboardDaoImpl implements DashboardDao {
     @Override
     public List<Submission> getSubmissionsPerPMID(Integer pmid) {
         return queryWithClass("from SubmissionImpl where observationTemplate.PMID = :pmid", "pmid", pmid);
+    }
+
+    @Override
+    public WordCloudEntry[] getSubjectCounts() {
+        List<WordCloudEntry> list = new ArrayList<WordCloudEntry>();
+        String sql = "SELECT displayName, numberOfObservations, stableURL FROM subject_with_summaries"
+                + " JOIN subject ON subject_with_summaries.subject_id=subject.id"
+                + " JOIN dashboard_entity ON subject.id=dashboard_entity.id"
+                + " WHERE score>1 ORDER BY numberOfObservations DESC LIMIT 250";
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
+        for (Object[] obj : query.getResultList()) {
+            String subject = (String) obj[0];
+            String fullname = null;
+            if (subject.length() > ABBREVIATION_LENGTH_LIMIT) {
+                fullname = subject;
+                subject = shorternSubjectName(subject);
+            }
+            Integer count = (Integer) obj[1];
+            String url = (String) obj[2];
+            list.add(new WordCloudEntry(subject, count, url, fullname));
+        }
+        session.close();
+        return list.toArray(new WordCloudEntry[0]);
+    }
+
+    /* this query is to emulate the explore pages */
+    @Override
+    public WordCloudEntry[] getSubjectCountsForRoles(String[] roles) {
+        if (roles == null || roles.length == 0)
+            return new WordCloudEntry[0];
+        StringBuffer role_list = new StringBuffer("(");
+        role_list.append("'" + roles[0] + "'");
+        for (int i = 1; i < roles.length; i++) {
+            role_list.append(",'" + roles[1] + "'");
+        }
+        role_list.append(")");
+        List<WordCloudEntry> list = new ArrayList<WordCloudEntry>();
+        String sql = "SELECT displayName, numberOfObservations, stableURL FROM subject_with_summaries"
+                + " JOIN subject ON subject_with_summaries.subject_id=subject.id"
+                + " JOIN dashboard_entity ON subject.id=dashboard_entity.id" + " WHERE score>1 AND role IN "
+                + role_list.toString() + " ORDER BY numberOfObservations DESC LIMIT 250";
+        log.debug(sql);
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
+        for (Object[] obj : query.getResultList()) {
+            String subject = (String) obj[0];
+            String fullname = null;
+            if (subject.length() > ABBREVIATION_LENGTH_LIMIT) {
+                fullname = subject;
+                subject = shorternSubjectName(subject);
+            }
+            Integer count = (Integer) obj[1];
+            String url = (String) obj[2];
+            list.add(new WordCloudEntry(subject, count, url, fullname));
+        }
+        session.close();
+        return list.toArray(new WordCloudEntry[0]);
+    }
+
+    private final static int ABBREVIATION_LENGTH_LIMIT = 15;
+    private final static List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
+
+    /*
+     * shorten the subject name using the specifc steps described in the word-cloud
+     * spec
+     */
+    static private String shorternSubjectName(String longName) {
+        log.debug("long name to be shortened: " + longName);
+        String[] x = longName.split("\\s");
+        if (x.length == 1) {
+            return longName.substring(0, ABBREVIATION_LENGTH_LIMIT);
+        } else {
+            final int N = 4;
+            StringBuffer shortened = new StringBuffer();
+            for (int index = 0; index < x.length; index++) {
+                if (index > 0) {
+                    shortened.append(".");
+                }
+
+                String word = x[index];
+                int count = word.length();
+                int firstVowel = 1;
+                while (firstVowel < count && !vowels.contains(word.charAt(firstVowel))) {
+                    firstVowel++;
+                }
+                if (firstVowel > N) {
+                    shortened.append(word.substring(0, N));
+                    continue;
+                }
+                int afterVowelSequence = firstVowel + 1;
+                while (afterVowelSequence < count && vowels.contains(word.charAt(afterVowelSequence))) {
+                    afterVowelSequence++;
+                }
+                if (afterVowelSequence > N) {
+                    shortened.append(word.substring(0, N));
+                    continue;
+                }
+                while (count > N) { // still too long
+                    int lastVowel = count - 1;
+                    while (lastVowel >= afterVowelSequence && !vowels.contains(word.charAt(lastVowel))) {
+                        lastVowel--;
+                    }
+                    // lastVowel is the postion of the last vowel
+                    if (lastVowel > afterVowelSequence) {// remove the last vowel;
+                        word = word.substring(0, lastVowel) + word.substring(lastVowel + 1, count);
+                    } else {
+                        word = word.substring(0, count - 1); // remove the last character;
+                    }
+                    count--;
+                }
+                shortened.append(word);
+            }
+            log.debug("shortened name: " + shortened);
+            return shortened.toString();
+        }
+    }
+
+    @Override
+    public WordCloudEntry[] getSubjectCounts(Integer associatedSubject) {
+        String sqlForObservations = "SELECT DISTINCT observation_id FROM observed_subject WHERE subject_id="
+                + associatedSubject;
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Integer> query3 = session.createNativeQuery(sqlForObservations);
+        List<Integer> observationIds = query3.getResultList();
+        StringBuffer idList = new StringBuffer("0"); // ID=0 is not any object
+        for (Integer observationId : observationIds) {
+            idList.append("," + observationId);
+        }
+
+        List<WordCloudEntry> list = new ArrayList<WordCloudEntry>();
+        String sql = "SELECT displayName, count(*) AS x, stableURL FROM observed_subject"
+                + " JOIN dashboard_entity ON observed_subject.subject_id=dashboard_entity.id"
+                + " JOIN subject ON observed_subject.subject_id=subject.id" + " WHERE subject.id!=" + associatedSubject
+                + " AND observation_id IN (" + idList + ") GROUP BY subject.id ORDER BY x DESC LIMIT 250";
+        log.debug(sql);
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
+        for (Object[] obj : query.getResultList()) {
+            String subject = (String) obj[0];
+            String fullname = null;
+            if (subject.length() > ABBREVIATION_LENGTH_LIMIT) {
+                fullname = subject;
+                subject = shorternSubjectName(subject);
+            }
+            Integer count = ((BigInteger) obj[1]).intValue();
+            String url = (String) obj[2];
+            list.add(new WordCloudEntry(subject, count, url, fullname));
+        }
+        session.close();
+        return list.toArray(new WordCloudEntry[0]);
     }
 }

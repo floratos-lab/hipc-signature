@@ -33,6 +33,7 @@ import gov.nih.nci.ctd2.dashboard.model.Xref;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
+import gov.nih.nci.ctd2.dashboard.util.WordCloudEntry;
 import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 
 public interface DashboardDao {
@@ -167,4 +168,8 @@ public interface DashboardDao {
     List<PMIDResult> getPMIDs();
 
     List<Submission> getSubmissionsPerPMID(Integer pmid);
+
+    WordCloudEntry[] getSubjectCounts();
+    WordCloudEntry[] getSubjectCountsForRoles(String[] roles);
+    WordCloudEntry[] getSubjectCounts(Integer associatedSubject);
 }
