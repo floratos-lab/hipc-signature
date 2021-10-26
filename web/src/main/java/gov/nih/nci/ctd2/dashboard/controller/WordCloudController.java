@@ -46,16 +46,15 @@ public class WordCloudController {
     }
 
     @Transactional
-    @RequestMapping(value = "{roles}", method = { RequestMethod.GET }, headers = "Accept=application/json")
-    public ResponseEntity<String> getSubjectCountsForRoles(@PathVariable String roles) {
-        log.debug("request received for roles: " + roles);
+    @RequestMapping(value = "{role}", method = { RequestMethod.GET }, headers = "Accept=application/json")
+    public ResponseEntity<String> getSubjectCountsForRoles(@PathVariable String role) {
+        log.debug("request received for roles: " + role);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
-        String[] role_array = roles.split(",");
         WordCloudEntry[] words = new WordCloudEntry[0];
-        if (role_array.length > 0) {
-            words = dashboardDao.getSubjectCountsForRoles(role_array);
+        if (role.trim().length() > 0) {
+            words = dashboardDao.getSubjectCountsForRole(role);
         } else {
             words = dashboardDao.getSubjectCounts();
         }

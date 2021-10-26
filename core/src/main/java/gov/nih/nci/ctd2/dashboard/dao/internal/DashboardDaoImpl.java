@@ -1101,20 +1101,20 @@ public class DashboardDaoImpl implements DashboardDao {
 
     /* this query is to emulate the explore pages */
     @Override
-    public WordCloudEntry[] getSubjectCountsForRoles(String[] roles) {
-        if (roles == null || roles.length == 0)
+    public WordCloudEntry[] getSubjectCountsForRole(String role) {
+        if (role == null || role.trim().length() == 0)
             return new WordCloudEntry[0];
-        StringBuffer role_list = new StringBuffer("(");
-        role_list.append("'" + roles[0] + "'");
-        for (int i = 1; i < roles.length; i++) {
-            role_list.append(",'" + roles[1] + "'");
-        }
-        role_list.append(")");
         List<WordCloudEntry> list = new ArrayList<WordCloudEntry>();
+        // four possible roles: cell_biomarker, vaccine, pathogen, tissue
         String sql = "SELECT displayName, numberOfObservations, stableURL FROM subject_with_summaries"
                 + " JOIN subject ON subject_with_summaries.subject_id=subject.id"
-                + " JOIN dashboard_entity ON subject.id=dashboard_entity.id" + " WHERE score>1 AND role IN "
-                + role_list.toString() + " ORDER BY numberOfObservations DESC LIMIT 250";
+                + " JOIN dashboard_entity ON subject.id=dashboard_entity.id" + " WHERE role = '"
+                + role + "' ORDER BY numberOfObservations DESC LIMIT 250";
+        if (role.equalsIgnoreCase("genes")) {
+            sql = "SELECT displayName, numberofObservations, stableURL FROM subject_with_summaries"
+            + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
+            + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + " ORDER BY numberOfObservations DESC LIMIT 250";
+        }
         log.debug(sql);
         Session session = getSession();
         @SuppressWarnings("unchecked")

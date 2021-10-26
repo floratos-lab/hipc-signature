@@ -287,7 +287,7 @@ import create_wordcloud from './wordcloud.js'
                 $("#vis-genes").hide();
                 $("#vis-celltypes").hide();
                 $("#vis-vaccines").hide();
-                $("#vis-pathigens").hide();
+                $("#vis-pathogens").hide();
                 $("#vis-tissues").hide();
                 $(choice).show();
                 $("#wordcloud-all").prop('disabled', false);
@@ -354,22 +354,22 @@ import create_wordcloud from './wordcloud.js'
             }).fail(function (err) {
                 console.log(err);
             });
-            $.ajax("wordcloud/celltypes").done(function (result) {
+            $.ajax("wordcloud/cell_biomarker").done(function (result) {
                 create_wordcloud('#vis-celltypes', result);
             }).fail(function (err) {
                 console.log(err);
             });
-            $.ajax("wordcloud/vaccines").done(function (result) {
+            $.ajax("wordcloud/vaccine").done(function (result) {
                 create_wordcloud('#vis-vaccines', result);
             }).fail(function (err) {
                 console.log(err);
             });
-            $.ajax("wordcloud/pathogens").done(function (result) {
+            $.ajax("wordcloud/pathogen").done(function (result) {
                 create_wordcloud('#vis-pathogens', result);
             }).fail(function (err) {
                 console.log(err);
             });
-            $.ajax("wordcloud/tissues").done(function (result) {
+            $.ajax("wordcloud/tissue").done(function (result) {
                 create_wordcloud('#vis-tissues', result);
             }).fail(function (err) {
                 console.log(err);
