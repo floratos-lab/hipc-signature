@@ -967,6 +967,23 @@ import create_wordcloud from './wordcloud.js'
         }
     });
 
+    function create_subject_word_cloud(subject_id) {
+        $.ajax("wordcloud/subject/" + subject_id).done(function (result) {
+            create_wordcloud('#subject-wordcloud', result, 930);
+        }).fail(function (err) {
+            console.log(err);
+        });
+        $("#subject-wordcloud").hide();
+        $("#subject-wordcloud-button").click(function (e) {
+            e.preventDefault();
+            $("#subject-wordcloud").toggle();
+            $("#subject-wordcloud-toggle-word").text(function (index, content) {
+                if (content == "Show") return "Hide";
+                else return "Show";
+            });
+        });
+    }
+
     const PathogenView = Backbone.View.extend({
         el: $("#main-container"),
         template: _.template($("#pathogen-tmpl").html()),
@@ -1006,6 +1023,8 @@ import create_wordcloud from './wordcloud.js'
                 },
                 el: "#related-observations"
             }).render();
+
+            create_subject_word_cloud(entity.id);
 
             window.scroll(0, 0);
             return this;
@@ -1058,6 +1077,8 @@ import create_wordcloud from './wordcloud.js'
                 $('#related-observations h3').append(' <small>for the role of ' + thatModel.role + '</small>');
             }
 
+            create_subject_word_cloud(entity.id);
+
             window.scroll(0, 0);
             return this;
         }
@@ -1077,6 +1098,8 @@ import create_wordcloud from './wordcloud.js'
                 },
                 el: "#related-observations"
             }).render();
+
+            create_subject_word_cloud(entity.id);
 
             window.scroll(0, 0);
             return this;
@@ -1140,6 +1163,8 @@ import create_wordcloud from './wordcloud.js'
                 },
                 el: "#related-observations"
             }).render();
+
+            create_subject_word_cloud(result.id);
 
             const currentGene = result.displayName;
             $(".addGene-" + currentGene).click(function (e) {

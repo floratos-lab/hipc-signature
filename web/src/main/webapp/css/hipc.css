@@ -754,3 +754,7 @@ ul.items {margin-left:0;}
     background-color: #91cdff;
     border-color:#96a2ad
 }
+
+#subject-wordcloud-button {
+    margin: 10px
+}
