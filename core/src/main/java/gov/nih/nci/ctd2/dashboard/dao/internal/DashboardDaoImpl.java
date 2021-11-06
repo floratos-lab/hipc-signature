@@ -1074,42 +1074,18 @@ public class DashboardDaoImpl implements DashboardDao {
         return queryWithClass("from SubmissionImpl where observationTemplate.PMID = :pmid", "pmid", pmid);
     }
 
-    @Override
-    public WordCloudEntry[] getSubjectCounts() {
-        List<WordCloudEntry> list = new ArrayList<WordCloudEntry>();
-        String sql = "SELECT displayName, numberOfObservations, stableURL FROM subject_with_summaries"
-                + " JOIN subject ON subject_with_summaries.subject_id=subject.id"
-                + " JOIN dashboard_entity ON subject.id=dashboard_entity.id"
-                + " WHERE score>1 ORDER BY numberOfObservations DESC LIMIT 250";
-        Session session = getSession();
-        @SuppressWarnings("unchecked")
-        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(sql);
-        for (Object[] obj : query.getResultList()) {
-            String subject = (String) obj[0];
-            String fullname = null;
-            if (subject.length() > ABBREVIATION_LENGTH_LIMIT) {
-                fullname = subject;
-                subject = shorternSubjectName(subject);
-            }
-            Integer count = (Integer) obj[1];
-            String url = (String) obj[2];
-            list.add(new WordCloudEntry(subject, count, url, fullname));
-        }
-        session.close();
-        return list.toArray(new WordCloudEntry[0]);
-    }
-
     /* this query is to emulate the explore pages */
     @Override
     public WordCloudEntry[] getSubjectCountsForRole(String role) {
-        if (role == null || role.trim().length() == 0)
-            return new WordCloudEntry[0];
+        String role_condition = "";
+        if (role != null && role.trim().length() > 0)
+            role_condition = " AND role = '" + role + "'";
         List<WordCloudEntry> list = new ArrayList<WordCloudEntry>();
         // four possible roles: cell_biomarker, vaccine, pathogen, tissue
         String sql = "SELECT displayName, numberOfObservations, stableURL FROM subject_with_summaries"
                 + " JOIN subject ON subject_with_summaries.subject_id=subject.id"
-                + " JOIN dashboard_entity ON subject.id=dashboard_entity.id" + " WHERE role = '"
-                + role + "' ORDER BY numberOfObservations DESC LIMIT 250";
+                + " JOIN dashboard_entity ON subject.id=dashboard_entity.id"
+                + " WHERE score>1" + role_condition + " ORDER BY numberOfObservations DESC LIMIT 250";
         if (role.equalsIgnoreCase("genes")) {
             sql = "SELECT displayName, numberofObservations, stableURL FROM subject_with_summaries"
             + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"

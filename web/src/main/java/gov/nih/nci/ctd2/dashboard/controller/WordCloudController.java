@@ -1,5 +1,7 @@
 package gov.nih.nci.ctd2.dashboard.controller;
 
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,40 +26,15 @@ public class WordCloudController {
     private DashboardDao dashboardDao;
 
     @Transactional
-    @RequestMapping(method = { RequestMethod.GET }, headers = "Accept=application/json")
-    public ResponseEntity<String> getSubjectCounts() {
-        log.debug("request received");
+    @RequestMapping(value = "{wordcloud_id}", method = { RequestMethod.GET }, headers = "Accept=application/json")
+    public ResponseEntity<String> getSubjectCountsForRoles(@PathVariable String wordcloud_id) {
+        log.debug("request received for wordcloud_id: " + wordcloud_id);
+        Map<String, String> map = Map.of("all", "", "genes", "genes", "celltypes", "cell_biomarker", "vaccines", "vaccine", "pathogens", "pathogen", "tissues", "tissue");
+        String role = map.get(wordcloud_id);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
 
-        WordCloudEntry[] words = dashboardDao.getSubjectCounts();
-
-        JSONSerializer jsonSerializer = new JSONSerializer().exclude("class");
-        String json = "{}";
-        try {
-            json = jsonSerializer.deepSerialize(words);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
-        }
-
-        log.debug("get subject counts");
-        return new ResponseEntity<String>(json, headers, HttpStatus.OK);
-    }
-
-    @Transactional
-    @RequestMapping(value = "{role}", method = { RequestMethod.GET }, headers = "Accept=application/json")
-    public ResponseEntity<String> getSubjectCountsForRoles(@PathVariable String role) {
-        log.debug("request received for roles: " + role);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
-
-        WordCloudEntry[] words = new WordCloudEntry[0];
-        if (role.trim().length() > 0) {
-            words = dashboardDao.getSubjectCountsForRole(role);
-        } else {
-            words = dashboardDao.getSubjectCounts();
-        }
+        WordCloudEntry[] words = dashboardDao.getSubjectCountsForRole(role);
 
         JSONSerializer jsonSerializer = new JSONSerializer().exclude("class");
         String json = "{}";

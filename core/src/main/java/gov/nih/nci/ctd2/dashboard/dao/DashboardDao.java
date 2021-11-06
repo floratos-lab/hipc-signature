@@ -169,7 +169,6 @@ public interface DashboardDao {
 
     List<Submission> getSubmissionsPerPMID(Integer pmid);
 
-    WordCloudEntry[] getSubjectCounts();
     WordCloudEntry[] getSubjectCountsForRole(String role);
     WordCloudEntry[] getSubjectCounts(Integer associatedSubject);
 }

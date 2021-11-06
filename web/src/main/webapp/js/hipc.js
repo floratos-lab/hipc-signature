@@ -282,23 +282,13 @@ import create_wordcloud from './wordcloud.js'
             $(this.el).html(this.template({}));
 
             $("#wordcloud-container").show();
-            function select_wordcloud(choice, button) {
-                $("#vis").hide();
-                $("#vis-genes").hide();
-                $("#vis-celltypes").hide();
-                $("#vis-vaccines").hide();
-                $("#vis-pathogens").hide();
-                $("#vis-tissues").hide();
-                $(choice).show();
-                $("#wordcloud-all").prop('disabled', false);
-                $("#wordcloud-genes").prop('disabled', false);
-                $("#wordcloud-celltypes").prop('disabled', false);
-                $("#wordcloud-vaccines").prop('disabled', false);
-                $("#wordcloud-pathogens").prop('disabled', false);
-                $("#wordcloud-tissues").prop('disabled', false);
-                $(button).prop('disabled', true)
+            function select_wordcloud(wordcloud_id) {
+                $(".wordcloud").hide();
+                $(`#vis-${wordcloud_id}`).show();
+                $(".wordcloud-selector").prop('disabled', false)
+                $(`#wordcloud-${wordcloud_id}`).prop('disabled', true)
             }
-            select_wordcloud("#vis", "#wordcloud-all");
+            select_wordcloud("all");
             $("#wordcloud-button").click(function (e) {
                 e.preventDefault();
                 $("#wordcloud-container").toggle();
@@ -309,29 +299,9 @@ import create_wordcloud from './wordcloud.js'
                     } else return "Show";
                 });
             });
-            $("#wordcloud-genes").click(function (e) {
-                e.preventDefault();
-                select_wordcloud("#vis-genes", this);
-            });
-            $("#wordcloud-celltypes").click(function (e) {
-                e.preventDefault();
-                select_wordcloud("#vis-celltypes", this);
-            });
-            $("#wordcloud-vaccines").click(function (e) {
-                e.preventDefault();
-                select_wordcloud("#vis-vaccines", this);
-            });
-            $("#wordcloud-pathogens").click(function (e) {
-                e.preventDefault();
-                select_wordcloud("#vis-pathogens", this);
-            });
-            $("#wordcloud-tissues").click(function (e) {
-                e.preventDefault();
-                select_wordcloud("#vis-tissues", this);
-            });
-            $("#wordcloud-all").click(function (e) {
-                e.preventDefault();
-                select_wordcloud("#vis", this);
+            $(".wordcloud-selector").click(e => {
+                e.preventDefault()
+                select_wordcloud(e.target.id.substring(10))
             });
 
             $("#omni-search-form").submit(function () {
@@ -344,36 +314,13 @@ import create_wordcloud from './wordcloud.js'
                 (new HelpNavigateView()).render();
             });
 
-            $.ajax("wordcloud").done(function (result) {
-                create_wordcloud('#vis', result);
-            }).fail(function (err) {
-                console.log(err);
-            });
-            $.ajax("wordcloud/genes").done(function (result) {
-                create_wordcloud('#vis-genes', result);
-            }).fail(function (err) {
-                console.log(err);
-            });
-            $.ajax("wordcloud/cell_biomarker").done(function (result) {
-                create_wordcloud('#vis-celltypes', result);
-            }).fail(function (err) {
-                console.log(err);
-            });
-            $.ajax("wordcloud/vaccine").done(function (result) {
-                create_wordcloud('#vis-vaccines', result);
-            }).fail(function (err) {
-                console.log(err);
-            });
-            $.ajax("wordcloud/pathogen").done(function (result) {
-                create_wordcloud('#vis-pathogens', result);
-            }).fail(function (err) {
-                console.log(err);
-            });
-            $.ajax("wordcloud/tissue").done(function (result) {
-                create_wordcloud('#vis-tissues', result);
-            }).fail(function (err) {
-                console.log(err);
-            });
+            ['all', 'genes', 'celltypes', 'vaccines', 'pathogens', 'tissues'].forEach(wordcloud_id => {
+                $.ajax(`wordcloud/${wordcloud_id}`).done(result => {
+                    create_wordcloud(`#vis-${wordcloud_id}`, result);
+                }).fail(err => {
+                    console.log(err);
+                });
+            })
 
             return this;
         }
