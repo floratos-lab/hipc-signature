@@ -148,7 +148,7 @@ def create_method_name(subject, evidence, role, mime_type):
 
     if subject is not None and subject != '':
         if subject == 'cell_subset':
-            method_name = 'findCellSubsetByName'
+            method_name = 'findCellSubsetByOntologyId'
         elif subject == 'pathogen':
             method_name = 'findPathogenByName'
         elif subject == 'vaccine':

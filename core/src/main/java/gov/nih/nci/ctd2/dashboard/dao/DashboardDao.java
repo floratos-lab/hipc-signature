@@ -87,7 +87,7 @@ public interface DashboardDao {
 
     List<Vaccine> findVaccineByName(String name);
 
-    List<CellSubset> findCellSubsetByName(String name);
+    List<CellSubset> findCellSubsetByOntologyId(String ontologyId);
 
     List<Pathogen> findPathogenByName(String name);
 

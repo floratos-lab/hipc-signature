@@ -905,9 +905,9 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public List<CellSubset> findCellSubsetByName(String name) {
-        log.debug("cell subset name=" + name);
-        return queryWithClass("from CellSubsetImpl where displayName = :name", "name", name);
+    public List<CellSubset> findCellSubsetByOntologyId(String ontologyId) {
+        ontologyId = ontologyId.replace(":", "_");
+        return queryWithClass("FROM CellSubsetImpl WHERE cellOntologyId = :oid", "oid", ontologyId);
     }
 
     @Override
