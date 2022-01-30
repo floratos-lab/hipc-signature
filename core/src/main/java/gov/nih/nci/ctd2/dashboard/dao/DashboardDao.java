@@ -89,7 +89,7 @@ public interface DashboardDao {
 
     List<CellSubset> findCellSubsetByOntologyId(String ontologyId);
 
-    List<Pathogen> findPathogenByName(String name);
+    List<Pathogen> findPathogenByTaxonomyId(String taxonomyId);
 
     List<CellSample> findCellLineByName(String name);
 

@@ -150,7 +150,7 @@ def create_method_name(subject, evidence, role, mime_type):
         if subject == 'cell_subset':
             method_name = 'findCellSubsetByOntologyId'
         elif subject == 'pathogen':
-            method_name = 'findPathogenByName'
+            method_name = 'findPathogenByTaxonomyId'
         elif subject == 'vaccine':
             method_name = 'findVaccineByName'
         elif subject == 'gene':

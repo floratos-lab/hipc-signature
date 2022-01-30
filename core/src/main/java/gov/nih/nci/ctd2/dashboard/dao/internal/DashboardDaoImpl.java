@@ -911,9 +911,8 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     @Override
-    public List<Pathogen> findPathogenByName(String name) {
-        log.debug("pathogen name=" + name);
-        return queryWithClass("from PathogenImpl where displayName = :name", "name", name);
+    public List<Pathogen> findPathogenByTaxonomyId(String taxonomyId) {
+        return queryWithClass("from PathogenImpl where taxonomyId = :taxonomyId", "taxonomyId", taxonomyId);
     }
 
     private static String createLikeClauses(String filterBy) {
