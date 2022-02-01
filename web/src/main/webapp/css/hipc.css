@@ -248,6 +248,10 @@ blockquote p {
     font-size: 18px
 }
 
+#omni-input {
+    width: 200px;
+}
+
 .popover-content {
     font-size: 14px;
 }
