@@ -14,7 +14,6 @@ import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Fields;
-import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Store;
 
 import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
@@ -25,7 +24,6 @@ import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 @Table(name = "dashboard_entity",
         indexes = { @Index(name = "entityNameIdx", columnList = "displayName" )
 })
-@Indexed
 public class DashboardEntityImpl implements DashboardEntity {
     private static final long serialVersionUID = 6953675960325146562L;
     public final static String FIELD_DISPLAYNAME = "keyword";
