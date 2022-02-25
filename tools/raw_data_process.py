@@ -6,7 +6,7 @@ import os
 import shutil
 from data_config import DataConfig
 
-SOURCE_DATA_LOCATION = os.path.expanduser("~/git/hipc-dashboard-pipeline/submissions")
+SOURCE_DATA_LOCATION = os.path.expanduser("~/git/hipc-dashboard-pipeline/data/release_files")
 TARGET_DATA_LOCATION = os.path.expanduser("~/data_collection/hipc_data")
 HIPC_APPLICATION_LOCATION = "."
 
