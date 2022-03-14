@@ -1,4 +1,5 @@
 name	id	definition	comment	broad	exact	related
+Bronchoalveolar Lavage Fluid	NCIT_C13195	Fluid introduced into, and collected from, the lungs by a bronchoalveolar lavage procedure.				
 blood serum	UBERON_0001977	The portion of blood plasma that excludes clotting factors.				
 continuant	BFO_0000002	An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts.				
 occurrent	BFO_0000003	An entity that has temporal parts and that happens, unfolds or develops through time.				

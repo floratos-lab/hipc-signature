@@ -26,7 +26,7 @@
   <bean id="controlledVocabularySimpleStep" class="org.springframework.batch.core.step.item.SimpleStepFactoryBean" abstract="true">
 	<property name="transactionManager" ref="transactionManager" />
 	<property name="jobRepository" ref="jobRepository" />
-	<property name="commitInterval" value="30000" />
+	<property name="commitInterval" value="80000" />
   </bean>
 
   <!-- cv per template beans -->
