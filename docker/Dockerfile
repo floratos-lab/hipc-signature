@@ -26,7 +26,6 @@ RUN chmod 755 /*.sh
 
 COPY hipc-dashboard-spring-boot.war app.war
 COPY dashboard.sql /dashboard.sql
-RUN mkdir -p /index-base/hipc-signatures-index
 
 ENV INDEX_BASE=/index-base
 
