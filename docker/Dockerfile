@@ -17,9 +17,6 @@ RUN apt-get update && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Remove pre-installed database
-RUN rm -rf /var/lib/mysql/*
-
 # Add image configuration and scripts
 COPY run.sh /run.sh
 RUN chmod 755 /*.sh
