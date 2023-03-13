@@ -8,4 +8,4 @@ image_name=zhouji2018/hipc
 if [ ! -z $1 ]; then
   image_name=zhouji2018/hipc:$1
 fi
-docker run -v /index-base/hipc-signatures-index:/index-base/hipc-signatures-index -e MYSQL_ROOT_PASSWORD=${DB_PASSWORD} -d --name hipc -p 9002:80 ${image_name}
+docker run -v /index-base/hipc-signatures-index:/index-base/hipc-signatures-index -v ~/mysql/datadir:/var/lib/mysql -d --name hipc -p 9002:80 ${image_name}

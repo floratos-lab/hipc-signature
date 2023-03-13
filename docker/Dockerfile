@@ -22,7 +22,6 @@ COPY run.sh /run.sh
 RUN chmod 755 /*.sh
 
 COPY hipc-dashboard-spring-boot.war app.war
-COPY dashboard.sql /dashboard.sql
 
 ENV INDEX_BASE=/index-base
 
