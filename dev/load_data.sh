@@ -13,7 +13,7 @@ sudo rm -rf $INDEX_BASE/hipc-signatures-index
 LOAD_OPTS=('t' 'am' 'cl' 'ts' 'cp' 'g' 'p' 'sh' 'si' 'v' 'c' 'n' 'cv' 'o' 'i' 'r')
 for opt in "${LOAD_OPTS[@]}"
 do
-    CMD="java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -$opt"
+    CMD="java -jar -Xmx16G $HIPC_HOME/admin/target/dashboard-admin.jar -$opt"
     echo $CMD
     $CMD
     if [[ $? -ne 0 ]] ; then
