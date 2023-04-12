@@ -1890,16 +1890,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_107Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_107.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_107LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32307550_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32307550_1.data.location}" />
             <property name="delegate">
@@ -1980,71 +1970,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_103Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_103.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_103LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33425248_16Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33425248_16.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_33425248_16LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_102Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_102.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_102LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_29Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_29.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_29LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_109Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_109.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_109LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_13Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_13.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_13LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_97Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_97.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_97LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2090,16 +2020,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_4Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_4.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_4LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33013872_9Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33013872_9.data.location}" />
             <property name="delegate">
@@ -2125,26 +2045,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_49LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_123Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_123.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_123LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_113Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_113.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_113LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2190,26 +2090,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_15Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_15.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_15LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_124Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_124.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_124LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_25Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_25.data.location}" />
             <property name="delegate">
@@ -2240,41 +2120,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_6Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_6.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_6LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_76Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_76.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_76LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_118Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_118.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_118LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_10Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_10.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_10LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2295,16 +2145,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_9LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_96Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_96.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_96LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2410,26 +2250,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_98Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_98.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_98LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_17Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_17.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_17LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33425248_4Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33425248_4.data.location}" />
             <property name="delegate">
@@ -2500,31 +2320,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_18Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_18.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_18LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_33Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_33.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_33LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_94Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_94.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_94LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2570,16 +2370,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_5Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_5.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_5LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33425248_6Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33425248_6.data.location}" />
             <property name="delegate">
@@ -2605,16 +2395,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32816392_7LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_112Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_112.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_112LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2680,16 +2460,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_8Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_8.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_8LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_58Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_58.data.location}" />
             <property name="delegate">
@@ -2730,16 +2500,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_116Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_116.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_116LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_24Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_24.data.location}" />
             <property name="delegate">
@@ -2775,16 +2535,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_11LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_23Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_23.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_23LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2860,16 +2610,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_3Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_3.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_3LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33195414_2Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33195414_2.data.location}" />
             <property name="delegate">
@@ -2905,26 +2645,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_33625796_7LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_22Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_22.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_22LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_101Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_101.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_101LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -2970,16 +2690,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_28Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_28.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_28LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_37Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_37.data.location}" />
             <property name="delegate">
@@ -3010,51 +2720,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_26Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_26.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_26LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_7Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_7.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_7LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33625796_28Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33625796_28.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_33625796_28LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_2Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_2.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_2LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_125Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_125.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_125LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3110,16 +2780,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_106Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_106.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_106LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_83Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_83.data.location}" />
             <property name="delegate">
@@ -3165,16 +2825,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_53LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_33425248_26Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_33425248_26.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_33425248_26LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3310,16 +2960,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_104Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_104.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_104LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33425248_5Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33425248_5.data.location}" />
             <property name="delegate">
@@ -3370,31 +3010,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_93Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_93.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_93LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33625796_31Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33625796_31.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_33625796_31LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_108Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_108.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_108LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3435,16 +3055,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_33013872_11LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_117Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_117.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_117LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3530,21 +3140,21 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_33625796_6Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_33625796_6.data.location}" />
+	<bean name="hipc_inf_gene_32788292_60Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_gene_32788292_60.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_33625796_6LineMapper" />
+    				<property name="lineMapper" ref="hipc_inf_gene_32788292_60LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_110Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_110.data.location}" />
+	<bean name="hipc_inf_gene_33625796_6Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_gene_33625796_6.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_110LineMapper" />
+    				<property name="lineMapper" ref="hipc_inf_gene_33625796_6LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3610,16 +3220,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_121Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_121.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_121LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_63Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_63.data.location}" />
             <property name="delegate">
@@ -3640,31 +3240,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_27Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_27.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_27LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32816392_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32816392_1.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32816392_1LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_14Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_14.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_14LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3700,16 +3280,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_19Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_19.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_19LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33013872_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33013872_1.data.location}" />
             <property name="delegate">
@@ -3730,16 +3300,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_100Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_100.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_100LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33625796_18Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33625796_18.data.location}" />
             <property name="delegate">
@@ -3755,16 +3315,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_18LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_114Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_114.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_114LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3795,16 +3345,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32826343_1LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_111Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_111.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_111LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -3900,26 +3440,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_20Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_20.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_20LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_122Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_122.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_122LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33425248_24Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33425248_24.data.location}" />
             <property name="delegate">
@@ -4010,16 +3530,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_115Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_115.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_115LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32307550_4Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32307550_4.data.location}" />
             <property name="delegate">
@@ -4040,16 +3550,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_120Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_120.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_120LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33625796_15Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33625796_15.data.location}" />
             <property name="delegate">
@@ -4065,16 +3565,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32826343_2LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_9Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_9.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_9LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -4110,41 +3600,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_105Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_105.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_105LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_1.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_1LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33625796_20Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33625796_20.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_33625796_20LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_24Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_24.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_24LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -4170,31 +3630,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32941618_16Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_16.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_16LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33425248_8Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33425248_8.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_33425248_8LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32941618_25Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32941618_25.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32941618_25LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -4290,31 +3730,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_99Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_99.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_99LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_32788292_75Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_32788292_75.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_75LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_gene_32788292_95Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_95.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_95LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -4390,16 +3810,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_gene_32788292_119Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_gene_32788292_119.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_gene_32788292_119LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_gene_33425248_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_gene_33425248_1.data.location}" />
             <property name="delegate">
@@ -4425,16 +3835,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_gene_32788292_28LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_58Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_58.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_58LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -4525,16 +3925,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33391280_40LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_60Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_60.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_60LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -4645,26 +4035,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33391280_51LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_75Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_75.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_75LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_57Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_57.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_57LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -4950,31 +4320,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_73Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_73.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_73LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_33391280_43Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33391280_43.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33391280_43LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_33013872_12Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_33013872_12.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_33013872_12LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -5140,16 +4490,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_68Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_68.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_68LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_33391280_30Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33391280_30.data.location}" />
             <property name="delegate">
@@ -5165,16 +4505,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33239683_4LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_77Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_77.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_77LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -5220,16 +4550,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_69Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_69.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_69LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_33391280_4Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33391280_4.data.location}" />
             <property name="delegate">
@@ -5265,16 +4585,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33846275_8LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_67Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_67.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_67LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -5435,16 +4745,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_32650275_22LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_64Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_64.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_64LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -5800,6 +5100,16 @@
 			</bean>
 		</property>
 	</bean>
+	<bean name="hipc_inf_ctf_32717743_24Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_ctf_32717743_24.data.location}" />
+            <property name="delegate">
+                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+    				<property name="lineMapper" ref="hipc_inf_ctf_32717743_24LineMapper" />
+				<property name="linesToSkip" value="7" />
+
+			</bean>
+		</property>
+	</bean>
 	<bean name="hipc_inf_ctf_32717743_26Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_32717743_26.data.location}" />
             <property name="delegate">
@@ -6130,41 +5440,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_33028979_30Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_33028979_30.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_33028979_30LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_32320677_21Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_32320677_21.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_32320677_21LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_80Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_80.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_80LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_63Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_63.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_63LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -6390,16 +5670,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_65Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_65.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_65LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_34099652_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_34099652_1.data.location}" />
             <property name="delegate">
@@ -6435,16 +5705,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_32650275_30LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_66Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_66.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_66LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -6680,16 +5940,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_76Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_76.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_76LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_32217835_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_32217835_1.data.location}" />
             <property name="delegate">
@@ -6765,16 +6015,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33546489_14LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_33846275_16Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_33846275_16.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_33846275_16LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -6910,26 +6150,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_56Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_56.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_56LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_79Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_79.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_79LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_33060840_18Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33060840_18.data.location}" />
             <property name="delegate">
@@ -7020,26 +6240,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_78Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_78.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_78LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_70Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_70.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_70LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_33937096_23Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33937096_23.data.location}" />
             <property name="delegate">
@@ -7105,16 +6305,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33391280_6LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_33013872_11Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_33013872_11.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_33013872_11LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -7290,6 +6480,16 @@
 			</bean>
 		</property>
 	</bean>
+	<bean name="hipc_inf_ctf_32794454_3Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_ctf_32794454_3.data.location}" />
+            <property name="delegate">
+                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+    				<property name="lineMapper" ref="hipc_inf_ctf_32794454_3LineMapper" />
+				<property name="linesToSkip" value="7" />
+
+			</bean>
+		</property>
+	</bean>
 	<bean name="hipc_inf_ctf_33937096_22Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33937096_22.data.location}" />
             <property name="delegate">
@@ -7405,16 +6605,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33208459_4LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_71Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_71.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_71LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -7630,21 +6820,21 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_54Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_54.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_54LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_33060840_24Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33060840_24.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33060840_24LineMapper" />
+				<property name="linesToSkip" value="7" />
+
+			</bean>
+		</property>
+	</bean>
+	<bean name="hipc_inf_ctf_32794454_4Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_ctf_32794454_4.data.location}" />
+            <property name="delegate">
+                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+    				<property name="lineMapper" ref="hipc_inf_ctf_32794454_4LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -7780,11 +6970,21 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_59Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_59.data.location}" />
+	<bean name="hipc_inf_ctf_32794454_1Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_ctf_32794454_1.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_59LineMapper" />
+    				<property name="lineMapper" ref="hipc_inf_ctf_32794454_1LineMapper" />
+				<property name="linesToSkip" value="7" />
+
+			</bean>
+		</property>
+	</bean>
+	<bean name="hipc_inf_ctf_32794454_2Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_ctf_32794454_2.data.location}" />
+            <property name="delegate">
+                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+    				<property name="lineMapper" ref="hipc_inf_ctf_32794454_2LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -7920,16 +7120,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_74Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_74.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_74LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_32788292_12Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_32788292_12.data.location}" />
             <property name="delegate">
@@ -7945,16 +7135,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_32829467_17LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_52Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_52.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_52LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -8045,16 +7225,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_32826343_2LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_53Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_53.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_53LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -8300,16 +7470,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32788292_25Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32788292_25.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32788292_25LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_32632085_4Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_32632085_4.data.location}" />
             <property name="delegate">
@@ -8325,16 +7485,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33391280_74LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_61Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_61.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_61LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -8420,6 +7570,16 @@
 			</bean>
 		</property>
 	</bean>
+	<bean name="hipc_inf_ctf_32717743_22Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="${hipc_inf_ctf_32717743_22.data.location}" />
+            <property name="delegate">
+                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
+    				<property name="lineMapper" ref="hipc_inf_ctf_32717743_22LineMapper" />
+				<property name="linesToSkip" value="7" />
+
+			</bean>
+		</property>
+	</bean>
 	<bean name="hipc_inf_ctf_33060840_11Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33060840_11.data.location}" />
             <property name="delegate">
@@ -8490,31 +7650,11 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_62Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_62.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_62LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_32826343_4Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_32826343_4.data.location}" />
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_32826343_4LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_81Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_81.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_81LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -8680,16 +7820,6 @@
 			</bean>
 		</property>
 	</bean>
-	<bean name="hipc_inf_ctf_32650275_72Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_72.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_72LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
 	<bean name="hipc_inf_ctf_33060840_2Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
 		<property name="resources" value="${hipc_inf_ctf_33060840_2.data.location}" />
             <property name="delegate">
@@ -8735,16 +7865,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_32650275_31LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32650275_55Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32650275_55.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32650275_55LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -9005,16 +8125,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33060840_10LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_32788292_20Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_32788292_20.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_32788292_20LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
@@ -9495,16 +8605,6 @@
             <property name="delegate">
                 <bean class="org.springframework.batch.item.file.FlatFileItemReader">
     				<property name="lineMapper" ref="hipc_inf_ctf_33391280_61LineMapper" />
-				<property name="linesToSkip" value="7" />
-
-			</bean>
-		</property>
-	</bean>
-	<bean name="hipc_inf_ctf_33028979_29Reader" class="org.springframework.batch.item.file.MultiResourceItemReader">
-		<property name="resources" value="${hipc_inf_ctf_33028979_29.data.location}" />
-            <property name="delegate">
-                <bean class="org.springframework.batch.item.file.FlatFileItemReader">
-    				<property name="lineMapper" ref="hipc_inf_ctf_33028979_29LineMapper" />
 				<property name="linesToSkip" value="7" />
 
 			</bean>
