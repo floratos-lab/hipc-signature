@@ -36,16 +36,10 @@ import org.hibernate.search.Search;
 import org.springframework.cache.annotation.Cacheable;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
-import gov.nih.nci.ctd2.dashboard.impl.CellSubsetImpl;
-import gov.nih.nci.ctd2.dashboard.impl.CompoundImpl;
 import gov.nih.nci.ctd2.dashboard.impl.DashboardEntityImpl;
 import gov.nih.nci.ctd2.dashboard.impl.ObservationTemplateImpl;
-import gov.nih.nci.ctd2.dashboard.impl.PathogenImpl;
 import gov.nih.nci.ctd2.dashboard.impl.SubjectImpl;
-import gov.nih.nci.ctd2.dashboard.impl.SubjectWithOrganismImpl;
-import gov.nih.nci.ctd2.dashboard.impl.SubmissionImpl;
 import gov.nih.nci.ctd2.dashboard.impl.TissueSampleImpl;
-import gov.nih.nci.ctd2.dashboard.impl.VaccineImpl;
 import gov.nih.nci.ctd2.dashboard.model.AnimalModel;
 import gov.nih.nci.ctd2.dashboard.model.Annotation;
 import gov.nih.nci.ctd2.dashboard.model.CellSample;
@@ -75,9 +69,12 @@ import gov.nih.nci.ctd2.dashboard.model.Vaccine;
 import gov.nih.nci.ctd2.dashboard.model.Xref;
 import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.GeneData;
+import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
 import gov.nih.nci.ctd2.dashboard.util.WordCloudEntry;
-import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
+import gov.nih.nci.ctd2.dashboard.util.SearchResults;
+import gov.nih.nci.ctd2.dashboard.util.SearchResults.SubmissionResult;
+import gov.nih.nci.ctd2.dashboard.util.SubjectResult;
 
 public class DashboardDaoImpl implements DashboardDao {
     private static Log log = LogFactory.getLog(DashboardDaoImpl.class);
@@ -664,7 +661,7 @@ public class DashboardDaoImpl implements DashboardDao {
 
     @Override
     @Cacheable(value = "searchCache")
-    public ArrayList<DashboardEntityWithCounts> search(String keyword) {
+    public SearchResults search(String keyword) {
         HashSet<DashboardEntity> entitiesUnique = new HashSet<DashboardEntity>();
 
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
@@ -715,6 +712,9 @@ public class DashboardDaoImpl implements DashboardDao {
             }
         }
 
+        List<SubjectResult> subject_result = new ArrayList<SubjectResult>();
+        List<SubmissionResult> submission_result = new ArrayList<SubmissionResult>();
+        Set<Observation> observations = new HashSet<Observation>();
         ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
         Map<Integer, Set<String>> matchingObservations = new HashMap<Integer, Set<String>>();
         for (DashboardEntity entity : entitiesUnique) {
@@ -733,6 +733,8 @@ public class DashboardDaoImpl implements DashboardDao {
                         terms.add(term);
                     }
                 }
+                Set<String> roles = new HashSet<String>();
+                Set<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
                 if (entity instanceof CellSubset) {
                     Long subjectId = Long.valueOf(entity.getId());
                     String role1 = "cell_biomarker", role2 = "tissue";
@@ -743,6 +745,7 @@ public class DashboardDaoImpl implements DashboardDao {
                         entityWithCounts.setObservationCount(count1);
                         entityWithCounts.setRole(role1);
                         entitiesWithCounts.add(entityWithCounts);
+                        roles.add(role1);
                     }
                     int count2 = countObservationsBySubjectId(subjectId, role2).intValue();
                     if (count2 > 0) {
@@ -751,13 +754,27 @@ public class DashboardDaoImpl implements DashboardDao {
                         entityWithCounts.setObservationCount(count2);
                         entityWithCounts.setRole(role2);
                         entitiesWithCounts.add(entityWithCounts);
+                        roles.add(role2);
                     }
                 } else {
                     DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
                     entityWithCounts.setDashboardEntity(entity);
                     entityWithCounts.setObservationCount(observationIds.size());
                     entitiesWithCounts.add(entityWithCounts);
+                    Subject subject = (Subject)entity;
+                    for (ObservedSubject observedSubject : findObservedSubjectBySubject(subject)) {
+                        Observation observation = observedSubject.getObservation();
+                        observations.add(observation);
+                        ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
+                        submissionCenters.add(observationTemplate.getSubmissionCenter());
+                        roles.add(observedSubject.getObservedSubjectRole().getSubjectRole().getDisplayName());
+                    }
                 }
+                SubjectResult x = new SubjectResult(entity, observationIds.size(), 
+                    submissionCenters.size(), 
+                    1, 
+                    roles); // TODO
+                subject_result.add(x);
             } else if (entity instanceof Submission) {
                 DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
                 entityWithCounts.setDashboardEntity(entity);
@@ -765,6 +782,19 @@ public class DashboardDaoImpl implements DashboardDao {
                 entityWithCounts.setMaxTier(((Submission) entity).getObservationTemplate().getTier());
                 entityWithCounts.setCenterCount(1);
                 entitiesWithCounts.add(entityWithCounts);
+                Submission submission = (Submission)entity;
+                ObservationTemplate template = submission.getObservationTemplate();
+                SubmissionResult x = new SubmissionResult(
+                    submission.getStableURL(),
+                    submission.getSubmissionDate(),
+                    template.getDescription(),
+                    template.getTier(),
+                    template.getSubmissionCenter().getDisplayName(),
+                    submission.getId(),
+                    findObservationsBySubmission(submission).size(),
+                    template.getIsSubmissionStory()
+                ); // TODO
+                submission_result.add(x);
             }
         }
 
@@ -778,23 +808,40 @@ public class DashboardDaoImpl implements DashboardDao {
             entity.setDashboardEntity(v);
             entity.setObservationCount(observationNumber);
             entitiesWithCounts.add(entity);
+            Subject subject = (Subject)entity;
+            Set<String> roles = new HashSet<String>();
+            Set<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
+            for (ObservedSubject observedSubject : findObservedSubjectBySubject(subject)) {
+                Observation observation = observedSubject.getObservation();
+                observations.add(observation);
+                ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
+                submissionCenters.add(observationTemplate.getSubmissionCenter());
+                roles.add(observedSubject.getObservedSubjectRole().getSubjectRole().getDisplayName());
+            }
+            SubjectResult x = new SubjectResult(v, observationNumber,
+                submissionCenters.size(),
+                1, roles); // TODO
+            subject_result.add(x);
         }
+        SearchResults searchResults = new SearchResults();
+        searchResults.submission_result = submission_result;
+        searchResults.subject_result = subject_result;
 
         // add observations
+        List<Observation> observation_result = new ArrayList<Observation>();
         Session session = getSession();
         session.setDefaultReadOnly(true);
         for (Integer obId : matchingObservations.keySet()) {
             Set<String> terms = matchingObservations.get(obId);
             if (total <= 1 || terms.size() < total)
                 continue;
-            DashboardEntityWithCounts oneObservationResult = new DashboardEntityWithCounts();
             Observation ob = session.get(Observation.class, obId);
-            oneObservationResult.setDashboardEntity(ob);
-            entitiesWithCounts.add(oneObservationResult);
+            observation_result.add(ob);
         }
         session.close();
+        searchResults.observation_result = observation_result;
 
-        return entitiesWithCounts;
+        return searchResults;
     }
 
     private int countObservation(Integer vaccine_db_id) {

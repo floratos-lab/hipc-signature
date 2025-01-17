@@ -1140,20 +1140,20 @@
 
     <script type="text/template" id="search-result-row-tmpl">
         <tr>
-            <td id="search-image-{{dashboardEntity.id}}"></td>
+            <td id="search-image-{{id}}"></td>
             <td>
-                <a href="&#35;{{dashboardEntity.stableURL}}/{{role}}">{{dashboardEntity.displayName}}</a><br>
-                <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
+                <a href="&#35;{{stableURL}}/{{role}}">{{subjectName}}</a><br>
+                <i>{{organism.displayName != '-' ? "(" + organism.displayName + ")" : ""}}</i>
             </td>
             <td>
-                <ul id="synonyms-{{dashboardEntity.id}}">
+                <ul id="synonyms-{{id}}">
                     <!-- here will go the synonyms -->
                 </ul>
             </td>
-            <td>{{dashboardEntity.class}}</td>
+            <td>{{className}}</td>
             <td>{{role}}</td>
             <td class="nonewline">
-                <a href="&#35;{{dashboardEntity.stableURL}}/{{role}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
+                <a href="&#35;{{stableURL}}/{{role}}" id="subject-observation-count-{{id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
             </td>
         </tr>
@@ -1161,22 +1161,22 @@
 
     <script type="text/template" id="search-result-gene-row-tmpl">
         <tr>
-            <td id="search-image-{{dashboardEntity.id}}"></td>
+            <td id="search-image-{{id}}"></td>
             <td>
-                <a href="&#35;{{dashboardEntity.stableURL}}">{{dashboardEntity.displayName}}</a>
-                <a href="#" class="addGene-{{dashboardEntity.displayName}} greenColor" title="Add gene to cart" >+</a>
+                <a href="&#35;{{stableURL}}">{{subjectName}}</a>
+                <a href="#" class="addGene-{{subjectName}} greenColor" title="Add gene to cart" >+</a>
                 <br>
-                <i>{{dashboardEntity.organism.displayName != '-' ? "(" + dashboardEntity.organism.displayName + ")" : ""}}</i>
+                <i>{{organism.displayName != '-' ? "(" + organism.displayName + ")" : ""}}</i>
             </td>
             <td>
-                <ul id="synonyms-{{dashboardEntity.id}}">
+                <ul id="synonyms-{{id}}">
                     <!-- here will go the synonyms -->
                 </ul>
             </td>
-            <td>{{dashboardEntity.type}}</td>
+            <td>{{type}}</td>
             <td>gene_biomarker</td>
             <td class="nonewline">
-                <a href="&#35;{{dashboardEntity.stableURL}}" id="subject-observation-count-{{dashboardEntity.id}}" count="{{observationCount}}">{{observationCount}}</a>
+                <a href="&#35;{{stableURL}}" id="subject-observation-count-{{id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
             </td>
         </tr>
@@ -1211,7 +1211,7 @@
             </table>
 
             <div id="submission-search-results">
-                <h3>Study Descriptions Matching any Search Term</h3>
+                <h3>Study descriptions matching any search term</h3>
                 <table id="searched-submissions" class="table table-bordered table-striped">
                     <thead>
                     <tr>
@@ -1227,7 +1227,7 @@
             </div>
 
             <div id="observation-search-results">
-                <h3><span id=observation-search-title>Observations Matching all Search Terms</span></h3>
+                <h3><span id=observation-search-title>Observations matching all search terms</span></h3>
                 <table id="searched-observation-grid" class="table table-bordered table-striped observations">
                     <thead>
                     <tr>
@@ -1254,11 +1254,11 @@
 
     <script type="text/template" id="search-submission-tbl-row-tmpl">
         <tr>
-            <td><a href="&#35;{{dashboardEntity.stableURL}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
-            <td><a href="&#35;{{dashboardEntity.stableURL}}">{{dashboardEntity.submissionDate}}</a></td>
-            <td>{{dashboardEntity.observationTemplate.description}}</td>
+            <td><a href="&#35;{{stableURL}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
+            <td><a href="&#35;{{stableURL}}">{{submissionDate}}</a></td>
+            <td>{{description}}</td>
             <td width=150>
-                <a href="&#35;{{dashboardEntity.stableURL}}" id="search-observation-count-{{dashboardEntity.id}}">{{observationCount}} observations</a>
+                <a href="&#35;{{stableURL}}" id="search-observation-count-{{id}}">{{observationCount}} observations</a>
             </td>
         </tr>
     </script>

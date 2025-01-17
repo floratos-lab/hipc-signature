@@ -194,11 +194,8 @@ import create_wordcloud from './wordcloud.js'
         }
     });
 
-    const SearchResult = Backbone.Model.extend({});
-
-    const SearchResults = Backbone.Collection.extend({
+    const SearchResults = Backbone.Model.extend({
         url: CORE_API_URL + "search/",
-        model: SearchResult,
 
         initialize: function (attributes) {
             this.url += encodeURIComponent(attributes.term.toLowerCase());
@@ -992,7 +989,7 @@ import create_wordcloud from './wordcloud.js'
             _.each(entity.synonyms, function (aSynonym) {
                 if (!aSynonym.displayName) return;
                 new SynonymView({
-                    model: aSynonym,
+                    model: {displayName: aSynonym},
                     el: broadEl
                 }).render();
             });
@@ -1000,7 +997,7 @@ import create_wordcloud from './wordcloud.js'
             _.each(entity.exactSynonyms, function (aSynonym) {
                 if (!aSynonym.displayName) return;
                 new SynonymView({
-                    model: aSynonym,
+                    model: {displayName: aSynonym},
                     el: exactEl
                 }).render();
             });
@@ -1008,7 +1005,7 @@ import create_wordcloud from './wordcloud.js'
             _.each(entity.relatedSynonyms, function (aSynonym) {
                 if (!aSynonym.displayName) return;
                 new SynonymView({
-                    model: aSynonym,
+                    model: {displayName: aSynonym},
                     el: relatedEl
                 }).render();
             });
@@ -1744,10 +1741,10 @@ import create_wordcloud from './wordcloud.js'
         template: _.template($("#search-result-row-tmpl").html()),
         render: function () {
             const model = this.model;
-            const result = model.dashboardEntity;
-            result.type = result.class;
+            const result = model;
+            //result.type = result.class;
 
-            if (result.class != "Gene") {
+            if (result.className != "Gene") {
                 this.template = _.template($("#search-result-row-tmpl").html());
                 $(this.el).append(this.template(model));
             } else {
@@ -1765,16 +1762,16 @@ import create_wordcloud from './wordcloud.js'
             const thatEl = $("#synonyms-" + result.id);
             _.each(result.synonyms, function (aSynonym) {
                 new SynonymView({
-                    model: aSynonym,
+                    model:{displayName: aSynonym},
                     el: thatEl
                 }).render();
             });
 
             const imageEl = $("#search-image-" + result.id);
-            const imageData = class2imageData[result.class];
+            const imageData = class2imageData[result.className];
             imageData.stableURL = result.stableURL;
             const imgTemplate = $("#search-results-image-tmpl");
-            if (result.class == "ShRna" && result.type.toLowerCase() == "sirna") {
+            if (result.className == "ShRna" && result.type.toLowerCase() == "sirna") {
                 imageData.image = "img/sirna.png";
                 imageData.label = "siRNA";
             }
@@ -1834,7 +1831,11 @@ import create_wordcloud from './wordcloud.js'
                     $("#loading-row").remove();
                     $("#submission-search-results").hide();
                     $("#observation-search-results").hide();
-                    if (searchResults.models.length == 0) {
+                    const results = searchResults.toJSON();
+                    const subject_result = results.subject_result;
+                    const submission_result = results.submission_result;
+                    const observation_result = results.observation_result;
+                    if (subject_result.length + submission_result.length == 0) {
                         (new EmptyResultsView({
                             el: $(thatEl).find("tbody"),
                             model: thatModel
@@ -1842,31 +1843,36 @@ import create_wordcloud from './wordcloud.js'
                     } else {
                         const submissions = [];
                         const matching_observations = [];
-                        _.each(searchResults.models, function (aResult) {
-                            aResult = aResult.toJSON();
-                            if (aResult.dashboardEntity.organism == undefined) {
-                                aResult.dashboardEntity.organism = {
+                        _.each(subject_result, function (aResult) {
+                            if (aResult.organism == undefined) {
+                                aResult.organism = {
                                     displayName: "-"
                                 };
                             }
 
-                            if (aResult.dashboardEntity.class == "Submission") {
+                            if (aResult.class == "Submission") {
                                 submissions.push(aResult);
                                 return;
-                            } else if (aResult.dashboardEntity.class == "Observation") {
-                                matching_observations.push(aResult.dashboardEntity);
+                            } else if (aResult.class == "Observation") {
+                                matching_observations.push(aResult);
                                 return;
                             }
 
-                            if (aResult.dashboardEntity.class == "CellSubset") {
-                                aResult.dashboardEntity.id = aResult.dashboardEntity.id + aResult.role;
+                            if (aResult.className == "CellSubset") {
+                                aResult.id = aResult.id + aResult.role;
                             } else {
-                                aResult.role = aResult.dashboardEntity.class.toLowerCase();
+                                aResult.role = aResult.class.toLowerCase();
                             }
                             new SearchResultsRowView({
                                 model: aResult,
                                 el: $(thatEl).find("tbody")
                             }).render();
+                        });
+                        _.each(submission_result, function (aResult) {
+                            submissions.push(aResult);
+                        });
+                        _.each(observation_result, function (aResult) {
+                            matching_observations.push(aResult);
                         });
 
                         $(".search-info").tooltip({
@@ -1914,7 +1920,7 @@ import create_wordcloud from './wordcloud.js'
                                     $(tmplName).html())({
                                         count: submission.observationCount
                                     });
-                                $("#search-observation-count-" + submission.dashboardEntity.id).html(cntContent);
+                                $("#search-observation-count-" + submission.id).html(cntContent);
                             });
 
                             $("#searched-submissions").dataTable({

@@ -9,8 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
-import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
-import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
+import gov.nih.nci.ctd2.dashboard.util.SearchResults;
 
 /* 
     A simple tool to test searching functionality outside the web application. 
@@ -37,13 +36,12 @@ public class SearchTester {
 
         DashboardDao dao = (DashboardDao) appContext.getBean("dashboardDao");
         log.debug("starting time " + new Date());
-        ArrayList<DashboardEntityWithCounts> list = dao.search(args[0]);
+        SearchResults searchResults = dao.search(args[0]);
         log.debug("finished time " + new Date());
-        System.out.println("returned size is " + list.size());
-        list.stream().limit(10).forEach(x -> {
-            DashboardEntity dashboardEntity = x.getDashboardEntity();
-            System.out.println(dashboardEntity.getId() + "," + dashboardEntity.getDisplayName() + ","
-                    + dashboardEntity.getClass());
+        System.out.println("returned number of subjects is " + searchResults.numberOfSubjects());
+        searchResults.subject_result.stream().limit(10).forEach(x -> {
+            System.out.println(x.id + "," + x.subjectName + ","
+                    + x.className);
         });
         log.debug("done with testing " + new Date());
     }

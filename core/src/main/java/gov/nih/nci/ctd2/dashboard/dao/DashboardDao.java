@@ -1,6 +1,5 @@
 package gov.nih.nci.ctd2.dashboard.dao;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,11 +29,11 @@ import gov.nih.nci.ctd2.dashboard.model.TissueSample;
 import gov.nih.nci.ctd2.dashboard.model.Transcript;
 import gov.nih.nci.ctd2.dashboard.model.Vaccine;
 import gov.nih.nci.ctd2.dashboard.model.Xref;
-import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
 import gov.nih.nci.ctd2.dashboard.util.WordCloudEntry;
 import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
+import gov.nih.nci.ctd2.dashboard.util.SearchResults;
 
 public interface DashboardDao {
     void save(DashboardEntity entity);
@@ -137,7 +136,7 @@ public interface DashboardDao {
 
     void cleanIndex(int batchSize);
 
-    ArrayList<DashboardEntityWithCounts> search(String keyword);
+    SearchResults search(String keyword);
 
     List<Submission> findSubmissionByIsStory(boolean isSubmissionStory, boolean sortByPriority);
 
