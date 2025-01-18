@@ -1142,7 +1142,7 @@
         <tr>
             <td id="search-image-{{id}}"></td>
             <td>
-                <a href="&#35;{{stableURL}}/{{role}}">{{subjectName}}</a><br>
+                <a href="&#35;{{stableURL}}">{{subjectName}}</a><br>
                 <i>{{organism.displayName != '-' ? "(" + organism.displayName + ")" : ""}}</i>
             </td>
             <td>
@@ -1151,9 +1151,11 @@
                 </ul>
             </td>
             <td>{{className}}</td>
-            <td>{{role}}</td>
+            <td><ul id="roles-{{id}}">
+                    <!-- here will go the roles -->
+            </ul></td>
             <td class="nonewline">
-                <a href="&#35;{{stableURL}}/{{role}}" id="subject-observation-count-{{id}}" count="{{observationCount}}">{{observationCount}}</a>
+                <a href="&#35;{{stableURL}}" id="subject-observation-count-{{id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
             </td>
         </tr>
@@ -1174,7 +1176,9 @@
                 </ul>
             </td>
             <td>{{type}}</td>
-            <td>gene_biomarker</td>
+            <td><ul id="roles-{{id}}">
+                <!-- here will go the roles -->
+            </ul></td>
             <td class="nonewline">
                 <a href="&#35;{{stableURL}}" id="subject-observation-count-{{id}}" count="{{observationCount}}">{{observationCount}}</a>
                 <i class="icon-question-sign obs-tooltip {{observationCount < 1 ? 'hide' : ''}}" title="{{observationCount}} observations from {{centerCount}} centers"></i>
@@ -1265,6 +1269,10 @@
 
     <script type="text/template" id="synonym-item-tmpl">
         <li class="synonym"><small>{{displayName}}</small></li>
+    </script>
+
+    <script type="text/template" id="role-item-tmpl">
+        <li class="synonym"><small>{{role}}</small></li>
     </script>
 
     <script type="text/template" id="transcript-item-tmpl">

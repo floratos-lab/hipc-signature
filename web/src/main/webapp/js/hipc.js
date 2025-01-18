@@ -1728,6 +1728,14 @@ import create_wordcloud from './wordcloud.js'
         }
     });
 
+    const RoleView = Backbone.View.extend({
+        template: _.template($("#role-item-tmpl").html()),
+        render: function () {
+            $(this.el).append(this.template(this.model));
+            return this;
+        }
+    });
+
     const EmptyResultsView = Backbone.View.extend({
         template: _.template($("#search-empty-tmpl").html()),
         render: function () {
@@ -1764,6 +1772,15 @@ import create_wordcloud from './wordcloud.js'
                 new SynonymView({
                     model:{displayName: aSynonym},
                     el: thatEl
+                }).render();
+            });
+
+            _.each(model.roles, function (aRole) {
+                new RoleView({
+                    model: {
+                        role: aRole
+                    },
+                    el: $("#roles-" + model.id)
                 }).render();
             });
 
@@ -1858,11 +1875,6 @@ import create_wordcloud from './wordcloud.js'
                                 return;
                             }
 
-                            if (aResult.className == "CellSubset") {
-                                aResult.id = aResult.id + aResult.role;
-                            } else {
-                                aResult.role = aResult.class.toLowerCase();
-                            }
                             new SearchResultsRowView({
                                 model: aResult,
                                 el: $(thatEl).find("tbody")

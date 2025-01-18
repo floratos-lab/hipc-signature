@@ -1,7 +1,5 @@
 package gov.nih.nci.ctd2.dashboard.util;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,15 +25,12 @@ public class SubjectResult {
     final public Set<String> roles;
     final public Set<Xref> xrefs; /* only for Compound */
     final public String type; /* only for ShRna */
-    final public String role;
 
     public SubjectResult(DashboardEntity entity, Integer observationCount, Integer centerCount, Integer matchNumber, Set<String> roles) {
         this.observationCount = observationCount;
         this.centerCount = centerCount;
         this.matchNumber = matchNumber;
         this.roles = roles;
-        if(roles.size()>0) this.role = roles.iterator().next(); // get an arbitrary one
-        else this.role = "no role";
         this.id = entity.getId();
         this.subjectName = entity.getDisplayName();
         this.className = entity.getClass().getSimpleName().replace("Impl", "");
