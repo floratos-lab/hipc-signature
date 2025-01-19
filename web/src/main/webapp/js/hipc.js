@@ -1065,7 +1065,6 @@ import create_wordcloud from './wordcloud.js'
                 }
             });
 
-            result.type = result.class;
             $(this.el).html(this.template(result));
 
             const compareName = function(a, b) {
@@ -1748,16 +1747,14 @@ import create_wordcloud from './wordcloud.js'
     const SearchResultsRowView = Backbone.View.extend({
         template: _.template($("#search-result-row-tmpl").html()),
         render: function () {
-            const model = this.model;
-            const result = model;
-            //result.type = result.class;
+            const result = this.model;
 
             if (result.className != "Gene") {
                 this.template = _.template($("#search-result-row-tmpl").html());
-                $(this.el).append(this.template(model));
+                $(this.el).append(this.template(result));
             } else {
                 this.template = _.template($("#search-result-gene-row-tmpl").html());
-                $(this.el).append(this.template(model));
+                $(this.el).append(this.template(result));
                 const currentGene = result.displayName;
 
                 $(".addGene-" + currentGene).click(function (e) {
@@ -1775,12 +1772,12 @@ import create_wordcloud from './wordcloud.js'
                 }).render();
             });
 
-            _.each(model.roles, function (aRole) {
+            _.each(result.roles, function (aRole) {
                 new RoleView({
                     model: {
                         role: aRole
                     },
-                    el: $("#roles-" + model.id)
+                    el: $("#roles-" + result.id)
                 }).render();
             });
 
@@ -1788,10 +1785,6 @@ import create_wordcloud from './wordcloud.js'
             const imageData = class2imageData[result.className];
             imageData.stableURL = result.stableURL;
             const imgTemplate = $("#search-results-image-tmpl");
-            if (result.className == "ShRna" && result.type.toLowerCase() == "sirna") {
-                imageData.image = "img/sirna.png";
-                imageData.label = "siRNA";
-            }
             imageEl.append(_.template(imgTemplate.html())(imageData));
 
             // some of the elements will be hidden in the pagination. Use magic-scoping!
@@ -1799,7 +1792,7 @@ import create_wordcloud from './wordcloud.js'
             const updateEl = $(updateElId);
             const cntContent = _.template(
                 $("#count-observations-tmpl").html())({
-                    count: model.observationCount
+                    count: result.observationCount
                 });
             updateEl.html(cntContent);
 
