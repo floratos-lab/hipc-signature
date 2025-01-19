@@ -67,7 +67,6 @@ import gov.nih.nci.ctd2.dashboard.model.TissueSample;
 import gov.nih.nci.ctd2.dashboard.model.Transcript;
 import gov.nih.nci.ctd2.dashboard.model.Vaccine;
 import gov.nih.nci.ctd2.dashboard.model.Xref;
-import gov.nih.nci.ctd2.dashboard.util.DashboardEntityWithCounts;
 import gov.nih.nci.ctd2.dashboard.util.GeneData;
 import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
@@ -715,7 +714,6 @@ public class DashboardDaoImpl implements DashboardDao {
         List<SubjectResult> subject_result = new ArrayList<SubjectResult>();
         List<SubmissionResult> submission_result = new ArrayList<SubmissionResult>();
         Set<Observation> observations = new HashSet<Observation>();
-        ArrayList<DashboardEntityWithCounts> entitiesWithCounts = new ArrayList<DashboardEntityWithCounts>();
         Map<Integer, Set<String>> matchingObservations = new HashMap<Integer, Set<String>>();
         for (DashboardEntity entity : entitiesUnique) {
             if (entity instanceof Subject) {
@@ -740,27 +738,13 @@ public class DashboardDaoImpl implements DashboardDao {
                     String role1 = "cell_biomarker", role2 = "tissue";
                     int count1 = countObservationsBySubjectId(subjectId, role1).intValue();
                     if (count1 > 0) {
-                        DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
-                        entityWithCounts.setDashboardEntity(entity);
-                        entityWithCounts.setObservationCount(count1);
-                        entityWithCounts.setRole(role1);
-                        entitiesWithCounts.add(entityWithCounts);
                         roles.add(role1);
                     }
                     int count2 = countObservationsBySubjectId(subjectId, role2).intValue();
                     if (count2 > 0) {
-                        DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
-                        entityWithCounts.setDashboardEntity(entity);
-                        entityWithCounts.setObservationCount(count2);
-                        entityWithCounts.setRole(role2);
-                        entitiesWithCounts.add(entityWithCounts);
                         roles.add(role2);
                     }
                 } else {
-                    DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
-                    entityWithCounts.setDashboardEntity(entity);
-                    entityWithCounts.setObservationCount(observationIds.size());
-                    entitiesWithCounts.add(entityWithCounts);
                     Subject subject = (Subject)entity;
                     for (ObservedSubject observedSubject : findObservedSubjectBySubject(subject)) {
                         Observation observation = observedSubject.getObservation();
@@ -772,16 +756,10 @@ public class DashboardDaoImpl implements DashboardDao {
                 }
                 SubjectResult x = new SubjectResult(entity, observationIds.size(), 
                     submissionCenters.size(), 
-                    1, 
-                    roles); // TODO
+                    1,
+                    roles);
                 subject_result.add(x);
             } else if (entity instanceof Submission) {
-                DashboardEntityWithCounts entityWithCounts = new DashboardEntityWithCounts();
-                entityWithCounts.setDashboardEntity(entity);
-                entityWithCounts.setObservationCount(findObservationsBySubmission((Submission) entity).size());
-                entityWithCounts.setMaxTier(((Submission) entity).getObservationTemplate().getTier());
-                entityWithCounts.setCenterCount(1);
-                entitiesWithCounts.add(entityWithCounts);
                 Submission submission = (Submission)entity;
                 ObservationTemplate template = submission.getObservationTemplate();
                 SubmissionResult x = new SubmissionResult(
@@ -793,7 +771,7 @@ public class DashboardDaoImpl implements DashboardDao {
                     submission.getId(),
                     findObservationsBySubmission(submission).size(),
                     template.getIsSubmissionStory()
-                ); // TODO
+                );
                 submission_result.add(x);
             }
         }
@@ -804,14 +782,9 @@ public class DashboardDaoImpl implements DashboardDao {
             int observationNumber = countObservation(v.getId());
             if (observationNumber == 0)
                 continue;
-            DashboardEntityWithCounts entity = new DashboardEntityWithCounts();
-            entity.setDashboardEntity(v);
-            entity.setObservationCount(observationNumber);
-            entitiesWithCounts.add(entity);
-            Subject subject = (Subject)entity;
             Set<String> roles = new HashSet<String>();
             Set<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
-            for (ObservedSubject observedSubject : findObservedSubjectBySubject(subject)) {
+            for (ObservedSubject observedSubject : findObservedSubjectBySubject(v)) {
                 Observation observation = observedSubject.getObservation();
                 observations.add(observation);
                 ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
@@ -820,7 +793,7 @@ public class DashboardDaoImpl implements DashboardDao {
             }
             SubjectResult x = new SubjectResult(v, observationNumber,
                 submissionCenters.size(),
-                1, roles); // TODO
+                1, roles);
             subject_result.add(x);
         }
         SearchResults searchResults = new SearchResults();

@@ -1843,16 +1843,14 @@ import create_wordcloud from './wordcloud.js'
                     $("#observation-search-results").hide();
                     const results = searchResults.toJSON();
                     const subject_result = results.subject_result;
-                    const submission_result = results.submission_result;
-                    const observation_result = results.observation_result;
-                    if (subject_result.length + submission_result.length == 0) {
+                    const submissions = results.submission_result;
+                    const matching_observations = results.observation_result;
+                    if (subject_result.length + submissions.length == 0) {
                         (new EmptyResultsView({
                             el: $(thatEl).find("tbody"),
                             model: thatModel
                         })).render();
                     } else {
-                        const submissions = [];
-                        const matching_observations = [];
                         _.each(subject_result, function (aResult) {
                             if (aResult.organism == undefined) {
                                 aResult.organism = {
@@ -1860,24 +1858,10 @@ import create_wordcloud from './wordcloud.js'
                                 };
                             }
 
-                            if (aResult.class == "Submission") {
-                                submissions.push(aResult);
-                                return;
-                            } else if (aResult.class == "Observation") {
-                                matching_observations.push(aResult);
-                                return;
-                            }
-
                             new SearchResultsRowView({
                                 model: aResult,
                                 el: $(thatEl).find("tbody")
                             }).render();
-                        });
-                        _.each(submission_result, function (aResult) {
-                            submissions.push(aResult);
-                        });
-                        _.each(observation_result, function (aResult) {
-                            matching_observations.push(aResult);
                         });
 
                         $(".search-info").tooltip({
