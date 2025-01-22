@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -19,7 +20,6 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -29,7 +29,6 @@ import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.search.FullTextQuery;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
@@ -72,7 +71,6 @@ import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
 import gov.nih.nci.ctd2.dashboard.util.WordCloudEntry;
 import gov.nih.nci.ctd2.dashboard.util.SearchResults;
-import gov.nih.nci.ctd2.dashboard.util.SearchResults.SubmissionResult;
 import gov.nih.nci.ctd2.dashboard.util.SubjectResult;
 
 public class DashboardDaoImpl implements DashboardDao {
@@ -650,30 +648,113 @@ public class DashboardDaoImpl implements DashboardDao {
         session.close();
     }
 
-    private static String getMatchedTerm(String[] allTerms, String context) {
-        for (String t : allTerms) {
-            if (context.toLowerCase().contains(t.toLowerCase()))
-                return t;
-        }
-        return null; // intentionally to return null if no match
+    /* delimited by whitespaces only, except when it is quoted. */
+    private static String[] parseWords(String str) {
+        List<String> list = new ArrayList<String>();
+        Matcher m = Pattern.compile("([^\"]\\S*|\".+?\")\\s*").matcher(str);
+        while (m.find())
+            list.add(m.group(1));
+        return list.toArray(new String[0]);
     }
 
-    @Override
-    @Cacheable(value = "searchCache")
-    public SearchResults search(String keyword) {
-        HashSet<DashboardEntity> entitiesUnique = new HashSet<DashboardEntity>();
+    /*
+     * a subject is a match when either the name contains the term or the synonyms
+     * contain the term
+     */
+    private static boolean matchSubject(String term, Subject subject) {
+        if (subject.getDisplayName().toLowerCase().contains(term))
+            return true;
+        for (Synonym s : subject.getSynonyms()) {
+            if (s.getDisplayName().toLowerCase().contains(term))
+                return true;
+        }
+        return false;
+    }
 
+    private void directTextSearch(final String singleTerm, final Map<Subject, Integer> subjects,
+            final Map<Submission, Integer> submissions) {
+        Session session = getSession();
+        String sql = "SELECT DISTINCT subject_id FROM observed_subject JOIN dashboard_entity ON observed_subject.subject_id=dashboard_entity.id WHERE displayName LIKE :name";
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Integer> query = session.createNativeQuery(sql);
+        query.setParameter("name", "%" + singleTerm + "%");
+        List<Integer> list = new ArrayList<Integer>();
+        try {
+            list = query.list();
+            log.debug(
+                    "number of subjects matching '" + singleTerm + "' in displayName: " + list.size());
+        } catch (javax.persistence.NoResultException e) { // exception by design
+            // no-op
+            log.debug("No subject found for " + singleTerm);
+        }
+        Set<Integer> matchedSubjects = new HashSet<Integer>();
+        matchedSubjects.addAll(list);
+        query = null;
+        list = null; // just to prevent accidental usage after this
+
+        String synonymBasedQuery = "SELECT DISTINCT SubjectImpl_id FROM subject_synonym_map "
+                + "JOIN dashboard_entity ON subject_synonym_map.synonyms_id=dashboard_entity.id "
+                + "WHERE displayName LIKE :name";
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Integer> query2 = session.createNativeQuery(synonymBasedQuery);
+        query2.setParameter("name", "%" + singleTerm + "%");
+        List<Integer> list2 = new ArrayList<Integer>();
+        try {
+            list2 = query2.list();
+            log.debug(
+                    "number of subjects with synonyms matching '" + singleTerm + "' in displayName: " + list2.size());
+        } catch (javax.persistence.NoResultException e) { // exception by design
+            // no-op
+            log.debug("No subject found with synonyms matching " + singleTerm);
+        }
+        session.close();
+        for (Integer id : list2) {
+            if (notObserved(id)) {
+                continue;
+            }
+            matchedSubjects.add(id);
+        }
+        list2 = null;
+
+        for (Integer id : matchedSubjects) {
+            Subject s = getEntityById(Subject.class, id);
+            if (subjects.containsKey(s)) {
+                subjects.put(s, subjects.get(s) + 1);
+            } else {
+                subjects.put(s, 1);
+            }
+        }
+
+        // theoretically three other fields should be considered as well for historical
+        // consistency (displayName, submissionName, submissionDescription)
+        // but having them was not a good idea in the first place
+        List<Submission> submissionList = queryWithClass(
+                "SELECT obj FROM SubmissionImpl AS obj WHERE obj.observationTemplate.description LIKE :description",
+                "description",
+                "%" + singleTerm + "%");
+        for (Submission submission : submissionList) {
+            if (submissions.containsKey(submission)) {
+                submissions.put(submission, submissions.get(submission) + 1);
+            } else {
+                submissions.put(submission, 1);
+            }
+        }
+    }
+
+    private void searchSingleTerm(final String singleTerm, final Map<Subject, Integer> subjects,
+    final Map<Submission, Integer> submissions) {
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
-        Analyzer analyzer = new WhitespaceAnalyzer();
-        MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(defaultSearchFields, analyzer);
+        MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(defaultSearchFields,
+                new WhitespaceAnalyzer());
+        multiFieldQueryParser.setAllowLeadingWildcard(true);
         Query luceneQuery = null;
         try {
-            luceneQuery = multiFieldQueryParser.parse(keyword);
+            luceneQuery = multiFieldQueryParser.parse(singleTerm);
+            log.debug(luceneQuery);
         } catch (ParseException e) {
             e.printStackTrace();
+            return;
         }
-        String[] allTerms = keyword.toLowerCase().split("\\s+");
-        int total = allTerms.length;
 
         FullTextQuery fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery, searchableClasses);
         fullTextQuery.setReadOnly(true);
@@ -688,81 +769,56 @@ public class DashboardDaoImpl implements DashboardDao {
         }
 
         for (Object o : list) {
-            assert o instanceof DashboardEntity;
-
             if (o instanceof ObservationTemplate) {
                 List<Submission> submissionList = queryWithClass(
                         "select o from SubmissionImpl as o where o.observationTemplate = :ot", "ot",
                         (ObservationTemplate) o);
-                for (Submission o2 : submissionList) {
-                    if (!entitiesUnique.contains(o2))
-                        entitiesUnique.add(o2);
+                for (Submission submission : submissionList) {
+                    if (submissions.containsKey(submission)) {
+                        submissions.put(submission, submissions.get(submission) + 1);
+                    } else {
+                        submissions.put(submission, 1);
+                    }
+                }
+            } else if (o instanceof Subject) {
+                Subject s = (Subject) o;
+                // if s is a tissue sample, check whether it is observed. if not, skip.
+                if (s instanceof TissueSample && notObserved(s.getId())) {
+                    continue;
+                }
+                if (subjects.containsKey(s)) {
+                    subjects.put(s, subjects.get(s) + 1);
+                } else {
+                    subjects.put(s, 1);
                 }
             } else {
-                // Some objects came in as proxies, get the actual implementations for them when
-                // necessary
-                if (o instanceof HibernateProxy) {
-                    o = ((HibernateProxy) o).getHibernateLazyInitializer().getImplementation();
-                }
-
-                if (!entitiesUnique.contains(o)) {
-                    entitiesUnique.add((DashboardEntity) o);
-                }
+                log.warn("unexpected type returned by searching: " + o.getClass().getName());
             }
         }
+    }
 
-        List<SubjectResult> subject_result = new ArrayList<SubjectResult>();
-        List<SubmissionResult> submission_result = new ArrayList<SubmissionResult>();
-        Set<Observation> observations = new HashSet<Observation>();
-        Map<Integer, Set<String>> matchingObservations = new HashMap<Integer, Set<String>>();
-        for (DashboardEntity entity : entitiesUnique) {
-            if (entity instanceof Subject) {
-                final int MAXIMUM_OBSERVATION_NUMBER = 100000;
-                List<Integer> observationIds = findObservationIdsBySubjectId(Long.valueOf(entity.getId()),
-                        MAXIMUM_OBSERVATION_NUMBER);
-                for (Integer observationId : observationIds) {
-                    String term = getMatchedTerm(allTerms, entity.getDisplayName());
-                    if (term != null) {
-                        Set<String> terms = matchingObservations.get(observationId);
-                        if (terms == null) {
-                            terms = new HashSet<String>();
-                            matchingObservations.put(observationId, terms);
-                        }
-                        terms.add(term);
-                    }
-                }
-                Set<String> roles = new HashSet<String>();
-                Set<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
-                if (entity instanceof CellSubset) {
-                    Long subjectId = Long.valueOf(entity.getId());
-                    String role1 = "cell_biomarker", role2 = "tissue";
-                    int count1 = countObservationsBySubjectId(subjectId, role1).intValue();
-                    if (count1 > 0) {
-                        roles.add(role1);
-                    }
-                    int count2 = countObservationsBySubjectId(subjectId, role2).intValue();
-                    if (count2 > 0) {
-                        roles.add(role2);
-                    }
-                } else {
-                    Subject subject = (Subject)entity;
-                    for (ObservedSubject observedSubject : findObservedSubjectBySubject(subject)) {
-                        Observation observation = observedSubject.getObservation();
-                        observations.add(observation);
-                        ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
-                        submissionCenters.add(observationTemplate.getSubmissionCenter());
-                        roles.add(observedSubject.getObservedSubjectRole().getSubjectRole().getDisplayName());
-                    }
-                }
-                SubjectResult x = new SubjectResult(entity, observationIds.size(), 
-                    submissionCenters.size(), 
-                    1,
-                    roles);
-                subject_result.add(x);
-            } else if (entity instanceof Submission) {
-                Submission submission = (Submission)entity;
-                ObservationTemplate template = submission.getObservationTemplate();
-                SubmissionResult x = new SubmissionResult(
+    @Override
+    @Cacheable(value = "searchCache")
+    public SearchResults search(String queryString) {
+        queryString = queryString.trim();
+        final String[] searchTerms = parseWords(queryString);
+        log.debug("search terms: " + String.join(",", searchTerms));
+        Map<Subject, Integer> subjects = new HashMap<Subject, Integer>();
+        Map<Submission, Integer> submissions = new HashMap<Submission, Integer>();
+        final Pattern quoted = Pattern.compile("\"([^\"]+)\"");
+        for (String singleTerm : searchTerms) {
+            Matcher matcher = quoted.matcher(singleTerm);
+            // two search strategies: original index-based search, and direct text search.
+            if (matcher.matches()) {
+                directTextSearch(matcher.group(1), subjects, submissions);
+            } else {
+                searchSingleTerm(singleTerm, subjects, submissions);
+            }
+        }
+        SearchResults searchResults = new SearchResults();
+        searchResults.submission_result = submissions.keySet().stream().map(submission -> {
+            ObservationTemplate template = submission.getObservationTemplate();
+            return new SearchResults.SubmissionResult(
                     submission.getStableURL(),
                     submission.getSubmissionDate(),
                     template.getDescription(),
@@ -770,20 +826,45 @@ public class DashboardDaoImpl implements DashboardDao {
                     template.getSubmissionCenter().getDisplayName(),
                     submission.getId(),
                     findObservationsBySubmission(submission).size(),
-                    template.getIsSubmissionStory()
-                );
-                submission_result.add(x);
+                    template.getIsSubmissionStory());
+        }).collect(Collectors.toList());
+
+        Map<String, Set<Observation>> observationMap = new HashMap<String, Set<Observation>>();
+
+        List<SubjectResult> subject_result = new ArrayList<SubjectResult>();
+        for (Subject subject : subjects.keySet()) {
+            Set<Observation> observations = new HashSet<Observation>();
+            Set<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
+            Set<String> roles = new HashSet<String>();
+            for (ObservedSubject observedSubject : findObservedSubjectBySubject(subject)) {
+                Observation observation = observedSubject.getObservation();
+                observations.add(observation);
+                ObservationTemplate observationTemplate = observation.getSubmission().getObservationTemplate();
+                submissionCenters.add(observationTemplate.getSubmissionCenter());
+                roles.add(observedSubject.getObservedSubjectRole().getSubjectRole().getDisplayName());
             }
+            SubjectResult x = new SubjectResult(subject, observations.size(), submissionCenters.size(),
+                    subjects.get(subject), roles);
+            Arrays.stream(searchTerms).filter(term -> matchSubject(term, subject)).forEach(term -> {
+                Set<Observation> obset = observationMap.get(term);
+                if (obset == null) {
+                    obset = new HashSet<Observation>();
+                }
+                obset.addAll(observations);
+                observationMap.put(term, obset);
+            });
+            subject_result.add(x);
         }
 
         // search by VO code
-        List<Vaccine> vaccineList = searchVaccineByCode(keyword);
+        List<Vaccine> vaccineList = searchVaccineByCode(queryString);
         for (Vaccine v : vaccineList) {
             int observationNumber = countObservation(v.getId());
             if (observationNumber == 0)
                 continue;
             Set<String> roles = new HashSet<String>();
             Set<SubmissionCenter> submissionCenters = new HashSet<SubmissionCenter>();
+            Set<Observation> observations = new HashSet<Observation>();
             for (ObservedSubject observedSubject : findObservedSubjectBySubject(v)) {
                 Observation observation = observedSubject.getObservation();
                 observations.add(observation);
@@ -795,26 +876,82 @@ public class DashboardDaoImpl implements DashboardDao {
                 submissionCenters.size(),
                 1, roles);
             subject_result.add(x);
+
+            Arrays.stream(searchTerms).filter(term -> v.getDisplayName().contains(term)).forEach(term -> {
+                Set<Observation> obset = observationMap.get(term);
+                if (obset == null) {
+                    obset = new HashSet<Observation>();
+                }
+                obset.addAll(observations);
+                observationMap.put(term, obset);
+            });
         }
-        SearchResults searchResults = new SearchResults();
-        searchResults.submission_result = submission_result;
         searchResults.subject_result = subject_result;
 
-        // add observations
-        List<Observation> observation_result = new ArrayList<Observation>();
-        Session session = getSession();
-        session.setDefaultReadOnly(true);
-        for (Integer obId : matchingObservations.keySet()) {
-            Set<String> terms = matchingObservations.get(obId);
-            if (total <= 1 || terms.size() < total)
-                continue;
-            Observation ob = session.get(Observation.class, obId);
-            observation_result.add(ob);
+        /*
+         * Limit the size. This should be done more efficiently during the process of
+         * building up of the list.
+         * Because the limit needs to be based on 'match number' ranking, which depends
+         * on all terms, an efficient algorithm is not obvious.
+         * Unfortunately, we also have to do this after processing all results because
+         * we need (in fact more often) observation numbers as well in ranking. TODO
+         */
+        if (subject_result.size() > maxNumberOfSearchResults) {
+            searchResults.oversized = subject_result.size();
+            subject_result = subject_result.stream().sorted(new SearchResultComparator())
+                    .limit(maxNumberOfSearchResults).collect(Collectors.toList());
+            log.debug("size after limiting: " + subject_result.size());
         }
-        session.close();
-        searchResults.observation_result = observation_result;
+
+        searchResults.subject_result = subject_result;
+
+        if (searchTerms.length <= 1) {
+            return searchResults;
+        }
+
+        // add intersection of observations
+        Set<Observation> set0 = observationMap.get(searchTerms[0]);
+        if (set0 == null) {
+            log.debug("no observation for " + searchTerms[0]);
+            return searchResults;
+        }
+        log.debug("set0 size=" + set0.size());
+        for (int i = 1; i < searchTerms.length; i++) {
+            Set<Observation> obset = observationMap.get(searchTerms[i]);
+            if (obset == null) {
+                log.debug("... no observation for " + searchTerms[i]);
+                return searchResults;
+            }
+            log.debug("set " + i + " size=" + obset.size());
+            set0.retainAll(obset);
+        }
+        // set0 is now the intersection
+        if (set0.size() == 0) {
+            log.debug("no intersection of observations");
+        }
+        if (set0.size() > maxNumberOfSearchResults) {
+            searchResults.oversized_observations = set0.size();
+            // no particular ranking is enforced when limiting
+            set0 = set0.stream().limit(maxNumberOfSearchResults).collect(Collectors.toSet());
+            log.debug("observation results count after limiting: " + set0.size());
+        }
+        searchResults.observation_result = new ArrayList<Observation>(set0);
 
         return searchResults;
+    }
+
+    /*
+     * this is meant to check whether a subject is observed or not in the most
+     * efficient way
+     */
+    private boolean notObserved(int id) {
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Integer> query = session
+                .createNativeQuery("SELECT 1 FROM observed_subject WHERE subject_id=" + id + " LIMIT 1");
+        boolean no = query.uniqueResult() == null;
+        session.close();
+        return no;
     }
 
     private int countObservation(Integer vaccine_db_id) {
@@ -847,16 +984,6 @@ public class DashboardDaoImpl implements DashboardDao {
         } else {
             return new ArrayList<Vaccine>();
         }
-    }
-
-    private List<Integer> findObservationIdsBySubjectId(Long subjectId, int limit) {
-        Session session = getSession();
-        org.hibernate.query.Query<?> query = session.createNativeQuery(
-                "SELECT observation_id FROM observed_subject S WHERE subject_id=" + subjectId + " LIMIT " + limit);
-        @SuppressWarnings("unchecked")
-        List<Integer> ids = (List<Integer>) query.list();
-        session.close();
-        return ids;
     }
 
     @Override
