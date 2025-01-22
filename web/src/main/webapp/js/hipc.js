@@ -989,7 +989,7 @@ import create_wordcloud from './wordcloud.js'
             _.each(entity.synonyms, function (aSynonym) {
                 if (!aSynonym.displayName) return;
                 new SynonymView({
-                    model: {displayName: aSynonym},
+                    model: aSynonym,
                     el: broadEl
                 }).render();
             });
@@ -997,7 +997,7 @@ import create_wordcloud from './wordcloud.js'
             _.each(entity.exactSynonyms, function (aSynonym) {
                 if (!aSynonym.displayName) return;
                 new SynonymView({
-                    model: {displayName: aSynonym},
+                    model: aSynonym,
                     el: exactEl
                 }).render();
             });
@@ -1005,7 +1005,7 @@ import create_wordcloud from './wordcloud.js'
             _.each(entity.relatedSynonyms, function (aSynonym) {
                 if (!aSynonym.displayName) return;
                 new SynonymView({
-                    model: {displayName: aSynonym},
+                    model: aSynonym,
                     el: relatedEl
                 }).render();
             });
