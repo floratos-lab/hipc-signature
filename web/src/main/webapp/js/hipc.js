@@ -1880,15 +1880,17 @@ import create_wordcloud from './wordcloud.js'
                                     "orderDataType": "dashboard-rank",
                                     "type": 'num',
                                 },
+                                { visible: false },
                             ]
 
                         });
                         $(oTable).parent().width("100%");
                         oTable.fnSort([
-                            [4, 'desc'],
+                            [6, 'desc'],
                             [5, 'desc'],
                             [1, 'asc']
                         ]);
+                        $("#search-results-grid").width("100%");
 
                         // OK done with the subjects; let's build the submissions table
                         if (submissions.length > 0) {
