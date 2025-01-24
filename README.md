@@ -1,5 +1,5 @@
 # About
-This project starts with rebranding the codebase of CTD^2 Dashboard project. It encapsulates three modules:
+This project starts with rebranding the codebase of HIPC Immune Signatures Dashboard project. It encapsulates three modules:
 
 * **Core**: contains the main data structures and basic DAO methods.
 * **Admin**: contains importers/normalizers/converters for populating the database (depends on _core_)
