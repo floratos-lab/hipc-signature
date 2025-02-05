@@ -7,7 +7,12 @@ import java.util.Set;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Fields;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
 import javax.persistence.*;
 
@@ -71,4 +76,17 @@ public class PathogenImpl extends SubjectImpl implements Pathogen {
 		this.rank = rank;
 	}
 
+    @Fields({
+        @Field(name = FIELD_SYNONYM, index = org.hibernate.search.annotations.Index.YES, store = Store.YES),
+        @Field(name = FIELD_SYNONYM_WS, index = org.hibernate.search.annotations.Index.YES, store = Store.YES, analyzer = @Analyzer(definition = "ctd2analyzer")),
+        @Field(name = FIELD_SYNONYM_UT, index = org.hibernate.search.annotations.Index.YES, analyze=Analyze.NO)
+    })
+    @Transient
+    public String getExactSynoynmStrings() {
+        StringBuilder builder = new StringBuilder();
+        for (Synonym synonym : getExactSynonyms()) {
+            builder.append(synonym.getDisplayName()).append(" ");
+        }
+        return builder.toString();
+    }
 }
