@@ -668,6 +668,13 @@ public class DashboardDaoImpl implements DashboardDao {
             if (s.getDisplayName().toLowerCase().contains(term))
                 return true;
         }
+        if(subject instanceof Pathogen) {
+            Pathogen p = (Pathogen)subject;
+            for (Synonym s : p.getExactSynonyms()) {
+                if (s.getDisplayName().toLowerCase().contains(term))
+                    return true;
+            }
+        }
         return false;
     }
 
