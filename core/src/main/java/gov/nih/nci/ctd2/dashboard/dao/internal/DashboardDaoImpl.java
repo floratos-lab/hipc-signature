@@ -71,6 +71,7 @@ import gov.nih.nci.ctd2.dashboard.util.PMIDResult;
 import gov.nih.nci.ctd2.dashboard.util.SubjectWithSummaries;
 import gov.nih.nci.ctd2.dashboard.util.WordCloudEntry;
 import gov.nih.nci.ctd2.dashboard.util.SearchResults;
+import gov.nih.nci.ctd2.dashboard.util.SearchResults.StudyResult;
 import gov.nih.nci.ctd2.dashboard.util.SubjectResult;
 
 public class DashboardDaoImpl implements DashboardDao {
@@ -79,8 +80,7 @@ public class DashboardDaoImpl implements DashboardDao {
     private static final String[] defaultSearchFields = { DashboardEntityImpl.FIELD_DISPLAYNAME,
             DashboardEntityImpl.FIELD_DISPLAYNAME_WS, DashboardEntityImpl.FIELD_DISPLAYNAME_UT,
             SubjectImpl.FIELD_SYNONYM, SubjectImpl.FIELD_SYNONYM_WS, SubjectImpl.FIELD_SYNONYM_UT,
-            ObservationTemplateImpl.FIELD_DESCRIPTION, ObservationTemplateImpl.FIELD_SUBMISSIONDESC,
-            ObservationTemplateImpl.FIELD_SUBMISSIONNAME, TissueSampleImpl.FIELD_LINEAGE };
+            ObservationTemplateImpl.FIELD_DESCRIPTION, TissueSampleImpl.FIELD_LINEAGE };
 
     private static final Class<?>[] searchableClasses = { SubjectImpl.class, ObservationTemplateImpl.class };
 
@@ -679,7 +679,7 @@ public class DashboardDaoImpl implements DashboardDao {
     }
 
     private void directTextSearch(final String singleTerm, final Map<Subject, Integer> subjects,
-            final Map<Submission, Integer> submissions) {
+            final List<StudyResult> studies) {
         Session session = getSession();
         String sql = "SELECT DISTINCT subject_id FROM observed_subject JOIN dashboard_entity ON observed_subject.subject_id=dashboard_entity.id WHERE displayName LIKE :name";
         @SuppressWarnings("unchecked")
@@ -732,24 +732,49 @@ public class DashboardDaoImpl implements DashboardDao {
             }
         }
 
-        // theoretically three other fields should be considered as well for historical
-        // consistency (displayName, submissionName, submissionDescription)
-        // but having them was not a good idea in the first place
-        List<Submission> submissionList = queryWithClass(
-                "SELECT obj FROM SubmissionImpl AS obj WHERE obj.observationTemplate.description LIKE :description",
+        List<ObservationTemplate> observationTemplateList = queryWithClass(
+                "SELECT obj FROM ObservationTemplateImpl AS obj WHERE obj.description LIKE :description",
                 "description",
                 "%" + singleTerm + "%");
-        for (Submission submission : submissionList) {
-            if (submissions.containsKey(submission)) {
-                submissions.put(submission, submissions.get(submission) + 1);
+        Map<Integer, Integer> number_of_signatures = new HashMap<Integer, Integer>();
+        Map<Integer,Date> pmid_date = new HashMap<Integer, Date>();
+        Map<Integer,String> pmid_description = new HashMap<Integer, String>();
+
+        for (ObservationTemplate template : observationTemplateList) {
+            Integer pmid = template.getPMID();
+            if (number_of_signatures.containsKey(pmid)) {
+                number_of_signatures.put(pmid, number_of_signatures.get(pmid) + 1);
             } else {
-                submissions.put(submission, 1);
+                number_of_signatures.put(pmid, 1);
+                Date publicationDate = getPublicationDate(template.getId());
+                pmid_date.put(pmid, publicationDate);
+                pmid_description.put(pmid, template.getDescription());
+            }
+        }
+        for (Integer pmid : number_of_signatures.keySet()) {
+            StudyResult from_other_search_term = getStudyResult(studies, pmid);
+            if(from_other_search_term==null) {
+                studies.add(new StudyResult(
+                    pmid_date.get(pmid),
+                    pmid_description.get(pmid),
+                    pmid,
+                    number_of_signatures.get(pmid))
+                );
+            } else {
+                from_other_search_term.matchNumber++;
             }
         }
     }
 
+    static private StudyResult getStudyResult(final List<StudyResult> studies, Integer pmid) {
+        for(StudyResult x: studies) {
+            if(x.equals(pmid)) return x;
+        }
+        return null;
+    }
+
     private void searchSingleTerm(final String singleTerm, final Map<Subject, Integer> subjects,
-    final Map<Submission, Integer> submissions) {
+            final List<StudyResult> studies) {
         FullTextSession fullTextSession = Search.getFullTextSession(getSession());
         MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(defaultSearchFields,
                 new WhitespaceAnalyzer());
@@ -775,17 +800,21 @@ public class DashboardDaoImpl implements DashboardDao {
                     + numberOfSearchResults);
         }
 
+        Map<Integer, Integer> number_of_signatures = new HashMap<Integer, Integer>();
+        Map<Integer,Date> pmid_date = new HashMap<Integer, Date>();
+        Map<Integer,String> pmid_description = new HashMap<Integer, String>();
+
         for (Object o : list) {
             if (o instanceof ObservationTemplate) {
-                List<Submission> submissionList = queryWithClass(
-                        "select o from SubmissionImpl as o where o.observationTemplate = :ot", "ot",
-                        (ObservationTemplate) o);
-                for (Submission submission : submissionList) {
-                    if (submissions.containsKey(submission)) {
-                        submissions.put(submission, submissions.get(submission) + 1);
-                    } else {
-                        submissions.put(submission, 1);
-                    }
+                ObservationTemplate template = (ObservationTemplate)o;
+                Integer pmid = template.getPMID();
+                if (number_of_signatures.containsKey(pmid)) {
+                    number_of_signatures.put(pmid, number_of_signatures.get(pmid) + 1);
+                } else {
+                    number_of_signatures.put(pmid, 1);
+                    Date publicationDate = getPublicationDate(template.getId());
+                    pmid_date.put(pmid, publicationDate);
+                    pmid_description.put(pmid, template.getDescription());
                 }
             } else if (o instanceof Subject) {
                 Subject s = (Subject) o;
@@ -802,6 +831,31 @@ public class DashboardDaoImpl implements DashboardDao {
                 log.warn("unexpected type returned by searching: " + o.getClass().getName());
             }
         }
+        for (Integer pmid : number_of_signatures.keySet()) {
+            StudyResult from_other_search_term = getStudyResult(studies, pmid);
+            if(from_other_search_term==null) {
+                studies.add(new StudyResult(
+                    pmid_date.get(pmid),
+                    pmid_description.get(pmid),
+                    pmid,
+                    number_of_signatures.get(pmid)));
+            } else {
+                from_other_search_term.matchNumber++;
+            }
+        }
+    }
+
+    // this is needed due to the limitation of the original data model of submission and observation template
+    // the date is unique for an observation template but redundant across multiple 'submission'
+    private Date getPublicationDate(int observation_template_id) {
+        String sql = "SELECT submissionDate FROM submission WHERE observationTemplate_id=:id";
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Date> query = session.createNativeQuery(sql);
+        query.setParameter("id", observation_template_id);
+        Date x = query.getSingleResult();
+        session.close();
+        return x;
     }
 
     @Override
@@ -811,30 +865,19 @@ public class DashboardDaoImpl implements DashboardDao {
         final String[] searchTerms = parseWords(queryString);
         log.debug("search terms: " + String.join(",", searchTerms));
         Map<Subject, Integer> subjects = new HashMap<Subject, Integer>();
-        Map<Submission, Integer> submissions = new HashMap<Submission, Integer>();
+        List<StudyResult> study_results = new ArrayList<StudyResult>();
         final Pattern quoted = Pattern.compile("\"([^\"]+)\"");
         for (String singleTerm : searchTerms) {
             Matcher matcher = quoted.matcher(singleTerm);
             // two search strategies: original index-based search, and direct text search.
             if (matcher.matches()) {
-                directTextSearch(matcher.group(1), subjects, submissions);
+                directTextSearch(matcher.group(1), subjects, study_results);
             } else {
-                searchSingleTerm(singleTerm, subjects, submissions);
+                searchSingleTerm(singleTerm, subjects, study_results);
             }
         }
         SearchResults searchResults = new SearchResults();
-        searchResults.submission_result = submissions.keySet().stream().map(submission -> {
-            ObservationTemplate template = submission.getObservationTemplate();
-            return new SearchResults.SubmissionResult(
-                    submission.getStableURL(),
-                    submission.getSubmissionDate(),
-                    template.getDescription(),
-                    template.getTier(),
-                    template.getSubmissionCenter().getDisplayName(),
-                    submission.getId(),
-                    findObservationsBySubmission(submission).size(),
-                    template.getIsSubmissionStory());
-        }).collect(Collectors.toList());
+        searchResults.study_result = study_results;
 
         Map<String, Set<Observation>> observationMap = new HashMap<String, Set<Observation>>();
 

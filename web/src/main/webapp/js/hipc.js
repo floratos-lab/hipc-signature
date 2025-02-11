@@ -758,8 +758,8 @@ import create_wordcloud from './wordcloud.js'
         }
     });
 
-    const SearchSubmissionRowView = Backbone.View.extend({
-        el: "#searched-submissions tbody",
+    const SearchStudyResultRowView = Backbone.View.extend({
+        el: "#searched-study-result tbody",
         template: _.template($("#search-submission-tbl-row-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
@@ -1843,9 +1843,9 @@ import create_wordcloud from './wordcloud.js'
                     $("#observation-search-results").hide();
                     const results = searchResults.toJSON();
                     const subject_result = results.subject_result;
-                    const submissions = results.submission_result;
+                    const study_result = results.study_result;
                     const matching_observations = results.observation_result;
-                    if (subject_result.length + submissions.length == 0) {
+                    if (subject_result.length + study_result.length == 0) {
                         (new EmptyResultsView({
                             el: $(thatEl).find("tbody"),
                             model: thatModel
@@ -1892,35 +1892,36 @@ import create_wordcloud from './wordcloud.js'
                         ]);
                         $("#search-results-grid").width("100%");
 
-                        // OK done with the subjects; let's build the submissions table
-                        if (submissions.length > 0) {
+                        // OK done with the subjects; let's build the study_result table
+                        if (study_result.length > 0) {
                             $("#submission-search-results").fadeIn();
 
-                            _.each(submissions, function (submission) {
-                                new SearchSubmissionRowView({
-                                    model: submission
+                            _.each(study_result, function (sr) {
+                                new SearchStudyResultRowView({
+                                    model: sr
                                 }).render();
 
-                                if (submission.observationTemplate === undefined) { // TODO why does this happen?
-                                    submission.observationTemplate = {};
+                                if (sr.observationTemplate === undefined) { // TODO why does this happen?
+                                    sr.observationTemplate = {};
                                 }
-                                const tmplName = submission.observationTemplate.isSubmissionStory ?
+                                const tmplName = sr.observationTemplate.isSubmissionStory ?
                                     "#count-story-tmpl" :
                                     "#count-observations-tmpl";
                                 const cntContent = _.template(
                                     $(tmplName).html())({
-                                        count: submission.observationCount
+                                        count: sr.matchNumber
                                     });
-                                $("#search-observation-count-" + submission.id).html(cntContent);
+                                $("#search-observation-count-" + sr.pmid).html(cntContent);
                             });
 
-                            $("#searched-submissions").dataTable({
+                            $("#searched-study-result").dataTable({
                                 "columns": [
+                                    null,
+                                    null,
                                     null,
                                     {
                                         "orderDataType": "dashboard-date"
                                     },
-                                    null,
                                     null
                                 ]
                             }).fnSort([

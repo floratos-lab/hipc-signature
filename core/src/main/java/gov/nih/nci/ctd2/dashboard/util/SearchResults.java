@@ -6,12 +6,12 @@ import gov.nih.nci.ctd2.dashboard.model.Observation;
 
 public class SearchResults {
     public List<SubjectResult> subject_result;
-    public List<SubmissionResult> submission_result;
+    public List<StudyResult> study_result;
     public List<Observation> observation_result;
 
     public Boolean isEmpty() {
         return (subject_result == null || subject_result.isEmpty())
-                && (submission_result == null || submission_result.isEmpty())
+                && (study_result == null || study_result.isEmpty())
                 && (observation_result == null || observation_result.isEmpty());
     }
 
@@ -28,29 +28,34 @@ public class SearchResults {
     public int oversized_observations = 0;
 
     /*
-     * this packs only the fields that are needed by the front-end, instead of the
-     * bloated object of Submission
+     * this packs only the fields that are needed by the front-end
      */
-    public static class SubmissionResult {
-        final public String stableURL;
-        final public Date submissionDate;
+    public static class StudyResult {
+        final public Date publicationDate;
         final public String description;
-        final public Integer tier;
-        final public String centerName;
-        final public Integer id;
-        final public Integer observationCount;
-        final public Boolean isStory;
+        final public Integer pmid;
+        final public Integer numberOfSignatures;
+        public Integer matchNumber = 1;
 
-        public SubmissionResult(String url, Date date, String description, Integer tier, String centerName, Integer id,
-                Integer observationCount, Boolean isStory) {
-            this.stableURL = url;
-            this.submissionDate = date;
+        public StudyResult(Date publicationDate, String description, Integer pmid,
+                Integer numberOfSignatures) {
+            this.publicationDate = publicationDate;
             this.description = description;
-            this.tier = tier;
-            this.centerName = centerName;
-            this.id = id;
-            this.observationCount = observationCount;
-            this.isStory = isStory;
+            this.pmid = pmid;
+            this.numberOfSignatures = numberOfSignatures;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if(!(obj instanceof StudyResult)) return false;
+            StudyResult x = (StudyResult)obj;
+            if(x.pmid==this.pmid) return true;
+            else return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return pmid.hashCode();
         }
     }
 }

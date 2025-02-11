@@ -1218,13 +1218,14 @@
 
             <div id="submission-search-results">
                 <h3>Study descriptions matching any search term</h3>
-                <table id="searched-submissions" class="table table-bordered table-striped">
+                <table id="searched-study-result" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>&nbsp; &nbsp;</th>
-                        <th>Publication Date</th>
                         <th>Description</th>
-                        <th>Details</th>
+                        <th>PMID</th>
+                        <th>Publication Date</th>
+                        <th>Number of Signatures</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -1258,13 +1259,15 @@
         </div>
     </script>
 
+    <!-- rename properly: study result -->
     <script type="text/template" id="search-submission-tbl-row-tmpl">
         <tr>
-            <td><a href="&#35;{{stableURL}}"><img src="img/submission.png" width="50" alt="Submission" title="Submission"></a></td>
-            <td><a href="&#35;{{stableURL}}">{{submissionDate}}</a></td>
+            <td><img src="img/submission.png" width="50" alt="Study" title="Study"></td>
             <td>{{description}}</td>
+            <td><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{pmid}}" target="_blank">{{pmid}}</a></td>
+            <td>{{publicationDate}}</td>
             <td width=150>
-                <a href="&#35;{{stableURL}}" id="search-observation-count-{{id}}">{{observationCount}} observations</a>
+                <a href="&#35;pmid/{{pmid}}" id="search-observation-count-{{pmid}}"></a>
             </td>
         </tr>
     </script>
