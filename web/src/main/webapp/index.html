@@ -1216,7 +1216,7 @@
                 </tbody>
             </table>
 
-            <div id="submission-search-results">
+            <div id="study-search-results">
                 <h3>Study descriptions matching any search term</h3>
                 <table id="searched-study-result" class="table table-bordered table-striped">
                     <thead>
@@ -1259,16 +1259,16 @@
         </div>
     </script>
 
-    <!-- rename properly: study result -->
-    <script type="text/template" id="search-submission-tbl-row-tmpl">
+    <script type="text/template" id="search-study-tbl-row-tmpl">
         <tr>
             <td><img src="img/submission.png" width="50" alt="Study" title="Study"></td>
             <td>{{description}}</td>
             <td><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{pmid}}" target="_blank">{{pmid}}</a></td>
             <td>{{publicationDate}}</td>
             <td width=150>
-                <a href="&#35;pmid/{{pmid}}" id="search-observation-count-{{pmid}}"></a>
+                <a href="&#35;pmid/{{pmid}}" id="search-signature-count-{{pmid}}"></a>
             </td>
+            <td>{{matchNumber}}</td>
         </tr>
     </script>
 
@@ -1290,6 +1290,10 @@
 
     <script type="text/template" id="count-observations-tmpl">
         {{count}} observation{{count == 1 ? "" : "s"}}
+    </script>
+
+    <script type="text/template" id="count-signature-tmpl">
+        {{count}} signature{{count == 1 ? "" : "s"}}
     </script>
 
     <script type="text/template" id="cytoscape-tmpl">

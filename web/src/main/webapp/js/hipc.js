@@ -760,7 +760,7 @@ import create_wordcloud from './wordcloud.js'
 
     const SearchStudyResultRowView = Backbone.View.extend({
         el: "#searched-study-result tbody",
-        template: _.template($("#search-submission-tbl-row-tmpl").html()),
+        template: _.template($("#search-study-tbl-row-tmpl").html()),
         render: function () {
             $(this.el).append(this.template(this.model));
             return this;
@@ -1839,7 +1839,7 @@ import create_wordcloud from './wordcloud.js'
             searchResults.fetch({
                 success: function () {
                     $("#loading-row").remove();
-                    $("#submission-search-results").hide();
+                    $("#study-search-results").hide();
                     $("#observation-search-results").hide();
                     const results = searchResults.toJSON();
                     const subject_result = results.subject_result;
@@ -1894,7 +1894,7 @@ import create_wordcloud from './wordcloud.js'
 
                         // OK done with the subjects; let's build the study_result table
                         if (study_result.length > 0) {
-                            $("#submission-search-results").fadeIn();
+                            $("#study-search-results").fadeIn();
 
                             _.each(study_result, function (sr) {
                                 new SearchStudyResultRowView({
@@ -1904,14 +1904,11 @@ import create_wordcloud from './wordcloud.js'
                                 if (sr.observationTemplate === undefined) { // TODO why does this happen?
                                     sr.observationTemplate = {};
                                 }
-                                const tmplName = sr.observationTemplate.isSubmissionStory ?
-                                    "#count-story-tmpl" :
-                                    "#count-observations-tmpl";
                                 const cntContent = _.template(
-                                    $(tmplName).html())({
-                                        count: sr.matchNumber
+                                    $("#count-signature-tmpl").html())({
+                                        count: sr.numberOfSignatures
                                     });
-                                $("#search-observation-count-" + sr.pmid).html(cntContent);
+                                $("#search-signature-count-" + sr.pmid).html(cntContent);
                             });
 
                             $("#searched-study-result").dataTable({
@@ -1922,11 +1919,12 @@ import create_wordcloud from './wordcloud.js'
                                     {
                                         "orderDataType": "dashboard-date"
                                     },
-                                    null
+                                    null,
+                                    { visible: false },
                                 ]
                             }).fnSort([
-                                [3, 'desc'],
-                                [2, 'desc']
+                                [5, 'desc'],
+                                [4, 'desc']
                             ]);
                         }
 
