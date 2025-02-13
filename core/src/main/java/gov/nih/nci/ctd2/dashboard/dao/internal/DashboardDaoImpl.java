@@ -768,7 +768,7 @@ public class DashboardDaoImpl implements DashboardDao {
 
     static private StudyResult getStudyResult(final List<StudyResult> studies, Integer pmid) {
         for(StudyResult x: studies) {
-            if(x.equals(pmid)) return x;
+            if(x.pmid.equals(pmid)) return x;
         }
         return null;
     }
@@ -1224,7 +1224,7 @@ public class DashboardDaoImpl implements DashboardDao {
             filterBy = " WHERE displayName LIKE '%" + filterBy + "%'";
         }
         Session session = getSession();
-        String sql = "SELECT displayName, numberofObservations FROM subject_with_summaries"
+        String sql = "SELECT displayName, numberOfObservations FROM subject_with_summaries"
                 + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
                 + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + filterBy + " ORDER BY " + orderBy + " "
                 + direction;
@@ -1280,8 +1280,8 @@ public class DashboardDaoImpl implements DashboardDao {
                 + " JOIN subject ON subject_with_summaries.subject_id=subject.id"
                 + " JOIN dashboard_entity ON subject.id=dashboard_entity.id"
                 + " WHERE score>1" + role_condition + " ORDER BY numberOfObservations DESC LIMIT 250";
-        if (role.equalsIgnoreCase("genes")) {
-            sql = "SELECT displayName, numberofObservations, stableURL FROM subject_with_summaries"
+        if (role!=null && role.equalsIgnoreCase("genes")) {
+            sql = "SELECT displayName, numberOfObservations, stableURL FROM subject_with_summaries"
             + " JOIN gene ON subject_id=gene.id" + " JOIN subject ON subject_id=subject.id"
             + " JOIN dashboard_entity ON subject_id=dashboard_entity.id" + " ORDER BY numberOfObservations DESC LIMIT 250";
         }
@@ -1294,7 +1294,7 @@ public class DashboardDaoImpl implements DashboardDao {
             String fullname = null;
             if (subject.length() > ABBREVIATION_LENGTH_LIMIT) {
                 fullname = subject;
-                subject = shorternSubjectName(subject);
+                subject = shortenSubjectName(subject);
             }
             Integer count = (Integer) obj[1];
             String url = (String) obj[2];
@@ -1308,10 +1308,10 @@ public class DashboardDaoImpl implements DashboardDao {
     private final static List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
 
     /*
-     * shorten the subject name using the specifc steps described in the word-cloud
+     * shorten the subject name using the specific steps described in the word-cloud
      * spec
      */
-    static private String shorternSubjectName(String longName) {
+    static private String shortenSubjectName(String longName) {
         log.debug("long name to be shortened: " + longName);
         String[] x = longName.split("\\s");
         if (x.length == 1) {
@@ -1347,7 +1347,7 @@ public class DashboardDaoImpl implements DashboardDao {
                     while (lastVowel >= afterVowelSequence && !vowels.contains(word.charAt(lastVowel))) {
                         lastVowel--;
                     }
-                    // lastVowel is the postion of the last vowel
+                    // lastVowel is the position of the last vowel
                     if (lastVowel > afterVowelSequence) {// remove the last vowel;
                         word = word.substring(0, lastVowel) + word.substring(lastVowel + 1, count);
                     } else {
@@ -1388,7 +1388,7 @@ public class DashboardDaoImpl implements DashboardDao {
             String fullname = null;
             if (subject.length() > ABBREVIATION_LENGTH_LIMIT) {
                 fullname = subject;
-                subject = shorternSubjectName(subject);
+                subject = shortenSubjectName(subject);
             }
             Integer count = ((BigInteger) obj[1]).intValue();
             String url = (String) obj[2];

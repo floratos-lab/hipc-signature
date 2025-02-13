@@ -1,6 +1,5 @@
 package gov.nih.nci.ctd2.dashboard;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.commons.logging.Log;

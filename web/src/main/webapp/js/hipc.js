@@ -1918,8 +1918,12 @@ import create_wordcloud from './wordcloud.js'
                                     null,
                                     {
                                         "orderDataType": "dashboard-date"
+                                    }, 
+                                    {
+                                        targets: 3,
+                                        orderDataType: "submission-count",
+                                        type: "numeric"
                                     },
-                                    null,
                                     { visible: false },
                                 ]
                             }).fnSort([

@@ -1,8 +1,6 @@
 package gov.nih.nci.ctd2.dashboard.dao;
 
 import gov.nih.nci.ctd2.dashboard.model.*;
-import gov.nih.nci.ctd2.dashboard.util.SearchResults;
-import gov.nih.nci.ctd2.dashboard.util.SubjectResult;
 
 import org.junit.After;
 import org.junit.Before;

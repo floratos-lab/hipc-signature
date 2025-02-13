@@ -34,11 +34,8 @@ public class DashboardFactoryImpl extends DashboardFactory {
             Method m = DashboardEntity.class.getDeclaredMethod("setDisplayName", String.class);
             m.setAccessible(true);
             m.invoke(entity, "");
-//            m = DashboardEntity.class.getDeclaredMethod("setId", Integer.class);
-//            m.setAccessible(true);
-//            m.invoke(entity, (Integer) null);
         } catch (Exception e) {
-            log.error("Could not set displayName/id for " + entity.getClass());
+            log.error("Could not set displayName/id for " + aClass);
             log.error(e.getStackTrace());
             return null;
         }
