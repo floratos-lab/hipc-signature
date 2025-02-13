@@ -244,7 +244,7 @@ public class DashboardDaoImpl implements DashboardDao {
                  */
                 return r.get(0);
             } else {
-                log.error("unexpected result number: " + r.size());
+                log.debug("unexpected result number: " + r.size() + " " + type + " " + stableURL);
                 return null;
             }
         } else {

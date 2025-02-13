@@ -179,6 +179,7 @@ public class CnkbController {
 									&& interactionDetails.size() > 0)
 								confidenceType = interactionDetails.get(0)
 										.getConfidenceTypes().get(0);
+							if(confidenceType==null) continue;
 							for (InteractionDetail interactionDetail : interactionDetails)
 								confidentList.add(interactionDetail
 										.getConfidenceValue(confidenceType));
@@ -585,20 +586,18 @@ public class CnkbController {
 		if (geneSymbols != null && geneSymbols.trim().length() > 0) {
 			geneSymbolList = (List<String>) new JSONDeserializer()
 					.deserialize(geneSymbols);
-		}
-		for(String gene : geneSymbolList)
-		{
-			if (gene != null && gene.trim().length() > 0)
+			for(String gene : geneSymbolList)
 			{
-				List<Gene> genes = dashboardDao.findGenesBySymbol(gene);
-				if (genes == null || genes.size() == 0)
+				if (gene != null && gene.trim().length() > 0)
 				{
-					invalidGenes.add(gene);
+					List<Gene> genes = dashboardDao.findGenesBySymbol(gene);
+					if (genes == null || genes.size() == 0)
+					{
+						invalidGenes.add(gene);
+					}
 				}
 			}
 		}
-		 
-		 
 		return invalidGenes;
 	}
 
