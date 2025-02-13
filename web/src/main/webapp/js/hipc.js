@@ -1917,7 +1917,7 @@ import create_wordcloud from './wordcloud.js'
                                     null,
                                     null,
                                     {
-                                        "orderDataType": "dashboard-date"
+                                        "orderDataType": "text-date-order"
                                     }, 
                                     {
                                         targets: 3,
