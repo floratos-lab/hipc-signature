@@ -75,7 +75,7 @@
 
     </dependencies>
     <build>
-        <finalName>hipc-dashboard</finalName>
+        <finalName>hipc</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
@@ -95,7 +95,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
+                            <classifier>boot</classifier>
                             <mainClass>gov.nih.nci.ctd2.dashboard.HIPCDashboard</mainClass>
                         </configuration>
                     </execution>

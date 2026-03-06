@@ -1,1 +1,1 @@
-sudo -E java -jar web/target/hipc-dashboard-spring-boot.war --server.port=8081
+sudo -E java -jar web/target/hipc-boot.war --server.port=8081
