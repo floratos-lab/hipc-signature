@@ -2,7 +2,9 @@ package gov.nih.nci.ctd2.dashboard.dao;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
+import gov.nih.nci.ctd2.dashboard.api.ObservationItem;
 import gov.nih.nci.ctd2.dashboard.model.AnimalModel;
 import gov.nih.nci.ctd2.dashboard.model.Annotation;
 import gov.nih.nci.ctd2.dashboard.model.CellSample;
@@ -170,4 +172,10 @@ public interface DashboardDao {
 
     WordCloudEntry[] getSubjectCountsForRole(String role);
     WordCloudEntry[] getSubjectCounts(Integer associatedSubject);
+
+    // the following are added to support more efficient API
+    String[] findObservationURLs(Integer submissionId, int limit);
+    List<ObservationItem> findObservationInfo(List<Integer> observationIds);
+    ObservationItem getObservationInfo(String uri);
+    ObservationItem[] getObservations(String submissionId, Set<Integer> indexes);
 }

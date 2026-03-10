@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -34,6 +35,7 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.springframework.cache.annotation.Cacheable;
 
+import gov.nih.nci.ctd2.dashboard.api.ObservationItem;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.impl.DashboardEntityImpl;
 import gov.nih.nci.ctd2.dashboard.impl.ObservationTemplateImpl;
@@ -1396,5 +1398,73 @@ public class DashboardDaoImpl implements DashboardDao {
         }
         session.close();
         return list.toArray(new WordCloudEntry[0]);
+    }
+
+    @Override
+    public String[] findObservationURLs(Integer submissionId, int limit) {
+        String sql = "SELECT stableURL FROM observation WHERE submission_id=" + submissionId;
+        if (limit > 0) {
+            sql += " LIMIT " + limit;
+        }
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<String> query = session.createNativeQuery(sql);
+        String[] result = query.list().toArray(new String[0]);
+        session.close();
+        return result;
+    }
+
+    @Override
+    public List<ObservationItem> findObservationInfo(List<Integer> observationIds) {
+        Session session = getSession();
+        List<ObservationItem> list = new ArrayList<ObservationItem>();
+        for (Integer id : observationIds) {
+            @SuppressWarnings("unchecked")
+            org.hibernate.query.Query<ObservationItem> query = session
+                    .createQuery("from ObservationItem where id = :id");
+            query.setParameter("id", id);
+            list.add(query.getSingleResult());
+        }
+        session.close();
+        return list;
+    }
+
+    @Override
+    public ObservationItem getObservationInfo(String uri) {
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<ObservationItem> query = session.createQuery("FROM ObservationItem WHERE uri = :uri");
+        query.setParameter("uri", uri);
+        ObservationItem x = null;
+        try {
+            x = query.getSingleResult();
+        } catch (NoResultException e) {
+            e.printStackTrace();
+        }
+        session.close();
+        return x;
+    }
+
+    @Override
+    public ObservationItem[] getObservations(String submissionId, Set<Integer> indexes) {
+        // this works because observation URIs are totally based on submission URI
+        List<String> uris = indexes.stream().map(i -> "observation/" + submissionId + "-" + i)
+                .collect(Collectors.toList());
+        // uris.forEach(System.out::println);
+        Session session = getSession();
+        List<ObservationItem> list = new ArrayList<ObservationItem>();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<ObservationItem> query = session
+                .createQuery("FROM ObservationItem WHERE uri IN (:uris)");
+        query.setParameterList("uris", uris);
+        try {
+            list = query.getResultList();
+        } catch (NoResultException e) {
+            log.info("ObservationItem not available for submission ID " + submissionId);
+        }
+        ObservationItem[] x = list.stream().toArray(ObservationItem[]::new);
+        log.debug("count of observations:" + x.length);
+        session.close();
+        return x;
     }
 }
