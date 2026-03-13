@@ -22,14 +22,14 @@ import gov.nih.nci.ctd2.dashboard.model.ObservationTemplate;
 import gov.nih.nci.ctd2.dashboard.model.Submission;
 
 @Controller
-@RequestMapping("/api/submission")
+@RequestMapping("/api/signature/{id}")
 public class SignatureAPI {
     private static final Log log = LogFactory.getLog(SignatureAPI.class);
     @Autowired
     private DashboardDao dashboardDao;
 
     @Transactional
-    @RequestMapping(value = "{id}", method = { RequestMethod.GET }, headers = "Accept=application/json")
+    @RequestMapping(method = { RequestMethod.GET }, headers = "Accept=application/json")
     public ResponseEntity<String> getSubmission(@PathVariable String id,
             @RequestParam(value = "maximum", required = false, defaultValue = "") String maximum) {
         HttpHeaders headers = new HttpHeaders();
@@ -62,7 +62,7 @@ public class SignatureAPI {
 
     public static class Signature {
         public final String submission_center, submission_name;
-        public final Date submisstion_date;
+        public final Date signature_date;
         public final Integer tier;
         public final String project, submission_description, story_title;
         public final Integer observation_count;
@@ -72,7 +72,7 @@ public class SignatureAPI {
             ObservationTemplate template = submission.getObservationTemplate();
             this.submission_center = template.getSubmissionCenter().getDisplayName();
             this.submission_name = submission.getDisplayName();
-            this.submisstion_date = submission.getSubmissionDate();
+            this.signature_date = submission.getSubmissionDate();
             this.tier = template.getTier();
             this.project = template.getProject();
             this.submission_description = template.getDescription();
