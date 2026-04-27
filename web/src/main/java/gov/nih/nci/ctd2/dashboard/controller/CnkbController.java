@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao; 
 import gov.nih.nci.ctd2.dashboard.model.Gene;
