@@ -2,6 +2,7 @@ package gov.nih.nci.ctd2.dashboard;
 
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.importer.internal.SampleImporter;
+import gov.nih.nci.ctd2.dashboard.util.APIDataBuilder;
 import gov.nih.nci.ctd2.dashboard.util.SubjectScorer;
 
 import java.util.HashSet;
@@ -69,6 +70,7 @@ public class DashboardAdminMain {
                 .addOption("v", "vaccine-data", false, "import vaccine data.")
                 .addOption("c", "cell-subset-data", false, "import cell subset data.")
                 .addOption("n", "pathogen-data", false, "import pathogen data.")
+                .addOption("x", "api-support", false, "creates api support data.")
         ;
 
         // Here goes the parsing attempt
@@ -123,6 +125,13 @@ public class DashboardAdminMain {
 			if( commandLine.hasOption("o") ) {
                 launchJob("observationDataImporterJob");
 			}
+
+            // process API supporting data in db
+            if (commandLine.hasOption("x")) {
+                String dataURL = null; // ignored. originally from CTD2: (String) appContext.getBean("dataURL");
+                APIDataBuilder b = (APIDataBuilder) appContext.getBean("apiDataBuilder");
+                b.prepareData(dataURL);
+            }
 
             if( commandLine.hasOption("s") ) {
                 log.info("Running sample importer...");

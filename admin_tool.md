@@ -343,6 +343,12 @@ Example usage:
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -ts
 ```
 
+## Create extra API supporting data
+
+```sh
+sudo -E java -Xmx4g -jar admin/target/dashboard-admin.jar -x
+```
+
 ## Use Case
 
 In a typical dashboard database build, the following sequence of commands would be followed:
@@ -361,6 +367,7 @@ $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -cv
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -o
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -i
 $JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -r
+$JAVA_HOME/bin/java -jar $HIPC_HOME/admin/target/dashboard-admin.jar -x
 ```
 [1]: #introduction
 [2]: #environment-variables

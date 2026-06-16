@@ -35,7 +35,10 @@ import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
 import org.springframework.cache.annotation.Cacheable;
 
+import gov.nih.nci.ctd2.dashboard.api.EvidenceItem;
 import gov.nih.nci.ctd2.dashboard.api.ObservationItem;
+import gov.nih.nci.ctd2.dashboard.api.SubjectItem;
+import gov.nih.nci.ctd2.dashboard.api.XRefItem;
 import gov.nih.nci.ctd2.dashboard.dao.DashboardDao;
 import gov.nih.nci.ctd2.dashboard.impl.DashboardEntityImpl;
 import gov.nih.nci.ctd2.dashboard.impl.ObservationTemplateImpl;
@@ -48,6 +51,7 @@ import gov.nih.nci.ctd2.dashboard.model.CellSubset;
 import gov.nih.nci.ctd2.dashboard.model.Compound;
 import gov.nih.nci.ctd2.dashboard.model.DashboardEntity;
 import gov.nih.nci.ctd2.dashboard.model.DashboardFactory;
+import gov.nih.nci.ctd2.dashboard.model.Evidence;
 import gov.nih.nci.ctd2.dashboard.model.Gene;
 import gov.nih.nci.ctd2.dashboard.model.Observation;
 import gov.nih.nci.ctd2.dashboard.model.ObservationTemplate;
@@ -1466,5 +1470,129 @@ public class DashboardDaoImpl implements DashboardDao {
         log.debug("count of observations:" + x.length);
         session.close();
         return x;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void prepareAPIData() {
+        Session session = getSession();
+        session.beginTransaction();
+        session.createQuery("DELETE FROM EvidenceItem").executeUpdate();
+        session.createQuery("DELETE FROM SubjectItem").executeUpdate();
+        session.createQuery("DELETE FROM ObservationItem").executeUpdate();
+        org.hibernate.query.Query<Object[]> query0 = session.createNativeQuery(
+                "SELECT submission.id, observationSummary FROM observation_template JOIN  submission ON observation_template.id=submission.observationTemplate_id");
+        List<Object[]> submissions = query0.list();
+        for (Object[] objs : submissions) {
+            Integer submission_id = (Integer) (objs[0]);
+            String observationSummary = (String) (objs[1]);
+            org.hibernate.query.Query<Object[]> query = session
+                    .createNativeQuery("SELECT id, stableURL FROM observation WHERE submission_id=" + submission_id);
+            List<Object[]> result = query.list();
+            for (Object[] obj : result) {
+                Integer id = (Integer) obj[0];
+                String uri = (String) obj[1];
+
+                List<EvidenceItem> evidences = createObservedEvidenceInfo(id);
+                List<SubjectItem> subjects = createObservedSubjectInfo(id);
+                ObservationItem obsv = new ObservationItem();
+                obsv.setId(id);
+                obsv.setSubmission_id(submission_id);
+                obsv.observation_summary = replaceValues(observationSummary, subjects, evidences);
+                obsv.evidence_list = evidences.toArray(new EvidenceItem[0]);
+                obsv.subject_list = subjects.toArray(new SubjectItem[0]);
+                session.save(obsv);
+                obsv.uri = uri;
+            }
+        }
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    private List<EvidenceItem> createObservedEvidenceInfo(Integer observationId) {
+        Session session = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query = session.createNativeQuery(
+                "SELECT d2.displayName AS type, observed_evidence_role.displayText AS description, evidence.id, columnName"
+                        + " FROM observed_evidence join evidence on observed_evidence.evidence_id=evidence.id"
+                        + " JOIN observed_evidence_role ON observed_evidence.observedEvidenceRole_id=observed_evidence_role.id"
+                        + " JOIN evidence_role ON observed_evidence_role.evidenceRole_id=evidence_role.id"
+                        + " JOIN dashboard_entity AS d2 ON evidence_role.id=d2.id WHERE observation_id="
+                        + observationId);
+        List<EvidenceItem> list = new ArrayList<EvidenceItem>();
+        List<Object[]> evidences = query.list();
+
+        for (Object[] obj : evidences) {
+            String type = (String) obj[0];
+            String description = (String) obj[1];
+            Integer evidenceId = (Integer) obj[2];
+            Evidence evidence = getEntityById(Evidence.class, evidenceId);
+            String evidenceName = evidence.getDisplayName();
+            String columnName = (String) obj[3];
+            EvidenceItem evidenceItem = new EvidenceItem(evidence, type, description, evidenceName, columnName);
+            list.add(evidenceItem);
+        }
+        session.close();
+        return list;
+    }
+
+    private List<SubjectItem> createObservedSubjectInfo(Integer observationId) {
+        Session session1 = getSession();
+        @SuppressWarnings("unchecked")
+        org.hibernate.query.Query<Object[]> query1 = session1.createNativeQuery(
+                "SELECT d2.displayName AS role, observed_subject_role.displayText AS description, d1.displayName AS name, subject.id, columnName, stableURL"
+                        + " FROM observed_subject join subject on observed_subject.subject_id=subject.id"
+                        + " JOIN dashboard_entity d1 ON subject.id=d1.id"
+                        + " JOIN observed_subject_role ON observed_subject.observedSubjectRole_id = observed_subject_role.id"
+                        + " JOIN subject_role ON observed_subject_role.subjectRole_id=subject_role.id"
+                        + " JOIN dashboard_entity AS d2 ON subject_role.id=d2.id" + " where observation_id="
+                        + observationId);
+        List<Object[]> subjects = query1.list();
+
+        List<SubjectItem> list = new ArrayList<SubjectItem>();
+        for (Object[] obj : subjects) {
+            String role = (String) obj[0];
+            String description = (String) obj[1];
+            String name = (String) obj[2];
+            Integer subjectId = (Integer) obj[3];
+            String columnName = (String) obj[4];
+            String stableURL = (String) obj[5];
+
+            @SuppressWarnings("unchecked")
+            org.hibernate.query.Query<String> query2 = session1
+                    .createNativeQuery("SELECT displayName FROM subject_synonym_map "
+                            + " JOIN synonym ON subject_synonym_map.synonyms_id=synonym.id "
+                            + " JOIN dashboard_entity ON synonym.id = dashboard_entity.id" + " WHERE SubjectImpl_id="
+                            + subjectId);
+            List<String> synonyms = query2.list();
+
+            @SuppressWarnings("unchecked")
+            org.hibernate.query.Query<Object[]> query3 = session1
+                    .createNativeQuery("SELECT databaseId, databaseName FROM subject_xref_map"
+                            + " JOIN xref ON subject_xref_map.xrefs_id=xref.id " + " WHERE SubjectImpl_id="
+                            + subjectId);
+            List<Object[]> xrefs = query3.list();
+            List<XRefItem> xrefItems = new ArrayList<XRefItem>();
+            for (Object[] x : xrefs) {
+                xrefItems.add(new XRefItem((String) x[1], (String) x[0]));
+            }
+
+            SubjectItem subjectItem = new SubjectItem(stableURL, role, description, name,
+                    synonyms.toArray(new String[0]), xrefItems.toArray(new XRefItem[0]), columnName);
+            list.add(subjectItem);
+        }
+        session1.close();
+        return list;
+    }
+
+    private static String replaceValues(String summary, final List<SubjectItem> subjects,
+            final List<EvidenceItem> evidences) {
+        for (final SubjectItem s : subjects) {
+            summary = summary.replace("<" + s.getColumnName() + ">", s.getName());
+        }
+        for (final EvidenceItem e : evidences) {
+            summary = summary.replace("<" + e.getColumnName() + ">", e.getEvidenceName());
+        }
+        return summary;
     }
 }

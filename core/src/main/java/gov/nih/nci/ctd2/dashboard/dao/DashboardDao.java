@@ -178,4 +178,6 @@ public interface DashboardDao {
     List<ObservationItem> findObservationInfo(List<Integer> observationIds);
     ObservationItem getObservationInfo(String uri);
     ObservationItem[] getObservations(String submissionId, Set<Integer> indexes);
+
+    void prepareAPIData();
 }
